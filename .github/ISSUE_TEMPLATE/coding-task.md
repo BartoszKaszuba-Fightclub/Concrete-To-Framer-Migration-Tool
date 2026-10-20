@@ -20,18 +20,11 @@ assignees: ''
 - [ ] [Observable condition that must be met]
 - [ ] [Another condition, if needed]
 
-## Subtasks
-- [ ] [Task]
-- [ ] [Task]
-
-## Priority
-[High / Medium / Low]
-
 ## Dependencies / references
-[Related tickets, research, designs, or technical references]
+- [Related tickets, research, designs, or technical references]
 
 ## Feedback Metrics
-- [ ] [how do you judge you are getting closer to aswering the research question]
+- [how do you judge you are getting closer to aswering the research question]
 
 ## Jackpots
-- [ ] [Document the things you are happy about worked]
+- [Document the things you are happy about worked]
