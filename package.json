@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "extract:generic": "node --import tsx scripts/generic-extractor/cli.ts",
+    "poc:scrape": "node --import tsx poc/scrape-hero.ts",
+    "poc:rebuild": "node --import tsx poc/rebuild-framer.ts",
+    "poc": "npm run poc:scrape && npm run poc:rebuild"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
+    "@framer/agent": "^0.0.46",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.2",
+    "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "dotenv": "^18.0.5",
     "framer-api": "^5.1.0"
   }
 }

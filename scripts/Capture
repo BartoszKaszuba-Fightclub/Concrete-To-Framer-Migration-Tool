@@ -1,0 +1,437 @@
+import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
+import { loadEnv } from "./lib/env.mjs";
+import {
+  SECTION_SELECTOR,
+  hideStickyForClips,
+  settleElementor,
+} from "./lib/settle-page.mjs";
+import { digestLocator, MAX_HTML_CHARS } from "./lib/section-html-digest.mjs";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const { WP_ORIGIN } = loadEnv(root);
+
+const VIEWPORTS = [
+  { name: "desktop", width: 1440, height: 900 },
+  { name: "laptop", width: 1024, height: 768 },
+  { name: "tablet", width: 768, height: 1024 },
+  { name: "phone", width: 480, height: 844 },
+  { name: "phone-narrow", width: 390, height: 844 },
+];
+
+const TOKEN_SELECTORS = [
+  "h1",
+  "h2",
+  "a.elementor-button",
+  ".elementor-button",
+  "header",
+  "nav",
+  "body",
+];
+
+function slugFromPath(path) {
+  if (path === "/") return "home";
+  return path.replace(/^\/|\/$/g, "").replaceAll("/", "--") || "home";
+}
+
+async function extractPageSpec(page) {
+  return page.evaluate((tokenSelectors) => {
+    const cfg = window.elementorFrontendConfig || null;
+    const kit = cfg?.kit || {};
+    const responsive = cfg?.responsive || {};
+
+    function cs(el) {
+      if (!el) return null;
+      const s = getComputedStyle(el);
+      return {
+        color: s.color,
+        backgroundColor: s.backgroundColor,
+        fontFamily: s.fontFamily,
+        fontSize: s.fontSize,
+        fontWeight: s.fontWeight,
+        lineHeight: s.lineHeight,
+        letterSpacing: s.letterSpacing,
+        padding: s.padding,
+        margin: s.margin,
+        gap: s.gap,
+        maxWidth: s.maxWidth,
+        borderRadius: s.borderRadius,
+      };
+    }
+
+    const tokens = {};
+    for (const sel of tokenSelectors) {
+      const el = document.querySelector(sel);
+      tokens[sel] = cs(el);
+    }
+    tokens.bodyBackground = getComputedStyle(document.body).backgroundColor;
+    tokens.link = cs(document.querySelector("a"));
+
+    const sections = [];
+    const seenBBox = new Set();
+    const parents = document.querySelectorAll(
+      ".e-con.e-parent:not(.elementor-sticky__spacer), .elementor-section.elementor-top-section:not(.elementor-sticky__spacer)"
+    );
+    parents.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      const heading = el.querySelector("h1, h2, h3");
+      const img = el.querySelector("img");
+      const classes = [...el.classList];
+      if (classes.includes("elementor-sticky__spacer")) return;
+      const style = getComputedStyle(el);
+      if (style.display === "none" || style.visibility === "hidden") return;
+      if (r.width < 40 || r.height < 40) return;
+      if (r.right < 0 || r.left > window.innerWidth) return;
+      const bboxKey = `${Math.round(r.x)},${Math.round(window.scrollY + r.y)},${Math.round(r.width)},${Math.round(r.height)}`;
+      if (seenBBox.has(bboxKey)) return;
+      seenBBox.add(bboxKey);
+      const index = sections.length;
+      sections.push({
+        index,
+        id: el.getAttribute("data-id") || el.id || null,
+        tag: el.tagName.toLowerCase(),
+        classes,
+        hidden: {
+          desktop: classes.includes("elementor-hidden-desktop"),
+          laptop: classes.includes("elementor-hidden-laptop"),
+          tablet: classes.includes("elementor-hidden-tablet"),
+          mobile: classes.includes("elementor-hidden-mobile"),
+        },
+        bbox: {
+          x: Math.round(r.x),
+          y: Math.round(window.scrollY + r.y),
+          width: Math.round(r.width),
+          height: Math.round(r.height),
+        },
+        heading: heading ? heading.textContent.trim().slice(0, 180) : "",
+        image: img ? img.src : null,
+        suggestedName:
+          heading
+            ? heading.textContent.trim().slice(0, 40).replace(/\s+/g, "")
+            : `Section${index + 1}`,
+      });
+    });
+
+    const nav = {
+      desktopVisible: !!document.querySelector(
+        ".elementor-hidden-tablet.elementor-hidden-mobile, .elementor-nav-menu--main"
+      ),
+      hamburger: !!document.querySelector(
+        ".elementor-hidden-desktop.elementor-hidden-laptop, .elementor-menu-toggle"
+      ),
+    };
+
+    return {
+      title: document.title,
+      canonical: document.querySelector('link[rel="canonical"]')?.href || location.href,
+      description: document.querySelector('meta[name="description"]')?.content || "",
+      h1: document.querySelector("h1")?.textContent.trim() || "",
+      breakpoints: {
+        kit: {
+          viewport_mobile: kit.viewport_mobile,
+          viewport_tablet: kit.viewport_tablet,
+          viewport_laptop: kit.viewport_laptop,
+          active_breakpoints: kit.active_breakpoints,
+        },
+        responsive,
+        legacy: cfg?.breakpoints || null,
+      },
+      tokens,
+      nav,
+      sections,
+      fonts: [...new Set([...document.fonts].map((f) => f.family))].slice(0, 20),
+    };
+  }, TOKEN_SELECTORS);
+}
+
+const inventoryPath = join(root, "capture", "inventory.json");
+let uniquePaths = [
+  "/",
+  "/adviesgesprek/",
+  "/contact/",
+  "/over-ons/",
+  "/spouwmuurisolatie/",
+  "/muurisolatie/",
+  "/dakisolatie/",
+  "/vloerisolatie/",
+  "/isolatie-breda/",
+  "/projecten/",
+  "/projecten/vve-breda/",
+  "/saman/",
+  "/zakelijk/",
+  "/subsidie-woningisolatie/",
+  "/vacatures/",
+  "/blog/",
+  "/privacyverklaring/",
+  "/cookie-policy-eu/",
+  "/algemene-voorwaarden/",
+  "/gemeentes/",
+  "/isolatiematerialen/",
+  "/partners/",
+  "/bedankpagina-adviesgesprek-aanvraag/",
+];
+if (existsSync(inventoryPath)) {
+  const inv = JSON.parse(await readFile(inventoryPath, "utf8"));
+  if (Array.isArray(inv.uniqueTemplatePaths)) uniquePaths = inv.uniqueTemplatePaths;
+}
+if (process.env.CAPTURE_PATH) {
+  const allow = process.env.CAPTURE_PATH.split(",").map((p) => p.trim()).filter(Boolean);
+  uniquePaths = uniquePaths.filter((p) => allow.includes(p));
+}
+
+await mkdir(join(root, "capture"), { recursive: true });
+for (const vp of VIEWPORTS) {
+  await mkdir(join(root, "screenshots", vp.name), { recursive: true });
+}
+
+const browser = await chromium.launch({ headless: true });
+const context = await browser.newContext({
+  userAgent:
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+  locale: "nl-NL",
+});
+const page = await context.newPage();
+
+const pagesOut = [];
+let breakpoints = null;
+
+for (const path of uniquePaths) {
+  const url = WP_ORIGIN + path;
+  const slug = slugFromPath(path);
+  const record = { path, url, slug, ok: false, screenshots: {}, error: null, spec: null };
+  try {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const res = await page.goto(url, { waitUntil: "load", timeout: 45000 });
+    if (!res || res.status() >= 400) {
+      record.error = `HTTP ${res?.status()}`;
+      pagesOut.push(record);
+      console.warn(`SKIP ${path} ${record.error}`);
+      continue;
+    }
+    await settleElementor(page);
+
+    const spec = await extractPageSpec(page);
+    record.spec = spec;
+    if (!breakpoints && spec.breakpoints?.kit?.viewport_mobile) breakpoints = spec.breakpoints;
+    record.ok = true;
+
+    record.forms = await page.evaluate(() =>
+      [...document.querySelectorAll("form")].map((f) => ({
+        id: f.id || null,
+        action: f.action,
+        method: f.method,
+        fields: [...f.querySelectorAll("input, select, textarea")].map((el) => ({
+          tag: el.tagName.toLowerCase(),
+          type: el.getAttribute("type") || el.tagName.toLowerCase(),
+          name: el.getAttribute("name") || "",
+          id: el.id || "",
+          required: el.required,
+          placeholder: el.getAttribute("placeholder") || "",
+          label:
+            (el.id && document.querySelector(`label[for="${el.id}"]`)?.textContent?.trim()) ||
+            el.closest("label")?.textContent?.trim() ||
+            "",
+        })),
+      }))
+    );
+
+    const clipsOnly = Boolean(process.env.CAPTURE_CLIPS_ONLY);
+    const navByViewport = {};
+    if (clipsOnly && existsSync(join(root, "capture", "pages.json"))) {
+      const prev = JSON.parse(await readFile(join(root, "capture", "pages.json"), "utf8"));
+      const old = (prev.pages || []).find((p) => p.path === path);
+      if (old?.screenshots) record.screenshots = old.screenshots;
+      if (old?.navByViewport) record.navByViewport = old.navByViewport;
+    } else {
+      for (const vp of VIEWPORTS) {
+        await page.setViewportSize({ width: vp.width, height: vp.height });
+        if (vp.width !== 1440) await settleElementor(page, { reloadAfterConsent: false });
+        const file = join(root, "screenshots", vp.name, `${slug}.png`);
+        await page.screenshot({ path: file, fullPage: true, animations: "disabled" });
+        record.screenshots[vp.name] = `screenshots/${vp.name}/${slug}.png`;
+        navByViewport[vp.name] = await page.evaluate(() => {
+          function vis(el) {
+            if (!el) return { exists: false, displayed: false };
+            const s = getComputedStyle(el);
+            const r = el.getBoundingClientRect();
+            return {
+              exists: true,
+              displayed:
+                s.display !== "none" &&
+                s.visibility !== "hidden" &&
+                Number(s.opacity) > 0.05 &&
+                r.width > 2 &&
+                r.height > 2,
+            };
+          }
+          const burger = document.querySelector(
+            ".elementor-hidden-desktop.elementor-hidden-laptop"
+          );
+          const desktopNav = document.querySelector(
+            "nav.elementor-nav-menu--main, .elementor-nav-menu--layout-horizontal"
+          );
+          return {
+            hamburgerDisplayed: vis(burger).displayed,
+            desktopNavDisplayed: vis(desktopNav).displayed,
+            viewportWidth: window.innerWidth,
+          };
+        });
+      }
+      record.navByViewport = navByViewport;
+    }
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const sectionDir = join(root, "screenshots", "desktop", "sections", slug);
+    await rm(sectionDir, { recursive: true, force: true });
+    await mkdir(sectionDir, { recursive: true });
+    record.sectionClips = [];
+
+    const isStickyNav = (section) =>
+      (section.classes || []).some((c) => c === "elementor-sticky" || c === "elementor-sticky--active");
+
+    async function clipSection(section) {
+      const clipName = `${String(section.index).padStart(2, "0")}.png`;
+      const clipPath = join(sectionDir, clipName);
+      const loc = section.id
+        ? page.locator(`[data-id="${section.id}"]:not(.elementor-sticky__spacer)`).first()
+        : page.locator(SECTION_SELECTOR).nth(section.index);
+      try {
+        await loc.scrollIntoViewIfNeeded({ timeout: 5000 });
+        await page.waitForTimeout(150);
+        await loc.screenshot({ path: clipPath, animations: "disabled", timeout: 8000 });
+        record.sectionClips.push(`screenshots/desktop/sections/${slug}/${clipName}`);
+      } catch (err) {
+        record.sectionClips.push({ error: String(err), index: section.index });
+      }
+    }
+
+    for (const section of spec.sections.filter(isStickyNav)) await clipSection(section);
+    await hideStickyForClips(page);
+    for (const section of spec.sections.filter((s) => !isStickyNav(s))) await clipSection(section);
+
+    const htmlDir = join(root, "capture", "html");
+    await mkdir(htmlDir, { recursive: true });
+    for (const section of spec.sections) {
+      const clip = `${slug}--${String(section.index).padStart(2, "0")}`;
+      const loc = section.id
+        ? page.locator(`[data-id="${section.id}"]:not(.elementor-sticky__spacer)`).first()
+        : page.locator(SECTION_SELECTOR).nth(section.index);
+      try {
+        await loc.scrollIntoViewIfNeeded({ timeout: 5000 });
+        const digest = await digestLocator(loc, MAX_HTML_CHARS);
+        await writeFile(
+          join(htmlDir, `${clip}.json`),
+          JSON.stringify(
+            {
+              clip,
+              path,
+              slug,
+              index: section.index,
+              heading: section.heading || "",
+              capturedAt: new Date().toISOString(),
+              viewport: { width: 1440, height: 900 },
+              ...digest,
+            },
+            null,
+            2
+          )
+        );
+      } catch (err) {
+        console.warn(`HTML ${clip} ${String(err).split("\n")[0]}`);
+      }
+    }
+    console.log(`OK ${path} (${spec.sections.length} sections)`);
+  } catch (err) {
+    record.error = String(err);
+    console.warn(`FAIL ${path} ${record.error}`);
+  }
+  pagesOut.push(record);
+}
+
+await browser.close();
+
+const tokens = pagesOut.find((p) => p.slug === "home" && p.spec)?.spec?.tokens || pagesOut[0]?.spec?.tokens || {};
+const sections = pagesOut
+  .filter((p) => p.spec?.sections)
+  .map((p) => ({
+    path: p.path,
+    slug: p.slug,
+    title: p.spec.title,
+    h1: p.spec.h1,
+    sections: p.spec.sections,
+  }));
+
+const breakpointsOut = {
+  ...(breakpoints || {}),
+  framer: {
+    desktop: { canvas: 1200, appliesFrom: 769 },
+    tablet: { canvas: 768, applies: [481, 768] },
+    phone: { canvas: 390, appliesMax: 480 },
+    qaWidths: [1440, 1024, 768, 480, 390],
+    note: "Live Elementor hamburger appears at ≤767 (hidden-desktop + hidden-laptop). Framer tablet canvas 768 is the accepted 1px gap.",
+  },
+};
+if (!breakpointsOut.kit) {
+  breakpointsOut.kit = {
+    viewport_mobile: 480,
+    viewport_tablet: 767,
+    viewport_laptop: 1024,
+    active_breakpoints: ["viewport_mobile", "viewport_tablet", "viewport_laptop"],
+  };
+}
+function pageSummary(p) {
+  return {
+    ...(({ spec, ...rest }) => rest)(p),
+    h1: p.spec?.h1,
+    title: p.spec?.title,
+    description: p.spec?.description,
+    sectionCount: p.spec?.sections?.length ?? 0,
+  };
+}
+
+const pagesFile = join(root, "capture", "pages.json");
+const sectionsFile = join(root, "capture", "sections.json");
+if (process.env.CAPTURE_PATH && existsSync(pagesFile) && existsSync(sectionsFile)) {
+  const existingPages = JSON.parse(await readFile(pagesFile, "utf8"));
+  const existingSections = JSON.parse(await readFile(sectionsFile, "utf8"));
+  const pageByPath = new Map((existingPages.pages || []).map((p) => [p.path, p]));
+  const sectionByPath = new Map((existingSections.pages || []).map((p) => [p.path, p]));
+  for (const p of pagesOut) pageByPath.set(p.path, pageSummary(p));
+  for (const p of sections) sectionByPath.set(p.path, p);
+  existingPages.capturedAt = new Date().toISOString();
+  existingPages.pages = [...pageByPath.values()];
+  await writeFile(pagesFile, JSON.stringify(existingPages, null, 2));
+  await writeFile(
+    sectionsFile,
+    JSON.stringify({ capturedAt: new Date().toISOString(), pages: [...sectionByPath.values()] }, null, 2)
+  );
+  if (pagesOut.some((p) => p.slug === "home" && p.spec?.tokens)) {
+    await writeFile(
+      join(root, "capture", "tokens.json"),
+      JSON.stringify({ capturedAt: new Date().toISOString(), origin: WP_ORIGIN, tokens }, null, 2)
+    );
+  }
+  console.log(`CAPTURE_PATH merge — updated ${pagesOut.length} page(s) in capture JSON`);
+} else {
+  await writeFile(join(root, "capture", "breakpoints.json"), JSON.stringify(breakpointsOut, null, 2));
+  await writeFile(join(root, "capture", "tokens.json"), JSON.stringify({ capturedAt: new Date().toISOString(), origin: WP_ORIGIN, tokens }, null, 2));
+  await writeFile(sectionsFile, JSON.stringify({ capturedAt: new Date().toISOString(), pages: sections }, null, 2));
+  await writeFile(
+    pagesFile,
+    JSON.stringify(
+      {
+        capturedAt: new Date().toISOString(),
+        origin: WP_ORIGIN,
+        viewports: VIEWPORTS,
+        pages: pagesOut.map(pageSummary),
+      },
+      null,
+      2
+    )
+  );
+}
+
+console.log(`Captured ${pagesOut.filter((p) => p.ok).length}/${pagesOut.length} unique templates`);

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "include": ["Archive/Framer script.ts", "Archive/playwright.config.ts", "Archive/tests/**/*.ts", "Archive/poc-html-scrape-and-visual-clone/**/*.ts"]
+}
