@@ -1,3 +1,4 @@
+// Not on the active capture path. Cross-width match files are not generated or read.
 import type { DomNode, Nodes } from "./extract.ts"
 
 type Key = { basis: "text" | "media"; value: string }

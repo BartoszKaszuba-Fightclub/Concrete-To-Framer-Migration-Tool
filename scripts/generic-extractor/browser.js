@@ -1,13 +1,27 @@
 // Evaluated in the page as a string by callBrowser() so tsx/esbuild never injects helpers into it.
+// Styles are measured in collect(), the same traversal as structure and geometry.
 ({
-  collect({ maxNodes, overrides }) {
+  collect({ maxNodes }) {
     const SKIP = new Set(["head", "script", "style", "noscript", "template", "link", "meta"]);
     const BOUNDARY = { iframe: "iframe", frame: "iframe", object: "embed", embed: "embed", canvas: "canvas", video: "video", svg: "svg" };
+    const STYLE_PROPS = [
+      "fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform",
+      "color", "backgroundColor", "backgroundImage", "opacity",
+      "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
+      "marginTop", "marginRight", "marginBottom", "marginLeft",
+      "rowGap", "columnGap",
+      "borderTopWidth", "borderTopStyle", "borderTopColor",
+      "borderRightWidth", "borderRightStyle", "borderRightColor",
+      "borderBottomWidth", "borderBottomStyle", "borderBottomColor",
+      "borderLeftWidth", "borderLeftStyle", "borderLeftColor",
+      "borderTopLeftRadius", "borderTopRightRadius", "borderBottomRightRadius", "borderBottomLeftRadius",
+      "boxShadow",
+    ];
     const sx = scrollX, sy = scrollY;
     const r2 = (v) => Math.round(v * 100) / 100;
     const urls = (value) => [...(value || "").matchAll(/url\("([^"]*)"\)/g)].map((m) => m[1]);
     const anySide = (cs, pattern, test) => ["Top", "Right", "Bottom", "Left"].some((s) => test(parseFloat(cs[pattern.replace("*", s)]) || 0));
-    const nodes = {}, registry = [], excluded = [], locatorFailures = [], boundaries = [], ids = new Map();
+    const nodes = {}, computed = {}, excluded = [], boundaries = [];
     let seq = 0, overflow = false;
 
     const traitsOf = (cs) => [
@@ -18,6 +32,7 @@
       [cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0, "outline"],
       [anySide(cs, "padding*", (v) => v > 0), "padding"],
       [anySide(cs, "margin*", (v) => v !== 0), "margin"],
+      [["rowGap", "columnGap"].some((prop) => { const value = parseFloat(cs[prop]); return Number.isFinite(value) && value !== 0; }), "gap"],
       [cs.transform !== "none", "transform"],
       [cs.opacity !== "1", "opacity"],
       [cs.filter !== "none" || (cs.backdropFilter || "none") !== "none", "filter"],
@@ -28,6 +43,19 @@
       [cs.mixBlendMode !== "normal", "blend"],
       [!["block", "inline"].includes(cs.display), `display:${cs.display}`],
     ].filter(([on]) => on).map(([, name]) => name);
+
+    const pick = (cs) => Object.fromEntries(STYLE_PROPS.map((key) => [key, cs[key]]));
+    const styleOf = (el, cs) => {
+      const record = pick(cs);
+      const pseudos = {};
+      for (const pseudo of ["::before", "::after"]) {
+        const pseudoStyle = getComputedStyle(el, pseudo);
+        if (!["none", "normal"].includes(pseudoStyle.content))
+          pseudos[pseudo] = { content: pseudoStyle.content, ...pick(pseudoStyle), width: pseudoStyle.width, height: pseudoStyle.height };
+      }
+      if (Object.keys(pseudos).length) record.pseudos = pseudos;
+      return record;
+    };
 
     const selectorFor = (el, parentSel) => {
       const same = [...el.parentElement.children].filter((c) => c.localName === el.localName);
@@ -40,17 +68,14 @@
       const id = `n-${String(++seq).padStart(6, "0")}`;
       const tag = el.localName, cs = getComputedStyle(el), r = el.getBoundingClientRect();
       const node = {
-        tag, domId: el.getAttribute("id") || "", classes: [...el.classList], selector: sel, parentId, order, children: [],
+        tag, domId: el.getAttribute("id") || "", classes: [...el.classList], role: el.getAttribute("role") || "",
+        selector: sel, parentId, order, children: [],
         box: { x: r2(r.x + sx), y: r2(r.y + sy), width: r2(r.width), height: r2(r.height) },
         render: { display: cs.display, visibility: cs.visibility, opacity: cs.opacity, position: cs.position },
         traits: traitsOf(cs),
       };
       nodes[id] = node;
-      ids.set(el, id);
-
-      const found = document.querySelectorAll(sel);
-      if (found.length === 1 && found[0] === el) registry.push({ id, selector: sel });
-      else locatorFailures.push({ id, selector: sel, matches: found.length });
+      computed[id] = styleOf(el, cs);
 
       const media = [];
       const add = (kind, url) => url && media.push({ kind, url });
@@ -109,59 +134,112 @@
       roots.push(id);
     }
 
-    const resolved = (overrides || []).map((group) => group.map((selector) => {
-      const found = document.querySelectorAll(selector);
-      return { selector, id: found.length === 1 ? ids.get(found[0]) ?? null : null, matches: found.length };
-    }));
-
     return {
-      layoutWidth: document.documentElement.clientWidth, roots, nodes, registry, excluded, locatorFailures, boundaries,
-      overrides: resolved, overflow, elementCount: document.getElementsByTagName("*").length, fingerprint: this.fingerprint(),
+      layoutWidth: document.documentElement.clientWidth, roots, nodes, computed, excluded, boundaries,
+      overflow, elementCount: document.getElementsByTagName("*").length, fingerprint: this.fingerprint(),
     };
   },
 
-  computed(targets) {
-    const PROPS = [
-      "fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform",
-      "color", "backgroundColor", "backgroundImage", "opacity",
-      "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
-      "marginTop", "marginRight", "marginBottom", "marginLeft",
-      "rowGap", "columnGap",
-      ...["Top", "Right", "Bottom", "Left"].flatMap((s) => [`border${s}Width`, `border${s}Style`, `border${s}Color`]),
-      "borderTopLeftRadius", "borderTopRightRadius", "borderBottomRightRadius", "borderBottomLeftRadius",
-      "boxShadow",
-    ];
-    const pick = (cs, keys) => Object.fromEntries(keys.map((k) => [k, cs[k]]));
-    const isCookiebot = (el) =>
-      /CybotCookiebot/.test(el.getAttribute("id") || "") || /CybotCookiebot/.test(el.getAttribute("class") || "");
-    // A pseudo with content none/normal generates no box, so its background, border or shadow never paints.
-    const paints = (s) => !["none", "normal"].includes(s.content);
-
-    const nodes = {}, skipped = [], unresolved = [], skippedIds = new Set();
-    for (const { id, selector, parentId } of targets) {
-      const found = document.querySelectorAll(selector);
-      const el = found.length === 1 ? found[0] : null;
-      let cookie = parentId != null && skippedIds.has(parentId);
-      for (let a = el; a && !cookie; a = a.parentElement) cookie = isCookiebot(a);
-      if (cookie) {
-        skippedIds.add(id);
-        skipped.push({ nodeId: id, reason: "cookiebot" });
+  discoverBreakpoints() {
+    const discovered = [];
+    const inaccessible = [];
+    const pixelsIn = (media) => [...String(media).matchAll(/(?:min-|max-)?width\s*:\s*([0-9.]+)px/gi)].map((match) => Number(match[1]));
+    const walk = (rules, href) => {
+      for (const rule of rules) {
+        if (rule.type === CSSRule.MEDIA_RULE) {
+          const media = rule.conditionText || rule.media?.mediaText || "";
+          discovered.push({ media, pixels: pixelsIn(media), href: href || null });
+          if (rule.cssRules) walk(rule.cssRules, href);
+        } else if (rule.cssRules) {
+          walk(rule.cssRules, href);
+        }
+      }
+    };
+    for (const sheet of document.styleSheets) {
+      let rules;
+      try {
+        rules = sheet.cssRules;
+      } catch (error) {
+        inaccessible.push({ href: sheet.href || null, reason: String(error && error.message ? error.message : error) });
         continue;
       }
-      if (!el) {
-        unresolved.push({ nodeId: id, selector, matches: found.length });
+      if (!rules) {
+        inaccessible.push({ href: sheet.href || null, reason: "cssRules unavailable" });
         continue;
       }
-      const record = pick(getComputedStyle(el), PROPS);
-      const pseudos = {};
-      for (const p of ["::before", "::after"]) {
-        const s = getComputedStyle(el, p);
-        if (paints(s)) pseudos[p] = { content: s.content, ...pick(s, PROPS), width: s.width, height: s.height };
+      try {
+        walk(rules, sheet.href || null);
+      } catch (error) {
+        inaccessible.push({ href: sheet.href || null, reason: String(error && error.message ? error.message : error) });
       }
-      if (Object.keys(pseudos).length) record.pseudos = pseudos;
-      nodes[id] = record;
     }
-    return { nodes, skipped, unresolved };
+    return { discovered, inaccessible };
+  },
+
+  visibleElement(el) {
+    if (!(el instanceof Element)) return false;
+    const style = getComputedStyle(el);
+    if (style.display === "none" || style.visibility === "hidden" || style.visibility === "collapse" || Number(style.opacity) === 0) return false;
+    const box = el.getBoundingClientRect();
+    return box.width > 0 && box.height > 0;
+  },
+
+  coverRatio(el) {
+    const box = el.getBoundingClientRect();
+    const viewportWidth = window.innerWidth || 1;
+    const viewportHeight = window.innerHeight || 1;
+    const width = Math.max(0, Math.min(box.right, viewportWidth) - Math.max(box.left, 0));
+    const height = Math.max(0, Math.min(box.bottom, viewportHeight) - Math.max(box.top, 0));
+    return (width * height) / (viewportWidth * viewportHeight);
+  },
+
+  consentRoots() {
+    const roots = new Set();
+    const selectors = ["[role='dialog']", "[aria-modal='true']", "[id*='cookie' i]", "[class*='cookie' i]", "[id*='consent' i]", "[class*='consent' i]", "[id*='onetrust' i]", "[id*='cookiebot' i]", "[id*='gdpr' i]"];
+    for (const selector of selectors) {
+      for (const el of document.querySelectorAll(selector)) if (this.visibleElement(el)) roots.add(el);
+    }
+    if (document.body) {
+      for (const el of document.body.querySelectorAll("*")) {
+        const style = getComputedStyle(el);
+        if ((style.position === "fixed" || style.position === "sticky") && this.visibleElement(el) && this.coverRatio(el) >= 0.4) roots.add(el);
+      }
+    }
+    return [...roots];
+  },
+
+  overlayState() {
+    const covering = this.consentRoots().filter((el) => this.coverRatio(el) >= 0.4);
+    return { blocked: covering.length > 0, count: covering.length };
+  },
+
+  async dismissConsent() {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const nameOf = (el) => (el.innerText || el.value || el.getAttribute("aria-label") || el.getAttribute("title") || "").replace(/\s+/g, " ").trim();
+    const reject = /reject|decline|deny|dismiss|refuse|disagree|necessary|weiger|afwijzen|alleen noodzak|opt-?out|no thanks|nee bedankt|sluiten/i;
+    const roots = this.consentRoots();
+    const covering = roots.filter((el) => this.coverRatio(el) >= 0.4);
+    if (!roots.length) return { dismissed: false, blocked: false, reason: "no-overlay" };
+    const controls = [];
+    const clickable = "button, [role='button'], input[type='button'], input[type='submit'], a";
+    for (const root of roots) {
+      const candidates = [...root.querySelectorAll(clickable)];
+      if (root.matches(clickable)) candidates.unshift(root);
+      for (const el of candidates) if (this.visibleElement(el) && reject.test(nameOf(el))) controls.push(el);
+    }
+    if (!controls.length) {
+      if (covering.length) return { dismissed: false, blocked: true, reason: "blocking-overlay-without-dismiss-control" };
+      return { dismissed: false, blocked: false, reason: "no-dismiss-control" };
+    }
+    const controlName = nameOf(controls[0]);
+    controls[0].click();
+    const end = Date.now() + 2000;
+    while (Date.now() < end) {
+      if (!this.consentRoots().some((el) => this.coverRatio(el) >= 0.4))
+        return { dismissed: true, blocked: false, reason: "dismissed", control: controlName };
+      await sleep(50);
+    }
+    return { dismissed: false, blocked: true, reason: "overlay-remained", control: controlName };
   },
 
   fingerprint() {
