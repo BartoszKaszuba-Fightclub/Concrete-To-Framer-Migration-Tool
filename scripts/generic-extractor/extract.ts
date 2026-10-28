@@ -1,13 +1,16 @@
 import { readFileSync } from "node:fs"
 import type { Page } from "@playwright/test"
+import { buildComponentInventory, missingMeasurements, type ComponentFilter } from "./components.ts"
 import { buildSections, proposeSectionRoots, sectionCoverage } from "./sections.ts"
 import { simplify } from "./simplify.ts"
+import { DEFAULT_CAPTURE_STATE, type WidthSelection } from "./width.ts"
 
 export type Box = { x: number; y: number; width: number; height: number }
 export type DomNode = {
   tag: string
   domId: string
   classes: string[]
+  role?: string
   selector: string
   parentId: string | null
   order: number
@@ -24,17 +27,27 @@ export type DomNode = {
 }
 export type Nodes = Record<string, DomNode>
 export type Warning = { code: string; message: string; nodeIds?: string[] }
-export type ExtractOptions = { slug: string; state?: string; maxNodes?: number; sectionOverrides?: string[][] }
+export type BreakpointDiscovery = {
+  discovered: { media: string; pixels: number[]; href: string | null }[]
+  inaccessible: { href: string | null; reason: string }[]
+}
+export type ExtractOptions = {
+  slug: string
+  state?: string
+  maxNodes?: number
+  componentFilter?: ComponentFilter
+  viewport?: { width: number; height: number }
+  breakpoints?: BreakpointDiscovery & Pick<WidthSelection, "selectedWidth" | "ignoredWidths">
+  widthWarning?: string
+}
 
 type Collected = {
   layoutWidth: number
   roots: string[]
   nodes: Nodes
-  registry: { id: string; selector: string }[]
+  computed: Record<string, Record<string, unknown>>
   excluded: { selector: string; tag: string; reason: string }[]
-  locatorFailures: { id: string; selector: string; matches: number }[]
   boundaries: string[]
-  overrides: { selector: string; id: string | null; matches: number }[][]
   overflow: boolean
   elementCount: number
   fingerprint: string
@@ -46,9 +59,11 @@ export function callBrowser<T = unknown>(page: Page, fn: string, arg: unknown = 
   return page.evaluate(`(${BROWSER_SRC}).${fn}(${JSON.stringify(arg)})`) as Promise<T>
 }
 
+// Structure, geometry, and computed style come from one settled traversal (collect).
 export async function extract(page: Page, opts: ExtractOptions) {
   const maxNodes = opts.maxNodes ?? 0
-  const raw = await callBrowser<Collected>(page, "collect", { maxNodes, overrides: opts.sectionOverrides ?? [] })
+  const filter = opts.componentFilter ?? "all"
+  const raw = await callBrowser<Collected>(page, "collect", { maxNodes })
 
   if (raw.overflow) {
     return {
@@ -56,61 +71,52 @@ export async function extract(page: Page, opts: ExtractOptions) {
         limit: "maxNodes",
         value: maxNodes,
         elementsInDocument: raw.elementCount,
-        affected: `The page has up to ${raw.elementCount} elements; every element after the first ${maxNodes} in DOM order would be missing from the full tree, reconstruction tree, locator registry and section candidates.`,
-        options: [
-          `Re-run with --max-nodes ${raw.elementCount} (or 0 for no limit) to extract the full tree`,
-          "Keep the limit and stop: no output is written for this page until a designer decides",
-        ],
+        affected: `The page has up to ${raw.elementCount} elements; every element after the first ${maxNodes} in DOM order would be missing from the capture.`,
+        options: [`Re-run with --max-nodes ${raw.elementCount} (or 0 for no limit) to extract the full tree`, "Keep the limit and stop without writing a capture"],
       },
+      missingMeasurements: [] as { nodeId: string; reason: "missing-measurement" }[],
     }
   }
 
   const { nodes, roots } = raw
-  const warnings: Warning[] = [
-    ...raw.locatorFailures.map((f) => ({ code: "locator-unresolved", message: `${f.selector} matched ${f.matches} elements`, nodeIds: [f.id] })),
-    ...raw.boundaries.map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] })),
-  ]
+  const warnings: Warning[] = raw.boundaries.map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] }))
+  if (opts.widthWarning) warnings.push({ code: "widths-ignored", message: opts.widthWarning })
 
-  let groups: string[][]
-  if (raw.overrides.length) {
-    groups = []
-    for (const group of raw.overrides) {
-      const missing = group.filter((g) => !g.id)
-      if (missing.length) warnings.push({ code: "override-unresolved", message: `Section override skipped; ${missing.map((m) => `${m.selector} matched ${m.matches}`).join(", ")}` })
-      else groups.push(group.map((g) => g.id!))
-    }
-  } else groups = proposeSectionRoots(nodes, roots)
-
-  const sectionCandidates = buildSections(nodes, groups, raw.layoutWidth, raw.overrides.length ? "approved" : "needs-review")
+  const groups = proposeSectionRoots(nodes, roots)
+  const sectionCandidates = buildSections(nodes, groups, raw.layoutWidth)
   const { shellIds, unassignedIds } = sectionCoverage(nodes, roots, sectionCandidates)
-  if (unassignedIds.length) warnings.push({ code: "section-unassigned", message: "Elements outside every section candidate and the page shell", nodeIds: unassignedIds })
+  if (unassignedIds.length) warnings.push({ code: "section-unassigned", message: "Elements outside every section and the page shell", nodeIds: unassignedIds })
 
   const reconstruction = simplify(nodes, roots, sectionCandidates)
+  const viewport = opts.viewport ?? page.viewportSize()
+  const state = opts.state ?? DEFAULT_CAPTURE_STATE
   const structure = {
     url: page.url(),
     slug: opts.slug,
-    viewport: page.viewportSize(),
-    state: opts.state ?? "default",
+    viewport,
+    state,
+    metadata: {
+      state,
+      viewport,
+      breakpoints: opts.breakpoints ?? null,
+    },
     roots,
     nodes,
     sectionCandidates,
     sectionShell: shellIds,
     warnings,
   }
-  const report = {
-    counts: {
-      included: Object.keys(nodes).length,
-      excluded: raw.excluded.length,
-      locatorFailures: raw.locatorFailures.length,
-      boundaries: raw.boundaries.length,
-      sectionCandidates: sectionCandidates.length,
-      needsReview: sectionCandidates.filter((c) => c.status === "needs-review").length,
-      droppedFromReconstruction: reconstruction.dropped.length,
-    },
-    excluded: raw.excluded,
-    locatorFailures: raw.locatorFailures,
-    boundaries: raw.boundaries.map((id) => ({ nodeId: id, kind: nodes[id].boundary, box: nodes[id].box, untraversedChildren: nodes[id].untraversedChildren ?? 0 })),
-    warnings,
+  const computed = { url: structure.url, slug: opts.slug, width: viewport?.width ?? null, state, nodes: raw.computed, skipped: [] as unknown[], unresolved: [] as unknown[] }
+  const gaps = missingMeasurements(nodes, raw.computed)
+  const inventory = buildComponentInventory(nodes, sectionCandidates, raw.computed, filter)
+  return {
+    pendingDecision: null,
+    missingMeasurements: gaps,
+    structure,
+    reconstruction,
+    computed,
+    components: { filter: inventory.filter, records: inventory.records, blockers: inventory.blockers },
+    signatures: { definitions: inventory.definitions },
+    fingerprint: raw.fingerprint,
   }
-  return { registry: raw.registry, structure, reconstruction, report, fingerprint: raw.fingerprint }
 }

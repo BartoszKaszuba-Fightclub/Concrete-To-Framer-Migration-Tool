@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    #page > header, #page > .hero, #page > main, #page > footer { display: block; }
+    header { min-height: 64px; background: rgb(18, 34, 68); color: white; }
+    .hero { min-height: 240px; background: rgb(238, 238, 238); }
+    main { min-height: 320px; }
+    footer { min-height: 80px; background: rgb(34, 34, 34); color: white; }
+    button { font: 700 16px/20px sans-serif; margin: 8px; }
+  </style>
+</head>
+<body>
+  <div id="page">
+    <header id="site-header">
+      Site header
+      <button type="button">Header action</button>
+    </header>
+    <section class="hero">
+      <h1>Hero title</h1>
+      <p>Hero copy</p>
+      <button type="button">Hero action</button>
+    </section>
+    <main id="content">
+      <h2>Main title</h2>
+      <p>Main copy</p>
+      <button type="button">Main action</button>
+      <button type="button" hidden style="display:none">Hidden action</button>
+    </main>
+    <footer id="site-footer">Footer note</footer>
+  </div>
+</body>
+</html>
