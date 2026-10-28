@@ -16,6 +16,7 @@
       "borderLeftWidth", "borderLeftStyle", "borderLeftColor",
       "borderTopLeftRadius", "borderTopRightRadius", "borderBottomRightRadius", "borderBottomLeftRadius",
       "boxShadow",
+      "zIndex", "transform", "filter", "backdropFilter", "clipPath", "maskImage", "overflowX", "overflowY",
     ];
     const sx = scrollX, sy = scrollY;
     const r2 = (v) => Math.round(v * 100) / 100;

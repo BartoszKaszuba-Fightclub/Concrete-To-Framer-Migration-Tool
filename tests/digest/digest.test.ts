@@ -289,6 +289,27 @@ test("simplification keeps effectful wrappers and drops only effect-free ones", 
   assert.throws(() => validateDigest(transformed), (error: DigestValidationError) => error.errors.some((item) => item.includes("transform")))
 })
 
+test("stored effect values satisfy flagged traits", () => {
+  const fixture = button("n-1", "Save", {
+    zIndex: "2",
+    transform: "matrix(1, 0, 0, 1, 10, 0)",
+    overflowX: "hidden",
+    overflowY: "visible",
+    clipPath: "none",
+    maskImage: "none",
+    filter: "blur(2px)",
+    backdropFilter: "none",
+  })
+  fixture.structure.nodes["n-1"].traits = ["z-index", "transform", "overflow", "filter"]
+  fixture.structure.nodes["n-1"].render = { display: "block", visibility: "visible", opacity: "1", position: "relative" }
+  const digest = generateDigest(fixture) as { nodes: Record<string, { layout: { zIndex: { value: string } }; effects: { transform: { value: string }; clipping: { value: string }; filter: { value: string } } }> }
+  validateDigest(digest)
+  assert.equal(digest.nodes["n-1"].layout.zIndex.value, "2")
+  assert.equal(digest.nodes["n-1"].effects.transform.value, "transform: matrix(1, 0, 0, 1, 10, 0)")
+  assert.match(digest.nodes["n-1"].effects.clipping.value, /overflowX: hidden/)
+  assert.match(digest.nodes["n-1"].effects.filter.value, /filter: blur\(2px\)/)
+})
+
 test("captured button example validates against schema 2.0.0", () => {
   const digest = JSON.parse(readFileSync(new URL("../../docs/poc-v2/examples/button.digest.json", import.meta.url), "utf8"))
   validateDigest(digest)

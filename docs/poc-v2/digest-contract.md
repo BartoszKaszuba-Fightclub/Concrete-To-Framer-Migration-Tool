@@ -66,7 +66,7 @@ Control kind is generic. A `button` element, or an input whose type is `button`,
 
 `geometry` is the structure box: document `x`, `y`, `width`, and `height`. Numbers are measured. Zero is a real coordinate or size. `status: "missing"` means the box was not captured and validation fails.
 
-`layout` stores `display`, `visibility`, `position`, measured `opacity`, and `siblingOrder` after simplification. `zIndex` is `"auto"` with `derivation: "inferred"` when the extractor did not set a `z-index` trait (its trait rule treats computed `z-index: auto` as no trait). If the trait is present, the value is missing and validation fails, because the current extractor does not store the number.
+`layout` stores `display`, `visibility`, `position`, measured `opacity`, and `siblingOrder` after simplification. `zIndex` is the stored computed `zIndex` when the extractor recorded it. It is `"auto"` with `derivation: "inferred"` only when that property is absent and the node has no `z-index` trait. A `z-index` trait without a stored value still fails validation. Older captures that recorded the trait and not the number fail until they are recaptured.
 
 `effects` is empty when transform, clipping, and filter traits are absent. A present trait without a stored computed value fails validation.
 
@@ -172,14 +172,14 @@ The generator joins `structure.nodes` to `computed.nodes` by node id. It does no
 | Source | Fields |
 | --- | --- |
 | Structure node | `tag`, `selector`, `parentId`, `order`, `children`, `box`, `render.display`, `render.visibility`, `render.opacity`, `render.position`, `traits`, optional `content`, `classes`, `domId`, `media`, `field`, `boundary`, `untraversedChildren`, `markup` |
-| Computed node | The current computed property list: font family, size, weight, line-height, letter-spacing, text-transform, colour, background colour and image, opacity, four padding sides, four margin sides, row and column gap, four border widths, styles, and colours, four radii, and `boxShadow` |
+| Computed node | Font family, size, weight, line-height, letter-spacing, text-transform, colour, background colour and image, opacity, four padding sides, four margin sides, row and column gap, four border widths, styles, and colours, four radii, `boxShadow`, plus `zIndex`, `transform`, `filter`, `backdropFilter`, `clipPath`, `maskImage`, `overflowX`, and `overflowY` |
 | Painting pseudos | The same computed properties plus `content`, `width`, and `height` |
 | Structure file | `url`, `slug`, `viewport`, `state`, `warnings` |
 | Computed file | `nodes`, `skipped`, `unresolved` |
 
 Caller input that the extractor does not currently write, and that the digest records as `missing` until supplied: `captureId`, language, timestamp, screenshot path, per-component crop, usable asset path, natural width and height, and font source or load status.
 
-If a trait is `z-index`, `transform`, `clip`, `overflow`, or `filter`, validation fails until the computed value is stored. The current extractor records the trait and not the value. Position itself is already on `render.position`.
+If a trait is `z-index`, `transform`, `clip`, `overflow`, or `filter`, validation fails until the computed value is stored. The extractor now writes those values in the same style traversal. Position itself is already on `render.position`. A capture taken before that change still has the trait without the value and fails validation.
 
 ## 11. Questions and evidence
 

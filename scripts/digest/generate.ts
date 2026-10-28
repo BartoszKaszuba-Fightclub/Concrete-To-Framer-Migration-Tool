@@ -188,8 +188,8 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
       parentId: parentOf(id, simplified.children, simplified.roots),
       children: simplified.children.get(id) ?? [],
       geometry: geometryOf(source.box),
-      layout: layoutOf(source, measured.opacity, siblingIndex(id, simplified.children, simplified.roots)),
-      effects: effectsOf(source),
+      layout: layoutOf(source, computed[id], measured.opacity, siblingIndex(id, simplified.children, simplified.roots)),
+      effects: effectsOf(source, computed[id]),
       text: {
         exact: exact ? { status: "value", value: exact } : { status: "empty", value: "" },
         runs: nodeRuns.map((run) => ({ ...run, typographyRef: (nodeStyles.get(run.nodeId)!.typography as Obj).ref })),
@@ -603,11 +603,23 @@ function siblingIndex(id: string, children: Map<string, string[]>, roots: string
   return 0
 }
 
-function layoutOf(node: StructureNode, opacity: Measurement, siblingOrder: number) {
+function storedEffect(style: ComputedStyle | undefined, keys: string[], missingReason: string): Measurement {
+  const parts = keys.flatMap((key) => {
+    const value = style?.[key]
+    return typeof value === "string" ? [`${key}: ${value}`] : []
+  })
+  if (!parts.length) return { status: "missing", reason: missingReason }
+  return { status: "value", value: parts.join("; ") }
+}
+
+function layoutOf(node: StructureNode, style: ComputedStyle | undefined, opacity: Measurement, siblingOrder: number) {
   const traits = node.traits ?? []
-  const zIndex: Measurement = traits.includes("z-index")
-    ? { status: "missing", reason: "The extractor flagged a z-index trait but did not store the computed z-index." }
-    : { status: "value", value: "auto", derivation: "inferred" }
+  const storedZ = style?.zIndex
+  const zIndex: Measurement = typeof storedZ === "string"
+    ? { status: "value", value: storedZ }
+    : traits.includes("z-index")
+      ? { status: "missing", reason: "The extractor flagged a z-index trait but did not store the computed z-index." }
+      : { status: "value", value: "auto", derivation: "inferred" }
   return {
     display: node.render?.display ?? "",
     visibility: node.render?.visibility ?? "",
@@ -619,12 +631,22 @@ function layoutOf(node: StructureNode, opacity: Measurement, siblingOrder: numbe
   }
 }
 
-function effectsOf(node: StructureNode) {
+function effectsOf(node: StructureNode, style: ComputedStyle | undefined) {
   const traits = node.traits ?? []
   const effects: Obj = {}
-  if (traits.includes("transform")) effects.transform = { status: "missing", reason: "The extractor flagged a transform but did not store the computed matrix." }
-  if (traits.includes("clip") || traits.includes("overflow")) effects.clipping = { status: "missing", reason: "The extractor flagged clipping or overflow but did not store the computed value." }
-  if (traits.includes("filter")) effects.filter = { status: "missing", reason: "The extractor flagged a filter but did not store the computed value." }
+  if (traits.includes("transform")) {
+    effects.transform = storedEffect(style, ["transform"], "The extractor flagged a transform but did not store the computed matrix.")
+  }
+  if (traits.includes("clip") || traits.includes("overflow")) {
+    effects.clipping = storedEffect(
+      style,
+      ["overflowX", "overflowY", "clipPath", "maskImage"],
+      "The extractor flagged clipping or overflow but did not store the computed value.",
+    )
+  }
+  if (traits.includes("filter")) {
+    effects.filter = storedEffect(style, ["filter", "backdropFilter"], "The extractor flagged a filter but did not store the computed value.")
+  }
   return Object.keys(effects).length ? { status: "value", ...effects } : { status: "empty" }
 }
 
