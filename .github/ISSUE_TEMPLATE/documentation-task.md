@@ -14,7 +14,8 @@ assignees: ''
 [Briefly explain the feature, its context, and the expected outcome.]
 **Reason:**
 **Evidence:**
-
+**Time left:**
+**Pivot:** 
 
 ## mini-questions
 - [ ] [what do I need to know/ questions to answer the question]
