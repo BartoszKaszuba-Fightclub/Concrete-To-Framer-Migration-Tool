@@ -1,0 +1,46 @@
+{
+  "url": "https://example.test/nl",
+  "slug": "fixture",
+  "state": "default",
+  "viewport": { "width": 1200, "height": 900 },
+  "nodes": {
+    "n-000001": {
+      "tag": "div",
+      "selector": "div",
+      "parentId": null,
+      "children": ["n-000002", "n-000003", "n-000004"]
+    },
+    "n-000002": {
+      "tag": "p",
+      "selector": "div > p",
+      "parentId": "n-000001",
+      "content": ["Body"]
+    },
+    "n-000003": {
+      "tag": "p",
+      "selector": "div > p:nth-of-type(2)",
+      "parentId": "n-000001",
+      "content": ["Body again"]
+    },
+    "n-000004": {
+      "tag": "h1",
+      "selector": "div > h1",
+      "parentId": "n-000001",
+      "content": ["Titel"]
+    },
+    "n-000005": {
+      "tag": "div",
+      "domId": "CybotCookiebotDialog",
+      "classes": ["cookiebot"],
+      "selector": "#CybotCookiebotDialog",
+      "parentId": null,
+      "content": ["Consent"]
+    },
+    "n-000006": {
+      "tag": "p",
+      "selector": "section > p",
+      "parentId": null,
+      "content": ["Skipped consent"]
+    }
+  }
+}

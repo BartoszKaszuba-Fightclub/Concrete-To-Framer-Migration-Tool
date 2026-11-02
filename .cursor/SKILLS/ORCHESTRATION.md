@@ -1,260 +1,117 @@
-```yaml
 ---
 name: orchestrate-design-to-components
-description: Orchestrates rebuilding the initial appearance of one public website page as native Framer components through browser-only generic DOM extraction. Captures confirmed responsive widths in a shared Playwright session, preserves full and source-linked simplified trees, digests visual sections, creates color and text styles, then builds molecules, organisms and templates mobile-first in Framer Assets. Use when asked to capture, digest, or visually recreate a public page or its sections as Framer components.
+description: Orchestrates the current one-width capture, digest, and design-token pipeline. Dismisses the cookie banner, then reads one settled page into structure, computed styles, sections, a schema 2.0.0 component digest, and a design-token file. Use when asked to capture, digest, or create Framer color and text styles for a public page.
 ---
-```
 
-Rebuild the initial appearance of one public source page as native Framer components at the confirmed widths. A section (clip) is a distinct, full-width content area that organises a long page into visually separated chunks, not a CMS block or HTML tag by definition. The run is done when every confirmed clip exists as a template in Framer Assets; report incomplete work explicitly.
+# Current pipeline
 
-Run Extract with `npm run extract:generic`. Computed styles, asset download, the digest schema, and ID stability across recaptures remain open. Do not invent answers for those open items.
+Capture one public page at one width, in the default static state, then write one schema 2.0.0 digest per component. Follow this document and the scripts it names. The historical multi-width approval flow is not part of this pipeline.
 
-## Inputs
+Default viewport: **1200 × 900**. State: **default**. Pass one width with `--widths` when a different width is required. Extra width values are ignored with a warning. Do not ask the developer to confirm breakpoints, and do not capture a second width.
 
-- URL of the source page
-- Framer project, connected through the Framer CLI / Agent API
-- Source access: public website through Playwright only. No CMS admin, server-side adapter, CMS API or site modification is required. Describe observed DOM structure; do not infer CMS Areas or block handles.
-
-## Pipeline
-
-| # | Step | Output | Developer checkpoint |
-| --- | --- | --- | --- |
-| 1 | Detect breakpoints | The site's own breakpoint widths | Confirm the list |
-| 2 | Capture and extract | Full DOM tree, registry, measurements, visual sections, source-linked simplified tree, match proposals, screenshots/snapshots, assets and map | Ambiguous sections, responsive matches, readiness/coverage gaps and data-loss limits |
-| 3 | Digest | One digest per confirmed visual clip per width, linked to source nodes | Schema not agreed, unresolved grouping or data-loss limits |
-| 4 | Design tokens | Page breakpoints, color styles, text styles, fonts | Missing fonts |
-| 5 | Component creation | Molecules, organisms, templates in Assets | Non-native parts, similar existing components |
-| 6 | Report | Clip → template table, open items | — |
-
-Run the pipeline steps in order. Capture substeps are: prepare → extract/validate identities → measure → group visual sections and derive the simplified tree → capture aligned evidence. Section grouping may depend on measured geometry.
-
-Extraction, measurement and screenshots share the same live Playwright page/session and initial capture state. Re-extract and re-measure after viewport/state changes; do not independently reload between identifying and measuring elements.
-
-## Scripts
+## Commands
 
 | Purpose | Command |
 | --- | --- |
-| Capture (Playwright) | `npm run capture` |
-| Computed styles | [PLACEHOLDER: getComputedStyle command] |
-| Extract | `npm run extract:generic -- <url> --widths <confirmed widths>` |
-- Read `package.json` and the script source for arguments before running a script. Extract defaults are `--height 900`, `--settle-timeout 10000`, `--max-nodes 0`, and `--out Database`. Pass the confirmed widths. Ask before using other height, settle, or limit values.
-- A second run with `--sections overrides.json` records approved clips. The file is `{ "<width>": [["<selector>", "..."], ["<selector>"]] }`, one inner array per clip.
-- Never write new scripts or edit existing ones. If a script does not produce an output listed below, stop, describe the gap, and propose a script change for the developer to approve.
-- Read outputs from the destinations below. Do not move or rename files.
+| Capture | `npm run extract:generic -- <url> [--widths 1200] [--height 900] [--slug name] [--out Database] [--settle-timeout 10000] [--components all\|button\|field]` |
+| Digest | `node --import tsx scripts/digest/cli.ts --structure <structure.json> --computed <computed.json> --component-id <id> --component-type <type> --root <nodeId> --out <digest.json>` |
+| Design tokens | `node --import tsx scripts/design-tokens/cli.ts --structure <structure.json> --computed <computed.json> --language <tag>` |
 
-### Extract files
+Read `scripts/generic-extractor/cli.ts` and `scripts/digest/cli.ts` before changing flags. Defaults are height `900`, settle timeout `10000`, max nodes `0`, and output directory `Database`. `--components` accepts `all`, `button`, or `field`.
 
-`<slug>` is the capture slug. `<width>` is one confirmed width. `default` is the initial capture state.
+## 1. Capture
 
-| Data | File | Destination |
-| --- | --- | --- |
-| Element registry | `elements.json` | `Database/digest/nesting/<slug>/<width>/default/elements.json` |
-| Full tree, section candidates, shell, warnings | `structure.json` | `Database/digest/nesting/<slug>/<width>/default/structure.json` |
-| Simplified tree and dropped nodes | `reconstruction.json` | `Database/digest/nesting/<slug>/<width>/default/reconstruction.json` |
-| Counts, excluded nodes, coverage | `report.json` | `Database/digest/nesting/<slug>/<width>/default/report.json` |
-| Limit stop | `pending-decision.json` | `Database/digest/nesting/<slug>/<width>/default/pending-decision.json` |
-| Cross-width match proposals | `matches.proposed.json` | `Database/digest/nesting/<slug>/matches.proposed.json` |
-| Full-page screenshot | `screenshot.png` | `Database/Screenshots/<slug>/<width>/default/screenshot.png` |
-| Section overlay preview | `sections-preview.png` | `Database/Screenshots/<slug>/<width>/default/sections-preview.png` |
-| Raw page HTML | `snapshot.html` | `Database/snapshots/<slug>/<width>/default/snapshot.html` |
+Use one Playwright page. Do this in order, on that same page:
 
-`reconstruction.json` written while any section candidate is `needs-review` is review material. The reconstruction tree used for Framer components is the `reconstruction.json` from the `--sections` re-run, after those candidates are `approved`.
+1. Open the public page.
+2. Click the cookie banner’s visible reject or dismiss control.
+3. Leave that banner out of the element tree and out of the styles. If the click removes it, it is gone before the read. If a cookie, consent, OneTrust, or Cookiebot dialog remains, skip that subtree and skip its stylesheet.
+4. Wait until fonts and images settle, and until no covering overlay remains.
+5. Only then read the page CSS, walk the elements, and measure styles.
 
-Nodes with `display: none` stay in `structure.json`. They are listed in `reconstruction.json` under `dropped`. Read hidden-at variants from the full tree in `structure.json`.
+A covering overlay with no dismiss control fails the run and writes nothing. A visible text, button, or field node missing font or colour fails the run and writes nothing.
 
-Other pipeline data belongs in these folders:
+The CSS read records `@media` min-width and max-width values and any stylesheet that could not be read. Those notes are stored on the capture. They do not add widths.
 
-| Data | Destination |
+Structure and computed style come from one walk. Each node keeps a capture-local id (`n-` plus a sequence). Those ids join the files of this capture. They are not stable across a new capture.
+
+Measured style includes font, colour, background, spacing, gap, border, radius, shadow, opacity, and, when present, `zIndex`, `transform`, `filter`, `backdropFilter`, `clipPath`, `maskImage`, `overflowX`, and `overflowY`. Painting `::before` and `::after` are included.
+
+Sections are chosen automatically: header, hero, main, footer, and nav. `--sections` is ignored. There is no clip-approval pause.
+
+`--components button` or `--components field` limits the component inventory to those visible controls. Each occurrence is a component record, or a `missing-measurement` blocker. Buttons and fields are grouped by colour, border, and typography. The label is not part of that group.
+
+A wrapper is removed from the simplified tree only when it has no meaningful text, no paint or pseudo-element, no spacing, layout, transform, clipping, or stacking effect, and its children keep order and geometry. Hidden nodes stay in `structure.json` and are listed as dropped in `reconstruction.json`.
+
+Capture initial appearance only. Do not open menus, accordions, tabs, or carousel slides.
+
+### Files written
+
+`<slug>` comes from the URL path unless `--slug` is set. `<width>` is the one selected width.
+
+| File | Path |
 | --- | --- |
-| Widget type | `Database/digest/widget type/` |
-| Cleaned HTML tree | `Database/digest/cleaned HTML tree/` |
-| Media | `Database/digest/media/` |
-| Links | `Database/digest/links/` |
-| CMS | `Database/cms/` |
-| Prompts | `Database/prompts/` |
-| Code components | `Database/Framer code/` |
+| Full tree, sections, warnings, excluded consent nodes | `Database/digest/nesting/<slug>/<width>/default/structure.json` |
+| Computed styles | `Database/digest/nesting/<slug>/<width>/default/computed.json` |
+| Simplified tree | `Database/digest/nesting/<slug>/<width>/default/reconstruction.json` |
+| Button and field inventory | `Database/digest/nesting/<slug>/<width>/default/components.json` |
+| Visual style groups | `Database/digest/nesting/<slug>/<width>/default/signatures.json` |
+| Full-page screenshot | `Database/Screenshots/<slug>/<width>/default/screenshot.png` |
+| Page HTML after the banner is gone | `Database/snapshots/<slug>/<width>/default/snapshot.html` |
+| Design tokens | `Database/digest/tokens/<slug>/<width>/tokens.json` |
 
-### Computed-style script (getComputedStyle)
+The active capture does not write `elements.json`, `report.json`, `matches.proposed.json`, `pending-decision.json`, `sections.approved.json`, or `sections-preview.png`. Do not recreate those files, and do not wait on them.
 
-Follow Spec — getComputedStyle script. At each width, measure the generic extractor's full registry in the same live page/session. Reuse extractor-issued IDs; validate selectors uniquely. Do not invent measurement IDs or depend on CMS identifiers.
+## 2. Digest
 
-- Page set: Type and Box properties for body, headings, paragraphs, first link, header/nav/footer, buttons, lists and form elements. This token summary does not replace per-node measurement.
-- Digest set: Layout, Box and Visual properties for full-registry nodes, Type on text-bearing nodes, plus visibility, bounds and supported pseudo-elements. Do not measure only simplified-tree nodes.
-- Collect CSS variables used by captured visual properties and their dependencies. Report declaration/access gaps; resolved computed values do not reveal variable names.
-- Keep URL/slug for capture bookkeeping only, not digest routing.
+After a successful capture, generate one digest per component at that width. The contract is `docs/poc-v2/digest-contract.md`. Schema version is `2.0.0`. Validation is `scripts/digest/schema.ts`. A validated example is `docs/poc-v2/examples/button.digest.json`.
 
-Use measurements for digest styles and Framer color/text styles. Keep the full tree intact.
+Join structure and computed style by the capture-local node id. Pass the component root from `components.json` for a button or field, or the section root for a section. The digest is the builder input: exact visible text, label-node styles, measured geometry, colours, type, spacing, borders, media references, and warnings. Letter-spacing `normal` stays the keyword `normal`.
 
-### Extract
+If validation fails, fix the extractor or the digest generator. Do not hand-edit the JSON to make it pass.
 
-Follow Spec — Generic DOM extractor:
+```bash
+node --import tsx scripts/digest/cli.ts \
+  --structure Database/digest/nesting/<slug>/<width>/default/structure.json \
+  --computed Database/digest/nesting/<slug>/<width>/default/computed.json \
+  --component-id <id> \
+  --component-type button \
+  --root <nodeId> \
+  --out Database/digest/nesting/<slug>/<width>/default/digests/<id>.json
+```
 
-- Identify DOM elements, wrappers and hidden elements present at each width. Supply unique extractor IDs and validated selectors; retain tags, source DOM IDs/classes, nesting and sibling order.
-- Preserve the full DOM tree and a separate simplified reconstruction tree mapped to source node IDs. Do not overwrite the full tree or invent CMS classifications.
-- Propose full-width visual sections using DOM evidence and measured geometry. Candidates are `needs-review` until a `--sections` re-run marks them `approved`. Ask the designer about ambiguous boundaries before digest or component creation.
-- Propose desktop/mobile correspondences for designer approval before unifying reconstruction components. Preserve per-width source nodes after approval. ID stability across recaptures remains open.
-- Supply observed visual media/copy to capture/digest modules; preserve CSS filters through measurement. Exclude behaviour settings.
-- Derive video/form/carousel/mask/background/lightbox detection flags only where observable evidence supports them. Report uncertainty instead of inventing settings. Flags do not authorise opening extra states.
-- Report iframe, shadow-root, canvas, SVG and video coverage gaps. Their exact support remains open; ordinary CSS selectors do not cross every document/root boundary.
-- Ask the designer before depth, text, HTML-size, image-count or resource limits would omit relevant data. Do not silently truncate, change limits or choose a fallback.
+## 3. Design tokens
 
-Capture/digest cleaning removes scripts, styles and identified CMS edit-mode/toolbar markup from cleaned HTML only. Preserve other attributes as evidence and preserve raw snapshots; do not re-extract excluded attributes into structured fields.
+Run the collector on this capture. Do not hunt through the page, the DOM, or the screenshots for colours or type. The token file is the only source for the styles created in this step.
 
-## Step 1 — Detect breakpoints
+```bash
+node --import tsx scripts/design-tokens/cli.ts \
+  --structure Database/digest/nesting/<slug>/<width>/default/structure.json \
+  --computed Database/digest/nesting/<slug>/<width>/default/computed.json \
+  --language <language>
+```
 
-1. Use the capture to collect every `min-width` and `max-width` value in the `@media` rules of the page's stylesheets, linked and inline.
-2. Derive the breakpoints the original design uses: the width ranges where the layout changes. List any cross-origin stylesheets that could not be read.
-3. Show the developer a table with: breakpoint, width range, where it was found, and proposed capture width. Wait for confirmation or edits.
-4. Use the confirmed widths everywhere: capture, digests, component variants, and Framer page breakpoints. The smallest confirmed width is the mobile width.
+This writes `Database/digest/tokens/<slug>/<width>/tokens.json`. Read that file. It must validate against `docs/poc-v2/design-tokens.schema.json` (`scripts/design-tokens/schema.ts`). It lists only tokens measured on the captured page. Equal values appear once. `letterSpacing` stays `normal` when that keyword was measured; do not replace it with `0`.
 
-## Step 2 — Capture and extract
+Connect with `process.env.FRAMER_TOKEN` from the project `.env` through `framer-api` `connect`. Read `getProjectInfo().name`. Continue only when the name is `Enchanting Whoever`. If it is a different project, stop and report the name.
 
-Use one live Playwright page/session for preparation, extraction, measurement and screenshots of each capture state. Load the public logged-out page without CMS access. Viewport height, cookie action, lazy-load preparation, final scroll position, font/image readiness, timeout and motion handling must follow an agreed policy. These remain open in the generic spec: ask for missing decisions rather than choosing unapproved defaults. Never wait indefinitely for infinite animations/network activity.
+Create Framer styles from the file:
 
-Capture initial appearance only. Do not open menus, expand accordions, switch tabs, cycle carousels or add sticky/scroll-state captures automatically. Preparation must not silently become state exploration.
+1. Create one color style for each `colours` entry with `createColorStyle`, using that entry's `framer.name` and `framer.light`.
+2. Create one text style for each `textStyles` entry with `createTextStyle`. Use the entry's `framer.tag`, `fontSize`, `lineHeight`, `transform`, and the color style named by `colorStyle`. Request `framer.fontFamily` at `framer.fontWeight` with `getFont`. Pass `letterSpacing` only when the file gives a length. When the file says `normal`, keep that keyword and do not send `0`.
+3. A heading tag is created only when that entry's `roles` include it. Do not invent an `h1`–`h6` style the file does not list.
+4. If `getFont` returns no font, record the family and weight, skip that text style, and ask the developer whether to upload the font or name a substitute. Wait for the answer. Do not substitute a font.
 
-At each confirmed width:
+Do not place layers on a page or the design canvas. Do not change page breakpoints, routes, or publishing. Do not publish.
 
-1. Prepare and settle the agreed initial state.
-2. Extract the full DOM tree and validate the registry. Keep hidden elements present in the DOM; off-screen content is not automatically hidden.
-3. Measure in that same page state. Keep bounds/visibility evidence; zero-sized wrappers may have visible children and must not be discarded automatically.
-4. Use structure and geometry to propose full-width sections and write the source-linked simplified tree. `reconstruction.json` beside `needs-review` candidates is review material. After the designer approves the boundaries, re-run with `--sections` and use that `reconstruction.json` for Framer components.
-5. Take a full-page screenshot, confirmed-clip screenshots and a raw Playwright snapshot aligned with measurements. If DOM/state changes invalidate identities or measurements, refresh affected extraction/measurement before finalising evidence.
-6. Propose desktop/mobile matches for designer review before unifying components. Ask before any limit would omit relevant data.
+`spacing`, `borders`, `radii`, and `shadows` stay in the file for later layout. This step creates color styles and text styles only.
 
-Stop when a checkpoint is reached:
+## Checks
 
-- Data-loss limit: Extract exits with code 2 and writes `pending-decision.json`. Ask before re-running with a higher `--max-nodes`.
-- Ambiguous sections: any `sectionCandidates[].status` of `needs-review` in `structure.json`.
-- Coverage and readiness: a `report.json` warning of `unsupported-boundary`, `locator-unresolved`, `section-unassigned`, `settle-timeout`, or `dom-changed`.
-- Responsive matches: `matches.proposed.json` is present and its proposals are `proposed`.
+- `node --import tsx --test tests/extractor/*.ts`
+- `node --import tsx --test tests/digest/digest.test.ts`
+- `node --import tsx --test tests/design-tokens/*.ts`
 
-Start digest after section candidates are `approved`. Unify responsive components only after match proposals are approved.
+## Stopped work
 
-Retain:
-
-- Full tree, element registry and source-linked simplified tree
-- Section candidates/confirmed membership, DOM tags/IDs/classes, selectors, nesting/order and measured positions
-- Page/per-node styles, bounds, visibility and supported pseudo-elements
-- Screenshots, raw snapshots, match proposals/decisions and coverage warnings
-- Fonts and accessible font-face sources, colors and visual CSS variables/dependencies; retain responsive differences and report inaccessible sources
-- Visual form fields: tag/type, label, placeholder and DOM IDs/selectors for identity/label association only; no action/method, field names or required/validation settings
-- Downloaded DOM images, backgrounds and masks at the largest available source size, with the source-URL → local-file asset map; never hotlink in Framer
-- Source URL and capture slug as capture bookkeeping only
-
-Exclude structured SEO metadata, link destinations, image alt text, playback/lightbox settings, capture timestamps and HTML character counts. Keep visible headings/link labels and visual media sources. Excluded attributes may remain in source evidence but must not become functional build requirements.
-
-Read extract output from the Extract files table. Do not invent paths or rename files to disguise schema incompatibilities.
-
-## Step 3 — Digest
-
-Create one digest per confirmed full-width visual section per confirmed width using generic extraction and measurements. Do not split by CMS Areas/Containers, require block handles or manufacture CMS classifications.
-
-### What to retain per clip
-
-- Clip identifier, section order, first heading, viewport and source-node membership
-- Full-tree and simplified-tree references with source mapping; DOM tags/IDs/classes, selectors, nesting/order, measured styles, visibility and bounds
-- Observed image sources/natural sizes, supported video/YouTube references, background/overlay appearance, masks and icons; resolve sources through the asset map. Exclude alt text and playback/lightbox settings.
-- Exact visible copy and inline structure, including link labels but not destinations; avoid duplicated ancestor text
-- Cleaned HTML without scripts/styles or identified CMS editor/toolbar markup; preserve other source attributes as evidence, including copy HTML
-- Accessible relevant CSS rules, observation-supported visual flags, uncertainty and coverage warnings
-
-Use getComputedStyle for measurements. Do not re-extract excluded functional/SEO/accessibility fields from source evidence.
-
-### Generic schema status
-
-The digest schema remains open. Computed styles, asset download, and ID stability across recaptures remain open. The previous Concrete-native example is retired. Read trees, matches, and warnings from the Extract files table. A digest still has to express:
-
-- Confirmed clip membership, including possible multiple source roots without inventing a source DOM element
-- Full-tree references and the source-mapped simplified tree
-- Measurement joins using extractor IDs scoped to the correct width/state
-- Proposed versus designer-approved responsive correspondences
-- Coverage warnings, unresolved locators and designer decisions
-
-Do not require or emit CMS `blockTypes`, `blockType` or CMS `nodeType` values. Keep URL/slug in capture bookkeeping only; omit digest routing `path`/`slug`, `capturedAt` and `htmlChars`. Use approved script schemas once agreed; stop and propose developer-approved changes if scripts conflict. Do not silently relabel outputs.
-
-### Limits and incomplete evidence
-
-Legacy limits were depth 8, 12 images, 800 text characters, 1,200 copy-HTML characters, 100,000 section-HTML characters and 50 CSS rules. These do not authorise silent generic-data loss. If a limit would omit relevant data, explain the affected nodes/content and ask the designer what to do before finalising affected output.
-
-Do not automatically remove/raise caps, split content, set `html: null` or choose a screenshot/tree fallback. Record the designer's choice and report accepted omissions. Keep the full source tree intact and the simplified tree traceable.
-
-## Step 4 — Design tokens
-
-1. Set the project's page breakpoints to the confirmed widths.
-2. Create color styles from the captured design tokens and colors.
-3. Create text styles for `h1`–`h6`, body, links, and buttons. Make one text style per captured typography row. Set the mobile values first, then add the values for each larger confirmed width. Make all links visually distinct.
-4. Check that every font is available in Framer (Framer fonts, Google Fonts, Fontshare, or custom fonts already in the project). For each missing font, ask the developer to choose: upload the font, or use a suggested alternative (name the closest match). Wait for the answer.
-
-## Step 5 — Component creation
-
-### Inputs per clip
-
-Start with the mobile screenshot, snapshot, digest, and the approved source-linked reconstruction tree (`reconstruction.json` from the `--sections` re-run), then evidence for larger widths. Use designer-approved responsive correspondences to unify reconstruction components; do not automatically merge source nodes.
-
-### Levels and folders
-
-Put every component in the Framer Assets panel, in these three folders:
-
-| Folder | Contains | Examples |
-| --- | --- | --- |
-| Molecules | Single objects | Fields, buttons, bars |
-| Organisms | Groups built from molecules | Cards, forms |
-| Templates | Full sections built from organisms and molecules | One template per clip |
-
-Give each component a descriptive name for what it is.
-
-### Order
-
-1. Scan digests and simplified reconstruction trees. Make reusable components for repeated elements; obtain designer approval for desktop/mobile correspondences before unifying responsive source elements. Preserve full source trees.
-2. Before creating a component, check the Assets panel. Reuse a matching component instead of creating a duplicate. If an existing component is similar but different, ask the developer whether to add a variant or create a new component.
-3. Build all molecules.
-4. Build organisms from the molecules.
-5. Build one template per clip from the organisms and molecules. Elements that appear only once stay as layers inside the template.
-
-### Building each component
-
-- Build mobile-first: the mobile width is the primary variant. Add one variant per larger confirmed width, matching its capture. Apply hidden-at flags through these variants.
-- Create components directly as components. Create-component-from-layer is not available through the Agent API.
-- Use exact digest copy; do not rewrite. Reconstruct initial appearance only, without unobserved open/expanded/active or extra sticky/scroll states.
-- Resolve image sources through the capture asset map and upload local files through the Framer CLI / Agent API. Never hotlink the source site. Alt text is outside this visual-reconstruction dataset: do not extract it from evidence or invent it; flag accessibility content as a separate handoff item.
-- Use color styles and text styles instead of raw values.
-- Expose every property as a component variable. When in doubt, expose it.
-    - Visual content: text, rich text, images and icons. Expose link labels as text; do not populate destinations or alt text from this dataset.
-    - Visibility toggles for optional elements
-    - Colors and fills, bound to color styles
-    - Spacing and layout: padding, gap, alignment
-    - Variables of nested components, exposed on the parent
-
-### Rules
-
-- Do not use code overrides.
-- Build the captured visual structure and static states natively. Pay extra attention to clips flagged video, form, carousel, mask or lightbox. Detection flags do not authorize reconstructing excluded behaviour. Link destinations, SEO, accessibility content, form handling/validation and video/lightbox behaviour are outside this dataset; report them for separate configuration rather than inferring settings from raw evidence.
-- If something cannot be built natively, stop and ask the developer for permission. Explain what cannot be built and why, and every time offer exactly these two options:
-    1. A code component with all its properties exposed as property controls, stored in `Database/Framer code`
-    2. The developer pastes it with the HTML-to-Framer extension; provide the clip's cleaned HTML and screenshot
-- Wait for the developer's choice before continuing with that part.
-
-## Step 6 — Done and report
-
-The run is done when every clip of the page has a template in the Templates folder. Report:
-
-| Clip | Template | Organisms and molecules used | Notes |
-| --- | --- | --- | --- |
-| `muurisolatie--02` | … | … | … |
-
-Below the table, list:
-
-- New and reused components
-- Font decisions
-- Code components built and paste requests made
-- Full-tree/reconstruction-tree references, approved responsive matches and unresolved section/match proposals
-- Designer-approved limit handling and accepted omissions/incomplete evidence
-- Unsupported boundaries, readiness issues and inaccessible stylesheets
-
-## Edge cases
-
-- **Missing/oversized HTML or data-loss limits:** ask the designer what to do; do not automatically fall back to tree/screenshots, split content, raise limits or accept incomplete evidence.
-- **Section hidden at some widths:** hide it in those variants. Nodes with `display: none` stay in `structure.json` and are listed in `reconstruction.json` under `dropped`. Read the hidden-at variant from the full tree.
-- **Section visible only at larger widths:** still build it mobile-first, hidden in the mobile variant.
-- **Large edits or many images:** split them into batches.
+Do not set Framer page breakpoints. Do not assemble a page. Component creation stays outside this pipeline.
