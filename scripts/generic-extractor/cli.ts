@@ -47,8 +47,6 @@ const page = await browser.newPage({ viewport: { width: selection.selectedWidth,
 
 try {
   await page.goto(url, { waitUntil: "load", timeout: 60_000 })
-  const discovered = await callBrowser<{ discovered: { media: string; pixels: number[]; href: string | null }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
-  const breakpoints = { selectedWidth: selection.selectedWidth, ignoredWidths: selection.ignoredWidths, ...discovered }
   const consent = await callBrowser<{ blocked: boolean; reason: string }>(page, "dismissConsent")
   if (consent.blocked) {
     console.error(`Capture failed: ${consent.reason}`)
@@ -60,6 +58,8 @@ try {
       console.error("Capture failed: blocking overlay remained after settle")
       process.exitCode = 1
     } else {
+      const discovered = await callBrowser<{ discovered: { media: string; pixels: number[]; href: string | null }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
+      const breakpoints = { selectedWidth: selection.selectedWidth, ignoredWidths: selection.ignoredWidths, ...discovered }
       let result = null
       for (let attempt = 1; attempt <= 3; attempt++) {
         result = await extract(page, {

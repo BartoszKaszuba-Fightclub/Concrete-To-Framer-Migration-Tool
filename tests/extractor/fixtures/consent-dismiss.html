@@ -3,11 +3,13 @@
 <head>
   <style>
     #consent { position: fixed; inset: 0; z-index: 1000; background: rgba(0, 0, 0, 0.65); color: white; padding: 24px; }
+    @media (min-width: 640px) { main { color: rgb(27, 49, 88); } }
     main { padding: 24px; }
   </style>
 </head>
 <body>
   <div id="consent" role="dialog" aria-modal="true">
+    <style>@media (min-width: 777px) { #consent { color: rgb(255, 0, 0); } }</style>
     <p>We use cookies</p>
     <button type="button" onclick="document.getElementById('consent').remove()">Reject</button>
   </div>

@@ -104,6 +104,7 @@ export async function extract(page: Page, opts: ExtractOptions) {
     nodes,
     sectionCandidates,
     sectionShell: shellIds,
+    excluded: raw.excluded,
     warnings,
   }
   const computed = { url: structure.url, slug: opts.slug, width: viewport?.width ?? null, state, nodes: raw.computed, skipped: [] as unknown[], unresolved: [] as unknown[] }

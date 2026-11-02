@@ -116,6 +116,7 @@
         } else if (c.nodeType === Node.ELEMENT_NODE) {
           const childSel = selectorFor(c, sel);
           if (SKIP.has(c.localName)) { excluded.push({ selector: childSel, tag: c.localName, reason: "non-visual-tag" }); continue; }
+          if (this.isConsentNode(c)) { excluded.push({ selector: childSel, tag: c.localName, reason: "consent-ui" }); continue; }
           const childId = visit(c, id, node.children.length, childSel);
           if (!childId) break;
           node.children.push(childId);
@@ -130,6 +131,7 @@
     for (const el of document.documentElement.children) {
       const sel = selectorFor(el, "html");
       if (SKIP.has(el.localName)) { excluded.push({ selector: sel, tag: el.localName, reason: "non-visual-tag" }); continue; }
+      if (this.isConsentNode(el)) { excluded.push({ selector: sel, tag: el.localName, reason: "consent-ui" }); continue; }
       const id = visit(el, null, roots.length, sel);
       if (!id) break;
       roots.push(id);
@@ -157,6 +159,9 @@
       }
     };
     for (const sheet of document.styleSheets) {
+      const owner = sheet.ownerNode;
+      const href = sheet.href || "";
+      if ((owner instanceof Element && this.isConsentNode(owner)) || /cookiebot|cookie-?consent|onetrust|cybot|gdpr/i.test(href)) continue;
       let rules;
       try {
         rules = sheet.cssRules;
@@ -175,6 +180,12 @@
       }
     }
     return { discovered, inaccessible };
+  },
+
+  isConsentNode(el) {
+    if (!(el instanceof Element)) return false;
+    const selector = "[role='dialog'], [aria-modal='true'], [id*='cookie' i], [class*='cookie' i], [id*='consent' i], [class*='consent' i], [id*='onetrust' i], [id*='cookiebot' i], [id*='cybot' i], [id*='gdpr' i]";
+    return !!el.closest(selector);
   },
 
   visibleElement(el) {
@@ -246,7 +257,12 @@
   fingerprint() {
     const skip = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE"]);
     const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
-      acceptNode: (n) => (skip.has(n.nodeName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+      acceptNode: (n) => {
+        if (skip.has(n.nodeName)) return NodeFilter.FILTER_REJECT;
+        const el = n.nodeType === 1 ? n : n.parentElement;
+        if (el && this.isConsentNode(el)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      },
     });
     let h = 2166136261;
     for (let n = walker.currentNode; n; n = walker.nextNode()) {
