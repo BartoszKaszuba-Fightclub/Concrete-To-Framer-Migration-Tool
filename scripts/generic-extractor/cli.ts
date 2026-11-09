@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import { parseArgs } from "node:util"
 import { chromium } from "@playwright/test"
+import { fetchPageAsset, mediaReferences, saveCaptureAssets } from "./assets.ts"
 import { callBrowser, extract } from "./extract.ts"
 import { DEFAULT_CAPTURE_HEIGHT, DEFAULT_CAPTURE_STATE, selectCaptureWidth } from "./width.ts"
 
@@ -94,6 +95,19 @@ try {
         await mkdir(nestingDir, { recursive: true })
         await mkdir(shotDir, { recursive: true })
         await mkdir(snapDir, { recursive: true })
+        const urls = [...new Set(mediaReferences(result.structure.nodes).map((ref) => ref.originalUrl))]
+        const measured = urls.length
+          ? await callBrowser<{ url: string; naturalWidth?: number; naturalHeight?: number }[]>(page, "measureAssetSizes", urls)
+          : []
+        const saved = await saveCaptureAssets({
+          nodes: result.structure.nodes,
+          directory: join(nestingDir, "assets"),
+          pathRoot: process.cwd(),
+          baseUrl: page.url(),
+          fetchAsset: (assetUrl) => fetchPageAsset(page, assetUrl),
+          sizes: new Map(measured.map((item) => [item.url, item])),
+        })
+        result.structure.warnings.push(...saved.warnings)
         const json = (name: string, data: unknown) => writeFile(join(nestingDir, name), JSON.stringify(data, null, 2))
         await Promise.all([
           json("structure.json", result.structure),
@@ -101,6 +115,7 @@ try {
           json("reconstruction.json", result.reconstruction),
           json("components.json", result.components),
           json("signatures.json", result.signatures),
+          json("assets.json", saved.assets),
           writeFile(join(shotDir, "screenshot.png"), screenshot),
           writeFile(join(snapDir, "snapshot.html"), snapshot),
         ])

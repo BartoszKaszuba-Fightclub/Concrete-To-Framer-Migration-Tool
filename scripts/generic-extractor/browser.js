@@ -293,6 +293,35 @@
     return { timedOut: !scrolled || !ready, pendingImages: [...document.images].filter((i) => !i.complete).length };
   },
 
+  async measureAssetSizes(urls) {
+    const load = (url) => new Promise((resolve) => {
+      const img = new Image();
+      let settled = false;
+      const finish = (size) => {
+        if (settled) return;
+        settled = true;
+        resolve(size);
+      };
+      const timer = setTimeout(() => finish({ url }), 10000);
+      img.onload = () => {
+        clearTimeout(timer);
+        finish({ url, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight });
+      };
+      img.onerror = () => {
+        clearTimeout(timer);
+        finish({ url });
+      };
+      img.src = url;
+      if (img.complete) {
+        clearTimeout(timer);
+        finish({ url, naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight });
+      }
+    });
+    const results = [];
+    for (const url of urls || []) results.push(await load(url));
+    return results;
+  },
+
   overlay(sections) {
     const root = document.createElement("div");
     root.id = "__generic_extractor_overlay";

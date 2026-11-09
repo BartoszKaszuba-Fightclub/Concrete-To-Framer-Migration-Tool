@@ -3,6 +3,9 @@
     "playwright": {
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "framer": {
+      "url": "https://mcp.framer.com/mcp"
     }
   }
 }

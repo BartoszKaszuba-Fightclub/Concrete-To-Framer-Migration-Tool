@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises"
 import { parseArgs } from "node:util"
+import { readAssetEvidence } from "../generic-extractor/assets.ts"
 import { generateDigest, type ComputedStyle, type StructureNode, type Warning } from "./generate.ts"
 import { DigestValidationError, validateDigest } from "./schema.ts"
 
@@ -9,6 +10,7 @@ const USAGE = `node --import tsx scripts/digest/cli.ts --structure <structure.js
   [--config <key=value>]
 
 Writes one schema 2.0.0 digest for the component roots. Does not modify package.json scripts.
+When assets.json sits beside the structure file, those local paths are recorded as usablePath.
 Validation failures are printed and no file is written.`
 
 const { values } = parseArgs({
@@ -69,6 +71,8 @@ for (const pair of values.config ?? []) {
   config[pair.slice(0, index)] = pair.slice(index + 1)
 }
 
+const suppliedAssets = await readAssetEvidence(values.structure)
+
 const digest = generateDigest({
   capture: {
     captureId: values["capture-id"],
@@ -83,7 +87,10 @@ const digest = generateDigest({
   structure,
   computed,
   component: { id: values["component-id"], type: values["component-type"], rootIds: values.root },
-  evidence: { screenshot: values.screenshot ? { path: values.screenshot } : undefined },
+  evidence: {
+    screenshot: values.screenshot ? { path: values.screenshot } : undefined,
+    ...(suppliedAssets ? { assets: suppliedAssets } : {}),
+  },
 })
 
 try {
