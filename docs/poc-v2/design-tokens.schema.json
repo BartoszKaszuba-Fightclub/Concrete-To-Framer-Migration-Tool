@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.concrete-to-framer/poc-v2/design-tokens.schema.json",
+  "title": "Captured page design tokens",
+  "description": "Rebuild instruction for one captured page. Create Framer color and text styles from colours and textStyles. Spacing, borders, radii, and shadows are the measured values to apply later. Do not invent tokens that are absent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "source", "colours", "textStyles", "spacing", "borders", "radii", "shadows"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "slug", "state", "language", "viewport"],
+      "properties": {
+        "url": { "type": "string", "minLength": 1 },
+        "slug": { "type": "string", "minLength": 1 },
+        "state": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1 },
+        "viewport": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "number" },
+            "height": { "type": "number" }
+          }
+        }
+      }
+    },
+    "colours": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/colour" }
+    },
+    "textStyles": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/textStyle" }
+    },
+    "spacing": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/spacing" }
+    },
+    "borders": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/border" }
+    },
+    "radii": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/radius" }
+    },
+    "shadows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/shadow" }
+    }
+  },
+  "$defs": {
+    "colour": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "css", "alpha", "framer"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "css": { "type": "string", "minLength": 1, "description": "Exact computed CSS colour string." },
+        "alpha": { "type": "number", "minimum": 0, "maximum": 1 },
+        "framer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "name", "light"],
+          "properties": {
+            "action": { "const": "createColorStyle" },
+            "name": { "type": "string", "minLength": 1 },
+            "light": { "type": "string", "pattern": "^rgba\\(" }
+          }
+        }
+      }
+    },
+    "textStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "roles", "fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform", "colorStyle", "framer"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "body", "link", "button"] }
+        },
+        "fontFamily": { "type": "string", "minLength": 1 },
+        "fontSize": { "type": "string", "minLength": 1 },
+        "fontWeight": { "type": "string", "minLength": 1 },
+        "lineHeight": { "type": "string", "minLength": 1 },
+        "letterSpacing": { "type": "string", "minLength": 1, "description": "Keep the keyword normal. Do not replace it with 0." },
+        "textTransform": { "type": "string", "minLength": 1 },
+        "colorStyle": { "type": "string", "minLength": 1 },
+        "framer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["action", "name", "tag", "fontFamily", "fontWeight", "fontSize", "lineHeight", "letterSpacing", "transform", "colorStyle"],
+          "properties": {
+            "action": { "const": "createTextStyle" },
+            "name": { "type": "string", "minLength": 1 },
+            "tag": { "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "p"] },
+            "fontFamily": { "type": "string", "minLength": 1 },
+            "fontWeight": { "type": "number" },
+            "fontSize": { "type": "string", "minLength": 1 },
+            "lineHeight": { "type": "string", "minLength": 1 },
+            "letterSpacing": { "type": "string", "minLength": 1 },
+            "transform": { "type": "string", "minLength": 1 },
+            "colorStyle": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "kind"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["padding", "margin", "gap"] },
+        "sides": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "top": { "type": "string" },
+            "right": { "type": "string" },
+            "bottom": { "type": "string" },
+            "left": { "type": "string" }
+          }
+        },
+        "axes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "row": { "type": "string" },
+            "column": { "type": "string" }
+          }
+        }
+      }
+    },
+    "border": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "sides"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sides": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "top": { "$ref": "#/$defs/borderSide" },
+            "right": { "$ref": "#/$defs/borderSide" },
+            "bottom": { "$ref": "#/$defs/borderSide" },
+            "left": { "$ref": "#/$defs/borderSide" }
+          }
+        }
+      }
+    },
+    "borderSide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "style", "css", "colorStyle"],
+      "properties": {
+        "width": { "type": "string", "minLength": 1 },
+        "style": { "type": "string", "minLength": 1 },
+        "css": { "type": "string", "minLength": 1 },
+        "colorStyle": { "type": "string", "minLength": 1 }
+      }
+    },
+    "radius": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "corners"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "corners": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "topLeft": { "type": "string" },
+            "topRight": { "type": "string" },
+            "bottomRight": { "type": "string" },
+            "bottomLeft": { "type": "string" }
+          }
+        }
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "css"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "css": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

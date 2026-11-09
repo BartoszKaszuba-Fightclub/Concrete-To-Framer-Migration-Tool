@@ -4,7 +4,7 @@ export type SectionCandidate = {
   id: string
   rootIds: string[]
   kind: string
-  status: "needs-review" | "approved"
+  status: "auto"
   memberIds: string[]
   evidence: Record<string, unknown>[]
 }
@@ -12,7 +12,6 @@ export type SectionCandidate = {
 const STOP_TAGS = new Set(["section", "article", "aside", "header", "footer", "nav", "form"])
 const SHELL_TAGS = new Set(["body", "main"])
 const PAGE_LANDMARKS = new Set(["header", "footer", "nav", "main"])
-const LANDMARKS = new Set(["header", "footer", "nav"])
 const PAINT_TRAITS = new Set(["background", "background-image", "border", "shadow"])
 const LAYOUT_TRAIT = /^(background|background-image|border|shadow|position|overflow|transform|display:(inline-)?(flex|grid))$/
 
@@ -29,9 +28,38 @@ const isStop = (n: DomNode, kids: DomNode[]) =>
 
 const subtree = (nodes: Nodes, id: string): string[] => [id, ...nodes[id].children.flatMap((c) => subtree(nodes, c))]
 
-// Descend from body through unpainted, non-layout wrappers: single-child chains, and stacks of
-// ≥2 children spanning ≥90% of their parent's width. A heading-only candidate is paired with its next sibling.
-export function proposeSectionRoots(nodes: Nodes, roots: string[]): string[][] {
+export function landmarkKind(node: DomNode): string | null {
+  const role = (node.role || "").toLowerCase()
+  const blob = `${node.domId} ${node.classes.join(" ")}`.toLowerCase()
+  if (node.tag === "header" || role === "banner" || /(^|[^a-z])header([^a-z]|$)/.test(blob)) return "header"
+  if (node.tag === "footer" || role === "contentinfo" || /(^|[^a-z])footer([^a-z]|$)/.test(blob)) return "footer"
+  if (node.tag === "main" || role === "main") return "main"
+  if (node.tag === "nav" || role === "navigation") return "nav"
+  if (role === "hero" || /(^|[^a-z])hero([^a-z]|$)/.test(blob)) return "hero"
+  return null
+}
+
+function isHidden(node: DomNode): boolean {
+  return node.render.display === "none" || node.render.visibility === "hidden" || node.render.visibility === "collapse" || node.box.width <= 0 || node.box.height <= 0
+}
+
+function collectLandmarks(nodes: Nodes, roots: string[]): string[] {
+  const found: string[] = []
+  const visit = (id: string) => {
+    const node = nodes[id]
+    if (!node || isHidden(node)) return
+    if (landmarkKind(node)) {
+      found.push(id)
+      return
+    }
+    node.children.forEach(visit)
+  }
+  roots.forEach(visit)
+  return found
+}
+
+// Descend from body through unpainted, non-layout wrappers when the page has no landmark regions.
+function proposeContentBands(nodes: Nodes, roots: string[]): string[][] {
   const expand = (id: string): string[] => {
     const n = nodes[id]
     const shown = n.children.filter((c) => hasBox(nodes[c]))
@@ -54,7 +82,6 @@ export function proposeSectionRoots(nodes: Nodes, roots: string[]): string[][] {
   }
 
   const groups: string[][] = []
-  // IDs are zero-padded in DOM pre-order, so a string sort restores DOM order.
   for (const id of roots.filter((r) => hasBox(nodes[r])).flatMap(expand).sort()) {
     const prev = groups.at(-1)
     const [a, b] = prev?.length === 1 ? [lift(prev[0]), lift(id)] : []
@@ -64,14 +91,20 @@ export function proposeSectionRoots(nodes: Nodes, roots: string[]): string[][] {
   return groups
 }
 
-export function buildSections(nodes: Nodes, groups: string[][], layoutWidth: number, status: SectionCandidate["status"]): SectionCandidate[] {
+export function proposeSectionRoots(nodes: Nodes, roots: string[]): string[][] {
+  const landmarks = collectLandmarks(nodes, roots)
+  if (landmarks.length) return landmarks.map((id) => [id])
+  return proposeContentBands(nodes, roots)
+}
+
+export function buildSections(nodes: Nodes, groups: string[][], layoutWidth: number): SectionCandidate[] {
   return groups.map((rootIds, i) => {
     const first = nodes[rootIds[0]]
     return {
       id: `clip-${String(i + 1).padStart(2, "0")}`,
       rootIds,
-      kind: LANDMARKS.has(first.tag) ? first.tag : outOfFlow(first) ? "overlay" : "content",
-      status,
+      kind: landmarkKind(first) ?? (outOfFlow(first) ? "overlay" : "content"),
+      status: "auto",
       memberIds: rootIds.flatMap((id) => subtree(nodes, id)),
       evidence: rootIds.map((id) => {
         const n = nodes[id]
@@ -80,7 +113,7 @@ export function buildSections(nodes: Nodes, groups: string[][], layoutWidth: num
           tag: n.tag,
           box: n.box,
           position: n.render.position,
-          viewportWidthRatio: Math.round((n.box.width / layoutWidth) * 100) / 100,
+          viewportWidthRatio: layoutWidth ? Math.round((n.box.width / layoutWidth) * 100) / 100 : 0,
           paints: n.traits.filter((t) => PAINT_TRAITS.has(t)),
           headings: subtree(nodes, id).filter((m) => /^h[1-6]$/.test(nodes[m].tag)).length,
         }

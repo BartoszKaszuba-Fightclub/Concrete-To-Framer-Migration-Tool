@@ -1,0 +1,242 @@
+POC v2 — Cursor implementation SPEC
+# POC v2 — Cursor implementation SPEC
+
+ | Owner | BBartosz Kaszuba
+ | Category |
+
+## 1. Mission and execution contract
+Improve the existing Concrete-to-Framer migration POC, implement the feedback below, and deliver a tested second version on a new Git branch. Work on the pipeline, extraction, digests and reusable Framer components. Do not touch the design canvas or assemble a page.
+Continue implementing and testing while any required criterion remains unmet. Stop successfully only when all required criteria pass with evidence. Do not stop after producing a plan, changing scripts, or saving an unverified component. If a real external blocker prevents completion, record the blocker and leave the affected criteria blocked—not passed.
+ |  | Input | Value
+ | Existing repository | BartoszKaszuba-Fightclub/Concrete-To-Framer-Migration-Tool
+ | Required Git branch | Create feat/poc-v2-component-pipeline; use a unique suffix if it already exists. Never work on the default branch.
+ | Target Framer project | Enchanting Whoever
+ | Source page | https://yellowhive.com/nl; keep this language throughout capture, reconstruction and scoring.
+ | Default evaluation viewport | 1200 × 900 px, one width and default/static state. This is a v2 spec decision, not a historical result.
+ | Deliverable | Reusable native Framer components in Assets, revised repository, tests and short evidence documents. No assembled website.
+This document is self-contained. You have no access to the Notion documentation it was based on; everything you need from it is summarised in chapter 2. Where chapter 2 and the repository disagree, the repository is the truth for what exists, and this spec is the truth for what v2 must do. Record every disagreement in the release notes.
+The Framer URL is a project URL, not a Git repository. Use the repository above and verify its remote before changing anything. Repository code and Framer capabilities were not directly inspected when this spec was prepared; discover actual files, commands, APIs and permissions before implementing. Paths proposed below are new deliverables, not claims that those files already exist.
+
+## 2. Background context (everything you need from the v1 documentation)
+All values in this chapter are historical v1 records. Use them to locate code, understand the feedback and write regression tests. Verify every path, command and number against the repository and a fresh capture before relying on it.
+
+### 2.1 Project, requirement and scope
+- Fightclub migrates client websites from Concrete CMS to Framer. Designers must rebuild each page with reusable native Framer components and styles that preserve source text, typography, colours and spacing. A screenshot or HTML embed is not an acceptable result.
+- The pipeline captures a public page (screenshots, saved HTML, DOM, measured geometry, browser-computed styles), groups the data per section, and gives it to an AI agent that builds styles and components in Framer.
+- Requirement US 5 (GitHub issue #20, “Capture step of migration pipeline”): As a designer, I want text, typography, colours, and spacing to be mapped to the correct components and reusable styles, so that less manual correction is needed. Issue acceptance criteria: a list of data types and why they are important; a working extraction script for those data types; a working script for CSS data. Open question in the issue: which data still needs to be digested.
+- Out of scope: CMS migration, multiple pages, link destinations, functional forms, SEO, alt-text/accessibility migration, video/lightbox behaviour and interaction states (menus, accordions, tabs, carousel slides, sticky/scroll states). Data about these may be kept as reference only.
+
+### 2.2 v1 architecture
+ |  | Part | v1 implementation
+ | Runner | Cursor agent, started with: https://yellowhive.com/nl  Reconstruct this website using the skill @.cursor/SKILLS/ORCHESTRATION.MD (model used: Grok 4.7 medium).
+ | Capture script | Node + Playwright, npm run extract:generic. The only script that writes capture files (steps 1–7). Flags seen: --widths, --sections, --max-nodes 0 (no cap). Default settle timeout 10,000 ms.
+ | Skills | Markdown instructions for judgement steps (8–14): clip review, digests, Framer styles and components. In v1 the agent wrote the digests by hand, in an agent-defined format.
+ | Database/ | A folder of files, not a database service. Screenshots, snapshots, nesting files, digests and supporting folders. Database/Framer code/, Database/prompts/, Database/cms/ contain only .gitkeep.
+ | Framer boundary | “Framer CLI/API”, never specified precisely. Discover the actual tools/APIs available to you.
+Glossary: clip = a full-width page section (header, hero, footer…); digest = captured data grouped for one clip/component at one width; node ID = generated ID joining capture files within one capture; traits = flags showing that a node paints or lays out (background, padding, flex, grid); state = interaction state, only default is captured.
+
+### 2.3 v1 pipeline steps and recorded outputs
+Recorded run: https://yellowhive.com/nl, slug nl, widths 390, 768, 992, 1200, 1500px; example viewport 1500 × 900, state default. N = Database/digest/nesting/en/1500/default/, D = Database/digest/ (the recorded paths say en although the source was nl; verify).
+ |  | Step | What v1 did | Recorded output | v2 decision
+ | 1 Confirm widths | Read live CSS media queries; developer confirmed widths; passed via --widths. No breakpoints file. | Five widths, later saved in sections.approved.json. | Keep discovery; no confirmation; one width per run (F01).
+ | 2 Extract structure | Walk DOM, omit non-visual tags, assign node IDs; record nesting, box, text, media, form fields. | Nelements.json (IDs/selectors), structure.json (full tree); 946 nodes at 1500. | Remove elements.json; reduce fields (F02, F07).
+ | 3 Check coverage | Check missing/unresolved elements. | Nreport.json: 0 unresolved, one section-unassigned warning (2 nodes). Node-cap failure would write pending-decision.json. | Remove heavy check; keep lightweight warnings; test the script instead (F02).
+ | 4 Measure styles | Second pass over all nodes from elements.json by selector; record font, colour, background, opacity, spacing, border, radius, shadow; visible ::before/::after only. | Ncomputed.json: 314 measured, 632 skipped (all Cookiebot), 0 unresolved. | Dismiss consent first; measure in same traversal (F03, §6).
+ | 5 Propose clips and simplify | Suggest section roots from bounds; simplify wrapper/hidden nodes keeping IDs. | Nreconstruction.json: 266 simplified nodes, 10 proposed clips. | Automatic sections; documented simplification rule (F04, F07).
+ | 6 Visual evidence | Screenshot, raw HTML, DOM-change check. | Database/Screenshots/en/1500/default/screenshot.png, sections-preview.png; Database/snapshots/en/1500/default/snapshot.html. | Keep, plus per-component crops.
+ | 7 Cross-width matches | Widest width as baseline; match text/media tags across widths. | matches.proposed.json: 903 proposals, 164 ambiguous, none approved. | Remove (F02).
+ | 8 Accept clips | Developer approved all 10 clips unchanged. | Dnesting/en/sections.approved.json. | Remove approval (F02, F04).
+ | 9 Clip digests | Agent joined nodes to styles by ID. | 50 digests, e.g. Den/1500/default/clip-04.json, index Den/index.json. | Scripted, schema-validated, per component (F05, F06).
+ | 10 Supporting data | Copied media URLs, link labels and “widget type” flags into separate files. | Dmedia/… (URLs only, not downloaded), Dlinks/… (labels, no destinations), Dwidget type/… (e.g. clip-04: background + carousel). | Fold into each digest (F11).
+ | 11 Clean clip HTML | Remove script/style tags, keep attributes. | Dcleaned HTML tree/…/clip-04.html (keeps href). | Optional evidence; not builder input.
+ | 12 Design styles | Set page breakpoints; create colour/text styles starting with mobile. | 6 colour styles, Lexend text styles; no token file. | Styles in v2 Assets only; never touch page breakpoints (F10, §3).
+ | 13 Build components | Built from mobile, then larger widths. | 5 templates, 3 buttons, header, footer. Coverage of all clips unverified. | Build from selected width; complete inventory (F04, F09).
+ | 14 Report | Planned clip-to-template table. | Never written. | Replace with generated manifest (F13).
+v1 limits: images not downloaded, no natural sizes, no asset map, no CSS variable names; Cookiebot caused 629 missing style values in clip-01 at every width; node-ID stability across captures unknown.
+
+### 2.4 v1 capture data fields
+structure.json per node: tag, domId (HTML id or empty), classes, selector (CSS path from html with :nth-of-type), parentId/order/children, box (document x/y/width/height incl. scroll, rounded to 0.01px), render (display, visibility, opacity, position), traits, generated node ID, text/images/alt/form-field details. File level: metadata (url, slug, viewport, state, roots), sectionShell (ancestors wrapping clips), warnings (e.g. section-unassigned, unsupported-boundary).
+computed.json per node: line-height, letter-spacing, font weight/size/family, text-transform, border-radius, box-shadow, borders, opacity, gradients, padding, margin, gap, colours/backgrounds. Missing in v1 and needed in v2: type scale, colour roles (proposals only), font sources/availability/weights, spacing scale with occurrence counts. Design notes: the structure file is large because of measurements; elements.json is not needed to find a section.
+
+### 2.5 v1 evaluation: metrics and results
+Metrics M1–M18 are the reference for all future trials: M1 total generation time; M2 native component percentage; M3 font family; M4 font size; M5 font weight; M6 line-height; M7 letter-spacing; M8 padding; M9 margin; M10 gap; M11 text colour; M12 fill colour; M13 border colour; M14 unintended overflow; M15 unintended clipping; M16 unintended overlap; M17 text wrapping; M18 stacking.
+- M1 = elapsed time from prompt submission until the last requested component is saved in Framer Assets. Missing output ⇒ record time and mark incomplete.
+- M2 = definitions built only from native Framer layers ÷ all inspected definitions × 100. Any code component fails the definition. Nested-component reuse is a separate measure.
+ |  | Item | v1 pipeline | Baseline: native Framer AI
+ | Model / source | Grok 4.7 medium; /nl; local images | Opus 5.5; /en; empty image placeholders
+ | Inspected widths | 390, 992, 1500 (scored against /en) | 1200
+ | M1 | 34.5 min (author-reported) | 2.5 min
+ | M2 | 5/5 templates native (90/90 layers) | 18/18 native
+ | Context used | 212.3k tokens | 152k tokens
+ | Outcome | Ahead on 0 of 18; equal on 4 (M2, M14, M15, M17) | Ahead on 12 of 18
+The pipeline's only advantage was shared text styles. Baseline weaknesses to beat: many one-off values (10 font sizes, 9 line-heights, 15 gaps), no shared text styles, raw colour values, grey hero instead of photo, header not overlaying the hero.
+v1 pipeline defects (write regression tests for these):
+ |  | Metric | Live site (measured on /en) | v1 output
+ | Buttons M3–M6, M11, M13 | Lexend, 18px, 700, white, 21px line-height, 2px border: gold on Hero/About/Latest news, navy on Growth/We are here for you. Latest news CTA is a gold unfilled link. | Sans-serif, 12px, 400, black, normal line-height, no border, on every template. Cause: builder missed button/label nodes in structure.json and used Framer defaults instead of computed.json.
+ | M4/M6 titles | 390: 24/32px; 992: 40/52px; hero title 52/60px from 992; paragraphs 16/32px; hero paragraph 24px at 992. | Titles stayed 24/32 at 992.
+ | M7 | Letter-spacing 0 everywhere. | −0.96px/−1.6px/−2.08px headings, −0.32/−0.48px paragraphs: invented values.
+ | M8, M18 | Text inset 35px at 390; side-by-side photo/text columns at 992+ (About, Growth). | One fixed 24px side / 64px bottom inset; single column at every width.
+ | M9 | Latest news margin-bottom 100px at 390, 200px at 992+. | Missing.
+ | M10 | Heading–paragraph gap 30px at 390, 40px at 992+. | Fixed 16–24px.
+ | M12 | Hero is a photo carousel; Growth/CTA buttons navy. | Hero flat navy; Latest news grey; Growth/CTA buttons white.
+ | M17 | — | Hero heading used the wrong sentence (“Growth through acquisition” instead of “Our brands”).
+v1 created colour styles Navy rgb(27,49,88), White rgb(255,255,255), Gold rgb(249,176,15), Navy muted rgba(27,49,88,0.5), Gray rgb(64,64,64), Surface rgb(242,242,242); Lexend Bold/Regular text styles with duplicate names (Hero title, Heading 2, Hero body). v1 components: Button, Light button, Outline button, Header, Footer, and templates Hero, About Yellow Hive, Growth through acquisition, Latest news, We are here for you. These are v1 Assets — do not modify them.
+All the values above are clues. Remeasure on /nl at 1200px; the fresh capture is the source of truth.
+
+### 2.6 Feedback to implement
+From the evaluation, design review and the author's notes (traced to F01–F13 in chapter 4):
+- Capture widths without developer confirmation; keep the step that discovers breakpoint widths. Output one breakpoint per run to make testing easier; each breakpoint gets its own digest. Reproduce breakpoints directly, never derive them from mobile.
+- Capture every button and field as variants of itself.
+- Question whether the coverage check matters and what can go wrong without it; remove it from the pipeline and test the script instead.
+- Stop reading the same things twice (step 4 re-reads nodes to compute styles).
+- Decide whether proposed cross-width matches should be removed (decision: removed).
+- Document how nodes are simplified.
+- The clip digest takes in too much; reduce data to what the rebuild needs and measure the effect.
+- Instead of a data library plus a map the agent searches, produce one digest per component with everything the builder needs, so it never stops mid-task to look something up. First compose an inventory of the data needed per metric, then make the scripts extract exactly that, without junk.
+- Agree a versioned digest contract with a worked example and generate digests by script; document node-ID lifetime.
+- Dismiss the cookie banner before capture.
+- Keep asset/media references and links with the section data; omitting images did not save time.
+- Specify Framer tools, inputs, outputs and failure handling; provide setup instructions, tool versions, font/asset handling, error behaviour and a component inventory for handoff.
+- Target: match or beat the baseline on M3–M13 and M18 at the evaluation width, keep M2/M14–M17, generation under 15 minutes.
+- Documentation style: numbered sections, described tables, conclusions in question → evidence format.
+
+### 2.7 Resolving conflicting feedback
+Resolve conflicting instructions as follows:
+ |  | Conflict | Decision for v2
+ | Three widths versus one breakpoint | Preserve automatic breakpoint discovery, but capture/build/test one configurable width per run. Default 1200px. Multi-width output and cross-width merging are deferred.
+ | Developer confirmation versus automation | No routine approval pauses for widths or section boundaries. Select deterministically, record the decision, and warn on ambiguity.
+ | Optional versus removed cross-width matches | Remove cross-width matching from the v2 execution path. Do not generate or consume proposed matches.
+ | Remove report versus complete handoff | Remove the long agent-authored report stage. Generate a compact machine-readable build manifest and test evidence instead.
+ | Mobile-first versus correct desktop geometry | Build directly from the selected width; never stretch a mobile reconstruction into desktop.
+ | Default-state scope versus button/field variants | Capture every visible button and field occurrence and group distinct observed static visual variants. Do not invent hover, focus, validation or interaction states.
+ | Historical M1 definitions | Use total generation time as M1, following the separate evaluation. Record time to first passing component separately.
+ | Documentation-only comments | Use numbered sections, described tables and question–evidence conclusions in new documents. Do not rewrite old Notion documents as part of implementation. Vague comments such as “Adjust” are not additional software requirements.
+The one-width scope does not demonstrate responsive fidelity across widths. Do not claim that v2 fixes all responsive behaviour merely because it reproduces desktop stacking correctly.
+
+## 3. Hard safety boundaries
+- Read repository instructions, README, package scripts, lockfile and .cursor/SKILLS/ORCHESTRATION.MD if present. Record the starting commit, remote and actual validation commands. Preserve unrelated user changes; never reset or overwrite them.
+- Create and verify the new Git branch before edits. Commit only this task's changes. No force pushes, default-branch commits, automatic merges or production deployment.
+- In Framer, use a separate v2 project branch if supported. Otherwise use an isolated POC v2 Assets namespace and new component definitions. Do not modify shared v1 styles/components that existing canvas instances depend on.
+- Do not create, delete, move, resize, restyle or place anything on a page/design canvas. Do not change page breakpoints, routes, page layout or publishing settings. Component-definition editing and isolated component previews are allowed; page editing is not.
+- Read the available Framer tools before using them. Verify project identity and operation scope before every mutation. If component previews or exports require page-canvas placement, do not use that route. Mark rendering verification blocked and report the missing capability.
+- Snapshot permitted read-only page metadata before and after to check that pages are unchanged. Do not write an overview/test page as evidence.
+- Never publish the Framer site. “Ship” means a validated feature branch, review-ready commits and saved v2 Assets. Push the new branch/open a PR if available and permitted; otherwise provide the commits and exact handoff steps.
+
+## 4. Feedback implementation backlog
+ |  | ID | Required change | Verification
+ | F01 | Keep automatic CSS/media-query breakpoint discovery; select one requested width without developer confirmation. Record inaccessible stylesheet limits. | Discovery fixture and selected-width metadata; no multi-width capture in the default path.
+ | F02 | Remove clip approval, proposed-clip review files, heavy runtime coverage checking, elements.json, and cross-width matches from the active pipeline. Preserve v1 evidence. | Tests show no removed artifacts generated or consumed; migration notes explain the trade-offs.
+ | F03 | Dismiss/reject cookie consent through the visible control where possible, wait for overlays to disappear and fonts/images to settle, then capture. Do not merely skip hundreds of consent nodes. | Consent fixture plus live verification; a blocking overlay or missing required measurements fails capture.
+ | F04 | Identify complete sections automatically, then select component subtrees. Support a button-only iteration without rebuilding the full page. | Header/hero/main/footer fixtures; every requested visible occurrence maps to a component or an explicit blocker.
+ | F05 | Replace agent-written digests with a deterministic, versioned, schema-validated generator. Join structure, geometry, text and styles by node ID. | Same frozen input yields the same semantic output; dangling references and missing required fields fail.
+ | F06 | Make one self-contained digest per component at the chosen width, including label nodes, asset references, warnings and resolved token values. | Builder runs from that digest and its referenced screenshot/assets, without searching full DOM/CSS libraries.
+ | F07 | Reduce data to fields justified by metrics; document node simplification. | Data inventory, keep/remove fixtures, before/after bytes and node counts. Do not invent token savings.
+ | F08 | Capture all visible button/field instances; group by observed visual signature, not label or guessed category. | Different colours/borders/type survive grouping; equivalent styles reuse a definition.
+ | F09 | Fix typography, colours, borders, spacing, media and selected-width layout using captured values, never Framer defaults. | Per-component M3–M18 assertions and isolated previews. Historical button failures must have regression tests.
+ | F10 | Derive reusable typography/colour styles and a spacing inventory. Apply styles to actual layers and deduplicate only exact equivalent values. | Style application checks, exact value preservation, no duplicate semantic names with conflicting values.
+ | F11 | Keep media, visible link labels and static widget limitations inside each digest. Preserve original image references; resolve usable assets and capture natural sizes. | Asset references resolve; unavailable assets are blocked, not silently replaced. No separate lookup folders required by the builder.
+ | F12 | Accept Framer project and viewport as explicit configuration; generate component frames from measured layout automatically. | Wrong-project guard, no manual frame setup or canvas assembly.
+ | F13 | Record timings, minimal component mapping and reproducible setup/error handling. | Manifest, scorecard, clean-checkout instructions, scoped failure/retry tests.
+Link destinations, functional forms, CMS migration, animation and interaction recreation remain out of scope. Retained reference attributes do not imply implemented behaviour.
+
+## 5. Required short research document
+Before finalising extraction, create docs/poc-v2/node-data-to-metrics.md (aim for 2–4 pages, mainly tables). Answer: Which captured node data is necessary to reconstruct and verify each metric, and what can safely be omitted?
+Inspect actual repository schemas, a real capture and small controlled fixtures. Record the commit, fixture/capture IDs and precise JSON paths/code locations. The following is a starting hypothesis—not a completed research result:
+ |  | Metric | Candidate evidence/data | Important limitation
+ | M1 Total generation time | Prompt/run start and last requested Assets-save timestamps; per-stage durations | Not a DOM property. Separate retries, first-save time and development time.
+ | M2 Native component percentage | Framer component-definition and recursive layer inventory | Source nodes cannot prove native Framer construction.
+ | M3 Font family | Resolved family, loaded face, font source/status, label/text node | A CSS family list alone does not prove the font loaded.
+ | M4 Font size | Resolved size and units per rendered text run | Nested spans can differ from their parent.
+ | M5 Font weight | Resolved weight and available face/variable axes | Do not assume a requested face exists.
+ | M6 Line-height | Computed line-height, font metrics, line rectangles | normal is not an exact pixel measurement.
+ | M7 Letter-spacing | Computed tracking and units | Normalise normal only when justified; avoid px/em conversion errors.
+ | M8 Padding | Four computed sides; box sizing and bounds | Geometry alone cannot distinguish padding from other spacing.
+ | M9 Margin | Four computed sides; sibling bounds, flow context | Margin collapse and negative margins affect the visible result.
+ | M10 Gap | Row/column gap, flex/grid mode, child bounds | Parent gap and child margins are not interchangeable evidence.
+ | M11 Text colour | Resolved text colour, alpha, inherited source/effective opacity | Include nested label nodes; parent colour may not be rendered colour.
+ | M12 Fill colour | Background/fill, alpha, gradients, image/currentSrc, object-fit/position | Image fills and transparent ancestors cannot be replaced with a flat colour.
+ | M13 Border colour | Per-side colour, width, style and radius | A matching colour with a missing border is still wrong.
+ | M14 Unintended overflow | Parent/child bounds, scroll/client sizes, overflow rules | Distinguish intended decoration from accidental content escape.
+ | M15 Unintended clipping | Clip/overflow rules, text/media bounds, screenshot | Intent and paint effects require visual confirmation.
+ | M16 Unintended overlap | Sibling bounds, position/transform, z-order and screenshot | Bounding-box intersections alone do not prove a defect.
+ | M17 Text wrapping | Exact text/runs, font loading, content width, white-space, word-break, line rectangles | A different sentence invalidates wrapping comparison.
+ | M18 Stacking | DOM/sibling order, flex/grid direction/order, alignment, positions and z-index | Distinguish flow order from paint order; test selected width only.
+Add a second table: actual field/path → metric IDs → keep/derive/omit → reason → fixture/evidence → limitation. Include node IDs, parent/child order, selectors, render flags, geometry, transforms, pseudo-elements, image dimensions, fonts and token inventories. State whether each value is directly measured, derived or inferred. Measure data reduction on the same frozen input; do not discard rare but visually essential values.
+End with question → finding → supporting evidence → decision. Record unresolved findings honestly. No invented expert feedback or claim that this research proves all learning outcomes.
+
+## 6. Digest and extraction contract
+Create docs/poc-v2/digest-contract.md, a machine-readable schema and one validated button example using real capture values. Adapt storage paths to repository conventions.
+Each component digest must contain:
+- schemaVersion, captureId, source URL/final URL, language, timestamp, viewport, state and capture configuration.
+- Component ID/type, source root and node provenance; included node hierarchy/order and capture-local IDs. Document that IDs are not assumed stable across new captures.
+- Exact visible text and styled runs; explicit label-node styles for buttons and fields.
+- Resolved typography, spacing, colours/fills/borders, measured geometry, layout/position/stacking, media and relevant pseudo-elements. Store only applicable fields, but distinguish zero, empty, unsupported and missing.
+- Resolved reusable style/token values beside their references. Token names/colour roles are proposals; measured values stay unchanged.
+- Screenshot/crop references, original and usable asset paths/URLs, natural dimensions, font availability, warning/error records and unsupported static features.
+Extract structure, styles and geometry from the same settled browser state. Avoid duplicate DOM traversals and unnecessary file reloads. Keep the full evidence outside normal builder context; the builder consumes a small digest with directly available assets, not a map requiring repeated searches.
+Simplification rule: remove a wrapper only when it has no meaningful text/content, no paint/pseudo-element, no spacing/layout/transform/clipping/stacking effect, and its children retain equivalent order and geometry. Preserve a provenance mapping. Keep styled labels and visually significant ancestors. Test hidden nodes, display-contents wrappers, flex/grid wrappers, absolute children and negative margins.
+Make extraction generic: Yellow Hive values belong in fixtures, not hard-coded production logic. Historical values such as Lexend/18px/700/21px and 2px borders are regression clues; remeasure the chosen Dutch source before treating them as current truth.
+
+## 7. Fast component-first implementation loop
+Implement selectors/filters for one component, one viewport, one state and cache frozen capture inputs. Discover and use existing tooling; add the smallest missing harness rather than replacing the repository stack.
+- Establish baseline tests, then add a failing regression for the smallest known defect.
+- Start with button extraction → digest → Framer style application → isolated preview → metric assertions.
+- Cover each observed button variant and one visible field if present. A missing field on the source is explicitly not applicable, not fabricated.
+- Fix only the failing stage. Rebuild only affected definitions and dependants. Reuse unchanged captures/assets.
+- Once buttons pass, exercise a typography block, a card/media component and a complex two-column/stacking section. Then process all sections found in the frozen one-width inventory.
+- After each fix, run the targeted tests and relevant regressions. Keep a machine-readable criterion ledger with pass/fail/blocked/not-applicable, expected/actual values and evidence paths.
+- Run the complete local suite at milestones and before delivery. Run one final one-width component batch smoke test; do not repeat a whole-page build after every small change.
+Do not loosen thresholds, delete failing tests, reduce the component inventory or mark unavailable measurements passed. Fix the generic extractor/digest/builder cause instead of patching each output manually. If three attempts produce no progress on the same failure, investigate the root cause or alternate supported component-level approach. Stop only that blocked line when external access, fonts/licensing or unsupported APIs require user intervention; finish independent work.
+
+### 7.1 Subagents when the task becomes too big
+You may start subagents (Cursor background agents or parallel agents) when you judge that the work no longer fits comfortably in one context, or when independent work can run in parallel. Typical triggers: your context is filling with capture data, a single failure investigation is crowding out the main loop, or several components/fixtures can be built independently.
+Good units to delegate: the node-data-to-metrics research document; the digest schema and validator; consent/settling fixtures; unit tests for one metric group; extraction for one component type; a root-cause investigation of one failing criterion.
+Rules:
+- You remain the orchestrator and owner of the feature branch. You decide acceptance; subagents report evidence, they do not mark criteria passed.
+- Give each subagent a self-contained brief: goal, relevant criterion IDs (F/A), the exact sections of this spec it needs (copy them — subagents cannot see Notion either), files it may touch, test commands and expected output format.
+- Isolate work: separate Git worktrees or sub-branches off feat/poc-v2-…, or strictly disjoint files. Merge into the feature branch yourself, then rerun affected tests.
+- Serialise Framer mutations through one agent at a time. Read-only Framer inspection may run in parallel. Every subagent inherits all safety boundaries in chapter 3: no design canvas, no page breakpoints, no publishing, no default-branch commits.
+- Prefer few, well-scoped subagents over many. Do not delegate a task smaller than the cost of briefing it. Stop a subagent that makes no progress after three attempts and bring the problem back to the main loop.
+- Record each subagent's task, branch/worktree, result and evidence paths in the criterion ledger.
+
+## 8. Acceptance criteria and measurement
+These are v2 engineering acceptance thresholds, not historical measured results. Freeze them before the final run. Record any proposed change separately; never relax them merely to get green tests.
+ |  | Criterion | Required result
+ | A01 Branch and safety | New verified Git branch; unrelated changes preserved; correct Framer project; zero page/design-canvas mutations and no site publication.
+ | A02 Repository quality | Actual existing lint/typecheck/test/build checks pass where present; new extraction/digest/builder regressions pass. Baseline failures are recorded separately, not hidden.
+ | A03 Simplified flow | F01–F13 implemented or explicitly blocked. No active element lookup, heavy coverage stage, manual clip approval or cross-width matching. Lightweight data validation remains.
+ | A04 Digest integrity | Schema-valid, deterministic digests; no dangling node/token/asset references; required measured data missing means failure.
+ | A05 Component coverage | Every item in the frozen automatic section/component inventory has a saved native v2 definition or recorded blocker. Missing required output prevents completion.
+ | A06 M2 | 100% of delivered definitions native-only, checking nested dependencies recursively. No code component, HTML embed or screenshot-as-component substitute. Report coverage separately.
+ | A07 M3–M7 | Loaded font family/weight match; font size and line-height within 0.5px; letter-spacing within 0.1px after explicit unit conversion. Unsupported normal resolution remains unmeasured until verified.
+ | A08 M8–M10 | Measured padding, margin/gap equivalents and rendered spacing within 1px; source layout context preserved. Record intentional native-layout translations and their geometric proof.
+ | A09 M11–M13 | Normalised RGBA/alpha match; gradients/images preserved where applicable. Border width within 0.5px with correct sides/style/radius. Styles are applied, not merely created.
+ | A10 M14–M18 | No unintended overflow/clipping/overlap beyond 1px tolerance. Intended source effects retained. Exact source text; same line count/breaks and selected-width flow/paint order, supported by isolated previews and measurements.
+ | A11 Media/fonts | Required assets available and correctly cropped/fitted; no silent placeholders or font substitution. Blocked assets/fonts prevent affected fidelity checks from passing.
+ | A12 M1 | Final reproducible one-width batch finishes in under 15 minutes, from agent build prompt/run submission through last requested component saved in Assets, including capture/digest work performed in that run. Missing output means incomplete. Report cold/warm cache status and first passing-component time separately.
+ | A13 Handoff | Short node-data research, digest contract/example, runnable setup, criterion ledger, per-component scorecard, generated build manifest and release notes committed.
+Record M3–M18 per applicable component and relevant node, not a single subjective overall score. Missing required components remain in the requested inventory. Not-measured is not pass. Where a metric does not apply, record a concrete reason. A metric passes only when every applicable check passes.
+An isolated component preview/export must be used for render checks; tests must never place components on the design canvas. If Framer exposes only property inspection and no permitted rendering, separate property checks from rendering checks and mark the latter blocked.
+Do not claim to beat the 2.5-minute historical Framer AI baseline using the 15-minute threshold. Historical runs differed in language, images, models and widths. Any new benchmark must use the same frozen source, asset policy, component inventory, width and timing boundaries; otherwise report a v2 regression test, not a controlled comparison.
+
+## 9. Tests and delivery evidence
+ |  | Layer | Minimum checks
+ | Unit | Visible text/runs; button labels; per-side styles; px/em handling; alpha/transparent fills; inherited styles; style signatures and simplification rules.
+ | Fixture integration | Consent dismissal; font/image settling; nested spans; pseudo-elements; missing styles/assets; intended clipping/overflow; two-column layout; malformed schema and broken joins.
+ | Component build | Safe project guard; creation restricted to v2 Assets; applied shared styles; native-only recursive layer tree; idempotent rebuild without duplicate definitions.
+ | Failure/retry | Bounded timeouts; unsupported boundary warnings; denied Framer access; missing font; failed save; retry only failed work; no false success or canvas fallback.
+ | Final smoke | One frozen source, one width, complete requested inventory; measured timings, individual previews, criterion results and unchanged-page check.
+Suggested compact deliverables, using repository naming conventions where possible:
+- docs/poc-v2/node-data-to-metrics.md
+- docs/poc-v2/digest-contract.md plus schema/example
+- docs/poc-v2/README.md with exact setup, tool versions, commands and environment-variable names—not secrets
+- docs/poc-v2/release-notes.md with F01–F13 traceability and deferred scope
+- Generated build-manifest.json and metrics.json: run/commit IDs, component → source node → Framer definition mapping, expected/actual values, evidence references and status
+Keep the manifest automatic and small; do not resurrect the removed narrative report stage. Explain the effects of removing coverage, lookup files and matching, including risks mitigated by tests.
+Final Cursor response: give the Git branch and commit/PR, Framer v2 Assets location, passing/total criteria, test commands/results, M1 and first-component time, document paths and any genuine blockers. Use “complete” only if all required criteria pass. Do not merge or publish.
+
+## 10. Cursor starter instruction
+- Implement this POC v2 specification in the existing repository. Begin by reading repository instructions, verifying the remote, preserving unrelated changes and creating a new feature branch. Inspect actual Framer tools before mutations. Work only on pipeline code and isolated native component definitions/Assets in the specified project; never touch or assemble the page/design canvas, change page breakpoints or publish the site.
+
+First produce the short node-data-to-metrics research tables from actual code/captures and define the versioned digest contract. Then implement and test in the smallest loop: one button, one width, one state. Expand only after that component passes. Repair extraction, digest and builder causes, not individual output symptoms. Keep iterating while required criteria remain unmet. Reuse frozen inputs, rerun affected tests and dependants, and reserve the full one-width batch for milestone/final validation. Do not weaken criteria or call unmeasured checks passed. Finish with a tested review-ready feature branch and v2 Framer Assets; report external blockers truthfully instead of making unsafe canvas changes. If the task becomes too big for one context, start subagents for independent, well-scoped parts as described in section 7.1; stay the orchestrator, serialise Framer mutations and verify their work yourself. You have no access to the original documentation: chapter 2 of the spec contains all background you need.
+

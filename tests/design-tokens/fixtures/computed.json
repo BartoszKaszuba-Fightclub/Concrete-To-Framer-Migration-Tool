@@ -1,0 +1,87 @@
+{
+  "url": "https://example.test/nl",
+  "slug": "fixture",
+  "width": 1200,
+  "state": "default",
+  "nodes": {
+    "n-000001": {
+      "columnGap": "16px",
+      "rowGap": "normal",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "marginTop": "0px",
+      "marginRight": "0px",
+      "marginBottom": "0px",
+      "marginLeft": "0px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "boxShadow": "none",
+      "borderTopWidth": "0px",
+      "borderTopStyle": "none",
+      "borderTopColor": "rgb(0, 0, 0)"
+    },
+    "n-000002": {
+      "fontFamily": "Lexend, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(27, 49, 88)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "columnGap": "16px",
+      "rowGap": "normal",
+      "paddingTop": "0px",
+      "marginTop": "0px",
+      "boxShadow": "none"
+    },
+    "n-000003": {
+      "fontFamily": "Lexend, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(27, 49, 88)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "columnGap": "16px",
+      "rowGap": "normal",
+      "boxShadow": "none"
+    },
+    "n-000004": {
+      "fontFamily": "Lexend, sans-serif",
+      "fontSize": "32px",
+      "fontWeight": "700",
+      "lineHeight": "40px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(249, 176, 15)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "boxShadow": "none",
+      "borderTopLeftRadius": "0px"
+    },
+    "n-000005": {
+      "fontFamily": "Cookiebot, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(4, 5, 6)",
+      "backgroundColor": "rgb(7, 8, 9)"
+    },
+    "n-000006": {
+      "fontFamily": "Cookiebot, sans-serif",
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "14px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(3, 3, 3)",
+      "backgroundColor": "rgb(2, 2, 2)",
+      "columnGap": "99px"
+    }
+  },
+  "skipped": [{ "nodeId": "n-000006", "reason": "consent-ui" }]
+}

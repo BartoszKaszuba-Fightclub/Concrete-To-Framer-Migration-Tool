@@ -1,4 +1,6 @@
-# Playwrght demo
+# Concrete to Framer migration tool
+
+What changed since the first proof of concept is in [changelog/poc-version-2.md](changelog/poc-version-2.md).
 
 ## Setup
 

@@ -1,0 +1,94 @@
+{
+  "expected": { "before": 12, "after": 10 },
+  "roots": ["n-body"],
+  "nodes": {
+    "n-body": {
+      "tag": "body",
+      "children": ["n-hidden", "n-contents", "n-flex", "n-grid", "n-abs-wrap", "n-neg"],
+      "traits": ["padding"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 0, "width": 1200, "height": 900 }
+    },
+    "n-hidden": {
+      "tag": "div",
+      "children": [],
+      "traits": ["display:none"],
+      "render": { "display": "none", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 0, "width": 0, "height": 0 }
+    },
+    "n-contents": {
+      "tag": "div",
+      "children": ["n-a", "n-b"],
+      "traits": ["display:contents"],
+      "render": { "display": "contents", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 0, "width": 0, "height": 0 }
+    },
+    "n-a": {
+      "tag": "p",
+      "children": [],
+      "traits": [],
+      "content": ["Alpha"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 0, "width": 120, "height": 20 }
+    },
+    "n-b": {
+      "tag": "p",
+      "children": [],
+      "traits": [],
+      "content": ["Beta"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 20, "width": 120, "height": 20 }
+    },
+    "n-flex": {
+      "tag": "div",
+      "children": ["n-item"],
+      "traits": ["display:flex", "gap"],
+      "render": { "display": "flex", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 40, "width": 200, "height": 40 }
+    },
+    "n-item": {
+      "tag": "span",
+      "children": [],
+      "traits": [],
+      "content": ["Item"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 40, "width": 40, "height": 40 }
+    },
+    "n-grid": {
+      "tag": "div",
+      "children": ["n-cell"],
+      "traits": ["display:grid", "gap"],
+      "render": { "display": "grid", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 80, "width": 200, "height": 40 }
+    },
+    "n-cell": {
+      "tag": "span",
+      "children": [],
+      "traits": [],
+      "content": ["Cell"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 80, "width": 40, "height": 40 }
+    },
+    "n-abs-wrap": {
+      "tag": "div",
+      "children": ["n-abs"],
+      "traits": [],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 120, "width": 200, "height": 40 }
+    },
+    "n-abs": {
+      "tag": "div",
+      "children": [],
+      "traits": ["position"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "absolute" },
+      "box": { "x": 10, "y": 130, "width": 30, "height": 20 }
+    },
+    "n-neg": {
+      "tag": "div",
+      "children": [],
+      "traits": ["margin"],
+      "render": { "display": "block", "visibility": "visible", "opacity": "1", "position": "static" },
+      "box": { "x": 0, "y": 150, "width": 80, "height": 16 }
+    }
+  }
+}
