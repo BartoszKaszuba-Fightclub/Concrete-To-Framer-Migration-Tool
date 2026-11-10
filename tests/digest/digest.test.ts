@@ -539,3 +539,37 @@ test("token file names replace proposal names when measurements match", () => {
   assert.equal(ambiguous.tokens[typographyId].proposal.name, "text/h1/match")
   assert.equal(ambiguous.tokens[spacingId].proposal.name, localSpacingName)
 })
+
+test("an svg with markup stays a boundary and skips the untraversed warning", () => {
+  const markup = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path fill="currentColor" d="M0 0h10v10z"></path></svg>`
+  const box = { x: 0, y: 0, width: 16, height: 16 }
+  const digest = generateDigest(input({
+    component: { id: "icons", type: "section", rootIds: ["n-painted", "n-bare", "n-frame"] },
+    structure: {
+      nodes: {
+        "n-painted": node({ tag: "svg", boundary: "svg", markup, untraversedChildren: 1, box }),
+        "n-bare": node({ tag: "svg", boundary: "svg", untraversedChildren: 1, box: { ...box, x: 20 } }),
+        "n-frame": node({ tag: "iframe", boundary: "iframe", markup: "<iframe></iframe>", untraversedChildren: 1, box: { ...box, x: 40 } }),
+      },
+    },
+    computed: {
+      nodes: {
+        "n-painted": css({ color: "rgb(27, 49, 88)" }),
+        "n-bare": css(),
+        "n-frame": css(),
+      },
+    },
+  })) as {
+    nodes: Record<string, { children: string[]; boundary: { kind: string; markup: { status: string; value: string } }; styles: { typography: { value: { color: { value: string } } } } }>
+    unsupported: { feature: string; message: string; nodeIds?: string[] }[]
+  }
+  validateDigest(digest)
+  assert.equal(digest.nodes["n-painted"].boundary.kind, "svg")
+  assert.deepEqual(digest.nodes["n-painted"].children, [])
+  assert.equal(digest.nodes["n-painted"].boundary.markup.status, "value")
+  assert.equal(digest.nodes["n-painted"].boundary.markup.value, markup)
+  assert.equal(digest.nodes["n-painted"].styles.typography.value.color.value, "rgb(27, 49, 88)")
+  const warnings = digest.unsupported.filter((item) => item.feature === "untraversed-boundary")
+  assert.deepEqual(warnings.map((item) => item.nodeIds?.[0]).sort(), ["n-bare", "n-frame"])
+  assert.equal(warnings.find((item) => item.nodeIds?.[0] === "n-bare")?.message, "svg content was not traversed. Static contents inside the boundary are unsupported.")
+})

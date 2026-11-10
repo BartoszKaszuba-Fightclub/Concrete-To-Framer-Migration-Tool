@@ -735,8 +735,11 @@ function unsupportedRecords(preorder: string[], structure: Record<string, Struct
   const fields = preorder.filter((id) => structure[id].field || structure[id].tag === "textarea" || structure[id].tag === "select")
   if (fields.length) records.push({ feature: "form-behaviour", message: "Field values are static observations. Submission and validation are not represented.", nodeIds: fields })
   for (const id of preorder) {
-    const kind = structure[id].boundary
-    if (kind) records.push({ feature: "untraversed-boundary", message: `${kind} content was not traversed. Static contents inside the boundary are unsupported.`, nodeIds: [id] })
+    const node = structure[id]
+    const kind = node.boundary
+    if (!kind) continue
+    if (kind === "svg" && node.markup?.trim()) continue
+    records.push({ feature: "untraversed-boundary", message: `${kind} content was not traversed. Static contents inside the boundary are unsupported.`, nodeIds: [id] })
   }
   return records.sort((a, b) => `${a.feature}:${a.message}`.localeCompare(`${b.feature}:${b.message}`))
 }
