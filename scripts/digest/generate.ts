@@ -703,7 +703,17 @@ function warningRecords(
   const subtree = collectSourceIds(input.component.rootIds, input.structure.nodes)
   const warnings: Warning[] = []
   for (const warning of input.structure.warnings ?? []) {
-    if (!warning.nodeIds?.length || warning.nodeIds.some((id) => subtree.has(id))) warnings.push(warning)
+    if (warning.nodeIds?.length && !warning.nodeIds.some((id) => subtree.has(id))) continue
+    if (warning.code !== "unsupported-boundary") {
+      warnings.push(warning)
+      continue
+    }
+    const ids = (warning.nodeIds ?? []).filter((id) => {
+      const node = input.structure.nodes[id]
+      return !(node?.boundary === "svg" && Boolean(node.markup?.trim()))
+    })
+    if (!ids.length) continue
+    warnings.push(ids.length === warning.nodeIds?.length ? warning : { ...warning, nodeIds: ids })
   }
   for (const skipped of input.computed.skipped ?? []) {
     if (skipped.nodeId && subtree.has(skipped.nodeId)) warnings.push({ code: "computed-skipped", message: skipped.reason ?? "Computed style was skipped.", nodeIds: [skipped.nodeId] })

@@ -27,7 +27,7 @@ Round to whole pixels. A missing box edge is the word `missing`.
 
 ## One session
 
-The same session reads the digest files whose roots sit inside each candidate and writes one organism block per candidate. Do not spawn a subagent. A nested agent has no Task tool, which is why this step stopped. Look at the screenshot once, then write the file.
+Each organism block is written from the digest files whose roots sit inside that one candidate. While writing that block, do not read another candidate's digests and do not open the screenshot. Do not spawn a subagent. A nested agent has no Task tool, which is why this step stopped.
 
 ## Write
 

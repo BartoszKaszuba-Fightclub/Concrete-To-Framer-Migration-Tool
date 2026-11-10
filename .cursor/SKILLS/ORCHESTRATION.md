@@ -13,7 +13,7 @@ Wait for answers before any tool that reads a site or opens Framer.
 
 1. Which website URL should be collected?
 2. Which Framer project? Ask for the project name or the project link.
-3. Create a new branch, or use an existing branch? If existing, ask which branch.
+3. The pipeline runs on a clean Framer branch, as `.cursor/SKILLS/BUILDER.md` defines it. Create that branch. An existing branch is allowed only when it is clean. If they want an existing one, ask which branch.
 
 Width is 1200 unless the user names one width. Do not ask about breakpoints.
 

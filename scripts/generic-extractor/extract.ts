@@ -80,7 +80,12 @@ export async function extract(page: Page, opts: ExtractOptions) {
   }
 
   const { nodes, roots } = raw
-  const warnings: Warning[] = raw.boundaries.map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] }))
+  const warnings: Warning[] = raw.boundaries
+    .filter((id) => {
+      const node = nodes[id]
+      return !(node?.boundary === "svg" && node.markup?.trim())
+    })
+    .map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] }))
   if (opts.widthWarning) warnings.push({ code: "widths-ignored", message: opts.widthWarning })
 
   const groups = proposeSectionRoots(nodes, roots)

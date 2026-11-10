@@ -1764,13 +1764,6 @@
     {
       "feature": "letter-spacing-normal",
       "message": "letter-spacing resolved to the keyword normal and has no pixel measurement."
-    },
-    {
-      "feature": "untraversed-boundary",
-      "message": "svg content was not traversed. Static contents inside the boundary are unsupported.",
-      "nodeIds": [
-        "n-000704"
-      ]
     }
   ],
   "warnings": [
@@ -1789,13 +1782,6 @@
         "n-000701",
         "n-000702",
         "n-000703",
-        "n-000704"
-      ]
-    },
-    {
-      "code": "unsupported-boundary",
-      "message": "svg content was not traversed",
-      "nodeIds": [
         "n-000704"
       ]
     }

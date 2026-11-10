@@ -551,6 +551,11 @@ test("an svg with markup stays a boundary and skips the untraversed warning", ()
         "n-bare": node({ tag: "svg", boundary: "svg", untraversedChildren: 1, box: { ...box, x: 20 } }),
         "n-frame": node({ tag: "iframe", boundary: "iframe", markup: "<iframe></iframe>", untraversedChildren: 1, box: { ...box, x: 40 } }),
       },
+      warnings: [
+        { code: "unsupported-boundary", message: "svg content was not traversed", nodeIds: ["n-painted"] },
+        { code: "unsupported-boundary", message: "svg content was not traversed", nodeIds: ["n-bare"] },
+        { code: "unsupported-boundary", message: "iframe content was not traversed", nodeIds: ["n-frame"] },
+      ],
     },
     computed: {
       nodes: {
@@ -562,6 +567,7 @@ test("an svg with markup stays a boundary and skips the untraversed warning", ()
   })) as {
     nodes: Record<string, { children: string[]; boundary: { kind: string; markup: { status: string; value: string } }; styles: { typography: { value: { color: { value: string } } } } }>
     unsupported: { feature: string; message: string; nodeIds?: string[] }[]
+    warnings: { code: string; nodeIds?: string[] }[]
   }
   validateDigest(digest)
   assert.equal(digest.nodes["n-painted"].boundary.kind, "svg")
@@ -572,4 +578,6 @@ test("an svg with markup stays a boundary and skips the untraversed warning", ()
   const warnings = digest.unsupported.filter((item) => item.feature === "untraversed-boundary")
   assert.deepEqual(warnings.map((item) => item.nodeIds?.[0]).sort(), ["n-bare", "n-frame"])
   assert.equal(warnings.find((item) => item.nodeIds?.[0] === "n-bare")?.message, "svg content was not traversed. Static contents inside the boundary are unsupported.")
+  const copied = digest.warnings.filter((item) => item.code === "unsupported-boundary")
+  assert.deepEqual(copied.map((item) => item.nodeIds?.[0]).sort(), ["n-bare", "n-frame"])
 })
