@@ -203,7 +203,7 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
     }
   }
 
-  const links = linkRecords(preorder, structure, runs)
+  const links = linkRecords(preorder, structure, runs, simplified.folded, simplified.omitted)
   const warnings = warningRecords(input, preorder, styles, assets)
   const unsupported = unsupportedRecords(preorder, structure, links)
   const capture = captureOf(input)
@@ -677,12 +677,75 @@ function numberMeasurement(value: number | undefined, reason: string): Measureme
   return { status: "value", value: String(value) }
 }
 
-function linkRecords(preorder: string[], structure: Record<string, StructureNode>, runs: Map<string, { text: string; nodeId: string }[]>) {
-  return preorder.filter((id) => structure[id].tag === "a").map((id) => ({
+function linkRecords(
+  preorder: string[],
+  structure: Record<string, StructureNode>,
+  runs: Map<string, { text: string; nodeId: string }[]>,
+  folded: { sourceId: string; childSourceIds: string[] }[],
+  omitted: { sourceId: string }[],
+) {
+  const kept = new Set(preorder)
+  const parents = new Map<string, string>()
+  for (const [id, node] of Object.entries(structure)) {
+    for (const child of node.children ?? []) parents.set(child, id)
+  }
+  const links = preorder.filter((id) => structure[id].tag === "a").map((id) => ({
     nodeId: id,
     label: (runs.get(id) ?? []).map((run) => run.text).join(""),
     destination: destinationOf(structure[id].href),
-  })).sort((a, b) => a.nodeId.localeCompare(b.nodeId))
+  }))
+  for (const entry of folded) {
+    const node = structure[entry.sourceId]
+    const childId = entry.childSourceIds.length === 1 ? entry.childSourceIds[0] : undefined
+    if (!node || node.tag !== "a" || !childId || !kept.has(childId) || !isSvgOrImage(structure[childId])) continue
+    const destination = destinationOf(node.href)
+    if (destination.status !== "value") continue
+    links.push({
+      nodeId: childId,
+      label: (runs.get(childId) ?? []).map((run) => run.text).join(""),
+      destination,
+    })
+  }
+  for (const entry of omitted) {
+    const node = structure[entry.sourceId]
+    if (!node || node.tag !== "a") continue
+    const destination = destinationOf(node.href)
+    if (destination.status !== "value") continue
+    const ancestor = nearestKeptAncestor(entry.sourceId, parents, kept)
+    if (!ancestor) continue
+    links.push({
+      nodeId: ancestor,
+      label: anchorText(entry.sourceId, structure),
+      destination,
+    })
+  }
+  return links.sort((a, b) => a.nodeId.localeCompare(b.nodeId))
+}
+
+function nearestKeptAncestor(id: string, parents: Map<string, string>, kept: Set<string>) {
+  const seen = new Set<string>()
+  let current = parents.get(id)
+  while (current && !seen.has(current)) {
+    if (kept.has(current)) return current
+    seen.add(current)
+    current = parents.get(current)
+  }
+  return undefined
+}
+
+function anchorText(id: string, structure: Record<string, StructureNode>) {
+  const parts: string[] = []
+  const seen = new Set<string>()
+  const visit = (current: string) => {
+    if (seen.has(current)) return
+    seen.add(current)
+    const node = structure[current]
+    if (!node) return
+    for (const part of node.content ?? []) if (typeof part === "string" && part.length) parts.push(part)
+    for (const child of node.children ?? []) visit(child)
+  }
+  visit(id)
+  return parts.join("")
 }
 
 function destinationOf(href: string | undefined) {
