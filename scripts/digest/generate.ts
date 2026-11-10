@@ -266,7 +266,7 @@ function simplify(input: DigestInput) {
   const structure = input.structure.nodes
   const computed = input.computed.nodes ?? {}
   const children = new Map<string, string[]>()
-  const folded: { sourceId: string; reason: string; childSourceIds: string[] }[] = []
+  const folded: { sourceId: string; reason: string; childSourceIds: string[]; href?: string }[] = []
   const omitted: { sourceId: string; reason: string }[] = []
   const roots: string[] = []
 
@@ -286,7 +286,13 @@ function simplify(input: DigestInput) {
     }
     const keptChildren = (node.children ?? []).flatMap((child) => visit(child, false))
     if (!isRoot && removable(node, keptChildren, structure, computed[id])) {
-      folded.push({ sourceId: id, reason: "wrapper-without-effect", childSourceIds: keptChildren })
+      const href = foldedAnchorHref(node, keptChildren, structure)
+      folded.push({
+        sourceId: id,
+        reason: "wrapper-without-effect",
+        childSourceIds: keptChildren,
+        ...(href !== undefined ? { href } : {}),
+      })
       return keptChildren
     }
     children.set(id, keptChildren)
@@ -295,6 +301,17 @@ function simplify(input: DigestInput) {
 
   for (const rootId of input.component.rootIds) roots.push(...visit(rootId, true))
   return { roots, children, folded, omitted }
+}
+
+function foldedAnchorHref(node: StructureNode, keptChildren: string[], structure: Record<string, StructureNode>) {
+  if (node.tag !== "a" || typeof node.href !== "string") return undefined
+  if (!keptChildren.length || keptChildren.some((id) => !isSvgOrImage(structure[id]))) return undefined
+  return node.href
+}
+
+function isSvgOrImage(node: StructureNode | undefined) {
+  if (!node) return false
+  return node.tag === "svg" || node.tag === "img" || node.boundary === "svg" || (node.media ?? []).some((item) => item.kind === "img")
 }
 
 function removable(node: StructureNode, keptChildren: string[], structure: Record<string, StructureNode>, computed: ComputedStyle | undefined) {
