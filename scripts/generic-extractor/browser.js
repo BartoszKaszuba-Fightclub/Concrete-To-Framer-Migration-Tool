@@ -275,7 +275,12 @@
       const bb = b.getBoundingClientRect();
       return ab.width * ab.height - bb.width * bb.height;
     })[0] || null;
-    return { dialog: dialog ? describe(dialog) : null, button: button ? describe(button) : null };
+    const described = button ? describe(button) : null;
+    if (described) {
+      const logo = document.querySelector("button.CookiebotWidget-logo svg");
+      if (logo) described.logo = logo.outerHTML;
+    }
+    return { dialog: dialog ? describe(dialog) : null, button: described };
   },
 
   async dismissConsent() {
@@ -302,7 +307,7 @@
     const end = Date.now() + 2000;
     while (Date.now() < end) {
       if (!this.consentRoots().some((el) => this.coverRatio(el) >= 0.4))
-        return { dismissed: true, blocked: false, reason: "dismissed", control: controlName, record };
+        return { dismissed: true, blocked: false, reason: "dismissed", control: controlName, record: this.consentRecord() };
       await sleep(50);
     }
     return { dismissed: false, blocked: true, reason: "overlay-remained", control: controlName, record };
