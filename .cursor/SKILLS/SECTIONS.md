@@ -25,9 +25,9 @@ Order organisms by increasing y, then increasing x. Assign a digest to an organi
 
 Round to whole pixels. A missing box edge is the word `missing`.
 
-## Subagents
+## One session
 
-When there is more than one candidate, spawn one subagent per candidate. Pass that candidate’s id, root ids, member ids, and boxes, plus the digest index path. The subagent reads only the digests whose roots sit inside that candidate and returns one organism block. It does not open the screenshot. You look at the screenshot once, merge the blocks, and write the file.
+The same session reads the digest files whose roots sit inside each candidate and writes one organism block per candidate. Do not spawn a subagent. A nested agent has no Task tool, which is why this step stopped. Look at the screenshot once, then write the file.
 
 ## Write
 
