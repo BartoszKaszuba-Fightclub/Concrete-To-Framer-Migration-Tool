@@ -86,7 +86,7 @@
       const media = [];
       const add = (kind, url) => url && media.push({ kind, url });
       if (tag === "img" || (tag === "input" && el.type === "image")) {
-        const url = el.currentSrc || el.src;
+        const url = el.currentSrc || el.getAttribute("src") || el.getAttribute("data-src");
         if (url) {
           const item = { kind: "img", url };
           const alt = el.getAttribute("alt");
