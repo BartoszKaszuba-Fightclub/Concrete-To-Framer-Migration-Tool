@@ -31,11 +31,12 @@ const subtree = (nodes: Nodes, id: string): string[] => [id, ...nodes[id].childr
 export function landmarkKind(node: DomNode): string | null {
   const role = (node.role || "").toLowerCase()
   const blob = `${node.domId} ${node.classes.join(" ")}`.toLowerCase()
-  if (node.tag === "header" || role === "banner" || /(^|[^a-z])header([^a-z]|$)/.test(blob)) return "header"
-  if (node.tag === "footer" || role === "contentinfo" || /(^|[^a-z])footer([^a-z]|$)/.test(blob)) return "footer"
-  if (node.tag === "main" || role === "main") return "main"
-  if (node.tag === "nav" || role === "navigation") return "nav"
-  if (role === "hero" || /(^|[^a-z])hero([^a-z]|$)/.test(blob)) return "hero"
+  const pinned = node.render.position === "fixed" || node.render.position === "sticky"
+  if (node.tag === "header" || role === "banner" || /(^|[^a-z])header([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "header"
+  if (node.tag === "footer" || role === "contentinfo" || /(^|[^a-z])footer([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "footer"
+  if (node.tag === "main" || role === "main") return pinned ? "overlay" : "main"
+  if (node.tag === "nav" || role === "navigation") return pinned ? "overlay" : "nav"
+  if (role === "hero" || /(^|[^a-z])hero([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "hero"
   return null
 }
 

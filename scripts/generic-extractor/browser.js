@@ -71,7 +71,7 @@
       const node = {
         tag, domId: el.getAttribute("id") || "", classes: [...el.classList], role: el.getAttribute("role") || "",
         selector: sel, parentId, order, children: [],
-        box: { x: r2(r.x + sx), y: r2(r.y + sy), width: r2(r.width), height: r2(r.height) },
+        box: { x: r2(r.x + sx), y: r2(cs.position === "fixed" || cs.position === "sticky" ? r.y : r.y + sy), width: r2(r.width), height: r2(r.height) },
         render: { display: cs.display, visibility: cs.visibility, opacity: cs.opacity, position: cs.position },
         traits: traitsOf(cs),
       };
