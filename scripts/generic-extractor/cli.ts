@@ -1,24 +1,12 @@
 import { mkdir, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 import { parseArgs } from "node:util"
-import { chromium, type Page } from "@playwright/test"
+import { chromium } from "@playwright/test"
 import { fetchPageAsset, mediaReferences, saveCaptureAssets } from "./assets.ts"
 import { callBrowser, extract } from "./extract.ts"
 import { DEFAULT_CAPTURE_HEIGHT, DEFAULT_CAPTURE_STATE, selectCaptureWidth } from "./width.ts"
 
-async function recordConsent(page: Page) {
-  const frame = async (selector: string) => {
-    const locator = page.locator(selector).first()
-    if (!(await locator.isVisible())) return null
-    const box = await locator.boundingBox()
-    if (!box || box.width <= 0 || box.height <= 0) return null
-    return { selector, box }
-  }
-  return {
-    dialog: await frame("#CybotCookiebotDialog"),
-    button: await frame("#CookiebotWidget"),
-  }
-}
+type ConsentFrame = { selector: string; box: { x: number; y: number; width: number; height: number } } | null
 
 const USAGE = `Usage: npm run extract:generic -- <url> [--widths 1200] [--height 900] [--slug name]
   [--out Database] [--max-nodes 0] [--settle-timeout 10000] [--components all|button|field]
@@ -62,8 +50,7 @@ const page = await browser.newPage({ viewport: { width: selection.selectedWidth,
 
 try {
   await page.goto(url, { waitUntil: "load", timeout: 60_000 })
-  const consentRecord = await recordConsent(page)
-  const consent = await callBrowser<{ blocked: boolean; reason: string }>(page, "dismissConsent")
+  const consent = await callBrowser<{ blocked: boolean; reason: string; record: { dialog: ConsentFrame; button: ConsentFrame } }>(page, "dismissConsent")
   if (consent.blocked) {
     console.error(`Capture failed: ${consent.reason}`)
     process.exitCode = 1
@@ -126,7 +113,7 @@ try {
         const json = (name: string, data: unknown) => writeFile(join(nestingDir, name), JSON.stringify(data, null, 2))
         await Promise.all([
           json("structure.json", result.structure),
-          json("consent.json", consentRecord),
+          json("consent.json", consent.record),
           json("computed.json", result.computed),
           json("components.json", result.components),
           json("assets.json", saved.assets),
