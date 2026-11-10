@@ -26,7 +26,7 @@ Use the Task tool. One subagent, one skill. Pass the paths below in the prompt s
    - Section agent. Skill `.cursor/SKILLS/SECTIONS.md`. Give it the slug, the width, the capture folder, `digests/index.json`, and the screenshot path.
    - Builder, phase 1. Skill `.cursor/SKILLS/BUILDER.md`. Give it the project, the branch choice, and `tokens.json`. Tell it to export styles and stop.
 3. Wait until `sections-prompt.md` is on disk and the builder has stopped after phase 1.
-4. Resume that same builder. Give it `sections-prompt.md`, `digests/index.json`, `tokens.json`, and the screenshot path.
+4. Resume that same builder for the first block of `sections-prompt.md`. Give it that block, `digests/index.json`, `tokens.json`, and the screenshot path. Record the component it returns as the first completed component. Resume that same builder for the remaining blocks, with those same three files. Keep that one builder. The page requirement holds when those organisms are placed. A resume that never places them fails the page requirement.
 
 Do not spawn a second builder. Do not run a stage yourself.
 
