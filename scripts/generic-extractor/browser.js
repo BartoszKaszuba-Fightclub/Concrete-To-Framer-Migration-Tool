@@ -239,13 +239,53 @@
     return { blocked: covering.length > 0, count: covering.length };
   },
 
+  consentRecord() {
+    const r2 = (v) => Math.round(v * 100) / 100;
+    const boxOf = (el) => {
+      const r = el.getBoundingClientRect();
+      const cs = getComputedStyle(el);
+      return {
+        x: r2(r.x + scrollX),
+        y: r2(cs.position === "fixed" || cs.position === "sticky" ? r.y : r.y + scrollY),
+        width: r2(r.width),
+        height: r2(r.height),
+      };
+    };
+    const selectorOf = (el) => {
+      if (el.id) return `#${CSS.escape(el.id)}`;
+      const parent = el.parentElement;
+      if (!parent) return el.localName;
+      const same = [...parent.children].filter((c) => c.localName === el.localName);
+      const nth = same.length > 1 ? `:nth-of-type(${same.indexOf(el) + 1})` : "";
+      return `${CSS.escape(el.localName)}${nth}`;
+    };
+    const describe = (el) => ({ selector: selectorOf(el), box: boxOf(el) });
+    const outermost = (list) => list.filter((el) => !list.some((other) => other !== el && other.contains(el)));
+    const largest = (list) => outermost(list).sort((a, b) => this.coverRatio(b) - this.coverRatio(a))[0] || null;
+    const roots = this.consentRoots();
+    const marked = roots.filter((el) => el.getAttribute("role") === "dialog" || el.getAttribute("aria-modal") === "true");
+    const dialog = largest(marked.length ? marked : roots.filter((el) => this.coverRatio(el) >= 0.4));
+    const outside = roots.filter((el) => el !== dialog && this.coverRatio(el) < 0.4 && !(dialog && (dialog.contains(el) || el.contains(dialog))));
+    const widget = (el) => /widget/i.test(`${el.id} ${el.getAttribute("class") || ""}`);
+    const widgets = outside.filter(widget);
+    const clickable = "button, [role='button'], input[type='button'], input[type='submit'], a";
+    const pool = widgets.length ? widgets : outside.filter((el) => el.matches(clickable));
+    const button = outermost(pool).sort((a, b) => {
+      const ab = a.getBoundingClientRect();
+      const bb = b.getBoundingClientRect();
+      return ab.width * ab.height - bb.width * bb.height;
+    })[0] || null;
+    return { dialog: dialog ? describe(dialog) : null, button: button ? describe(button) : null };
+  },
+
   async dismissConsent() {
+    const record = this.consentRecord();
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const nameOf = (el) => (el.innerText || el.value || el.getAttribute("aria-label") || el.getAttribute("title") || "").replace(/\s+/g, " ").trim();
     const reject = /reject|decline|deny|dismiss|refuse|disagree|necessary|weiger|afwijzen|alleen noodzak|opt-?out|no thanks|nee bedankt|sluiten/i;
     const roots = this.consentRoots();
     const covering = roots.filter((el) => this.coverRatio(el) >= 0.4);
-    if (!roots.length) return { dismissed: false, blocked: false, reason: "no-overlay" };
+    if (!roots.length) return { dismissed: false, blocked: false, reason: "no-overlay", record };
     const controls = [];
     const clickable = "button, [role='button'], input[type='button'], input[type='submit'], a";
     for (const root of roots) {
@@ -254,18 +294,18 @@
       for (const el of candidates) if (this.visibleElement(el) && reject.test(nameOf(el))) controls.push(el);
     }
     if (!controls.length) {
-      if (covering.length) return { dismissed: false, blocked: true, reason: "blocking-overlay-without-dismiss-control" };
-      return { dismissed: false, blocked: false, reason: "no-dismiss-control" };
+      if (covering.length) return { dismissed: false, blocked: true, reason: "blocking-overlay-without-dismiss-control", record };
+      return { dismissed: false, blocked: false, reason: "no-dismiss-control", record };
     }
     const controlName = nameOf(controls[0]);
     controls[0].click();
     const end = Date.now() + 2000;
     while (Date.now() < end) {
       if (!this.consentRoots().some((el) => this.coverRatio(el) >= 0.4))
-        return { dismissed: true, blocked: false, reason: "dismissed", control: controlName };
+        return { dismissed: true, blocked: false, reason: "dismissed", control: controlName, record };
       await sleep(50);
     }
-    return { dismissed: false, blocked: true, reason: "overlay-remained", control: controlName };
+    return { dismissed: false, blocked: true, reason: "overlay-remained", control: controlName, record };
   },
 
   fingerprint() {
