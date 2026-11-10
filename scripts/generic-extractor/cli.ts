@@ -50,13 +50,20 @@ const page = await browser.newPage({ viewport: { width: selection.selectedWidth,
 
 try {
   await page.goto(url, { waitUntil: "load", timeout: 60_000 })
-  const consent = await callBrowser<{ blocked: boolean; reason: string; record: { dialog: ConsentFrame; button: ConsentFrame } }>(page, "dismissConsent")
+  let consent = await callBrowser<{ blocked: boolean; reason: string; record: { dialog: ConsentFrame; button: ConsentFrame } }>(page, "dismissConsent")
   if (consent.blocked) {
     console.error(`Capture failed: ${consent.reason}`)
     process.exitCode = 1
   } else {
     const settled = await callBrowser<{ timedOut: boolean; pendingImages: number }>(page, "settle", Number(o["settle-timeout"]))
-    const overlay = await callBrowser<{ blocked: boolean }>(page, "overlayState")
+    let overlay = await callBrowser<{ blocked: boolean }>(page, "waitUntilUncovered", 2000)
+    if (overlay.blocked) {
+      const again = await callBrowser<typeof consent>(page, "dismissConsent")
+      if (!again.blocked) {
+        consent = again
+        overlay = await callBrowser<{ blocked: boolean }>(page, "waitUntilUncovered", 2000)
+      }
+    }
     if (overlay.blocked) {
       console.error("Capture failed: blocking overlay remained after settle")
       process.exitCode = 1

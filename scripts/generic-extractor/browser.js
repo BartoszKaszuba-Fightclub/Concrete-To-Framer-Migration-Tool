@@ -205,7 +205,8 @@
   visibleElement(el) {
     if (!(el instanceof Element)) return false;
     const style = getComputedStyle(el);
-    if (style.display === "none" || style.visibility === "hidden" || style.visibility === "collapse" || Number(style.opacity) === 0) return false;
+    // A fading consent scrim sits just above zero for a frame. That is not a blocking overlay.
+    if (style.display === "none" || style.visibility === "hidden" || style.visibility === "collapse" || Number(style.opacity) < 0.05) return false;
     const box = el.getBoundingClientRect();
     return box.width > 0 && box.height > 0;
   },
@@ -306,11 +307,25 @@
     controls[0].click();
     const end = Date.now() + 2000;
     while (Date.now() < end) {
-      if (!this.consentRoots().some((el) => this.coverRatio(el) >= 0.4))
+      if (!this.consentRoots().some((el) => this.coverRatio(el) >= 0.4)) {
+        const logoEnd = Date.now() + 2000;
+        while (Date.now() < logoEnd && !document.querySelector("button.CookiebotWidget-logo")) await sleep(50);
         return { dismissed: true, blocked: false, reason: "dismissed", control: controlName, record: this.consentRecord() };
+      }
       await sleep(50);
     }
     return { dismissed: false, blocked: true, reason: "overlay-remained", control: controlName, record };
+  },
+
+  async waitUntilUncovered(timeoutMs) {
+    const end = Date.now() + (timeoutMs || 0);
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    let state = this.overlayState();
+    while (state.blocked && Date.now() < end) {
+      await wait(50);
+      state = this.overlayState();
+    }
+    return state;
   },
 
   fingerprint() {
@@ -334,6 +349,8 @@
   async settle(timeoutMs) {
     const end = Date.now() + timeoutMs;
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    // Smooth scrolling makes each scrollTo return before the page arrives, so the capture is taken mid-page.
+    document.documentElement.style.scrollBehavior = "auto";
     let scrolled = true;
     for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight) {
       if (Date.now() >= end) { scrolled = false; break; }
