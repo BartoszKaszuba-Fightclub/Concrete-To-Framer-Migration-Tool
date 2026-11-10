@@ -398,8 +398,20 @@ function parentOf(id: string, children: Map<string, string[]>, roots: string[]) 
 function textRuns(id: string, structure: Record<string, StructureNode>, children: Map<string, string[]>) {
   const node = structure[id]
   const runs: { text: string; nodeId: string }[] = []
-  for (const part of node.content ?? []) if (typeof part === "string" && part.length) runs.push({ text: part, nodeId: id })
-  for (const child of children.get(id) ?? []) runs.push(...textRuns(child, structure, children))
+  const emitted = new Set<string>()
+  for (const part of node.content ?? []) {
+    if (typeof part === "string") {
+      if (part.length) runs.push({ text: part, nodeId: id })
+      continue
+    }
+    if (emitted.has(part.id)) continue
+    emitted.add(part.id)
+    runs.push(...textRuns(part.id, structure, children))
+  }
+  for (const child of children.get(id) ?? []) {
+    if (emitted.has(child)) continue
+    runs.push(...textRuns(child, structure, children))
+  }
   return runs
 }
 
