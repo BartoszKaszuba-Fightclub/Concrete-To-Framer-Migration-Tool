@@ -16,6 +16,7 @@ const PAINT_TRAITS = new Set(["background", "background-image", "border", "shado
 const LAYOUT_TRAIT = /^(background|background-image|border|shadow|position|overflow|transform|display:(inline-)?(flex|grid))$/
 
 const hasBox = (n: DomNode) => n.box.width > 0 && n.box.height > 0
+const pinned = (n: DomNode) => n.render.position === "fixed" || n.render.position === "sticky"
 const outOfFlow = (n: DomNode) => n.render.position === "fixed" || n.render.position === "absolute"
 const isHeading = (n: DomNode) => /^h[1-6]$/.test(n.tag)
 const isStop = (n: DomNode, kids: DomNode[]) =>
@@ -27,16 +28,19 @@ const isStop = (n: DomNode, kids: DomNode[]) =>
   (!SHELL_TAGS.has(n.tag) && !kids.some((k) => PAGE_LANDMARKS.has(k.tag)) && n.traits.some((t) => LAYOUT_TRAIT.test(t)))
 
 const subtree = (nodes: Nodes, id: string): string[] => [id, ...nodes[id].children.flatMap((c) => subtree(nodes, c))]
+const membersOf = (nodes: Nodes, id: string, roots: Set<string>): string[] => [
+  id,
+  ...nodes[id].children.flatMap((c) => (roots.has(c) ? [] : membersOf(nodes, c, roots))),
+]
 
 export function landmarkKind(node: DomNode): string | null {
   const role = (node.role || "").toLowerCase()
   const blob = `${node.domId} ${node.classes.join(" ")}`.toLowerCase()
-  const pinned = node.render.position === "fixed" || node.render.position === "sticky"
-  if (node.tag === "header" || role === "banner" || /(^|[^a-z])header([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "header"
-  if (node.tag === "footer" || role === "contentinfo" || /(^|[^a-z])footer([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "footer"
-  if (node.tag === "main" || role === "main") return pinned ? "overlay" : "main"
-  if (node.tag === "nav" || role === "navigation") return pinned ? "overlay" : "nav"
-  if (role === "hero" || /(^|[^a-z])hero([^a-z]|$)/.test(blob)) return pinned ? "overlay" : "hero"
+  if (node.tag === "header" || role === "banner" || /(^|[^a-z])header([^a-z]|$)/.test(blob)) return pinned(node) ? "overlay" : "header"
+  if (node.tag === "footer" || role === "contentinfo" || /(^|[^a-z])footer([^a-z]|$)/.test(blob)) return pinned(node) ? "overlay" : "footer"
+  if (node.tag === "main" || role === "main") return pinned(node) ? "overlay" : "main"
+  if (node.tag === "nav" || role === "navigation") return pinned(node) ? "overlay" : "nav"
+  if (role === "hero" || /(^|[^a-z])hero([^a-z]|$)/.test(blob)) return pinned(node) ? "overlay" : "hero"
   return null
 }
 
@@ -44,13 +48,29 @@ function isHidden(node: DomNode): boolean {
   return node.render.display === "none" || node.render.visibility === "hidden" || node.render.visibility === "collapse" || node.box.width <= 0 || node.box.height <= 0
 }
 
+// A fixed or sticky descendant of a flow landmark is its own overlay. Visibility hidden still counts when the box is real: scroll-to-top is that case.
+function pinnedDescendants(nodes: Nodes, id: string): string[] {
+  const found: string[] = []
+  const walk = (childId: string) => {
+    const child = nodes[childId]
+    if (!child) return
+    if (pinned(child) && hasBox(child) && child.render.display !== "none") return void found.push(childId)
+    if (isHidden(child)) return
+    child.children.forEach(walk)
+  }
+  nodes[id].children.forEach(walk)
+  return found
+}
+
 function collectLandmarks(nodes: Nodes, roots: string[]): string[] {
   const found: string[] = []
   const visit = (id: string) => {
     const node = nodes[id]
     if (!node || isHidden(node)) return
-    if (landmarkKind(node)) {
+    const kind = landmarkKind(node)
+    if (kind) {
       found.push(id)
+      if (kind !== "overlay") found.push(...pinnedDescendants(nodes, id))
       return
     }
     node.children.forEach(visit)
@@ -99,14 +119,15 @@ export function proposeSectionRoots(nodes: Nodes, roots: string[]): string[][] {
 }
 
 export function buildSections(nodes: Nodes, groups: string[][], layoutWidth: number): SectionCandidate[] {
+  const ownRoots = new Set(groups.flat())
   return groups.map((rootIds, i) => {
     const first = nodes[rootIds[0]]
     return {
       id: `clip-${String(i + 1).padStart(2, "0")}`,
       rootIds,
-      kind: landmarkKind(first) ?? (outOfFlow(first) ? "overlay" : "content"),
+      kind: landmarkKind(first) ?? (pinned(first) || outOfFlow(first) ? "overlay" : "content"),
       status: "auto",
-      memberIds: rootIds.flatMap((id) => subtree(nodes, id)),
+      memberIds: rootIds.flatMap((id) => membersOf(nodes, id, ownRoots)),
       evidence: rootIds.map((id) => {
         const n = nodes[id]
         return {
