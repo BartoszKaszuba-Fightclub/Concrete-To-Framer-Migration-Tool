@@ -19,7 +19,7 @@ Inputs: the project, the branch choice, and `tokens.json`.
 2. Create Assets folders Templates, Organisms, and Design tokens. Reuse a folder that already has that name.
 3. From `tokens.json`:
    - One color style per `colours` entry: `framer.name` and `framer.light`.
-   - One text style per `textStyles` entry. Read the measurements from `framer`: `tag`, `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, `letterSpacing`, `transform`, and `colorStyle`. When `letterSpacing` is `normal`, keep that keyword. Do not send `0`.
+   - One text style per `textStyles` entry. Read the measurements from `framer`: `tag`, `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, `letterSpacing`, `transform`, and `colorStyle`. When `letterSpacing` is `normal`, keep that keyword. Do not send `0`, `0px`, or `0em`.
    - Create a heading tag only when `roles` includes it.
    - `spacing`, `borders`, `radii`, and `shadows` are applied in phase 2. They are not color or text styles.
 4. A missing font is one report line. Do not substitute a font.
@@ -36,7 +36,7 @@ Inputs: `sections-prompt.md`, `tokens.json`, `digests/index.json`, the digest fi
 1. Spawn one subagent per organism when the prompt lists more than one. Each subagent reads only that organism’s digest files and returns a layer list: visible text, tag, box, font size, weight, line height, colour token, padding, gap, `usablePath`, inline SVG, and any painting `::before` or `::after` (size, opacity, colour, fill). With one organism, read those digests yourself.
 2. Create one organism component per prompt block, in Organisms. Use the layer list. Place layers with auto layout from the digest’s gap, padding, and alignment. Use absolute position only for an overlay or a shape that crosses the section.
 3. Draw each inline SVG on `boundary.markup`. Draw a painting pseudo that has a fill, a background image, or forms a divider.
-4. Use the font size, weight, and line height measured on that node. Do not borrow a larger heading from elsewhere. Colour uses the Framer color style. Spacing, border, radius, and shadow use the matching token entries. Skip a missing value and record it.
+4. The line-height on a text layer is the `value` of `styles.typography.value.lineHeight` on the run that holds the glyphs (`text.runs` or `labelNodes`). Font, size, and weight come from that same run. Do not borrow the parent or a larger heading. NL (`n-000072`) is 18px, not the parent button’s 21.008px. AVG (`n-000354`) is 24px, not the footer-link 20px. Apply a text style only when its font, size, weight, and line-height match that measurement. After the preset is applied, set the layer `htmlTag` back to the digest node tag, so an h2 that shares an h1’s measurements stays an h2. Colour uses the Framer color style. Spacing, border, radius, and shadow use the matching token entries. Skip a missing value and record it.
 5. Place the organisms, in prompt order, on one page. Set the breakpoint to `source.viewport.width` and `source.viewport.height`.
 6. Look at the screenshot to check placement. Do not take copy from it.
 7. The layer's HTML tag is the digest node tag. Do not take the tag from `framer.tag` or from roles.
