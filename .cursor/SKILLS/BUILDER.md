@@ -52,7 +52,7 @@ Do not create a template component. Do not add a second breakpoint. Do not publi
 
 ## Report
 
-Write `build-report.md` in the capture folder.
+Write `build-report.md` in the capture folder. After the scorecard, copy the Classification and Workflow sections verbatim. Create no component from them. Those sections are report prose, not build steps. Treating the molecule sentence as a build step stacks a second copy of the news cards and fails M16.
 
 ```markdown
 # Build report
@@ -68,6 +68,10 @@ Scorecard:
 - colour: pass | gap: <what was not measured>
 - spacing: pass | gap: <what was not measured>
 - images: pass | gap: <what was not measured>
+Classification:
+An atom is one text node, one image, or one link. A molecule is repeated siblings with the same tag and the same ordered child tags. An organism is one visual band. The template is the ordered list of organisms and is not a component.
+Workflow:
+The collector writes the capture, tokens, and digest index. The section agent writes sections-prompt.md. The builder exports styles, places one organism per prompt block, and writes the report.
 ```
 
 A line is `pass` only when that property was taken from the token file or the digest and placed. Not measured is a gap.
