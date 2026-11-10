@@ -30,7 +30,7 @@ The old single instruction file is now four files in `.cursor/SKILLS/`:
 | `SECTIONS.md` | Sections | Name the sections and the page layout, with pixel bounds from the top and left of the screenshot. Write `sections-prompt.md`. Do not open Framer. |
 | `BUILDER.md` | Framer | Create colour and text styles, wait for the section prompt, read the screenshot and the HTML snapshot, build each section, and place those sections on one page. |
 
-Framer is reached through the Framer connection in `.cursor/mcp.json` (`https://mcp.framer.com/mcp`), next to the Playwright connection. The builder does not use the Framer API token or `scripts/design-tokens/apply.ts`.
+Framer is reached through the Framer connection in `.cursor/mcp.json` (`https://mcp.framer.com/mcp`), next to the Playwright connection. The builder does not use a Framer API token. It creates styles from `tokens.json` through the Framer MCP server.
 
 A section here means a distinct block of the page, such as a header, a hero, a card group, or a footer. The page layout is the order of those blocks. The builder places the blocks on a Framer page. It does not save that layout as another component in the asset library.
 

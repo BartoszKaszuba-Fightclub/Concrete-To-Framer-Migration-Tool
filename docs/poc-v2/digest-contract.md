@@ -1,6 +1,6 @@
 # Digest contract
 
-Schema version **2.0.0**. One digest is the only builder input for one component at one captured width and state. The builder does not open structure files, computed-style files, or separate media, link, or widget folders.
+Schema version **2.0.0**. One digest describes one component at one captured width and state. The builder also reads the section prompt, `tokens.json`, and the screenshot. It does not open structure files or computed-style files.
 
 This document is the human contract. `scripts/digest/schema.ts` is the machine check. `docs/poc-v2/examples/button.digest.json` is a validated example. Nothing here marks a POC v2 acceptance criterion passed.
 
@@ -13,11 +13,13 @@ This document is the human contract. `scripts/digest/schema.ts` is the machine c
 | `capture.captureId` | yes | Caller-supplied id. If omitted, the generator derives `slug-width-state` and sets `config.captureIdDerived`. |
 | `capture.url` | yes | Requested page URL. |
 | `capture.finalUrl` | yes, as a measurement | URL after navigation. Taken from the caller, otherwise from `structure.url` (`page.url()`). |
-| `capture.language` | yes, as a measurement | BCP 47 tag when the caller supplies it. The structure file does not contain it. |
-| `capture.timestamp` | yes, as a measurement | Caller-supplied instant. The extractor does not write one. |
+| `capture.language` | no | Omitted. Not a required capture field. |
+| `capture.timestamp` | no | Omitted. Not a required capture field. |
 | `capture.viewport` | yes | `{ width, height }` in CSS pixels. A numeric zero is a real measurement. A missing number fails validation. |
 | `capture.state` | yes | Captured interaction state. Only `default` is produced today. |
-| `capture.config` | yes | Capture configuration that is not a measured style: slug, source paths, and caller keys. |
+| `capture.config` | no | Optional. Slug and `captureIdDerived` may be present. Source paths are not written. |
+
+Screenshot and crops are omitted when absent, not stored as missing. Fonts are omitted.
 
 ## 2. Component, hierarchy, and ids
 
@@ -34,7 +36,7 @@ This document is the human contract. `scripts/digest/schema.ts` is the machine c
 
 Node ids are the extractor ids (`n-` plus a per-capture sequence). They join structure and computed style inside one capture. **Ids are not stable across recaptures.** A new capture can assign a different id to the same visual control. Do not store them as cross-capture keys.
 
-`selector`, `domId`, `classes`, and `sourceOrder` are provenance. Grouping does not read them.
+`selector`, `domId`, `classes`, and `sourceOrder` are not digest fields. Grouping does not read them.
 
 ## 3. Text, runs, and label nodes
 
@@ -42,7 +44,7 @@ Node ids are the extractor ids (`n-` plus a per-capture sequence). They join str
 
 Every button or field occurrence has `labelNodes`. Each entry is a node id, the exact text on that node, and `typographyRef`. If the control has no text, the label entry is the control itself and the text measurement is **empty**, not missing. Label typography is the label node's computed style, which can differ from the control's own type. The example is that case.
 
-Visible link labels are `links[].label`. `links[].destination.status` is `unsupported`. The digest has no `href` and no destination URL.
+Visible link labels are `links[].label`. The address lives on `destination.href`, with kind `anchor` | `internal` | `external` | `email` | `phone`. Missing or uncertain destinations are flagged.
 
 ## 4. Measured styles and tokens
 
@@ -142,7 +144,7 @@ Lexend, 18px, 700, 21px, and 2px borders are regression clues from the v1 evalua
 - a button or field occurrence has no `labelNodes`
 - a flagged pseudo, z-index, transform, clip, or filter has no measured value
 
-`npm test` runs Playwright and does not run this suite. Package scripts are unchanged.
+`npm test` runs this suite together with the extractor and design-token tests.
 
 ```text
 node --import tsx scripts/digest/cli.ts --structure <structure.json> --computed <computed.json> --component-id <id> --component-type button --root <nodeId> --out <digest.json>
@@ -158,7 +160,6 @@ node --import tsx scripts/digest/cli.ts \
   --component-id button --component-type button --root n-000701 \
   --out docs/poc-v2/examples/button.digest.json \
   --url https://yellowhive.com/nl --final-url https://yellowhive.com/nl \
-  --language nl --timestamp 2026-10-23T09:32:35.037Z \
   --capture-id nl-1200-default --state default --viewport 1200x900 \
   --screenshot Database/Screenshots/nl/1200/default/screenshot.png
 ```
@@ -171,13 +172,15 @@ The generator joins `structure.nodes` to `computed.nodes` by node id. It does no
 
 | Source | Fields |
 | --- | --- |
-| Structure node | `tag`, `selector`, `parentId`, `order`, `children`, `box`, `render.display`, `render.visibility`, `render.opacity`, `render.position`, `traits`, optional `content`, `classes`, `domId`, `media`, `field`, `boundary`, `untraversedChildren`, `markup` |
+| Structure node | `tag`, `parentId`, `order`, `children`, `box`, `render.display`, `render.visibility`, `render.opacity`, `render.position`, `traits`, optional `content`, `media`, `field`, `boundary`, `untraversedChildren`, `markup`. `selector`, `classes`, and `domId` may still sit on the capture node. They are not copied into the digest. |
 | Computed node | Font family, size, weight, line-height, letter-spacing, text-transform, colour, background colour and image, opacity, four padding sides, four margin sides, row and column gap, four border widths, styles, and colours, four radii, `boxShadow`, plus `zIndex`, `transform`, `filter`, `backdropFilter`, `clipPath`, `maskImage`, `overflowX`, and `overflowY` |
-| Painting pseudos | The same computed properties plus `content`, `width`, and `height` |
+| Painting pseudos | `content`, `width`, `height`, opacity, colour, background, and painted border sides |
 | Structure file | `url`, `slug`, `viewport`, `state`, `warnings` |
 | Computed file | `nodes`, `skipped`, `unresolved` |
 
-Caller input that the extractor does not currently write, and that the digest records as `missing` until supplied: `captureId`, language, timestamp, screenshot path, per-component crop, usable asset path, natural width and height, and font source or load status.
+The generator does not copy token values a second time. Node styles hold the measurements, and tokens hold `id`, `kind`, and `proposal`.
+
+Caller input that the extractor does not currently write, and that the digest records as `missing` until supplied: usable asset path, and natural width and height. Language, timestamp, screenshot, crops, and fonts are omitted when absent. `captureId` is derived when the caller does not pass one.
 
 If a trait is `z-index`, `transform`, `clip`, `overflow`, or `filter`, validation fails until the computed value is stored. The extractor now writes those values in the same style traversal. Position itself is already on `render.position`. A capture taken before that change still has the trait without the value and fails validation.
 

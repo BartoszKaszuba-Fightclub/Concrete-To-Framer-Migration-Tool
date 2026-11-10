@@ -8,7 +8,7 @@ const USAGE = `node --import tsx scripts/design-tokens/cli.ts --structure <struc
 
 Reads one capture and writes a design-token rebuild document.
 Default output: Database/digest/tokens/<slug>/<width>/tokens.json
-Validation failures are printed and no file is written.`
+--language is accepted and ignored. Validation failures are printed and no file is written.`
 
 const { values } = parseArgs({
   options: {
@@ -57,8 +57,8 @@ try {
   throw error
 }
 
-const source = tokens.source as { slug: string; viewport: { width: number } }
-const out = values.out ?? join("Database", "digest", "tokens", source.slug, String(source.viewport.width), "tokens.json")
+const slug = structure.slug || "home"
+const out = values.out ?? join("Database", "digest", "tokens", slug, String(structure.viewport?.width), "tokens.json")
 await mkdir(dirname(out), { recursive: true })
 await writeFile(out, `${JSON.stringify(tokens, null, 2)}\n`)
 const counts = {

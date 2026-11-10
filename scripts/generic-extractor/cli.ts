@@ -59,7 +59,7 @@ try {
       console.error("Capture failed: blocking overlay remained after settle")
       process.exitCode = 1
     } else {
-      const discovered = await callBrowser<{ discovered: { media: string; pixels: number[]; href: string | null }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
+      const discovered = await callBrowser<{ discovered: { media: string; pixels: number[] }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
       const breakpoints = { selectedWidth: selection.selectedWidth, ignoredWidths: selection.ignoredWidths, ...discovered }
       let result = null
       for (let attempt = 1; attempt <= 3; attempt++) {
@@ -112,9 +112,7 @@ try {
         await Promise.all([
           json("structure.json", result.structure),
           json("computed.json", result.computed),
-          json("reconstruction.json", result.reconstruction),
           json("components.json", result.components),
-          json("signatures.json", result.signatures),
           json("assets.json", saved.assets),
           writeFile(join(shotDir, "screenshot.png"), screenshot),
           writeFile(join(snapDir, "snapshot.html"), snapshot),

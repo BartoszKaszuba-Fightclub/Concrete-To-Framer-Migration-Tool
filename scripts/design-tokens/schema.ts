@@ -2,7 +2,10 @@
  * Design-token document 1.0.0.
  * A rebuild instruction for Framer color and text styles, plus the spacing,
  * borders, radii, and shadows measured on one captured page.
- * docs/poc-v2/design-tokens.schema.json mirrors these rules.
+ * source is only the capture viewport. A colour is a name plus one
+ * createColorStyle, unique by framer.light. A text style is a name, roles,
+ * colorStyle, and createTextStyle. Measured letter-spacing "normal" stays
+ * "normal". docs/poc-v2/design-tokens.schema.json mirrors these rules.
  */
 
 export const SCHEMA_VERSION = "1.0.0"
@@ -40,9 +43,6 @@ export function validateTokens(document: unknown): void {
   const source = document.source
   if (!isObj(source)) fail("source", "expected an object")
   else {
-    for (const key of ["url", "slug", "state", "language"]) {
-      if (typeof source[key] !== "string" || !String(source[key]).length) fail(`source.${key}`, "missing string")
-    }
     const viewport = source.viewport
     if (!isObj(viewport) || !Number.isFinite(viewport.width) || !Number.isFinite(viewport.height)) {
       fail("source.viewport", "width and height are required numbers")
@@ -71,15 +71,13 @@ export function validateTokens(document: unknown): void {
       if (typeof entry.name !== "string" || !entry.name) fail(`${path}.name`, "missing name")
       else if (colourNames.has(entry.name)) fail(`${path}.name`, "duplicate name")
       else colourNames.add(entry.name)
-      if (typeof entry.css !== "string" || !entry.css) fail(`${path}.css`, "missing exact colour")
-      else if (colourValues.has(entry.css)) fail(`${path}.css`, "duplicate colour value")
-      else colourValues.add(entry.css)
-      if (typeof entry.alpha !== "number" || entry.alpha < 0 || entry.alpha > 1) fail(`${path}.alpha`, "expected a number from 0 to 1")
       const framer = entry.framer
       if (!isObj(framer) || framer.action !== "createColorStyle") fail(`${path}.framer.action`, "expected createColorStyle")
       else {
         if (framer.name !== entry.name) fail(`${path}.framer.name`, "must match the token name")
         if (typeof framer.light !== "string" || !framer.light.startsWith("rgba(")) fail(`${path}.framer.light`, "expected an rgba() colour")
+        else if (colourValues.has(framer.light)) fail(`${path}.framer.light`, "duplicate colour value")
+        else colourValues.add(framer.light)
       }
     })
   }
@@ -97,13 +95,8 @@ export function validateTokens(document: unknown): void {
       if (!roles.length || roles.some((role) => !ROLES.includes(role as (typeof ROLES)[number]))) {
         fail(`${path}.roles`, "expected measured roles")
       }
-      for (const key of ["fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform", "colorStyle"]) {
-        if (typeof entry[key] !== "string" || !String(entry[key]).length) fail(`${path}.${key}`, "missing string")
-      }
-      if (typeof entry.colorStyle === "string" && !colourNames.has(entry.colorStyle)) fail(`${path}.colorStyle`, "unknown colour style")
-      const key = ["fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform", "colorStyle"].map((name) => String(entry[name])).join("|")
-      if (textKeys.has(key)) fail(path, "duplicate typography combination")
-      else textKeys.add(key)
+      if (typeof entry.colorStyle !== "string" || !entry.colorStyle) fail(`${path}.colorStyle`, "missing string")
+      else if (!colourNames.has(entry.colorStyle)) fail(`${path}.colorStyle`, "unknown colour style")
       const framer = entry.framer
       if (!isObj(framer) || framer.action !== "createTextStyle") fail(`${path}.framer.action`, "expected createTextStyle")
       else {
@@ -112,10 +105,16 @@ export function validateTokens(document: unknown): void {
         if (framer.colorStyle !== entry.colorStyle) fail(`${path}.framer.colorStyle`, "must match colorStyle")
         if (typeof framer.fontFamily !== "string" || !framer.fontFamily) fail(`${path}.framer.fontFamily`, "missing family to request")
         if (typeof framer.fontWeight !== "number") fail(`${path}.framer.fontWeight`, "expected a numeric weight")
-        if (framer.letterSpacing !== entry.letterSpacing) fail(`${path}.framer.letterSpacing`, "must keep the measured letter-spacing")
+        if (typeof framer.fontSize !== "string" || !framer.fontSize) fail(`${path}.framer.fontSize`, "missing size")
+        if (typeof framer.lineHeight !== "string" || !framer.lineHeight) fail(`${path}.framer.lineHeight`, "missing line height")
+        if (typeof framer.letterSpacing !== "string" || !framer.letterSpacing) fail(`${path}.framer.letterSpacing`, "missing letter-spacing")
+        if (typeof framer.transform !== "string" || !framer.transform) fail(`${path}.framer.transform`, "missing transform")
         if (typeof framer.tag === "string" && /^h[1-6]$/.test(framer.tag) && !roles.includes(framer.tag)) {
           fail(`${path}.framer.tag`, "heading tag was not measured")
         }
+        const key = [framer.fontFamily, framer.fontSize, framer.fontWeight, framer.lineHeight, framer.letterSpacing, framer.transform, entry.colorStyle].join("|")
+        if (textKeys.has(key)) fail(path, "duplicate typography combination")
+        else textKeys.add(key)
       }
     })
   }

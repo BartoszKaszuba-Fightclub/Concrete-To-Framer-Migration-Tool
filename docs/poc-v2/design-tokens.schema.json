@@ -11,12 +11,8 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["url", "slug", "state", "language", "viewport"],
+      "required": ["viewport"],
       "properties": {
-        "url": { "type": "string", "minLength": 1 },
-        "slug": { "type": "string", "minLength": 1 },
-        "state": { "type": "string", "minLength": 1 },
-        "language": { "type": "string", "minLength": 1 },
         "viewport": {
           "type": "object",
           "additionalProperties": false,
@@ -57,11 +53,9 @@
     "colour": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "css", "alpha", "framer"],
+      "required": ["name", "framer"],
       "properties": {
         "name": { "type": "string", "minLength": 1 },
-        "css": { "type": "string", "minLength": 1, "description": "Exact computed CSS colour string." },
-        "alpha": { "type": "number", "minimum": 0, "maximum": 1 },
         "framer": {
           "type": "object",
           "additionalProperties": false,
@@ -77,7 +71,7 @@
     "textStyle": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "roles", "fontFamily", "fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform", "colorStyle", "framer"],
+      "required": ["name", "roles", "colorStyle", "framer"],
       "properties": {
         "name": { "type": "string", "minLength": 1 },
         "roles": {
@@ -85,12 +79,6 @@
           "minItems": 1,
           "items": { "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "body", "link", "button"] }
         },
-        "fontFamily": { "type": "string", "minLength": 1 },
-        "fontSize": { "type": "string", "minLength": 1 },
-        "fontWeight": { "type": "string", "minLength": 1 },
-        "lineHeight": { "type": "string", "minLength": 1 },
-        "letterSpacing": { "type": "string", "minLength": 1, "description": "Keep the keyword normal. Do not replace it with 0." },
-        "textTransform": { "type": "string", "minLength": 1 },
         "colorStyle": { "type": "string", "minLength": 1 },
         "framer": {
           "type": "object",
@@ -104,7 +92,7 @@
             "fontWeight": { "type": "number" },
             "fontSize": { "type": "string", "minLength": 1 },
             "lineHeight": { "type": "string", "minLength": 1 },
-            "letterSpacing": { "type": "string", "minLength": 1 },
+            "letterSpacing": { "type": "string", "minLength": 1, "description": "Keep the keyword normal. Do not replace it with 0." },
             "transform": { "type": "string", "minLength": 1 },
             "colorStyle": { "type": "string", "minLength": 1 }
           }

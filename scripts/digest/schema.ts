@@ -83,6 +83,7 @@ export function validateDigest(digest: unknown): void {
       assetIds.add(asset.id)
       if (typeof asset.nodeId !== "string" || !nodeIds.has(asset.nodeId)) fail(`assets[${index}].nodeId`, "dangling node reference")
       if (typeof asset.originalUrl !== "string") fail(`assets[${index}].originalUrl`, "missing original url")
+      if (asset.alt !== undefined && typeof asset.alt !== "string") fail(`assets[${index}].alt`, "expected a string")
       for (const key of ["usablePath", "naturalWidth", "naturalHeight"]) {
         if (!measurement(asset[key])) fail(`assets[${index}].${key}`, "expected a measurement")
       }
@@ -106,8 +107,6 @@ export function validateDigest(digest: unknown): void {
       if (node.id !== id) fail(`${path}.id`, "key and id differ")
       if (typeof node.sourceId !== "string" || !node.sourceId) fail(`${path}.sourceId`, "missing source id")
       if (typeof node.tag !== "string" || !node.tag) fail(`${path}.tag`, "missing tag")
-      if (!measurementPresent(node.selector)) fail(`${path}.selector`, "missing required selector")
-      if (!measurement(node.domId)) fail(`${path}.domId`, "expected a measurement")
       checkGeometry(node.geometry, `${path}.geometry`, fail)
       checkLayout(node.layout, `${path}.layout`, fail)
       if (!Array.isArray(node.children)) fail(`${path}.children`, "expected an array")
@@ -135,7 +134,7 @@ export function validateDigest(digest: unknown): void {
   checkGroups(digest.groups, nodes, fail, nodeRef, ref)
   checkHierarchy(digest.hierarchy, nodeIds, nodes, fail)
   checkComponent(digest.component, nodeIds, nodes, fail)
-  checkTokens(tokens, tokenIds, fail)
+  checkTokens(tokens, fail)
   checkEvidence(digest.evidence, nodeIds, fail)
   checkFonts(digest.fonts, fail)
   checkLinks(digest.links, nodeIds, fail)
@@ -157,13 +156,18 @@ function checkCapture(capture: unknown, fail: (path: string, message: string) =>
   if (!isObj(capture.viewport) || !Number.isFinite(capture.viewport.width) || !Number.isFinite(capture.viewport.height)) {
     fail("capture.viewport", "width and height are required numbers")
   }
-  for (const key of ["finalUrl", "language", "timestamp"]) {
-    if (!measurement(capture[key])) fail(`capture.${key}`, "expected a value or an explicit missing measurement")
-    else if (capture[key] && isObj(capture[key]) && capture[key].status === "value" && !String(capture[key].value).length) {
+  if (!measurement(capture.finalUrl)) fail("capture.finalUrl", "expected a value or an explicit missing measurement")
+  else if (isObj(capture.finalUrl) && capture.finalUrl.status === "value" && !String(capture.finalUrl.value).length) {
+    fail("capture.finalUrl", "empty value")
+  }
+  for (const key of ["language", "timestamp"]) {
+    if (capture[key] === undefined) continue
+    if (!measurement(capture[key])) fail(`capture.${key}`, "expected a measurement")
+    else if (isObj(capture[key]) && capture[key].status === "value" && !String(capture[key].value).length) {
       fail(`capture.${key}`, "empty value")
     }
   }
-  if (!isObj(capture.config)) fail("capture.config", "expected an object")
+  if (capture.config !== undefined && !isObj(capture.config)) fail("capture.config", "expected an object")
 }
 
 function checkGeometry(geometry: unknown, path: string, fail: (path: string, message: string) => void) {
@@ -314,7 +318,9 @@ function checkPseudos(pseudos: unknown, path: string, fail: (path: string, messa
       continue
     }
     if (!measurementPresent(element.content)) fail(`${elementPath}.content`, "missing content")
-    requireFields(element, [...TYPOGRAPHY, ...SPACING, ...BORDER, "backgroundColor", "backgroundImage", "opacity", "width", "height"], elementPath, fail)
+    for (const key of ["width", "height", "opacity"]) {
+      if (!measurementPresent(element[key])) fail(`${elementPath}.${key}`, "missing required measured field")
+    }
   }
 }
 
@@ -423,18 +429,19 @@ function checkComponent(
   })
 }
 
-function checkTokens(tokens: Obj | null, tokenIds: Set<string>, fail: (path: string, message: string) => void) {
+function checkTokens(tokens: Obj | null, fail: (path: string, message: string) => void) {
   if (!tokens) return
   for (const [id, token] of Object.entries(tokens)) {
-    if (!isObj(token) || token.id !== id) fail(`tokens.${id}`, "key and id differ")
-    else if (!isObj(token.proposal) || typeof token.proposal.name !== "string" || !Array.isArray(token.proposal.roles)) {
+    if (!isObj(token) || token.id !== id) {
+      fail(`tokens.${id}`, "key and id differ")
+      continue
+    }
+    if (typeof token.kind !== "string" || !token.kind) fail(`tokens.${id}.kind`, "missing kind")
+    if (!isObj(token.proposal) || typeof token.proposal.name !== "string" || !Array.isArray(token.proposal.roles)) {
       fail(`tokens.${id}.proposal`, "name and roles are required proposals")
     }
-    if (tokenIds.has(id) && isObj(token) && !isObj(token.value) && typeof token.value !== "object") {
-      fail(`tokens.${id}.value`, "missing resolved value")
-    }
-    if (isObj(token) && token.kind === "colour") {
-      if (!isObj(token.value) || !measurementPresent((token.value as Obj).color)) fail(`tokens.${id}.value.color`, "missing measured colour")
+    if (token.kind === "colour" && token.value !== undefined) {
+      if (!isObj(token.value) || !measurementPresent(token.value.color)) fail(`tokens.${id}.value.color`, "missing measured colour")
     }
   }
 }
@@ -445,10 +452,13 @@ function checkEvidence(evidence: unknown, nodeIds: Set<string>, fail: (path: str
     return
   }
   const shot = evidence.screenshot
-  if (!isObj(shot)) fail("evidence.screenshot", "expected a measurement")
-  else if (shot.status === "value" && (typeof shot.path !== "string" || !shot.path)) fail("evidence.screenshot.path", "missing path")
-  else if (shot.status !== "value" && shot.status !== "missing") fail("evidence.screenshot", "expected value or missing")
+  if (shot !== undefined) {
+    if (!isObj(shot)) fail("evidence.screenshot", "expected a measurement")
+    else if (shot.status === "value" && (typeof shot.path !== "string" || !shot.path)) fail("evidence.screenshot.path", "missing path")
+    else if (shot.status !== "value" && shot.status !== "missing") fail("evidence.screenshot", "expected value or missing")
+  }
   const crops = evidence.crops
+  if (crops === undefined) return
   if (!isObj(crops) || !Array.isArray(crops.items)) fail("evidence.crops", "expected a status and items")
   else if (crops.status === "value") {
     crops.items.forEach((crop, index) => {
@@ -459,6 +469,7 @@ function checkEvidence(evidence: unknown, nodeIds: Set<string>, fail: (path: str
 }
 
 function checkFonts(fonts: unknown, fail: (path: string, message: string) => void) {
+  if (fonts === undefined) return
   if (!Array.isArray(fonts)) {
     fail("fonts", "expected an array")
     return
@@ -469,6 +480,8 @@ function checkFonts(fonts: unknown, fail: (path: string, message: string) => voi
     if (!isObj(font) || !measurement(font.source)) fail(`fonts[${index}].source`, "expected a measurement")
   })
 }
+
+const LINK_KINDS = new Set(["anchor", "internal", "external", "email", "phone"])
 
 function checkLinks(links: unknown, nodeIds: Set<string>, fail: (path: string, message: string) => void) {
   if (!Array.isArray(links)) {
@@ -482,8 +495,22 @@ function checkLinks(links: unknown, nodeIds: Set<string>, fail: (path: string, m
     }
     if (typeof link.nodeId !== "string" || !nodeIds.has(link.nodeId)) fail(`links[${index}].nodeId`, "dangling node reference")
     if (typeof link.label !== "string") fail(`links[${index}].label`, "missing visible label")
-    if (!isObj(link.destination) || link.destination.status !== "unsupported") fail(`links[${index}].destination`, "destinations stay unsupported")
     if ("href" in link) fail(`links[${index}].href`, "link destinations are not digest fields")
+    const destination = link.destination
+    if (!isObj(destination) || typeof destination.status !== "string") {
+      fail(`links[${index}].destination`, "expected a destination")
+      return
+    }
+    if (destination.status !== "value" && destination.status !== "uncertain" && destination.status !== "missing" && destination.status !== "unsupported") {
+      fail(`links[${index}].destination`, "expected value, uncertain, missing, or unsupported")
+      return
+    }
+    if (destination.status === "value") {
+      if (typeof destination.kind !== "string" || !LINK_KINDS.has(destination.kind)) {
+        fail(`links[${index}].destination.kind`, "expected anchor, internal, external, email, or phone")
+      }
+      if (typeof destination.href !== "string" || !destination.href) fail(`links[${index}].destination.href`, "expected a non-empty href")
+    }
   })
 }
 

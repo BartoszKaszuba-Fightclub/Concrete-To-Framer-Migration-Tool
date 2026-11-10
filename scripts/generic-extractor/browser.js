@@ -78,9 +78,22 @@
       nodes[id] = node;
       computed[id] = styleOf(el, cs);
 
+      if (tag === "a") {
+        const href = el.getAttribute("href");
+        if (href !== null) node.href = href;
+      }
+
       const media = [];
       const add = (kind, url) => url && media.push({ kind, url });
-      if (tag === "img" || (tag === "input" && el.type === "image")) add("img", el.currentSrc || el.src);
+      if (tag === "img" || (tag === "input" && el.type === "image")) {
+        const url = el.currentSrc || el.src;
+        if (url) {
+          const item = { kind: "img", url };
+          const alt = el.getAttribute("alt");
+          if (alt !== null) item.alt = alt;
+          media.push(item);
+        }
+      }
       if (tag === "video") { add("video", el.currentSrc || el.src); add("poster", el.poster); }
       for (const pseudo of ["", "::before", "::after"]) {
         const s = pseudo ? getComputedStyle(el, pseudo) : cs;
@@ -140,6 +153,7 @@
     return {
       layoutWidth: document.documentElement.clientWidth, roots, nodes, computed, excluded, boundaries,
       overflow, elementCount: document.getElementsByTagName("*").length, fingerprint: this.fingerprint(),
+      title: document.title, language: document.documentElement.lang,
     };
   },
 
@@ -147,14 +161,14 @@
     const discovered = [];
     const inaccessible = [];
     const pixelsIn = (media) => [...String(media).matchAll(/(?:min-|max-)?width\s*:\s*([0-9.]+)px/gi)].map((match) => Number(match[1]));
-    const walk = (rules, href) => {
+    const walk = (rules) => {
       for (const rule of rules) {
         if (rule.type === CSSRule.MEDIA_RULE) {
           const media = rule.conditionText || rule.media?.mediaText || "";
-          discovered.push({ media, pixels: pixelsIn(media), href: href || null });
-          if (rule.cssRules) walk(rule.cssRules, href);
+          discovered.push({ media, pixels: pixelsIn(media) });
+          if (rule.cssRules) walk(rule.cssRules);
         } else if (rule.cssRules) {
-          walk(rule.cssRules, href);
+          walk(rule.cssRules);
         }
       }
     };
@@ -174,7 +188,7 @@
         continue;
       }
       try {
-        walk(rules, sheet.href || null);
+        walk(rules);
       } catch (error) {
         inaccessible.push({ href: sheet.href || null, reason: String(error && error.message ? error.message : error) });
       }

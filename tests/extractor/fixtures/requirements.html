@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Requirement fixture</title>
+  <style>
+    body { margin: 0; font-family: Georgia, serif; color: rgb(20, 20, 20); background: rgb(255, 255, 255); }
+    header, main, footer { padding: 24px; }
+    h1, h2.same { font-size: 32px; font-weight: 700; line-height: 40px; margin: 0 0 12px; }
+    h3 { font-size: 24px; line-height: 30px; margin: 0 0 8px; }
+    h4 { font-size: 20px; line-height: 26px; }
+    h5 { font-size: 18px; line-height: 24px; }
+    h6 { font-size: 16px; line-height: 22px; }
+    nav { display: flex; gap: 16px; }
+    .cards { display: flex; gap: 16px; }
+    .card { width: 240px; padding: 12px; border: 1px solid rgb(200, 200, 200); border-radius: 8px; }
+    a { color: rgb(0, 80, 160); }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="pixel.png" alt="Site logo" width="32" height="32">
+    <nav>
+      <a href="#pricing">Pricing</a>
+      <a href="/about">About</a>
+      <a href="https://example.com/docs">Docs</a>
+      <a href="mailto:hello@example.com">Email</a>
+      <a href="tel:+31101234567">Call</a>
+      <a href="">Empty</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Page title</h1>
+    <h2 class="same">Same look as the title</h2>
+    <h3>Section three</h3>
+    <h4>Section four</h4>
+    <h5>Section five</h5>
+    <h6>Section six</h6>
+    <p id="pricing">Body copy with an <a href="https://example.com/inline">inline link</a>.</p>
+    <section class="cards">
+      <article class="card">
+        <img src="pixel.png" alt="Card one image" width="32" height="32">
+        <h3>Card one</h3>
+        <p>First card</p>
+      </article>
+      <article class="card">
+        <img src="pixel.png" width="32" height="32">
+        <h3>Card two</h3>
+        <p>Second card</p>
+      </article>
+    </section>
+  </main>
+  <footer>
+    <p>Footer note</p>
+  </footer>
+</body>
+</html>

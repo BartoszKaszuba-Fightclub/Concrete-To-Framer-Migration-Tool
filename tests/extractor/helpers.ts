@@ -57,4 +57,6 @@ export const REMOVED_ARTIFACTS = [
   "sections.approved.json",
   "pending-decision.json",
   "sections-preview.png",
+  "reconstruction.json",
+  "signatures.json",
 ]

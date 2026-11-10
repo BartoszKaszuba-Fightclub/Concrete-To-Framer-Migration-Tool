@@ -23,7 +23,8 @@ export type StructureNode = {
   traits?: string[]
   content?: (string | { id: string })[]
   field?: Record<string, string | boolean>
-  media?: { kind?: string; url?: string }[]
+  href?: string
+  media?: { kind?: string; url?: string; alt?: string }[]
   boundary?: string
   untraversedChildren?: number
   markup?: string
@@ -155,7 +156,7 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
       const supplied = (input.evidence?.assets ?? []).find((asset) => asset.nodeId === id && asset.originalUrl === media.url)
       const assetId = `asset.${String(assetSeq++).padStart(4, "0")}`
       ids.push(assetId)
-      assets.push({
+      const asset: Obj = {
         id: assetId,
         nodeId: id,
         kind: media.kind ?? "unknown",
@@ -165,7 +166,9 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
           : { status: "missing", reason: "No usable asset path was supplied for this original url." },
         naturalWidth: numberMeasurement(supplied?.naturalWidth, "Natural width was not supplied."),
         naturalHeight: numberMeasurement(supplied?.naturalHeight, "Natural height was not supplied."),
-      })
+      }
+      if (typeof media.alt === "string") asset.alt = media.alt
+      assets.push(asset)
     }
     assetIdsByNode.set(id, ids)
   }
@@ -182,9 +185,6 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
       sourceId: id,
       role: occurrences.includes(id) ? "control" : nodeRuns.some((run) => run.nodeId === id) ? "label" : "node",
       tag: source.tag,
-      domId: source.domId ? { status: "value", value: source.domId } : { status: "empty", value: "" },
-      classes: source.classes?.length ? { status: "value", items: [...source.classes] } : { status: "empty" },
-      selector: source.selector ? { status: "value", value: source.selector } : { status: "missing", reason: "Structure node has no selector." },
       parentId: parentOf(id, simplified.children, simplified.roots),
       children: simplified.children.get(id) ?? [],
       geometry: geometryOf(source.box),
@@ -203,11 +203,23 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
     }
   }
 
-  const fonts = fontRecords(preorder, styles, input.evidence?.fonts ?? [])
   const links = linkRecords(preorder, structure, runs)
-  const warnings = warningRecords(input, preorder, styles, assets, fonts)
-  const unsupported = unsupportedRecords(preorder, structure, links, styles)
+  const warnings = warningRecords(input, preorder, styles, assets)
+  const unsupported = unsupportedRecords(preorder, structure, links)
   const capture = captureOf(input)
+  const evidence: Obj = {}
+  const shot = input.evidence?.screenshot
+  if (shot?.path) {
+    evidence.screenshot = {
+      status: "value",
+      path: shot.path,
+      ...(shot.width !== undefined ? { width: shot.width } : {}),
+      ...(shot.height !== undefined ? { height: shot.height } : {}),
+    }
+  }
+  if (input.evidence?.crops?.length) {
+    evidence.crops = { status: "value", items: input.evidence.crops.map((crop) => ({ nodeId: crop.nodeId, path: crop.path })) }
+  }
 
   return sortValue({
     schemaVersion: SCHEMA_VERSION,
@@ -222,20 +234,10 @@ export function generateDigest(input: DigestInput): Record<string, unknown> {
     })),
     nodes,
     groups,
-    tokens: tokenRecords(colourIds, colourRoles, typographyIds, typographyKeys, borderIds, borderKeys, spacingIds, spacingKeys),
+    tokens: tokenRecords(colourIds, colourRoles, typographyIds, borderIds, spacingIds),
     assets,
-    fonts,
     links,
-    evidence: {
-      screenshot: input.evidence?.screenshot
-        ? { status: "value", path: input.evidence.screenshot.path, ...(input.evidence.screenshot.width !== undefined ? { width: input.evidence.screenshot.width } : {}), ...(input.evidence.screenshot.height !== undefined ? { height: input.evidence.screenshot.height } : {}) }
-        : { status: "missing", reason: "No screenshot path was supplied." },
-      crops: input.evidence?.crops
-        ? input.evidence.crops.length
-          ? { status: "value", items: input.evidence.crops.map((crop) => ({ nodeId: crop.nodeId, path: crop.path })) }
-          : { status: "empty", items: [] }
-        : { status: "missing", reason: "No per-component crop was supplied.", items: [] },
-    },
+    evidence,
     warnings,
     unsupported,
     provenance: {
@@ -532,25 +534,7 @@ function measureNode(node: StructureNode | undefined, style: ComputedStyle | und
   const shadow = emptyPaint("boxShadow")
   const pseudoElements: Record<string, Obj> = {}
   for (const name of Object.keys(style?.pseudos ?? {}).sort()) {
-    const pseudo = style!.pseudos![name]
-    const read = (property: string) => pseudo[property]
-    pseudoElements[name] = {
-      content: measureContent(read("content")),
-      width: measureLength(read("width"), `${name} width was not measured.`),
-      height: measureLength(read("height"), `${name} height was not measured.`),
-      fontFamily: measureText(read("fontFamily"), `${name} fontFamily was not measured.`),
-      fontSize: measureLength(read("fontSize"), `${name} fontSize was not measured.`),
-      fontWeight: measureLength(read("fontWeight"), `${name} fontWeight was not measured.`),
-      lineHeight: measureLength(read("lineHeight"), `${name} lineHeight was not measured.`),
-      letterSpacing: measureLength(read("letterSpacing"), `${name} letterSpacing was not measured.`),
-      textTransform: measureEmpty(read("textTransform"), `${name} textTransform was not measured.`),
-      color: measureColour(read("color"), `${name} color was not measured.`),
-      backgroundColor: measureColour(read("backgroundColor"), `${name} backgroundColor was not measured.`),
-      backgroundImage: measureEmpty(read("backgroundImage"), `${name} backgroundImage was not measured.`),
-      opacity: measureLength(read("opacity"), `${name} opacity was not measured.`),
-      ...Object.fromEntries(SPACING_KEYS.map((key) => [key, measureLength(read(key), `${name} ${key} was not measured.`)])),
-      ...Object.fromEntries(BORDER_KEYS.map((key) => [key, key.endsWith("Color") ? measureColour(read(key), `${name} ${key} was not measured.`) : key.endsWith("Style") ? measureEmpty(read(key), `${name} ${key} was not measured.`) : measureLength(read(key), `${name} ${key} was not measured.`)])),
-    }
+    pseudoElements[name] = measurePseudo(name, style!.pseudos![name])
   }
   return { typography, fill, border, spacing, shadow, opacity: length("opacity"), pseudoElements, node }
 }
@@ -627,7 +611,6 @@ function layoutOf(node: StructureNode, style: ComputedStyle | undefined, opacity
     opacity,
     zIndex,
     siblingOrder,
-    sourceOrder: node.order ?? 0,
   }
 }
 
@@ -677,37 +660,38 @@ function numberMeasurement(value: number | undefined, reason: string): Measureme
   return { status: "value", value: String(value) }
 }
 
-function fontRecords(preorder: string[], styles: Map<string, MeasuredNode>, supplied: NonNullable<DigestInput["evidence"]>["fonts"]) {
-  const families = new Map<string, Set<string>>()
-  for (const id of preorder) {
-    const family = styles.get(id)?.typography.fontFamily
-    const weight = styles.get(id)?.typography.fontWeight
-    if (!family || family.status !== "value") continue
-    const weights = families.get(family.value) ?? new Set<string>()
-    if (weight && (weight.status === "value" || weight.status === "zero")) weights.add(weight.value)
-    families.set(family.value, weights)
-  }
-  return [...families.keys()].sort().map((family) => {
-    const known = (supplied ?? []).find((font) => font.family === family)
-    return {
-      family,
-      observedWeights: [...(families.get(family) ?? [])].sort(),
-      availability: known
-        ? { status: "value" as const, value: known.availability }
-        : { status: "missing" as const, reason: "Font source and load status were not supplied. The family string is the computed font-family, not proof the face loaded." },
-      source: known?.source
-        ? { status: "value" as const, value: known.source }
-        : { status: "missing" as const, reason: "No font source was supplied." },
-    }
-  })
-}
-
 function linkRecords(preorder: string[], structure: Record<string, StructureNode>, runs: Map<string, { text: string; nodeId: string }[]>) {
   return preorder.filter((id) => structure[id].tag === "a").map((id) => ({
     nodeId: id,
     label: (runs.get(id) ?? []).map((run) => run.text).join(""),
-    destination: { status: "unsupported" as const, reason: "Visible labels are kept. Link destinations are out of scope and are not stored." },
+    destination: destinationOf(structure[id].href),
   })).sort((a, b) => a.nodeId.localeCompare(b.nodeId))
+}
+
+function destinationOf(href: string | undefined) {
+  if (href === undefined) return { status: "missing" as const, reason: "Anchor has no href attribute." }
+  if (href === "" || href.startsWith("javascript:")) {
+    return {
+      status: "uncertain" as const,
+      href,
+      reason: href === "" ? "Href is empty." : "Href is a javascript URL.",
+    }
+  }
+  const kind = href.startsWith("#")
+    ? "anchor"
+    : href.startsWith("mailto:")
+      ? "email"
+      : href.startsWith("tel:")
+        ? "phone"
+        : href.startsWith("http://") || href.startsWith("https://")
+          ? "external"
+          : href.startsWith("/")
+            ? "internal"
+            : ""
+  if (!kind) {
+    return { status: "uncertain" as const, href, reason: "Href is not an anchor, internal path, external URL, email, or phone link." }
+  }
+  return { status: "value" as const, kind, href }
 }
 
 function warningRecords(
@@ -715,7 +699,6 @@ function warningRecords(
   preorder: string[],
   styles: Map<string, MeasuredNode>,
   assets: Obj[],
-  fonts: Obj[],
 ) {
   const subtree = collectSourceIds(input.component.rootIds, input.structure.nodes)
   const warnings: Warning[] = []
@@ -728,17 +711,12 @@ function warningRecords(
   for (const unresolved of input.computed.unresolved ?? []) {
     if (unresolved.nodeId && subtree.has(unresolved.nodeId)) warnings.push({ code: "computed-unresolved", message: unresolved.selector ? `${unresolved.selector} matched ${unresolved.matches ?? 0}` : "Computed style did not resolve.", nodeIds: [unresolved.nodeId] })
   }
-  const normalIds = preorder.filter((id) => styles.get(id)?.typography.letterSpacing.status === "unsupported")
-  if (normalIds.length) warnings.push({ code: "letter-spacing-normal", message: "Computed letter-spacing is the keyword normal, so no pixel measurement is available.", nodeIds: normalIds })
   const missingStyle = preorder.filter((id) => styles.get(id)?.typography.fontFamily.status === "missing")
   if (missingStyle.length) warnings.push({ code: "computed-style-missing", message: "A kept node has no computed style record.", nodeIds: missingStyle })
-  if (!input.evidence?.screenshot) warnings.push({ code: "screenshot-missing", message: "No screenshot path was supplied." })
-  if (!input.evidence?.crops) warnings.push({ code: "crop-missing", message: "No per-component crop was supplied." })
-  for (const font of fonts) {
-    const availability = font.availability as Measurement
-    if (availability.status === "missing") warnings.push({ code: "font-availability-missing", message: `Font load status was not supplied for ${String(font.family)}.` })
-  }
   for (const asset of assets) {
+    if (asset.kind === "img" && typeof asset.alt !== "string") {
+      warnings.push({ code: "alt-missing", message: `No alt attribute for ${String(asset.originalUrl)}.`, nodeIds: [String(asset.nodeId)] })
+    }
     if ((asset.usablePath as Measurement).status === "missing") warnings.push({ code: "asset-usable-path-missing", message: `No usable path for ${String(asset.originalUrl)}.`, nodeIds: [String(asset.nodeId)] })
     if ((asset.naturalWidth as Measurement).status === "missing" || (asset.naturalHeight as Measurement).status === "missing") {
       warnings.push({ code: "asset-natural-size-missing", message: `Natural dimensions were not supplied for ${String(asset.originalUrl)}.`, nodeIds: [String(asset.nodeId)] })
@@ -750,20 +728,15 @@ function warningRecords(
   return warnings.sort((a, b) => `${a.code}:${a.message}:${(a.nodeIds ?? []).join(",")}`.localeCompare(`${b.code}:${b.message}:${(b.nodeIds ?? []).join(",")}`))
 }
 
-function unsupportedRecords(preorder: string[], structure: Record<string, StructureNode>, links: { nodeId: string }[], styles: Map<string, MeasuredNode>) {
-  const records: { feature: string; message: string; nodeIds?: string[] }[] = [{
-    feature: "interaction-state",
-    message: "Only the captured static state is represented. Hover, focus, validation, and other interaction states were not measured.",
-  }]
-  if (links.length) records.push({ feature: "link-destination", message: "Visible link labels are in this digest. Destinations are out of scope.", nodeIds: links.map((link) => link.nodeId) })
+function unsupportedRecords(preorder: string[], structure: Record<string, StructureNode>, links: { nodeId: string; destination: { status: string } }[]) {
+  const records: { feature: string; message: string; nodeIds?: string[] }[] = []
+  const uncertain = links.filter((link) => link.destination.status === "uncertain")
+  if (uncertain.length) records.push({ feature: "link-destination", message: "Uncertain link destinations are flagged.", nodeIds: uncertain.map((link) => link.nodeId) })
   const fields = preorder.filter((id) => structure[id].field || structure[id].tag === "textarea" || structure[id].tag === "select")
   if (fields.length) records.push({ feature: "form-behaviour", message: "Field values are static observations. Submission and validation are not represented.", nodeIds: fields })
   for (const id of preorder) {
     const kind = structure[id].boundary
     if (kind) records.push({ feature: "untraversed-boundary", message: `${kind} content was not traversed. Static contents inside the boundary are unsupported.`, nodeIds: [id] })
-  }
-  if ([...styles.values()].some((style) => style.typography.letterSpacing.status === "unsupported")) {
-    records.push({ feature: "letter-spacing-normal", message: "letter-spacing resolved to the keyword normal and has no pixel measurement." })
   }
   return records.sort((a, b) => `${a.feature}:${a.message}`.localeCompare(`${b.feature}:${b.message}`))
 }
@@ -795,16 +768,14 @@ function captureOf(input: DigestInput) {
     captureId,
     url,
     finalUrl: requested.finalUrl ? { status: "value", value: requested.finalUrl } : structure.url ? { status: "value", value: structure.url } : { status: "missing", reason: "No final URL was supplied and the structure has no url." },
-    language: requested.language ? { status: "value", value: requested.language } : { status: "missing", reason: "Language was not supplied. The structure file does not record it." },
-    timestamp: requested.timestamp ? { status: "value", value: requested.timestamp } : { status: "missing", reason: "Capture timestamp was not supplied. The extractor does not record one." },
     viewport: { width: viewport?.width ?? Number.NaN, height: viewport?.height ?? Number.NaN },
     state,
-    config,
+    ...(Object.keys(config).length ? { config } : {}),
   }
 }
 
-function collectColour(keys: Set<string>, measurement: Measurement) {
-  if (measurement.status === "value") keys.add(measurement.value)
+function collectColour(keys: Set<string>, measurement: Measurement | undefined) {
+  if (measurement && measurement.status === "value") keys.add(measurement.value)
 }
 
 function colourRef(ids: Map<string, string>, measurement: Measurement) {
@@ -819,20 +790,195 @@ function tokenRecords(
   colourIds: Map<string, string>,
   colourRoles: Map<string, Set<string>>,
   typographyIds: Map<string, string>,
-  typographyKeys: Map<string, Obj>,
   borderIds: Map<string, string>,
-  borderKeys: Map<string, Obj>,
   spacingIds: Map<string, string>,
-  spacingKeys: Map<string, Obj>,
 ) {
   const tokens: Obj = {}
-  for (const [value, id] of colourIds) {
-    tokens[id] = { id, kind: "colour", proposal: { name: id.replace("colour.", "colour-"), roles: [...(colourRoles.get(id) ?? [])].sort() }, value: { color: { status: "value", value } } }
+  for (const [, id] of colourIds) {
+    tokens[id] = { id, kind: "colour", proposal: { name: id.replace("colour.", "colour-"), roles: [...(colourRoles.get(id) ?? [])].sort() } }
   }
-  for (const [key, id] of typographyIds) tokens[id] = { id, kind: "typography", proposal: { name: id.replace("typography.", "typography-"), roles: ["typography"] }, value: typographyKeys.get(key) }
-  for (const [key, id] of borderIds) tokens[id] = { id, kind: "border", proposal: { name: id.replace("border.", "border-"), roles: ["border"] }, value: borderKeys.get(key) }
-  for (const [key, id] of spacingIds) tokens[id] = { id, kind: "spacing", proposal: { name: id.replace("spacing.", "spacing-"), roles: ["spacing"] }, value: spacingKeys.get(key) }
+  for (const id of typographyIds.values()) tokens[id] = { id, kind: "typography", proposal: { name: id.replace("typography.", "typography-"), roles: ["typography"] } }
+  for (const id of borderIds.values()) tokens[id] = { id, kind: "border", proposal: { name: id.replace("border.", "border-"), roles: ["border"] } }
+  for (const id of spacingIds.values()) tokens[id] = { id, kind: "spacing", proposal: { name: id.replace("spacing.", "spacing-"), roles: ["spacing"] } }
   return tokens
+}
+
+function measurePseudo(name: string, pseudo: Record<string, string | undefined>): Obj {
+  const read = (property: string) => pseudo[property]
+  const element: Obj = {
+    content: measureContent(read("content")),
+    width: measureLength(read("width"), `${name} width was not measured.`),
+    height: measureLength(read("height"), `${name} height was not measured.`),
+    opacity: measureLength(read("opacity"), `${name} opacity was not measured.`),
+    color: measureColour(read("color"), `${name} color was not measured.`),
+    backgroundColor: measureColour(read("backgroundColor"), `${name} backgroundColor was not measured.`),
+    backgroundImage: measureEmpty(read("backgroundImage"), `${name} backgroundImage was not measured.`),
+  }
+  for (const side of SIDES) {
+    const width = measureLength(read(`border${side}Width`), `${name} border${side}Width was not measured.`)
+    if (width.status !== "value") continue
+    element[`border${side}Width`] = width
+    element[`border${side}Style`] = measureEmpty(read(`border${side}Style`), `${name} border${side}Style was not measured.`)
+    element[`border${side}Color`] = measureColour(read(`border${side}Color`), `${name} border${side}Color was not measured.`)
+  }
+  return element
+}
+
+export type TokenNameSource = {
+  colours?: { name?: string; framer?: { light?: string } }[]
+  textStyles?: {
+    name?: string
+    colorStyle?: string
+    framer?: { fontSize?: string; lineHeight?: string; letterSpacing?: string; fontWeight?: number; colorStyle?: string }
+  }[]
+  spacing?: { name?: string; kind?: string; sides?: Record<string, string>; axes?: Record<string, string> }[]
+}
+
+/** Copy tokens.json names onto proposal.name when measurements match. Local ids stay. */
+export function applyTokenNames(digest: Record<string, unknown>, source: TokenNameSource | null): void {
+  if (!source || typeof source !== "object" || !isRecord(digest.tokens)) return
+  const found = indexTokenMeasurements(digest)
+  const colours = source.colours ?? []
+  const textStyles = source.textStyles ?? []
+  const spacingTokens = source.spacing ?? []
+  for (const token of Object.values(digest.tokens)) {
+    if (!isRecord(token) || !isRecord(token.proposal) || typeof token.id !== "string") continue
+    if (token.kind === "colour") {
+      const css = found.colours.get(token.id)
+      const name = css ? uniqueName(colours.filter((entry) => typeof entry.framer?.light === "string" && sameRgb(entry.framer.light, css))) : undefined
+      if (name) token.proposal.name = name
+    } else if (token.kind === "typography") {
+      const measured = found.typography.get(token.id)
+      const name = measured ? matchTextName(measured, textStyles, colours) : undefined
+      if (name) token.proposal.name = name
+    } else if (token.kind === "spacing") {
+      const measured = found.spacing.get(token.id)
+      const name = measured ? matchSpacingName(measured, spacingTokens) : undefined
+      if (name) token.proposal.name = name
+    }
+  }
+}
+
+function indexTokenMeasurements(digest: Record<string, unknown>) {
+  const colours = new Map<string, string>()
+  const typography = new Map<string, Obj>()
+  const spacing = new Map<string, Obj>()
+  if (!isRecord(digest.nodes)) return { colours, typography, spacing }
+  for (const node of Object.values(digest.nodes)) {
+    if (!isRecord(node) || !isRecord(node.styles)) continue
+    const styles = node.styles
+    const typeStyle = styles.typography
+    if (isRecord(typeStyle) && typeof typeStyle.ref === "string" && isRecord(typeStyle.value)) {
+      if (!typography.has(typeStyle.ref)) typography.set(typeStyle.ref, typeStyle.value)
+      const color = measurementText(typeStyle.value.color)
+      if (typeof typeStyle.colourRef === "string" && color) colours.set(typeStyle.colourRef, color)
+    }
+    const fill = styles.fill
+    if (isRecord(fill) && typeof fill.ref === "string") {
+      const color = measurementText(fill.backgroundColor)
+      if (color) colours.set(fill.ref, color)
+    }
+    const border = styles.border
+    if (isRecord(border) && isRecord(border.colourRefs) && isRecord(border.value)) {
+      for (const [key, id] of Object.entries(border.colourRefs)) {
+        const color = measurementText(border.value[key])
+        if (typeof id === "string" && color) colours.set(id, color)
+      }
+    }
+    const space = styles.spacing
+    if (isRecord(space) && typeof space.ref === "string" && isRecord(space.value) && !spacing.has(space.ref)) {
+      spacing.set(space.ref, space.value)
+    }
+  }
+  return { colours, typography, spacing }
+}
+
+function matchTextName(measured: Obj, textStyles: NonNullable<TokenNameSource["textStyles"]>, colours: NonNullable<TokenNameSource["colours"]>) {
+  const fontSize = measurementText(measured.fontSize)
+  const lineHeight = measurementText(measured.lineHeight)
+  const letterSpacing = measurementText(measured.letterSpacing)
+  const weight = numericFontWeight(measurementText(measured.fontWeight))
+  const color = measurementText(measured.color)
+  const matches = textStyles.filter((entry) => {
+    const framer = entry.framer
+    return !!framer
+      && framer.fontSize === fontSize
+      && framer.lineHeight === lineHeight
+      && framer.letterSpacing === letterSpacing
+      && typeof framer.fontWeight === "number"
+      && framer.fontWeight === weight
+      && typeof entry.name === "string"
+      && entry.name.length > 0
+  })
+  if (matches.length === 1) return matches[0].name
+  if (matches.length < 2 || !color) return undefined
+  const narrowed = matches.filter((entry) => {
+    const styleName = entry.colorStyle ?? entry.framer?.colorStyle
+    const colour = colours.find((item) => item.name === styleName)
+    return typeof colour?.framer?.light === "string" && sameRgb(colour.framer.light, color)
+  })
+  return narrowed.length === 1 ? narrowed[0].name : undefined
+}
+
+function matchSpacingName(measured: Obj, spacingTokens: NonNullable<TokenNameSource["spacing"]>) {
+  const present = spacingPx(measured)
+  const matches = spacingTokens.filter((entry) => {
+    const lengths = tokenPx(entry)
+    return lengths.length > 0 && lengths.every((length) => present.includes(length)) && typeof entry.name === "string" && entry.name.length > 0
+  })
+  return matches.length === 1 ? matches[0].name : undefined
+}
+
+function spacingPx(value: Obj) {
+  const lengths: string[] = []
+  for (const measurement of Object.values(value)) {
+    if (!isRecord(measurement) || measurement.status !== "value" || typeof measurement.value !== "string") continue
+    if (!isZeroLength(measurement.value)) lengths.push(measurement.value)
+  }
+  return lengths
+}
+
+function tokenPx(entry: NonNullable<TokenNameSource["spacing"]>[number]) {
+  const record = entry.kind === "gap" ? entry.axes : entry.sides
+  if (!record) return []
+  return Object.values(record).filter((value) => typeof value === "string" && value.length > 0 && !isZeroLength(value))
+}
+
+function uniqueName(matches: { name?: string }[]) {
+  return matches.length === 1 && typeof matches[0].name === "string" && matches[0].name ? matches[0].name : undefined
+}
+
+function measurementText(measurement: unknown) {
+  if (!isRecord(measurement)) return undefined
+  if (measurement.status === "unsupported" && typeof measurement.raw === "string") return measurement.raw
+  if ((measurement.status === "value" || measurement.status === "zero" || measurement.status === "empty") && typeof measurement.value === "string") return measurement.value
+  return undefined
+}
+
+function numericFontWeight(raw: string | undefined) {
+  if (!raw) return null
+  if (raw.toLowerCase() === "bold") return 700
+  if (raw.toLowerCase() === "normal") return 400
+  const value = Number(raw)
+  return Number.isFinite(value) ? value : null
+}
+
+function sameRgb(left: string, right: string) {
+  const a = rgbParts(left)
+  const b = rgbParts(right)
+  return !!a && !!b && a.r === b.r && a.g === b.g && a.b === b.b
+}
+
+function rgbParts(css: string) {
+  const match = css.trim().match(/^rgba?\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)\s*(?:,\s*([0-9.]+)\s*)?\)$/i)
+  if (!match) return null
+  const parts = [Number(match[1]), Number(match[2]), Number(match[3])]
+  if (parts.some((part) => !Number.isFinite(part))) return null
+  return { r: parts[0], g: parts[1], b: parts[2] }
+}
+
+function isRecord(value: unknown): value is Obj {
+  return !!value && typeof value === "object" && !Array.isArray(value)
 }
 
 function canon(value: unknown): string {

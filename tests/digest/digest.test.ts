@@ -1,7 +1,8 @@
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
 import test from "node:test"
-import { generateDigest, type ComputedStyle, type DigestInput, type StructureNode } from "../../scripts/digest/generate.ts"
+import { applyTokenNames, generateDigest, type ComputedStyle, type DigestInput, type StructureNode } from "../../scripts/digest/generate.ts"
+import { planDigestJobs } from "../../scripts/digest/jobs.ts"
 import { DigestValidationError, validateDigest } from "../../scripts/digest/schema.ts"
 
 const SIDES = ["Top", "Right", "Bottom", "Left"]
@@ -201,7 +202,7 @@ test("button and field occurrences stay separate and media and link labels are i
     },
   })) as {
     groups: { kind: string }[]
-    links: { nodeId: string; label: string; destination: { status: string }; href?: string }[]
+    links: { nodeId: string; label: string; destination: { status: string; href?: string; reason?: string }; href?: string }[]
     assets: { originalUrl: string; usablePath: { value?: string }; naturalWidth: { status: string; value: string }; naturalHeight: { status: string } }[]
     nodes: Record<string, { assetIds: string[] }>
   }
@@ -209,8 +210,12 @@ test("button and field occurrences stay separate and media and link labels are i
   assert.deepEqual(digest.groups.map((group) => group.kind).sort(), ["button", "field"])
   assert.equal(digest.links.length, 1)
   assert.equal(digest.links[0].label, "Read more")
-  assert.equal(digest.links[0].destination.status, "unsupported")
+  assert.equal(digest.links[0].destination.status, "missing")
   assert.equal("href" in digest.links[0], false)
+  assert.equal("href" in digest.links[0].destination, false)
+  const legacy = structuredClone(digest)
+  legacy.links[0].destination = { status: "unsupported", reason: "Visible labels are kept. Link destinations are out of scope and are not stored." }
+  validateDigest(legacy)
   assert.equal(digest.assets[0].originalUrl, "https://example.test/photo.jpg")
   assert.equal(digest.assets[0].usablePath.value, "assets/photo.jpg")
   assert.equal(digest.assets[0].naturalWidth.status, "value")
@@ -334,4 +339,203 @@ test("captured button example validates against schema 2.0.0", () => {
   assert.equal(digest.groups[0].styleRefs.typography[0], label.styles.typography.ref)
   assert.equal(label.styles.typography.value.letterSpacing.status, "unsupported")
   assert.equal(digest.nodes["n-000704"].boundary.kind, "svg")
+})
+
+test("planDigestJobs lists component records before section candidates", () => {
+  const jobs = planDigestJobs(
+    {
+      sectionCandidates: [
+        { id: "clip-01", rootIds: ["n-1", "n-2"] },
+        { id: "clip-skip", rootIds: [] },
+      ],
+    },
+    {
+      records: [
+        { id: "cmp-001", kind: "button", nodeId: "n-9" },
+        { id: "", kind: "field", nodeId: "n-8" },
+        { id: "cmp-002", kind: "field", nodeId: "n-7" },
+        { id: "cmp-skip", kind: "button", nodeId: "" },
+      ],
+    },
+  )
+  assert.deepEqual(jobs, [
+    { id: "cmp-001", type: "button", rootIds: ["n-9"] },
+    { id: "cmp-002", type: "field", rootIds: ["n-7"] },
+    { id: "clip-01", type: "section", rootIds: ["n-1", "n-2"] },
+  ])
+})
+
+test("a digest without screenshot, crops, or fonts omits that evidence and copied token values", () => {
+  const digest = generateDigest({
+    ...button("n-1", "Save", { letterSpacing: "normal" }),
+    evidence: {},
+  }) as {
+    nodes: Record<string, { styles: { typography: { value: { letterSpacing: { status: string; raw: string } } } } }>
+    warnings: { code: string }[]
+    unsupported: { feature: string }[]
+    tokens: Record<string, { id?: string; kind?: string; proposal?: { name: string; roles: string[] } }>
+    fonts?: unknown
+    evidence: Record<string, unknown>
+  }
+  validateDigest(digest)
+  const node = digest.nodes["n-1"]
+  assert.equal("selector" in node, false)
+  assert.equal("domId" in node, false)
+  assert.equal("classes" in node, false)
+  const codes = digest.warnings.map((warning) => warning.code)
+  for (const code of ["screenshot-missing", "crop-missing", "font-availability-missing", "letter-spacing-normal"]) {
+    assert.equal(codes.includes(code), false)
+  }
+  assert.equal(digest.unsupported.some((item) => item.feature === "interaction-state"), false)
+  assert.equal(digest.unsupported.some((item) => item.feature === "letter-spacing-normal"), false)
+  assert.ok(Object.keys(digest.tokens).length > 0)
+  for (const token of Object.values(digest.tokens)) {
+    assert.equal(typeof token.id, "string")
+    assert.equal(typeof token.kind, "string")
+    assert.equal(typeof token.proposal?.name, "string")
+    assert.ok(Array.isArray(token.proposal?.roles))
+    assert.equal("value" in token, false)
+  }
+  assert.equal("fonts" in digest, false)
+  assert.equal("screenshot" in digest.evidence, false)
+  assert.equal("crops" in digest.evidence, false)
+  assert.equal(node.styles.typography.value.letterSpacing.status, "unsupported")
+  assert.equal(node.styles.typography.value.letterSpacing.raw, "normal")
+})
+
+test("a painted pseudo border keeps that side and drops type and spacing", () => {
+  const fixture = button("n-1", "Save")
+  fixture.structure.nodes["n-1"].traits = ["::before"]
+  fixture.computed.nodes!["n-1"].pseudos = {
+    "::before": {
+      content: '"*"',
+      width: "12px",
+      height: "8px",
+      opacity: "1",
+      color: "rgb(1, 2, 3)",
+      backgroundColor: "rgba(0, 0, 0, 0)",
+      backgroundImage: "none",
+      fontSize: "16px",
+      paddingTop: "4px",
+      borderTopWidth: "5px",
+      borderTopStyle: "solid",
+      borderTopColor: "rgb(9, 9, 9)",
+      borderRightWidth: "0px",
+      borderRightStyle: "none",
+      borderBottomWidth: "0px",
+      borderLeftWidth: "0px",
+    },
+  }
+  const digest = generateDigest(fixture) as {
+    nodes: Record<string, { pseudos: { elements: Record<string, Record<string, unknown>> } }>
+  }
+  validateDigest(digest)
+  const pseudo = digest.nodes["n-1"].pseudos.elements["::before"]
+  for (const key of ["content", "width", "height", "opacity", "borderTopWidth"]) assert.ok(pseudo[key])
+  assert.equal("fontSize" in pseudo, false)
+  assert.equal("paddingTop" in pseudo, false)
+  assert.equal("borderRightWidth" in pseudo, false)
+})
+
+test("stored href is classified and an img alt is copied", () => {
+  const cases = [
+    ["n-hash", "#pricing", "value", "anchor"],
+    ["n-path", "/about", "value", "internal"],
+    ["n-https", "https://example.com/docs", "value", "external"],
+    ["n-mail", "mailto:hello@example.com", "value", "email"],
+    ["n-tel", "tel:+31101234567", "value", "phone"],
+    ["n-empty", "", "uncertain", ""],
+    ["n-js", "javascript:void(0)", "uncertain", ""],
+  ] as const
+  const nodes: Record<string, StructureNode> = {
+    "n-root": node({ tag: "div", selector: "root", children: [...cases.map(([id]) => id), "n-img", "n-blank"], box: { x: 0, y: 0, width: 200, height: 90 }, traits: ["background"] }),
+  }
+  const computed: Record<string, ComputedStyle> = { "n-root": css({ backgroundColor: "rgb(1, 1, 1)" }) }
+  cases.forEach(([id, href], index) => {
+    nodes[id] = node({ tag: "a", selector: id, parentId: "n-root", order: index, content: [id], href, box: { x: 0, y: index * 10, width: 40, height: 10 } })
+    computed[id] = css()
+  })
+  nodes["n-img"] = node({ tag: "img", selector: "img", parentId: "n-root", order: 7, media: [{ kind: "img", url: "https://example.test/photo.jpg", alt: "" }], box: { x: 50, y: 0, width: 20, height: 10 } })
+  nodes["n-blank"] = node({ tag: "img", selector: "blank", parentId: "n-root", order: 8, media: [{ kind: "img", url: "https://example.test/blank.jpg" }], box: { x: 80, y: 0, width: 20, height: 10 } })
+  computed["n-img"] = css()
+  computed["n-blank"] = css()
+  const digest = generateDigest(input({
+    component: { id: "section", type: "section", rootIds: ["n-root"] },
+    structure: { nodes },
+    computed: { nodes: computed },
+  })) as {
+    links: { nodeId: string; destination: { status: string; kind?: string; href?: string }; href?: string }[]
+    assets: { originalUrl: string; alt?: string; nodeId: string }[]
+    warnings: { code: string; nodeIds?: string[] }[]
+  }
+  validateDigest(digest)
+  for (const [id, href, status, kind] of cases) {
+    const link = digest.links.find((item) => item.nodeId === id)
+    assert.ok(link)
+    assert.equal(link.destination.status, status)
+    assert.equal("href" in link, false)
+    if (status === "value") {
+      assert.equal(link.destination.kind, kind)
+      assert.equal(link.destination.href, href)
+    } else {
+      assert.equal(link.destination.href, href)
+    }
+  }
+  assert.equal(digest.assets.find((asset) => asset.nodeId === "n-img")?.alt, "")
+  assert.equal("alt" in (digest.assets.find((asset) => asset.nodeId === "n-blank") ?? {}), false)
+  assert.equal(digest.warnings.some((warning) => warning.code === "alt-missing" && warning.nodeIds?.includes("n-blank")), true)
+  assert.equal(digest.warnings.some((warning) => warning.code === "alt-missing" && warning.nodeIds?.includes("n-img")), false)
+})
+
+test("token file names replace proposal names when measurements match", () => {
+  const built = () => generateDigest(button("n-1", "Save", {
+    color: "rgb(20, 20, 20)",
+    fontSize: "32px",
+    fontWeight: "700",
+    lineHeight: "40px",
+    letterSpacing: "normal",
+    marginBottom: "12px",
+  })) as {
+    tokens: Record<string, { id: string; kind: string; proposal: { name: string } }>
+    nodes: Record<string, { styles: { typography: { ref: string; colourRef: string }; spacing: { ref: string } } }>
+  }
+  const digest = built()
+  const typographyId = digest.nodes["n-1"].styles.typography.ref
+  const colourId = digest.nodes["n-1"].styles.typography.colourRef
+  const spacingId = digest.nodes["n-1"].styles.spacing.ref
+  const localSpacingName = digest.tokens[spacingId].proposal.name
+  applyTokenNames(digest, {
+    colours: [{ name: "color/rgba-20-20-20-1", framer: { light: "rgba(20, 20, 20, 1)" } }],
+    textStyles: [{
+      name: "text/h1/georgia-32px-700-40px-normal-none",
+      colorStyle: "color/rgba-20-20-20-1",
+      framer: { fontSize: "32px", lineHeight: "40px", letterSpacing: "normal", fontWeight: 700 },
+    }],
+    spacing: [{ name: "spacing/margin/bottom-12px", kind: "margin", sides: { bottom: "12px" } }],
+  })
+  assert.equal(digest.tokens[colourId].id, colourId)
+  assert.equal(digest.tokens[colourId].proposal.name, "color/rgba-20-20-20-1")
+  assert.equal(digest.tokens[typographyId].id, typographyId)
+  assert.equal(digest.tokens[typographyId].proposal.name, "text/h1/georgia-32px-700-40px-normal-none")
+  assert.equal(digest.tokens[spacingId].id, spacingId)
+  assert.equal(digest.tokens[spacingId].proposal.name, "spacing/margin/bottom-12px")
+  validateDigest(digest)
+
+  const ambiguous = built()
+  applyTokenNames(ambiguous, {
+    colours: [
+      { name: "color/rgba-20-20-20-1", framer: { light: "rgba(20, 20, 20, 1)" } },
+      { name: "color/other", framer: { light: "rgba(9, 9, 9, 1)" } },
+    ],
+    textStyles: [
+      { name: "text/body/one", colorStyle: "color/other", framer: { fontSize: "32px", lineHeight: "40px", letterSpacing: "normal", fontWeight: 700 } },
+      { name: "text/h1/match", colorStyle: "color/rgba-20-20-20-1", framer: { fontSize: "32px", lineHeight: "40px", letterSpacing: "normal", fontWeight: 700 } },
+    ],
+    spacing: [
+      { name: "spacing/margin/bottom-12px", kind: "margin", sides: { bottom: "12px" } },
+      { name: "spacing/padding/left-12px", kind: "padding", sides: { left: "12px" } },
+    ],
+  })
+  assert.equal(ambiguous.tokens[typographyId].proposal.name, "text/h1/match")
+  assert.equal(ambiguous.tokens[spacingId].proposal.name, localSpacingName)
 })

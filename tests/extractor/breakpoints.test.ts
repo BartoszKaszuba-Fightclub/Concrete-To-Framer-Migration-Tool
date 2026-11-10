@@ -28,6 +28,7 @@ test("default capture discovers breakpoints, records an inaccessible sheet, and 
     assert.deepEqual(structure.viewport, { width: 1200, height: 900 })
     assert.equal(structure.metadata.breakpoints.selectedWidth, 1200)
     assert.deepEqual(structure.metadata.breakpoints.ignoredWidths, [])
+    for (const item of structure.metadata.breakpoints.discovered) assert.equal("href" in item, false)
     const media = structure.metadata.breakpoints.discovered.map((item: { media: string }) => item.media).join("\n")
     assert.match(media, /min-width:\s*600px/)
     assert.match(media, /max-width:\s*900px/)
