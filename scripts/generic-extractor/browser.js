@@ -9,7 +9,7 @@
       "color", "backgroundColor", "backgroundImage", "opacity",
       "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
       "marginTop", "marginRight", "marginBottom", "marginLeft",
-      "rowGap", "columnGap",
+      "rowGap", "columnGap", "flexDirection", "flexWrap",
       "borderTopWidth", "borderTopStyle", "borderTopColor",
       "borderRightWidth", "borderRightStyle", "borderRightColor",
       "borderBottomWidth", "borderBottomStyle", "borderBottomColor",

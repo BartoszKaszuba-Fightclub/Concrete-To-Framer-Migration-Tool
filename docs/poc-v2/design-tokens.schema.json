@@ -92,7 +92,7 @@
             "fontWeight": { "type": "number" },
             "fontSize": { "type": "string", "minLength": 1 },
             "lineHeight": { "type": "string", "minLength": 1 },
-            "letterSpacing": { "type": "string", "minLength": 1, "description": "Keep the keyword normal. Do not replace it with 0." },
+            "letterSpacing": { "type": "string", "minLength": 1, "description": "A px or em length. The computed keyword normal is stored as 0em." },
             "transform": { "type": "string", "minLength": 1 },
             "colorStyle": { "type": "string", "minLength": 1 }
           }

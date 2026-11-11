@@ -40,7 +40,7 @@ test("frozen fixture collects two colours, two type sizes, and one gap", () => {
   assert.equal(colours.every((entry) => entry.framer.action === "createColorStyle" && entry.framer.light.startsWith("rgba(")), true)
   assert.equal(textStyles.length, 2)
   assert.deepEqual(textStyles.map((entry) => entry.framer.fontSize).sort(), ["16px", "32px"])
-  assert.equal(textStyles.every((entry) => entry.framer.letterSpacing === "normal"), true)
+  assert.equal(textStyles.every((entry) => entry.framer.letterSpacing === "0em"), true)
   for (const entry of textStyles) {
     for (const key of ["fontSize", "fontFamily", "letterSpacing", "textTransform"]) assert.equal(key in entry, false)
     for (const key of schema.$defs.textStyle.required) assert.ok(key in entry, key)

@@ -324,6 +324,10 @@ function removable(node: StructureNode, keptChildren: string[], structure: Recor
   if (display !== "block" && display !== "inline") return false
   if ((node.traits ?? []).some((trait) => PAINT_TRAITS.has(trait) || LAYOUT_TRAITS.has(trait) || trait.startsWith("display:") || trait.startsWith("::"))) return false
   if (!computed) return false
+  const parent = node.parentId ? structure[node.parentId] : undefined
+  const parentDisplay = parent?.render?.display ?? ""
+  if ((parentDisplay === "flex" || parentDisplay === "inline-flex" || parentDisplay === "grid" || parentDisplay === "inline-grid")
+    && node.box && parent?.box && node.box.width < parent.box.width) return false
   if (computedShowsEffect(computed)) return false
   const boxes: Box[] = []
   for (const child of keptChildren) {
@@ -633,10 +637,14 @@ function layoutOf(node: StructureNode, style: ComputedStyle | undefined, opacity
     : traits.includes("z-index")
       ? { status: "missing", reason: "The extractor flagged a z-index trait but did not store the computed z-index." }
       : { status: "value", value: "auto", derivation: "inferred" }
+  const flexDirection = typeof style?.flexDirection === "string" ? style.flexDirection : ""
+  const flexWrap = typeof style?.flexWrap === "string" ? style.flexWrap : ""
   return {
     display: node.render?.display ?? "",
     visibility: node.render?.visibility ?? "",
     position: node.render?.position ?? "",
+    ...(flexDirection ? { flexDirection } : {}),
+    ...(flexWrap ? { flexWrap } : {}),
     opacity,
     zIndex,
     siblingOrder,
@@ -1009,7 +1017,7 @@ function matchTextName(measured: Obj, textStyles: NonNullable<TokenNameSource["t
     return !!framer
       && framer.fontSize === fontSize
       && framer.lineHeight === lineHeight
-      && framer.letterSpacing === letterSpacing
+      && sameTracking(letterSpacing, framer.letterSpacing)
       && typeof framer.fontWeight === "number"
       && framer.fontWeight === weight
       && typeof entry.name === "string"
@@ -1058,6 +1066,12 @@ function measurementText(measurement: unknown) {
   if (measurement.status === "unsupported" && typeof measurement.raw === "string") return measurement.raw
   if ((measurement.status === "value" || measurement.status === "zero" || measurement.status === "empty") && typeof measurement.value === "string") return measurement.value
   return undefined
+}
+
+function sameTracking(measured: string | undefined, stored: string | undefined) {
+  if (measured === stored) return true
+  const normal = (value: string | undefined) => value === "normal" || value === "0em"
+  return normal(measured) && normal(stored)
 }
 
 function numericFontWeight(raw: string | undefined) {

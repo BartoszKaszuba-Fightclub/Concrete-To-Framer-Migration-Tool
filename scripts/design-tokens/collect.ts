@@ -109,7 +109,8 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
       const fontSize = readString(layer.style.fontSize)
       const fontWeight = readString(layer.style.fontWeight)
       const lineHeight = readString(layer.style.lineHeight)
-      const letterSpacing = readString(layer.style.letterSpacing)
+      const letterSpacingRaw = readString(layer.style.letterSpacing)
+      const letterSpacing = letterSpacingRaw === "normal" ? "0em" : letterSpacingRaw
       const textTransform = readString(layer.style.textTransform)
       if (!color || !fontFamily || !fontSize || !fontWeight || !lineHeight || !letterSpacing || !textTransform) continue
       rememberColour(color, "text")

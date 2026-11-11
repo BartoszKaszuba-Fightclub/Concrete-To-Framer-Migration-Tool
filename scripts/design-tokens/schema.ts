@@ -4,8 +4,8 @@
  * borders, radii, and shadows measured on one captured page.
  * source is only the capture viewport. A colour is a name plus one
  * createColorStyle, unique by framer.light. A text style is a name, roles,
- * colorStyle, and createTextStyle. Measured letter-spacing "normal" stays
- * "normal". docs/poc-v2/design-tokens.schema.json mirrors these rules.
+ * colorStyle, and createTextStyle. Measured letter-spacing "normal" is stored
+ * as "0em", the length Framer keeps. docs/poc-v2/design-tokens.schema.json mirrors these rules.
  */
 
 export const SCHEMA_VERSION = "1.0.0"
