@@ -4,17 +4,17 @@ Read this file after every context summary, before the next pipeline pass.
 
 ## Decisions
 
-1. Take the smaller option and record the assumption in the pass document.
+1. Take the change that fixes the cause in the kit, and record the assumption in the current pass of `docs/pipeline-runs/improvement.md`.
 2. One breakpoint per proof of concept. The width is 1200 unless the pass document names a different single width.
 3. An independent reviewer checks gap analysis before any code change from that analysis is applied.
-4. The reviewer rejects false assumptions, fixes that miss the root cause, and solutions that are larger than the failure. Prefer the smaller change that makes the requirement true.
+4. The reviewer rejects false assumptions and fixes that miss the cause. Prefer the change that makes the requirement true on any site the kit captures. Reject a change that names one site's nodes, labels, colours, or pixels.
 
 ## Pass shape
 
 1. Before the run, write what changed in the files under test, why, and which alternatives were set aside.
 2. Run the pipeline at one width: capture, tokens, digests, then the section prompt and the Framer build when those stages are in scope for the pass.
 3. Write a human-readable summary with a met / not met matrix.
-4. For each requirement that is not met, start a new subagent. That agent writes why it failed and the smallest change that would meet it. One agent does not cover two requirements.
+4. For each requirement that is not met, start a new subagent. That agent writes why it failed and the kit change that would still hold if the cited node were swapped for another capture. One agent does not cover two requirements.
 5. A new reviewer reads those notes. The gap agents then adjust. They do not implement until the review is in.
 6. Start new subagents on the next pass. Do not resume the previous pass’s agents.
 7. After the summary, shrink the working notes to `docs/pipeline-runs/context.md` and read this file again.

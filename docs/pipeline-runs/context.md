@@ -1,15 +1,14 @@
 # Working context
 
-Read `docs/agent-rules.md` before any further pass. After each pass’s test and its write-up, replace this file and read the rules again.
+This invocation is the first pipeline pass on branch `any-site`. Pass 1 in `docs/pipeline-runs/improvement.md` cleaned the kit. An earlier stop note does not apply.
 
-Branch `lean-pipeline`. Width 1200. Fixture `tests/extractor/fixtures/requirements.html`.
-
-Four runs are done. Summaries: `docs/pipeline-runs/pass-1-summary.md` through `pass-4-summary.md`.
-
-Pass 4: 12 met, 1 not met. Capture code was not changed. Framer project `yFvpcRHhCsaZsXsnbnCp`, session `YED3Ke`, page Home `augiA20Il`, desktop `WQLkyLRf1`.
-
-Still open: card image `slVaJcJoN` altText is `Card one image` for both instances. Card one control stores that alt. Card two’s control has no alt key. `altText` cannot be omitted. Review: `docs/pipeline-runs/pass-3/review.md`. Do not write `alt=""`, do not add a code component, and do not split the card.
-
-Display 32 `nKCiQkoBE` stays `-0.02em`. Card border is `1px solid var(--token-xhJ1K1cgR)`. Custom code: none.
-
-Stop. The assignment was four runs or every requirement. Four runs are complete.
+Website: https://towmotive.com/
+Framer project: Enchanting Whoever
+Project id: B64kxxljgwceYGrBUPBt
+Project URL: https://framer.com/projects/Enchanting-Whoever--B64kxxljgwceYGrBUPBt-g99uS
+Git branch: any-site
+Framer branch: a new clean branch from this project's main. The builder creates it and reports the name. Do not reuse golden-crest (kiqtpgwhp), sunlit-prism (hqphn3tsl), linen-beacon (prsdixb2f), silken-ember (k5bhnj4io), airy-halo (hopal35hm), or cbe7itpwl. Main stays unchanged. Do not pass git branch any-site as the Framer branch.
+Width: 1200
+Criteria: .cursor/SKILLS/pipeline-review/criteria.md
+Sites in turn: https://towmotive.com/ then https://yellowhive.com/nl
+Stop when the latest pass of each site in docs/pipeline-runs/improvement.md is at least 80%. Scored rows are the 7 Must items, the 6 Should items, and M1 through M18. An Other row counts when the review writes one.
