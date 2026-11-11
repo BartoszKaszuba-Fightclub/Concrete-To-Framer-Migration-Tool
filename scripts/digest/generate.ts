@@ -1071,15 +1071,16 @@ function numericFontWeight(raw: string | undefined) {
 function sameRgb(left: string, right: string) {
   const a = rgbParts(left)
   const b = rgbParts(right)
-  return !!a && !!b && a.r === b.r && a.g === b.g && a.b === b.b
+  return !!a && !!b && a.r === b.r && a.g === b.g && a.b === b.b && a.a === b.a
 }
 
 function rgbParts(css: string) {
   const match = css.trim().match(/^rgba?\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)\s*(?:,\s*([0-9.]+)\s*)?\)$/i)
   if (!match) return null
   const parts = [Number(match[1]), Number(match[2]), Number(match[3])]
-  if (parts.some((part) => !Number.isFinite(part))) return null
-  return { r: parts[0], g: parts[1], b: parts[2] }
+  const alpha = match[4] === undefined ? 1 : Number(match[4])
+  if (parts.some((part) => !Number.isFinite(part)) || !Number.isFinite(alpha)) return null
+  return { r: parts[0], g: parts[1], b: parts[2], a: alpha }
 }
 
 function isRecord(value: unknown): value is Obj {
