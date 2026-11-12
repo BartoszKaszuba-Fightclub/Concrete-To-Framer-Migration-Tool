@@ -52,7 +52,16 @@
       for (const pseudo of ["::before", "::after"]) {
         const pseudoStyle = getComputedStyle(el, pseudo);
         if (!["none", "normal"].includes(pseudoStyle.content))
-          pseudos[pseudo] = { content: pseudoStyle.content, ...pick(pseudoStyle), width: pseudoStyle.width, height: pseudoStyle.height };
+          pseudos[pseudo] = {
+            content: pseudoStyle.content,
+            ...pick(pseudoStyle),
+            width: pseudoStyle.width,
+            height: pseudoStyle.height,
+            left: pseudoStyle.left,
+            top: pseudoStyle.top,
+            transform: pseudoStyle.transform,
+            position: pseudoStyle.position,
+          };
       }
       if (Object.keys(pseudos).length) record.pseudos = pseudos;
       return record;
