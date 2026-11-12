@@ -58,6 +58,258 @@
       return record;
     };
 
+    const PAINT_TAGS = new Set(["path", "rect", "circle", "ellipse", "line", "polyline", "polygon", "text", "tspan", "textpath", "use"]);
+    const SKIP_PAINT_SUBTREE = new Set(["defs", "clippath", "mask", "pattern", "marker", "lineargradient", "radialgradient", "filter", "metadata", "script", "style", "symbol"]);
+    const paintShapesOf = (root) => {
+      const list = [];
+      const walk = (el) => {
+        for (const child of el.children) {
+          const name = child.localName;
+          if (SKIP_PAINT_SUBTREE.has(name)) continue;
+          if (PAINT_TAGS.has(name)) list.push(child);
+          walk(child);
+        }
+      };
+      walk(root);
+      return list;
+    };
+    const markupHasColour = (markup, colour) => {
+      const needle = (colour || "").trim().toLowerCase();
+      if (!needle) return false;
+      const hay = String(markup).toLowerCase();
+      let from = 0;
+      while (from < hay.length) {
+        const at = hay.indexOf(needle, from);
+        if (at < 0) return false;
+        const before = at === 0 ? "" : hay[at - 1];
+        const after = hay[at + needle.length] || "";
+        if (!/[a-z0-9#-]/.test(before) && !/[a-z0-9-]/.test(after)) return true;
+        from = at + needle.length;
+      }
+      return false;
+    };
+    const isColourToken = (value) => {
+      const v = value.trim();
+      if (/^(rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\(/i.test(v)) return true;
+      if (/^#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(v)) return true;
+      if (!/^[a-z]+$/i.test(v)) return false;
+      try { return CSS.supports("color", v); } catch { return false; }
+    };
+    const paintKind = (value) => {
+      const v = (value || "").trim();
+      if (!v || /^none$/i.test(v)) return "none";
+      if (/^currentcolor$/i.test(v)) return "currentColor";
+      if (/url\(/i.test(v)) return "gradient";
+      if (/var\(/i.test(v)) return "custom";
+      if (/^(inherit|unset)$/i.test(v)) return "inherit";
+      if (/^initial$/i.test(v)) return "initial";
+      if (isColourToken(v)) return "literal";
+      return "other";
+    };
+    const isSolidComputed = (value) => {
+      const v = (value || "").trim();
+      if (!v || /^none$/i.test(v) || /url\(/i.test(v) || /^currentcolor$/i.test(v)) return false;
+      return isColourToken(v);
+    };
+    const splitTopComma = (inner) => {
+      const parts = [];
+      let current = "", depth = 0;
+      for (const ch of inner) {
+        if (ch === "(") depth++;
+        else if (ch === ")") depth--;
+        if (ch === "," && depth === 0) { parts.push(current); current = ""; continue; }
+        current += ch;
+      }
+      parts.push(current);
+      return parts;
+    };
+    const readVarAt = (input, start) => {
+      let depth = 0, open = -1;
+      for (let i = start; i < input.length; i++) {
+        if (input[i] === "(") { depth++; if (open < 0) open = i; }
+        else if (input[i] === ")") {
+          depth--;
+          if (depth === 0) {
+            const parts = splitTopComma(input.slice(open + 1, i));
+            const name = parts[0].trim();
+            if (!name.startsWith("--")) return null;
+            return { name, fallback: parts.length > 1 ? parts.slice(1).join(",").trim() : null, end: i + 1 };
+          }
+        }
+      }
+      return null;
+    };
+    // An unresolved var() computes to the initial paint, which is black for fill. That black is not a used colour.
+    const substituteVars = (el, value) => {
+      let result = value;
+      for (let guard = 0; guard < 8; guard++) {
+        const start = result.toLowerCase().indexOf("var(");
+        if (start < 0) return result;
+        const parsed = readVarAt(result, start);
+        if (!parsed) return null;
+        const defined = getComputedStyle(el).getPropertyValue(parsed.name).trim();
+        const replacement = defined || (parsed.fallback == null ? null : parsed.fallback);
+        if (replacement == null) return null;
+        result = result.slice(0, start) + replacement + result.slice(parsed.end);
+      }
+      return /var\(/i.test(result) ? null : result;
+    };
+    const selectorScore = (selector) => {
+      const plain = selector
+        .replace(/::[\w-]+/g, " E ")
+        .replace(/:(?:[\w-]+)(?:\([^)]*\))?/g, " C ")
+        .replace(/\[[^\]]+\]/g, " C ")
+        .replace(/#[\w-]+/g, " I ")
+        .replace(/\.[\w-]+/g, " C ");
+      const ids = (plain.match(/ I /g) || []).length;
+      const classes = (plain.match(/ C /g) || []).length + (plain.match(/ E /g) || []).length;
+      const elements = (plain.match(/(^|[\s>+~])[a-zA-Z*][\w-]*/g) || []).length;
+      return [ids, classes, elements];
+    };
+    const splitSelectorList = (selector) => {
+      const parts = [];
+      let current = "", depth = 0;
+      for (const ch of selector) {
+        if (ch === "(") depth++;
+        else if (ch === ")") depth--;
+        else if (ch === "," && depth === 0) {
+          if (current.trim()) parts.push(current.trim());
+          current = "";
+          continue;
+        }
+        current += ch;
+      }
+      if (current.trim()) parts.push(current.trim());
+      return parts;
+    };
+    const scoreFor = (el, selector) => {
+      let best = null;
+      for (const part of splitSelectorList(selector)) {
+        let matches = false;
+        try { matches = el.matches(part); } catch { continue; }
+        if (!matches) continue;
+        const score = selectorScore(part);
+        if (!best || score.some((partScore, index) => partScore > best[index] && score.slice(0, index).every((item, at) => item === best[at]))) best = score;
+      }
+      return best;
+    };
+    const beats = (next, prev) => {
+      if (next.important !== prev.important) return next.important;
+      for (let i = 0; i < 3; i++) if (next.score[i] !== prev.score[i]) return next.score[i] > prev.score[i];
+      return next.order > prev.order;
+    };
+    const eachStyleRule = (rules, active, visit) => {
+      if (!rules) return;
+      for (const rule of rules) {
+        if (rule.type === CSSRule.STYLE_RULE) { if (active) visit(rule); continue; }
+        if (rule.type === CSSRule.MEDIA_RULE) {
+          const text = rule.conditionText || rule.media?.mediaText || "";
+          let ok = false;
+          try { ok = active && matchMedia(text).matches; } catch { ok = false; }
+          eachStyleRule(rule.cssRules, ok, visit);
+          continue;
+        }
+        if (rule.type === CSSRule.SUPPORTS_RULE) {
+          let ok = false;
+          try { ok = active && CSS.supports(rule.conditionText); } catch { ok = false; }
+          eachStyleRule(rule.cssRules, ok, visit);
+          continue;
+        }
+        if (rule.cssRules) eachStyleRule(rule.cssRules, active, visit);
+      }
+    };
+    const stylesheetPaint = (el, prop) => {
+      let best = null, order = 0;
+      for (const sheet of document.styleSheets) {
+        if (sheet.disabled) continue;
+        let rules;
+        try { rules = sheet.cssRules; } catch { continue; }
+        eachStyleRule(rules, true, (rule) => {
+          const value = rule.style.getPropertyValue(prop).trim();
+          if (!value) return;
+          const score = scoreFor(el, rule.selectorText || "");
+          if (!score) return;
+          const candidate = { value, important: rule.style.getPropertyPriority(prop) === "important", score, order: order++ };
+          if (!best || beats(candidate, best)) best = candidate;
+        });
+      }
+      return best;
+    };
+    const specifiedLocal = (el, prop) => {
+      const inline = el.style.getPropertyValue(prop).trim();
+      const inlineImportant = el.style.getPropertyPriority(prop) === "important";
+      const sheet = stylesheetPaint(el, prop);
+      if (inline && inlineImportant) return { value: inline, source: "inline", el };
+      if (sheet?.important) return { value: sheet.value, source: "stylesheet", el };
+      if (inline) return { value: inline, source: "inline", el };
+      if (sheet) return { value: sheet.value, source: "stylesheet", el };
+      const attr = el.getAttribute(prop);
+      if (attr !== null && attr.trim() !== "") return { value: attr.trim(), source: "attribute", el };
+      return null;
+    };
+    const ancestorSpecified = (el, prop) => {
+      let parent = el.parentElement;
+      while (parent) {
+        const local = specifiedLocal(parent, prop);
+        if (local && paintKind(local.value) !== "inherit") return local;
+        parent = parent.parentElement;
+      }
+      return null;
+    };
+    const colourToWrite = (shape, prop, svg) => {
+      const computed = (getComputedStyle(shape)[prop] || "").trim();
+      const local = specifiedLocal(shape, prop);
+      const localKind = local ? paintKind(local.value) : null;
+      if (local && localKind !== "inherit") {
+        if (localKind === "currentColor" || localKind === "none" || localKind === "gradient" || localKind === "initial" || localKind === "other") return null;
+        if (localKind === "literal") {
+          if (local.source !== "stylesheet") return null;
+          if (markupHasColour(shape.outerHTML, local.value) || markupHasColour(shape.outerHTML, computed)) return null;
+          return isSolidComputed(computed) ? computed : null;
+        }
+        if (localKind === "custom") {
+          const substituted = substituteVars(shape, local.value);
+          if (substituted == null || paintKind(substituted) !== "literal") return null;
+          return isSolidComputed(computed) ? computed : null;
+        }
+        return null;
+      }
+      const inherited = ancestorSpecified(shape, prop);
+      if (!inherited) return null;
+      const inheritedKind = paintKind(inherited.value);
+      if (inheritedKind === "currentColor" || inheritedKind === "none" || inheritedKind === "gradient" || inheritedKind === "initial" || inheritedKind === "other") return null;
+      if (inheritedKind === "custom") {
+        const substituted = substituteVars(inherited.el, inherited.value);
+        if (substituted == null || paintKind(substituted) !== "literal") return null;
+      } else if (inheritedKind === "literal" && markupHasColour(svg.outerHTML, inherited.value)) {
+        return null;
+      }
+      if (markupHasColour(shape.outerHTML, computed)) return null;
+      return isSolidComputed(computed) ? computed : null;
+    };
+    const writePaint = (el, prop, colour) => {
+      const style = el.getAttribute("style");
+      if (style && new RegExp(`(?:^|;)\\s*${prop}\\s*:`, "i").test(style)) {
+        el.setAttribute("style", style.replace(new RegExp(`((?:^|;)\\s*)${prop}\\s*:\\s*[^;]*`, "i"), (_, lead) => `${lead}${prop}: ${colour}`));
+      }
+      el.setAttribute(prop, colour);
+    };
+    const svgUsedPaints = (svg) => {
+      const paints = [];
+      const clone = svg.cloneNode(true);
+      const shapes = paintShapesOf(svg);
+      const copies = paintShapesOf(clone);
+      for (let i = 0; i < shapes.length; i++) {
+        for (const prop of ["fill", "stroke"]) {
+          const colour = colourToWrite(shapes[i], prop, svg);
+          if (!colour) continue;
+          writePaint(copies[i], prop, colour);
+          paints.push(colour);
+        }
+      }
+      return { markup: paints.length ? clone.outerHTML : svg.outerHTML, paints };
+    };
+
     const selectorFor = (el, parentSel) => {
       const same = [...el.parentElement.children].filter((c) => c.localName === el.localName);
       const step = CSS.escape(el.localName) + (same.length > 1 ? `:nth-of-type(${same.indexOf(el) + 1})` : "");
@@ -113,7 +365,11 @@
       const kind = BOUNDARY[tag] ?? (el.shadowRoot ? "open-shadow-root"
         : tag.includes("-") && !el.childElementCount && r.width * r.height > 0 && !el.textContent.trim() ? "possible-closed-shadow-root" : null);
       if (kind) { node.boundary = kind; boundaries.push(id); }
-      if (tag === "svg") node.markup = el.outerHTML;
+      if (tag === "svg") {
+        const painted = svgUsedPaints(el);
+        node.markup = painted.markup;
+        computed[id].shapePaints = painted.paints;
+      }
       if (BOUNDARY[tag]) {
         const hidden = el.getElementsByTagName("*").length;
         if (hidden) node.untraversedChildren = hidden;
