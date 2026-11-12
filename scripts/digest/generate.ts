@@ -926,6 +926,10 @@ function measurePseudo(name: string, pseudo: Record<string, string | undefined>)
     color: measureColour(read("color"), `${name} color was not measured.`),
     backgroundColor: measureColour(read("backgroundColor"), `${name} backgroundColor was not measured.`),
     backgroundImage: measureEmpty(read("backgroundImage"), `${name} backgroundImage was not measured.`),
+    left: measureLength(read("left"), `${name} left was not measured.`),
+    top: measureLength(read("top"), `${name} top was not measured.`),
+    transform: measureEmpty(read("transform"), `${name} transform was not measured.`),
+    position: measureEmpty(read("position"), `${name} position was not measured.`),
   }
   for (const side of SIDES) {
     const width = measureLength(read(`border${side}Width`), `${name} border${side}Width was not measured.`)
