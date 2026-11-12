@@ -526,11 +526,51 @@
       return `${CSS.escape(el.localName)}${nth}`;
     };
     const describe = (el) => ({ selector: selectorOf(el), box: boxOf(el) });
+    const visibleTextOf = (el) => (el.innerText || "").replace(/\s+/g, " ").trim();
+    const emptyScrim = (el) => this.coverRatio(el) >= 0.4 && !visibleTextOf(el);
+    const opaque = (el) => {
+      const bg = getComputedStyle(el).backgroundColor;
+      return bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent";
+    };
+    const areaOf = (el) => {
+      const box = el.getBoundingClientRect();
+      return box.width * box.height;
+    };
+    // The full-page node is often an empty scrim. The panel is the on-screen box that holds the text.
+    const paintedPanel = (el) => {
+      let node = el;
+      let covering = null;
+      while (node instanceof Element) {
+        if (emptyScrim(node)) break;
+        if (node !== el && !this.isConsentNode(node)) break;
+        if (opaque(node) && visibleTextOf(node)) {
+          if (this.coverRatio(node) < 0.4) return node;
+          covering = node;
+        }
+        node = node.parentElement;
+      }
+      if (covering) return covering;
+      return visibleTextOf(el) && !emptyScrim(el) ? el : null;
+    };
     const outermost = (list) => list.filter((el) => !list.some((other) => other !== el && other.contains(el)));
-    const largest = (list) => outermost(list).sort((a, b) => this.coverRatio(b) - this.coverRatio(a))[0] || null;
     const roots = this.consentRoots();
-    const marked = roots.filter((el) => el.getAttribute("role") === "dialog" || el.getAttribute("aria-modal") === "true");
-    const dialog = largest(marked.length ? marked : roots.filter((el) => this.coverRatio(el) >= 0.4));
+    const candidates = [];
+    for (const root of roots) {
+      if (this.visibleElement(root) && visibleTextOf(root) && !emptyScrim(root)) candidates.push(root);
+      for (const el of root.querySelectorAll("*")) {
+        if (this.visibleElement(el) && visibleTextOf(el) && !emptyScrim(el)) candidates.push(el);
+      }
+    }
+    const panels = [];
+    for (const el of candidates) {
+      const panel = paintedPanel(el);
+      if (panel && !panels.includes(panel)) panels.push(panel);
+    }
+    const longest = panels.reduce((max, el) => Math.max(max, visibleTextOf(el).length), 0);
+    const compact = panels.filter((el) => opaque(el) && this.coverRatio(el) < 0.4 && visibleTextOf(el).length >= Math.ceil(longest * 0.5));
+    const panelPool = compact.length ? compact : panels.filter((el) => !emptyScrim(el));
+    panelPool.sort((a, b) => visibleTextOf(b).length - visibleTextOf(a).length || areaOf(a) - areaOf(b));
+    const dialog = panelPool[0] || null;
     const outside = roots.filter((el) => el !== dialog && this.coverRatio(el) < 0.4 && !(dialog && (dialog.contains(el) || el.contains(dialog))));
     const widget = (el) => /widget/i.test(`${el.id} ${el.getAttribute("class") || ""}`);
     const widgets = outside.filter(widget);
@@ -546,7 +586,13 @@
       const logo = document.querySelector("button.CookiebotWidget-logo svg");
       if (logo) described.logo = logo.outerHTML;
     }
-    return { dialog: dialog ? describe(dialog) : null, button: described };
+    const describeDialog = (el) => ({
+      selector: selectorOf(el),
+      box: boxOf(el),
+      backgroundColor: getComputedStyle(el).backgroundColor,
+      text: visibleTextOf(el),
+    });
+    return { dialog: dialog ? describeDialog(dialog) : null, button: described };
   },
 
   async dismissConsent() {
