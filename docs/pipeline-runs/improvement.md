@@ -46,3 +46,21 @@ Pass 1 read the Yellow Hive capture at `Database/digest/nesting/nl/1200/default`
 Before this pass, the builder sent the keyword normal for letter-spacing, matched a text style on size and weight, and turned every flex row into a stack that could be fitted to the band. After this pass, it sends 0em for that keyword, applies a text style only when the named token matches the run including colour, and keeps a nowrap row at the measured child widths.
 
 Next: rerun on https://yellowhive.com/nl
+
+## Pass 3
+
+### What changed
+
+https://yellowhive.com/nl was built in Enchanting Whoever on Framer branch mellow-harbor and scored 25 of 32. The extractor writes a used solid SVG fill and stroke into the stored markup when that colour is missing from the markup, and it leaves an unresolved custom property unwritten. The token collector passes each colour in shapePaints through the same path as a background colour. The digest stores a pseudo's left, top, transform, and position, and the builder places a painting ::before or ::after from those values. The consent record stores the panel background and its visible text, and a null dialog stays off the page. The test run writes placement-start.md at the Place organisms clock, and the review starts M1 from that file when it is earlier than first-component.md. Every slice stayed: 5307f75, d4ac8ec, 17458b4, a44bd20, 7ad1aaa, 01daace, d595d11, f0ab5e8, 1968241, 11d13b8, and f37a9ee. npm test passed 29 of 29.
+
+### Data
+
+This pass read `Database/digest/nesting/nl/1200/default` for https://yellowhive.com/nl. The builder read geometry, fill, alt, flex wrap, and the typography token name from that capture. The markup still held an unresolved custom property for an inline shape, the pseudo record had no left or top, and the consent record was a selector and a box. The next capture stores the resolved solid on the markup and on shapePaints, the pseudo offset, the consent panel colour and text, and placement-start.md. The next pass reads a new capture of https://towmotive.com/.
+
+### Skills
+
+Before this pass, the builder painted any fill other than currentColor from the attribute string, so a custom property was not a colour. A painting pseudo had size and no stored offset. The consent step placed no dialog when the record had no colour or text. M1 took its start from the newest timing table, which belonged to the previous site.
+
+After this pass, the builder paints the solid colour already written into the markup, once. It places a painting ::before or ::after from the stored left, top, and transform, and it paints a dialog from the consent record when that dialog is present. M1 starts from placement-start.md when that timestamp is earlier than first-component.md.
+
+Next: rerun on https://towmotive.com/
