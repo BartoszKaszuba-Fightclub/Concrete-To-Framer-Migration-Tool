@@ -66,11 +66,13 @@ On a `SPAWN` block, or several separated by `---`:
 
 A return that is neither `SPAWN` nor `DONE`: resume the runner once with `Return a SPAWN block or a DONE block.` A second return of that kind ends the run. The table's last row is that return.
 
-Leave a running agent alone. Publish nothing. Run no extract, digest, or Framer tool yourself. Edit no pipeline file.
+Leave a running agent alone. Publish nothing. Run no extract, digest, or Framer tool yourself. Edit no pipeline file. The placement-start timestamp is outside that rule.
 
 ## Clock
 
 Wall time is the `date` output immediately before a dispatch and the `date` output immediately after that dispatch returns. A parallel group shares one start and one end. Write the duration as `Xm Ys`. Keep both timestamps in the row.
+
+The clock immediately before the Place organisms dispatch is the placement start. In that same turn, write that clock to `placement-start.md` in the capture folder the collector returned. The edit-no-pipeline-file rule does not cover that timestamp. Do not write it at the style-export clock, the clock before the dispatch that exports styles. When that placement returns aborted and it never created `first-component.md`, delete `placement-start.md`. Once `first-component.md` is in the capture folder, a later Place organisms dispatch leaves `placement-start.md` as it is.
 
 ## Activities
 
