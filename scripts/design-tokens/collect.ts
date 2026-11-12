@@ -264,6 +264,9 @@ function collectBox(
   const shadow = readString(style.boxShadow)
   if (shadow && shadow !== "none") shadows.set(shadow, shadow)
   rememberColour(readString(style.backgroundColor), "paint")
+  if (Array.isArray(style.shapePaints)) {
+    for (const paint of style.shapePaints) rememberColour(readString(paint), "paint")
+  }
 }
 
 function ignoredIds(structure: Record<string, StructureNode>, skipped: { nodeId?: string; reason?: string }[]) {
