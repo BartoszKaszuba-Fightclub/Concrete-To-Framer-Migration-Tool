@@ -1,0 +1,6 @@
+{
+  "sessionId": "1",
+  "projectName": "Enchanting Whoever",
+  "projectUrl": "https://framer.com/projects/Enchanting-Whoever--B64kxxljgwceYGrBUPBt",
+  "command": "npx @framer/agent@latest exec -s 1"
+}
