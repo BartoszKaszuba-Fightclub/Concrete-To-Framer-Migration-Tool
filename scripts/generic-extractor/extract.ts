@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs"
 import type { Page } from "@playwright/test"
 import { buildComponentInventory, missingMeasurements, type ComponentFilter } from "./components.ts"
 import { buildSections, proposeSectionRoots, sectionCoverage } from "./sections.ts"
-import { simplify } from "./simplify.ts"
 import { DEFAULT_CAPTURE_STATE, type WidthSelection } from "./width.ts"
 
 export type Box = { x: number; y: number; width: number; height: number }
@@ -28,7 +27,7 @@ export type DomNode = {
 export type Nodes = Record<string, DomNode>
 export type Warning = { code: string; message: string; nodeIds?: string[] }
 export type BreakpointDiscovery = {
-  discovered: { media: string; pixels: number[]; href: string | null }[]
+  discovered: { media: string; pixels: number[] }[]
   inaccessible: { href: string | null; reason: string }[]
 }
 export type ExtractOptions = {
@@ -51,6 +50,8 @@ type Collected = {
   overflow: boolean
   elementCount: number
   fingerprint: string
+  title?: string
+  language?: string
 }
 
 const BROWSER_SRC = readFileSync(new URL("./browser.js", import.meta.url), "utf8")
@@ -79,32 +80,34 @@ export async function extract(page: Page, opts: ExtractOptions) {
   }
 
   const { nodes, roots } = raw
-  const warnings: Warning[] = raw.boundaries.map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] }))
+  const warnings: Warning[] = raw.boundaries
+    .filter((id) => {
+      const node = nodes[id]
+      return !(node?.boundary === "svg" && node.markup?.trim())
+    })
+    .map((id) => ({ code: "unsupported-boundary", message: `${nodes[id].boundary} content was not traversed`, nodeIds: [id] }))
   if (opts.widthWarning) warnings.push({ code: "widths-ignored", message: opts.widthWarning })
 
   const groups = proposeSectionRoots(nodes, roots)
   const sectionCandidates = buildSections(nodes, groups, raw.layoutWidth)
-  const { shellIds, unassignedIds } = sectionCoverage(nodes, roots, sectionCandidates)
+  const { unassignedIds } = sectionCoverage(nodes, roots, sectionCandidates)
   if (unassignedIds.length) warnings.push({ code: "section-unassigned", message: "Elements outside every section and the page shell", nodeIds: unassignedIds })
 
-  const reconstruction = simplify(nodes, roots, sectionCandidates)
   const viewport = opts.viewport ?? page.viewportSize()
   const state = opts.state ?? DEFAULT_CAPTURE_STATE
   const structure = {
     url: page.url(),
+    title: raw.title ?? "",
+    language: raw.language ?? "",
     slug: opts.slug,
     viewport,
     state,
     metadata: {
-      state,
-      viewport,
       breakpoints: opts.breakpoints ?? null,
     },
     roots,
     nodes,
     sectionCandidates,
-    sectionShell: shellIds,
-    excluded: raw.excluded,
     warnings,
   }
   const computed = { url: structure.url, slug: opts.slug, width: viewport?.width ?? null, state, nodes: raw.computed, skipped: [] as unknown[], unresolved: [] as unknown[] }
@@ -114,10 +117,13 @@ export async function extract(page: Page, opts: ExtractOptions) {
     pendingDecision: null,
     missingMeasurements: gaps,
     structure,
-    reconstruction,
     computed,
-    components: { filter: inventory.filter, records: inventory.records, blockers: inventory.blockers },
-    signatures: { definitions: inventory.definitions },
+    components: {
+      filter: inventory.filter,
+      records: inventory.records,
+      blockers: inventory.blockers,
+      definitions: inventory.definitions.filter((definition) => definition.kind === "molecule"),
+    },
     fingerprint: raw.fingerprint,
   }
 }

@@ -1,0 +1,1365 @@
+{
+  "assets": [],
+  "capture": {
+    "captureId": "home-1200-default",
+    "config": {
+      "captureIdDerived": true,
+      "slug": "home"
+    },
+    "finalUrl": {
+      "status": "value",
+      "value": "https://towmotive.com/"
+    },
+    "state": "default",
+    "url": "https://towmotive.com/",
+    "viewport": {
+      "height": 900,
+      "width": 1200
+    }
+  },
+  "component": {
+    "id": "cmp-084",
+    "rootIds": [
+      "n-000544"
+    ],
+    "type": "molecule"
+  },
+  "evidence": {
+    "screenshot": {
+      "path": "Database/Screenshots/home/1200/default/screenshot.png",
+      "status": "value"
+    }
+  },
+  "groups": [],
+  "hierarchy": [
+    {
+      "childIds": [
+        "n-000545"
+      ],
+      "id": "n-000544",
+      "order": 0,
+      "parentId": null
+    },
+    {
+      "childIds": [
+        "n-000546"
+      ],
+      "id": "n-000545",
+      "order": 0,
+      "parentId": "n-000544"
+    },
+    {
+      "childIds": [
+        "n-000547",
+        "n-000549"
+      ],
+      "id": "n-000546",
+      "order": 0,
+      "parentId": "n-000545"
+    },
+    {
+      "childIds": [],
+      "id": "n-000547",
+      "order": 0,
+      "parentId": "n-000546"
+    },
+    {
+      "childIds": [],
+      "id": "n-000549",
+      "order": 1,
+      "parentId": "n-000546"
+    }
+  ],
+  "idStability": "capture-local",
+  "links": [],
+  "nodes": {
+    "n-000544": {
+      "assetIds": [],
+      "children": [
+        "n-000545"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 224.42,
+        "status": "value",
+        "width": 1132,
+        "x": 34,
+        "y": 6676.56
+      },
+      "id": "n-000544",
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": null,
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000544",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0003",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "value",
+              "value": "-12px"
+            },
+            "marginRight": {
+              "status": "value",
+              "value": "-12px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Uw partner in TrekhakenTowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg."
+        },
+        "runs": [
+          {
+            "nodeId": "n-000547",
+            "text": "Uw partner in Trekhaken",
+            "typographyRef": "typography.0003"
+          },
+          {
+            "nodeId": "n-000549",
+            "text": "TowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg.",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000545": {
+      "assetIds": [],
+      "children": [
+        "n-000546"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 224.42,
+        "status": "value",
+        "width": 943.33,
+        "x": 128.33,
+        "y": 6676.56
+      },
+      "id": "n-000545",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000544",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000545",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0004",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "12px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "12px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Uw partner in TrekhakenTowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg."
+        },
+        "runs": [
+          {
+            "nodeId": "n-000547",
+            "text": "Uw partner in Trekhaken",
+            "typographyRef": "typography.0003"
+          },
+          {
+            "nodeId": "n-000549",
+            "text": "TowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg.",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000546": {
+      "assetIds": [],
+      "children": [
+        "n-000547",
+        "n-000549"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 160.42,
+        "status": "value",
+        "width": 919.33,
+        "x": 140.33,
+        "y": 6676.56
+      },
+      "id": "n-000546",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000545",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000546",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0002",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "value",
+              "value": "64px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Uw partner in TrekhakenTowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg."
+        },
+        "runs": [
+          {
+            "nodeId": "n-000547",
+            "text": "Uw partner in Trekhaken",
+            "typographyRef": "typography.0003"
+          },
+          {
+            "nodeId": "n-000549",
+            "text": "TowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg.",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000547": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 64.39,
+        "status": "value",
+        "width": 919.33,
+        "x": 140.33,
+        "y": 6676.56
+      },
+      "id": "n-000547",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000546",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "label",
+      "sourceId": "n-000547",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0001",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "value",
+              "value": "40px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "56px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "700"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "64.4px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "h2",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Uw partner in Trekhaken"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000547",
+            "text": "Uw partner in Trekhaken",
+            "typographyRef": "typography.0003"
+          }
+        ]
+      }
+    },
+    "n-000549": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 56.03,
+        "status": "value",
+        "width": 919.33,
+        "x": 140.33,
+        "y": 6780.95
+      },
+      "id": "n-000549",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "0.6"
+        },
+        "position": "static",
+        "siblingOrder": 1,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000546",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "label",
+      "sourceId": "n-000549",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0005",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0002",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "17.008px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "28.0132px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "p",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "TowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg."
+        },
+        "runs": [
+          {
+            "nodeId": "n-000549",
+            "text": "TowMotive is uw partner voor alles rond trekhaken. Met onze portal, producten en diensten helpt u uw klant snel en zorgeloos weer op weg.",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000549"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000548"
+      }
+    ],
+    "omitted": [],
+    "roots": [
+      {
+        "nodeId": "n-000544",
+        "sourceIds": [
+          "n-000544"
+        ]
+      }
+    ]
+  },
+  "schemaVersion": "2.0.0",
+  "tokens": {
+    "border.0001": {
+      "id": "border.0001",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0001",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "colour.0001": {
+      "id": "colour.0001",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-255-255-255-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0002": {
+      "id": "colour.0002",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-0-0-0-0",
+        "roles": [
+          "fill"
+        ]
+      }
+    },
+    "spacing.0001": {
+      "id": "spacing.0001",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0001",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0002": {
+      "id": "spacing.0002",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0002",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0003": {
+      "id": "spacing.0003",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing/margin/right-12px-left-12px",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0004": {
+      "id": "spacing.0004",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0004",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0005": {
+      "id": "spacing.0005",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0005",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "typography.0001": {
+      "id": "typography.0001",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/body/poppins-16px-400-24px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0002": {
+      "id": "typography.0002",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/body/poppins-17-008px-400-28-0132px-0em-none-2",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0003": {
+      "id": "typography.0003",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/h2/poppins-56px-700-64-4px-0em-none-2",
+        "roles": [
+          "typography"
+        ]
+      }
+    }
+  },
+  "unsupported": [],
+  "warnings": []
+}

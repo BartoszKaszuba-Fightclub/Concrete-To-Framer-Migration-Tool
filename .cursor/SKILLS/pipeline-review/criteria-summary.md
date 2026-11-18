@@ -1,0 +1,1 @@
+This file is the checklist for judging a website page after it has been rebuilt in Framer. It lists what the rebuild has to keep, such as the words, pictures, headings, and links, and the visual checks, such as fonts, spacing, colours, and layout, for seeing where the Framer page no longer matches the original site.

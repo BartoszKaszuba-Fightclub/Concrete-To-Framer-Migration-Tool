@@ -6,7 +6,7 @@ export type ComponentFilter = "all" | "button" | "field"
 
 export type ComponentRecord = {
   id: string
-  kind: "button" | "field"
+  kind: "button" | "field" | "molecule"
   nodeId: string
   sectionId: string | null
   label: string
@@ -24,6 +24,34 @@ export type ComponentBlocker = {
 }
 
 const REQUIRED_STYLE_KEYS = ["fontFamily", "fontSize", "fontWeight", "color"]
+const SECTION_TAGS = new Set(["header", "main", "footer"])
+
+function orderedChildTags(nodes: Nodes, id: string): string[] {
+  return nodes[id].children.flatMap((childId) => {
+    const tag = nodes[childId]?.tag
+    return tag ? [tag] : []
+  })
+}
+
+// Repeated siblings that share a tag and the same ordered child tags. Leaves stay unlabeled.
+function moleculeGroups(nodes: Nodes): string[][] {
+  const groups: string[][] = []
+  for (const parent of Object.values(nodes)) {
+    const buckets = new Map<string, string[]>()
+    for (const childId of parent.children) {
+      const child = nodes[childId]
+      if (!child || !isVisible(child) || SECTION_TAGS.has(child.tag)) continue
+      const childTags = orderedChildTags(nodes, childId)
+      if (childTags.length === 0) continue
+      const key = `${child.tag}:${childTags.join(",")}`
+      const bucket = buckets.get(key)
+      if (bucket) bucket.push(childId)
+      else buckets.set(key, [childId])
+    }
+    for (const ids of buckets.values()) if (ids.length > 1) groups.push(ids)
+  }
+  return groups
+}
 
 export function isVisible(node: DomNode): boolean {
   if (node.render.display === "none" || node.render.visibility === "hidden" || node.render.visibility === "collapse") return false
@@ -124,5 +152,25 @@ export function buildComponentInventory(
     signatureId: signatureOf.get(item.id) ?? "",
     blocker: null,
   }))
-  return { filter, records, blockers, definitions }
+
+  const moleculeDefinitions: SignatureDefinition[] = moleculeGroups(nodes).map((instanceIds, index) => ({
+    id: `sig-${String(definitions.length + index + 1).padStart(3, "0")}`,
+    kind: "molecule",
+    signature: visualSignature(computed[instanceIds[0]]),
+    instanceIds,
+  }))
+  for (const definition of moleculeDefinitions) {
+    for (const nodeId of definition.instanceIds) {
+      records.push({
+        id: nextId(),
+        kind: "molecule",
+        nodeId,
+        sectionId: sectionOf.get(nodeId) ?? null,
+        label: visibleLabel(nodes, nodeId),
+        signatureId: definition.id,
+        blocker: null,
+      })
+    }
+  }
+  return { filter, records, blockers, definitions: [...definitions, ...moleculeDefinitions] }
 }

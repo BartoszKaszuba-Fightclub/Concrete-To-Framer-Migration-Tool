@@ -1,0 +1,1703 @@
+{
+  "assets": [],
+  "capture": {
+    "captureId": "nl-1200-default",
+    "config": {
+      "captureIdDerived": true,
+      "slug": "nl"
+    },
+    "finalUrl": {
+      "status": "value",
+      "value": "https://yellowhive.com/nl"
+    },
+    "state": "default",
+    "url": "https://yellowhive.com/nl",
+    "viewport": {
+      "height": 900,
+      "width": 1200
+    }
+  },
+  "component": {
+    "id": "cmp-030",
+    "rootIds": [
+      "n-000198"
+    ],
+    "type": "molecule"
+  },
+  "evidence": {
+    "screenshot": {
+      "path": "Database/Screenshots/nl/1200/default/screenshot.png",
+      "status": "value"
+    }
+  },
+  "groups": [
+    {
+      "fieldType": "",
+      "id": "group.0001",
+      "kind": "button",
+      "occurrences": [
+        {
+          "labels": [
+            "Meer over ons"
+          ],
+          "nodeId": "n-000204",
+          "spacingRef": "spacing.0003"
+        }
+      ],
+      "styleRefs": {
+        "border": "border.0001",
+        "controlTypography": "typography.0001",
+        "fill": "colour.0001",
+        "textColours": [
+          "colour.0002"
+        ],
+        "typography": [
+          "typography.0001"
+        ]
+      },
+      "tag": "a"
+    }
+  ],
+  "hierarchy": [
+    {
+      "childIds": [
+        "n-000199"
+      ],
+      "id": "n-000198",
+      "order": 0,
+      "parentId": null
+    },
+    {
+      "childIds": [
+        "n-000201",
+        "n-000202",
+        "n-000203"
+      ],
+      "id": "n-000199",
+      "order": 0,
+      "parentId": "n-000198"
+    },
+    {
+      "childIds": [],
+      "id": "n-000201",
+      "order": 0,
+      "parentId": "n-000199"
+    },
+    {
+      "childIds": [],
+      "id": "n-000202",
+      "order": 1,
+      "parentId": "n-000199"
+    },
+    {
+      "childIds": [
+        "n-000204"
+      ],
+      "id": "n-000203",
+      "order": 2,
+      "parentId": "n-000199"
+    },
+    {
+      "childIds": [],
+      "id": "n-000204",
+      "order": 0,
+      "parentId": "n-000203"
+    }
+  ],
+  "idStability": "capture-local",
+  "links": [
+    {
+      "destination": {
+        "href": "https://yellowhive.com/nl/over-yellow-hive",
+        "kind": "external",
+        "status": "value"
+      },
+      "label": "Meer over ons",
+      "nodeId": "n-000204"
+    }
+  ],
+  "nodes": {
+    "n-000198": {
+      "assetIds": [],
+      "children": [
+        "n-000199"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 501.02,
+        "status": "value",
+        "width": 570,
+        "x": 600,
+        "y": 944.48
+      },
+      "id": "n-000198",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": null,
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000198",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0004",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0005",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "15px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "15px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0002",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Over Yellow HiveWij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. Meer over ons"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000201",
+            "text": "Over Yellow Hive",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000202",
+            "text": "Wij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. ",
+            "typographyRef": "typography.0003"
+          },
+          {
+            "nodeId": "n-000204",
+            "text": "Meer over ons",
+            "typographyRef": "typography.0001"
+          }
+        ]
+      }
+    },
+    "n-000199": {
+      "assetIds": [],
+      "children": [
+        "n-000201",
+        "n-000202",
+        "n-000203"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 501.02,
+        "status": "value",
+        "width": 540,
+        "x": 615,
+        "y": 944.48
+      },
+      "id": "n-000199",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000198",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000199",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0004",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0004",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "value",
+              "value": "50px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "15px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "15px"
+            },
+            "paddingTop": {
+              "status": "value",
+              "value": "50px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0002",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Over Yellow HiveWij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. Meer over ons"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000201",
+            "text": "Over Yellow Hive",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000202",
+            "text": "Wij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. ",
+            "typographyRef": "typography.0003"
+          },
+          {
+            "nodeId": "n-000204",
+            "text": "Meer over ons",
+            "typographyRef": "typography.0001"
+          }
+        ]
+      }
+    },
+    "n-000201": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 52,
+        "status": "value",
+        "width": 510,
+        "x": 630,
+        "y": 994.48
+      },
+      "id": "n-000201",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000199",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "label",
+      "sourceId": "n-000201",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0004",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0001",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "value",
+              "value": "40px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0004",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "40px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "700"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "52px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "h1",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Over Yellow Hive"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000201",
+            "text": "Over Yellow Hive",
+            "typographyRef": "typography.0004"
+          }
+        ]
+      }
+    },
+    "n-000202": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 224,
+        "status": "value",
+        "width": 510,
+        "x": 630,
+        "y": 1086.48
+      },
+      "id": "n-000202",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 1,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000199",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "label",
+      "sourceId": "n-000202",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0004",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0006",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "32px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "p",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Wij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. "
+        },
+        "runs": [
+          {
+            "nodeId": "n-000202",
+            "text": "Wij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. ",
+            "typographyRef": "typography.0003"
+          }
+        ]
+      }
+    },
+    "n-000203": {
+      "assetIds": [],
+      "children": [
+        "n-000204"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 45.02,
+        "status": "value",
+        "width": 510,
+        "x": 630,
+        "y": 1350.48
+      },
+      "id": "n-000203",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 2,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000199",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000203",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0004",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0002",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "value",
+              "value": "40px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0002",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(27, 49, 88)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Meer over ons"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000204",
+            "text": "Meer over ons",
+            "typographyRef": "typography.0001"
+          }
+        ]
+      }
+    },
+    "n-000204": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 45.02,
+        "status": "value",
+        "width": 183.11,
+        "x": 630,
+        "y": 1350.48
+      },
+      "id": "n-000204",
+      "labelNodes": [
+        {
+          "nodeId": "n-000204",
+          "text": {
+            "status": "value",
+            "value": "Meer over ons"
+          },
+          "typographyRef": "typography.0001"
+        }
+      ],
+      "layout": {
+        "display": "inline-block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000203",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "control",
+      "sourceId": "n-000204",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(249, 176, 15)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "value",
+              "value": "6px"
+            },
+            "borderBottomRightRadius": {
+              "status": "value",
+              "value": "6px"
+            },
+            "borderBottomStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderBottomWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(249, 176, 15)"
+            },
+            "borderLeftStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderLeftWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(249, 176, 15)"
+            },
+            "borderRightStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderRightWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(249, 176, 15)"
+            },
+            "borderTopLeftRadius": {
+              "status": "value",
+              "value": "6px"
+            },
+            "borderTopRightRadius": {
+              "status": "value",
+              "value": "6px"
+            },
+            "borderTopStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderTopWidth": {
+              "status": "value",
+              "value": "2px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgb(249, 176, 15)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0001",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0003",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "value",
+              "value": "10px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "25.008px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "25.008px"
+            },
+            "paddingTop": {
+              "status": "value",
+              "value": "10px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0002",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Lexend, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "18px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "700"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "21.008px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "a",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Meer over ons"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000204",
+            "text": "Meer over ons",
+            "typographyRef": "typography.0001"
+          }
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000201",
+          "n-000202"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000200"
+      }
+    ],
+    "omitted": [],
+    "roots": [
+      {
+        "nodeId": "n-000198",
+        "sourceIds": [
+          "n-000198"
+        ]
+      }
+    ]
+  },
+  "schemaVersion": "2.0.0",
+  "tokens": {
+    "border.0001": {
+      "id": "border.0001",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0001",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "border.0002": {
+      "id": "border.0002",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0002",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "colour.0001": {
+      "id": "colour.0001",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-249-176-15-1",
+        "roles": [
+          "border",
+          "fill"
+        ]
+      }
+    },
+    "colour.0002": {
+      "id": "colour.0002",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-255-255-255-1",
+        "roles": [
+          "text"
+        ]
+      }
+    },
+    "colour.0003": {
+      "id": "colour.0003",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-27-49-88-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0004": {
+      "id": "colour.0004",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-0-0-0-0",
+        "roles": [
+          "fill"
+        ]
+      }
+    },
+    "spacing.0001": {
+      "id": "spacing.0001",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0001",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0002": {
+      "id": "spacing.0002",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0002",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0003": {
+      "id": "spacing.0003",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0003",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0004": {
+      "id": "spacing.0004",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0004",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0005": {
+      "id": "spacing.0005",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0005",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0006": {
+      "id": "spacing.0006",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0006",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "typography.0001": {
+      "id": "typography.0001",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/button/lexend-18px-700-21-008px-0em-none-2",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0002": {
+      "id": "typography.0002",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/button/lexend-16px-400-24px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0003": {
+      "id": "typography.0003",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/body/lexend-16px-400-32px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0004": {
+      "id": "typography.0004",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/h1/lexend-40px-700-52px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    }
+  },
+  "unsupported": [],
+  "warnings": []
+}

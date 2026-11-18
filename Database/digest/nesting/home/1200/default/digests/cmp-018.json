@@ -1,0 +1,373 @@
+{
+  "assets": [],
+  "capture": {
+    "captureId": "home-1200-default",
+    "config": {
+      "captureIdDerived": true,
+      "slug": "home"
+    },
+    "finalUrl": {
+      "status": "value",
+      "value": "https://towmotive.com/"
+    },
+    "state": "default",
+    "url": "https://towmotive.com/",
+    "viewport": {
+      "height": 900,
+      "width": 1200
+    }
+  },
+  "component": {
+    "id": "cmp-018",
+    "rootIds": [
+      "n-000418"
+    ],
+    "type": "button"
+  },
+  "evidence": {
+    "screenshot": {
+      "path": "Database/Screenshots/home/1200/default/screenshot.png",
+      "status": "value"
+    }
+  },
+  "groups": [
+    {
+      "fieldType": "",
+      "id": "group.0001",
+      "kind": "button",
+      "occurrences": [
+        {
+          "labels": [],
+          "nodeId": "n-000418",
+          "spacingRef": "spacing.0001"
+        }
+      ],
+      "styleRefs": {
+        "border": "border.0001",
+        "controlTypography": "typography.0001",
+        "fill": "colour.0002",
+        "textColours": [
+          "colour.0001"
+        ],
+        "typography": [
+          "typography.0001"
+        ]
+      },
+      "tag": "span"
+    }
+  ],
+  "hierarchy": [
+    {
+      "childIds": [],
+      "id": "n-000418",
+      "order": 0,
+      "parentId": null
+    }
+  ],
+  "idStability": "capture-local",
+  "links": [],
+  "nodes": {
+    "n-000418": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "value",
+        "transform": {
+          "status": "value",
+          "value": "transform: matrix(1, 0, 0, 1, 0, 0)"
+        }
+      },
+      "geometry": {
+        "height": 10,
+        "status": "value",
+        "width": 10,
+        "x": 589,
+        "y": 4629.98
+      },
+      "id": "n-000418",
+      "labelNodes": [
+        {
+          "nodeId": "n-000418",
+          "text": {
+            "status": "empty",
+            "value": ""
+          },
+          "typographyRef": "typography.0001"
+        }
+      ],
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "relative",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": null,
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "control",
+      "sourceId": "n-000418",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "value",
+              "value": "50%"
+            },
+            "borderBottomRightRadius": {
+              "status": "value",
+              "value": "50%"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "value",
+              "value": "50%"
+            },
+            "borderTopRightRadius": {
+              "status": "value",
+              "value": "50%"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgb(33, 41, 53)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0001",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "value",
+              "value": "2px"
+            },
+            "marginRight": {
+              "status": "value",
+              "value": "2px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "span",
+      "text": {
+        "exact": {
+          "status": "empty",
+          "value": ""
+        },
+        "runs": []
+      }
+    }
+  },
+  "provenance": {
+    "folded": [],
+    "omitted": [],
+    "roots": [
+      {
+        "nodeId": "n-000418",
+        "sourceIds": [
+          "n-000418"
+        ]
+      }
+    ]
+  },
+  "schemaVersion": "2.0.0",
+  "tokens": {
+    "border.0001": {
+      "id": "border.0001",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0001",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "colour.0001": {
+      "id": "colour.0001",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-33-37-41-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0002": {
+      "id": "colour.0002",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-33-41-53-1",
+        "roles": [
+          "fill"
+        ]
+      }
+    },
+    "spacing.0001": {
+      "id": "spacing.0001",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing/margin/right-2px-left-2px",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "typography.0001": {
+      "id": "typography.0001",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/button/poppins-0px-400-0px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    }
+  },
+  "unsupported": [],
+  "warnings": []
+}

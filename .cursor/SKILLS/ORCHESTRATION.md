@@ -5,34 +5,31 @@ description: Asks which website and which Framer project to use, asks whether to
 
 # Orchestrate
 
-You are the orchestrator. You do not capture, you do not write the section prompt, and you do not edit Framer. You ask three questions, then you spawn one subagent per skill.
+You ask three questions, then you spawn one subagent per skill. You do not capture, write the section prompt, or edit Framer.
 
 ## Ask first
 
-Ask the user, and wait, before any tool that reads a site or opens Framer:
+Wait for answers before any tool that reads a site or opens Framer.
 
 1. Which website URL should be collected?
-2. Which existing Framer project should be built in? Ask for the project name or the project link.
-3. Should the builder create a new branch, or work on an existing branch? If they choose an existing branch, ask which branch.
+2. Which Framer project? Ask for the project name or the project link.
+3. The pipeline runs on a clean Framer branch, as `.cursor/SKILLS/BUILDER.md` defines it. Create that branch. An existing branch is allowed only when it is clean. If they want an existing one, ask which branch.
 
-Do not assume a project, a URL, or a branch. One width is 1200 unless the user names a different single width. Do not ask them to confirm a set of breakpoints.
+Width is 1200 unless the user names one width. Do not ask about breakpoints.
 
-## Subagents
+## Spawn
 
-After the answers, spawn subagents with the Task tool. One subagent, one skill. Pass the answers and the folder paths in the prompt. Tell each subagent to follow its skill file and not to do the other stages.
+Use the Task tool. One subagent, one skill. Pass the paths below in the prompt so the next agent does not search the repo. Tell each subagent to follow its skill file and to stop at the end of that skill.
 
-1. Start the collector and wait until it finishes. Skill file `.cursor/SKILLS/COLLECTOR.md` (`collect-page`). Give it the URL and the width. It writes the capture, the digests, and `Database/digest/tokens/<slug>/<width>/tokens.json`. It does not open Framer. Do not start the other two agents before this one has finished.
+1. Start the collector. Skill `.cursor/SKILLS/COLLECTOR.md`. Give it the URL and the width. Before `npm run extract:generic`, it deletes the previous capture for that slug and width: `Database/digest/nesting/<slug>/<width>/default/`, `Database/digest/tokens/<slug>/<width>/`, and `Database/Screenshots/<slug>/<width>/default/`. The slug is the one that command will write. This run’s folder then holds only the files this capture writes. Wait until the collector finishes. It must return the slug, the capture folder, `tokens.json`, `digests/index.json`, and the screenshot path.
+2. Start these two together.
+   - Section agent. Skill `.cursor/SKILLS/SECTIONS.md`. Give it the slug, the width, the capture folder, `digests/index.json`, and the screenshot path.
+   - Builder, phase 1. Skill `.cursor/SKILLS/BUILDER.md`. Give it the project, the branch choice, and `tokens.json`. Tell it to export styles and stop.
+3. Wait until `sections-prompt.md` is on disk and the builder has stopped after phase 1.
+4. Resume that same builder. Give it `sections-prompt.md`, `digests/index.json`, `tokens.json`, and the screenshot path.
 
-2. When the collector is done, start the section agent and the builder at the same time.
-   - Section agent. Skill file `.cursor/SKILLS/SECTIONS.md` (`define-sections`). Give it the slug, the width, and `Database/digest/nesting/<slug>/<width>/default/`. It writes `sections-prompt.md` there, with organism and template bounds in pixels from the left and top of the page. It does not open Framer.
-   - Builder, first phase. Skill file `.cursor/SKILLS/BUILDER.md` (`build-in-framer`). Give it the Framer project, the branch choice (new branch, or the existing branch name), the slug, and the width. Tell it to export the design tokens into Framer and then stop. It must not build components in this phase.
+Do not spawn a second builder. Do not run a stage yourself.
 
-3. Wait until the section agent has finished and `sections-prompt.md` is written. The builder stops on its own after the token export. Do not resume it early.
+## Report
 
-4. Resume the same builder. Tell it the section prompt is ready. It reads the full-page screenshot and the Playwright snapshot, then builds the organism components, places them on one page, and sets the breakpoint. It writes `build-report.md` for anything missing. It does not open the website.
-
-Do not spawn a second builder. Do not do a stage yourself because a subagent is slow.
-
-## After the builder
-
-Tell the user the project, the branch, the section prompt path, the token file path, the page the builder created, the breakpoint width, and the path to `build-report.md`. Quote missing items from that report. Do not publish.
+Tell the user the project, the branch, the section-prompt path, the token path, the page, the breakpoint width, and the path to `build-report.md`. Quote the scorecard. Do not publish.

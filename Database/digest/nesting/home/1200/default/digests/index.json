@@ -1,0 +1,996 @@
+{
+  "digests": [
+    {
+      "id": "cmp-001",
+      "type": "button",
+      "file": "cmp-001.json",
+      "rootIds": [
+        "n-000045"
+      ]
+    },
+    {
+      "id": "cmp-002",
+      "type": "button",
+      "file": "cmp-002.json",
+      "rootIds": [
+        "n-000147"
+      ]
+    },
+    {
+      "id": "cmp-003",
+      "type": "button",
+      "file": "cmp-003.json",
+      "rootIds": [
+        "n-000160"
+      ]
+    },
+    {
+      "id": "cmp-004",
+      "type": "button",
+      "file": "cmp-004.json",
+      "rootIds": [
+        "n-000173"
+      ]
+    },
+    {
+      "id": "cmp-005",
+      "type": "button",
+      "file": "cmp-005.json",
+      "rootIds": [
+        "n-000186"
+      ]
+    },
+    {
+      "id": "cmp-006",
+      "type": "button",
+      "file": "cmp-006.json",
+      "rootIds": [
+        "n-000199"
+      ]
+    },
+    {
+      "id": "cmp-007",
+      "type": "button",
+      "file": "cmp-007.json",
+      "rootIds": [
+        "n-000212"
+      ]
+    },
+    {
+      "id": "cmp-008",
+      "type": "button",
+      "file": "cmp-008.json",
+      "rootIds": [
+        "n-000282"
+      ]
+    },
+    {
+      "id": "cmp-009",
+      "type": "button",
+      "file": "cmp-009.json",
+      "rootIds": [
+        "n-000313"
+      ]
+    },
+    {
+      "id": "cmp-010",
+      "type": "button",
+      "file": "cmp-010.json",
+      "rootIds": [
+        "n-000327"
+      ]
+    },
+    {
+      "id": "cmp-011",
+      "type": "button",
+      "file": "cmp-011.json",
+      "rootIds": [
+        "n-000341"
+      ]
+    },
+    {
+      "id": "cmp-012",
+      "type": "button",
+      "file": "cmp-012.json",
+      "rootIds": [
+        "n-000355"
+      ]
+    },
+    {
+      "id": "cmp-013",
+      "type": "button",
+      "file": "cmp-013.json",
+      "rootIds": [
+        "n-000369"
+      ]
+    },
+    {
+      "id": "cmp-014",
+      "type": "button",
+      "file": "cmp-014.json",
+      "rootIds": [
+        "n-000383"
+      ]
+    },
+    {
+      "id": "cmp-015",
+      "type": "button",
+      "file": "cmp-015.json",
+      "rootIds": [
+        "n-000397"
+      ]
+    },
+    {
+      "id": "cmp-016",
+      "type": "button",
+      "file": "cmp-016.json",
+      "rootIds": [
+        "n-000411"
+      ]
+    },
+    {
+      "id": "cmp-017",
+      "type": "button",
+      "file": "cmp-017.json",
+      "rootIds": [
+        "n-000415"
+      ]
+    },
+    {
+      "id": "cmp-018",
+      "type": "button",
+      "file": "cmp-018.json",
+      "rootIds": [
+        "n-000418"
+      ]
+    },
+    {
+      "id": "cmp-019",
+      "type": "button",
+      "file": "cmp-019.json",
+      "rootIds": [
+        "n-000419"
+      ]
+    },
+    {
+      "id": "cmp-020",
+      "type": "button",
+      "file": "cmp-020.json",
+      "rootIds": [
+        "n-000420"
+      ]
+    },
+    {
+      "id": "cmp-021",
+      "type": "button",
+      "file": "cmp-021.json",
+      "rootIds": [
+        "n-000421"
+      ]
+    },
+    {
+      "id": "cmp-022",
+      "type": "button",
+      "file": "cmp-022.json",
+      "rootIds": [
+        "n-000422"
+      ]
+    },
+    {
+      "id": "cmp-023",
+      "type": "button",
+      "file": "cmp-023.json",
+      "rootIds": [
+        "n-000423"
+      ]
+    },
+    {
+      "id": "cmp-024",
+      "type": "button",
+      "file": "cmp-024.json",
+      "rootIds": [
+        "n-000424"
+      ]
+    },
+    {
+      "id": "cmp-025",
+      "type": "button",
+      "file": "cmp-025.json",
+      "rootIds": [
+        "n-000427"
+      ]
+    },
+    {
+      "id": "cmp-026",
+      "type": "button",
+      "file": "cmp-026.json",
+      "rootIds": [
+        "n-000522"
+      ]
+    },
+    {
+      "id": "cmp-027",
+      "type": "button",
+      "file": "cmp-027.json",
+      "rootIds": [
+        "n-000583"
+      ]
+    },
+    {
+      "id": "cmp-028",
+      "type": "button",
+      "file": "cmp-028.json",
+      "rootIds": [
+        "n-000606"
+      ]
+    },
+    {
+      "id": "cmp-029",
+      "type": "molecule",
+      "file": "cmp-029.json",
+      "rootIds": [
+        "n-000035"
+      ]
+    },
+    {
+      "id": "cmp-030",
+      "type": "molecule",
+      "file": "cmp-030.json",
+      "rootIds": [
+        "n-000037"
+      ]
+    },
+    {
+      "id": "cmp-031",
+      "type": "molecule",
+      "file": "cmp-031.json",
+      "rootIds": [
+        "n-000039"
+      ]
+    },
+    {
+      "id": "cmp-032",
+      "type": "molecule",
+      "file": "cmp-032.json",
+      "rootIds": [
+        "n-000070"
+      ]
+    },
+    {
+      "id": "cmp-033",
+      "type": "molecule",
+      "file": "cmp-033.json",
+      "rootIds": [
+        "n-000076"
+      ]
+    },
+    {
+      "id": "cmp-034",
+      "type": "molecule",
+      "file": "cmp-034.json",
+      "rootIds": [
+        "n-000090"
+      ]
+    },
+    {
+      "id": "cmp-035",
+      "type": "molecule",
+      "file": "cmp-035.json",
+      "rootIds": [
+        "n-000097"
+      ]
+    },
+    {
+      "id": "cmp-036",
+      "type": "molecule",
+      "file": "cmp-036.json",
+      "rootIds": [
+        "n-000105"
+      ]
+    },
+    {
+      "id": "cmp-037",
+      "type": "molecule",
+      "file": "cmp-037.json",
+      "rootIds": [
+        "n-000524"
+      ]
+    },
+    {
+      "id": "cmp-038",
+      "type": "molecule",
+      "file": "cmp-038.json",
+      "rootIds": [
+        "n-000542"
+      ]
+    },
+    {
+      "id": "cmp-039",
+      "type": "molecule",
+      "file": "cmp-039.json",
+      "rootIds": [
+        "n-000124"
+      ]
+    },
+    {
+      "id": "cmp-040",
+      "type": "molecule",
+      "file": "cmp-040.json",
+      "rootIds": [
+        "n-000284"
+      ]
+    },
+    {
+      "id": "cmp-041",
+      "type": "molecule",
+      "file": "cmp-041.json",
+      "rootIds": [
+        "n-000428"
+      ]
+    },
+    {
+      "id": "cmp-042",
+      "type": "molecule",
+      "file": "cmp-042.json",
+      "rootIds": [
+        "n-000584"
+      ]
+    },
+    {
+      "id": "cmp-043",
+      "type": "molecule",
+      "file": "cmp-043.json",
+      "rootIds": [
+        "n-000136"
+      ]
+    },
+    {
+      "id": "cmp-044",
+      "type": "molecule",
+      "file": "cmp-044.json",
+      "rootIds": [
+        "n-000149"
+      ]
+    },
+    {
+      "id": "cmp-045",
+      "type": "molecule",
+      "file": "cmp-045.json",
+      "rootIds": [
+        "n-000162"
+      ]
+    },
+    {
+      "id": "cmp-046",
+      "type": "molecule",
+      "file": "cmp-046.json",
+      "rootIds": [
+        "n-000175"
+      ]
+    },
+    {
+      "id": "cmp-047",
+      "type": "molecule",
+      "file": "cmp-047.json",
+      "rootIds": [
+        "n-000188"
+      ]
+    },
+    {
+      "id": "cmp-048",
+      "type": "molecule",
+      "file": "cmp-048.json",
+      "rootIds": [
+        "n-000201"
+      ]
+    },
+    {
+      "id": "cmp-049",
+      "type": "molecule",
+      "file": "cmp-049.json",
+      "rootIds": [
+        "n-000215"
+      ]
+    },
+    {
+      "id": "cmp-050",
+      "type": "molecule",
+      "file": "cmp-050.json",
+      "rootIds": [
+        "n-000222"
+      ]
+    },
+    {
+      "id": "cmp-051",
+      "type": "molecule",
+      "file": "cmp-051.json",
+      "rootIds": [
+        "n-000277"
+      ]
+    },
+    {
+      "id": "cmp-052",
+      "type": "molecule",
+      "file": "cmp-052.json",
+      "rootIds": [
+        "n-000229"
+      ]
+    },
+    {
+      "id": "cmp-053",
+      "type": "molecule",
+      "file": "cmp-053.json",
+      "rootIds": [
+        "n-000235"
+      ]
+    },
+    {
+      "id": "cmp-054",
+      "type": "molecule",
+      "file": "cmp-054.json",
+      "rootIds": [
+        "n-000241"
+      ]
+    },
+    {
+      "id": "cmp-055",
+      "type": "molecule",
+      "file": "cmp-055.json",
+      "rootIds": [
+        "n-000247"
+      ]
+    },
+    {
+      "id": "cmp-056",
+      "type": "molecule",
+      "file": "cmp-056.json",
+      "rootIds": [
+        "n-000253"
+      ]
+    },
+    {
+      "id": "cmp-057",
+      "type": "molecule",
+      "file": "cmp-057.json",
+      "rootIds": [
+        "n-000259"
+      ]
+    },
+    {
+      "id": "cmp-058",
+      "type": "molecule",
+      "file": "cmp-058.json",
+      "rootIds": [
+        "n-000265"
+      ]
+    },
+    {
+      "id": "cmp-059",
+      "type": "molecule",
+      "file": "cmp-059.json",
+      "rootIds": [
+        "n-000271"
+      ]
+    },
+    {
+      "id": "cmp-060",
+      "type": "molecule",
+      "file": "cmp-060.json",
+      "rootIds": [
+        "n-000292"
+      ]
+    },
+    {
+      "id": "cmp-061",
+      "type": "molecule",
+      "file": "cmp-061.json",
+      "rootIds": [
+        "n-000295"
+      ]
+    },
+    {
+      "id": "cmp-062",
+      "type": "molecule",
+      "file": "cmp-062.json",
+      "rootIds": [
+        "n-000301"
+      ]
+    },
+    {
+      "id": "cmp-063",
+      "type": "molecule",
+      "file": "cmp-063.json",
+      "rootIds": [
+        "n-000315"
+      ]
+    },
+    {
+      "id": "cmp-064",
+      "type": "molecule",
+      "file": "cmp-064.json",
+      "rootIds": [
+        "n-000329"
+      ]
+    },
+    {
+      "id": "cmp-065",
+      "type": "molecule",
+      "file": "cmp-065.json",
+      "rootIds": [
+        "n-000343"
+      ]
+    },
+    {
+      "id": "cmp-066",
+      "type": "molecule",
+      "file": "cmp-066.json",
+      "rootIds": [
+        "n-000357"
+      ]
+    },
+    {
+      "id": "cmp-067",
+      "type": "molecule",
+      "file": "cmp-067.json",
+      "rootIds": [
+        "n-000371"
+      ]
+    },
+    {
+      "id": "cmp-068",
+      "type": "molecule",
+      "file": "cmp-068.json",
+      "rootIds": [
+        "n-000385"
+      ]
+    },
+    {
+      "id": "cmp-069",
+      "type": "molecule",
+      "file": "cmp-069.json",
+      "rootIds": [
+        "n-000399"
+      ]
+    },
+    {
+      "id": "cmp-070",
+      "type": "molecule",
+      "file": "cmp-070.json",
+      "rootIds": [
+        "n-000415"
+      ]
+    },
+    {
+      "id": "cmp-071",
+      "type": "molecule",
+      "file": "cmp-071.json",
+      "rootIds": [
+        "n-000424"
+      ]
+    },
+    {
+      "id": "cmp-072",
+      "type": "molecule",
+      "file": "cmp-072.json",
+      "rootIds": [
+        "n-000434"
+      ]
+    },
+    {
+      "id": "cmp-073",
+      "type": "molecule",
+      "file": "cmp-073.json",
+      "rootIds": [
+        "n-000517"
+      ]
+    },
+    {
+      "id": "cmp-074",
+      "type": "molecule",
+      "file": "cmp-074.json",
+      "rootIds": [
+        "n-000447"
+      ]
+    },
+    {
+      "id": "cmp-075",
+      "type": "molecule",
+      "file": "cmp-075.json",
+      "rootIds": [
+        "n-000454"
+      ]
+    },
+    {
+      "id": "cmp-076",
+      "type": "molecule",
+      "file": "cmp-076.json",
+      "rootIds": [
+        "n-000461"
+      ]
+    },
+    {
+      "id": "cmp-077",
+      "type": "molecule",
+      "file": "cmp-077.json",
+      "rootIds": [
+        "n-000468"
+      ]
+    },
+    {
+      "id": "cmp-078",
+      "type": "molecule",
+      "file": "cmp-078.json",
+      "rootIds": [
+        "n-000475"
+      ]
+    },
+    {
+      "id": "cmp-079",
+      "type": "molecule",
+      "file": "cmp-079.json",
+      "rootIds": [
+        "n-000482"
+      ]
+    },
+    {
+      "id": "cmp-080",
+      "type": "molecule",
+      "file": "cmp-080.json",
+      "rootIds": [
+        "n-000489"
+      ]
+    },
+    {
+      "id": "cmp-081",
+      "type": "molecule",
+      "file": "cmp-081.json",
+      "rootIds": [
+        "n-000496"
+      ]
+    },
+    {
+      "id": "cmp-082",
+      "type": "molecule",
+      "file": "cmp-082.json",
+      "rootIds": [
+        "n-000503"
+      ]
+    },
+    {
+      "id": "cmp-083",
+      "type": "molecule",
+      "file": "cmp-083.json",
+      "rootIds": [
+        "n-000510"
+      ]
+    },
+    {
+      "id": "cmp-084",
+      "type": "molecule",
+      "file": "cmp-084.json",
+      "rootIds": [
+        "n-000544"
+      ]
+    },
+    {
+      "id": "cmp-085",
+      "type": "molecule",
+      "file": "cmp-085.json",
+      "rootIds": [
+        "n-000550"
+      ]
+    },
+    {
+      "id": "cmp-086",
+      "type": "molecule",
+      "file": "cmp-086.json",
+      "rootIds": [
+        "n-000580"
+      ]
+    },
+    {
+      "id": "cmp-087",
+      "type": "molecule",
+      "file": "cmp-087.json",
+      "rootIds": [
+        "n-000552"
+      ]
+    },
+    {
+      "id": "cmp-088",
+      "type": "molecule",
+      "file": "cmp-088.json",
+      "rootIds": [
+        "n-000559"
+      ]
+    },
+    {
+      "id": "cmp-089",
+      "type": "molecule",
+      "file": "cmp-089.json",
+      "rootIds": [
+        "n-000566"
+      ]
+    },
+    {
+      "id": "cmp-090",
+      "type": "molecule",
+      "file": "cmp-090.json",
+      "rootIds": [
+        "n-000573"
+      ]
+    },
+    {
+      "id": "cmp-091",
+      "type": "molecule",
+      "file": "cmp-091.json",
+      "rootIds": [
+        "n-000593"
+      ]
+    },
+    {
+      "id": "cmp-092",
+      "type": "molecule",
+      "file": "cmp-092.json",
+      "rootIds": [
+        "n-000655"
+      ]
+    },
+    {
+      "id": "cmp-093",
+      "type": "molecule",
+      "file": "cmp-093.json",
+      "rootIds": [
+        "n-000596"
+      ]
+    },
+    {
+      "id": "cmp-094",
+      "type": "molecule",
+      "file": "cmp-094.json",
+      "rootIds": [
+        "n-000608"
+      ]
+    },
+    {
+      "id": "cmp-095",
+      "type": "molecule",
+      "file": "cmp-095.json",
+      "rootIds": [
+        "n-000623"
+      ]
+    },
+    {
+      "id": "cmp-096",
+      "type": "molecule",
+      "file": "cmp-096.json",
+      "rootIds": [
+        "n-000640"
+      ]
+    },
+    {
+      "id": "cmp-097",
+      "type": "molecule",
+      "file": "cmp-097.json",
+      "rootIds": [
+        "n-000613"
+      ]
+    },
+    {
+      "id": "cmp-098",
+      "type": "molecule",
+      "file": "cmp-098.json",
+      "rootIds": [
+        "n-000615"
+      ]
+    },
+    {
+      "id": "cmp-099",
+      "type": "molecule",
+      "file": "cmp-099.json",
+      "rootIds": [
+        "n-000617"
+      ]
+    },
+    {
+      "id": "cmp-100",
+      "type": "molecule",
+      "file": "cmp-100.json",
+      "rootIds": [
+        "n-000619"
+      ]
+    },
+    {
+      "id": "cmp-101",
+      "type": "molecule",
+      "file": "cmp-101.json",
+      "rootIds": [
+        "n-000621"
+      ]
+    },
+    {
+      "id": "cmp-102",
+      "type": "molecule",
+      "file": "cmp-102.json",
+      "rootIds": [
+        "n-000628"
+      ]
+    },
+    {
+      "id": "cmp-103",
+      "type": "molecule",
+      "file": "cmp-103.json",
+      "rootIds": [
+        "n-000630"
+      ]
+    },
+    {
+      "id": "cmp-104",
+      "type": "molecule",
+      "file": "cmp-104.json",
+      "rootIds": [
+        "n-000632"
+      ]
+    },
+    {
+      "id": "cmp-105",
+      "type": "molecule",
+      "file": "cmp-105.json",
+      "rootIds": [
+        "n-000634"
+      ]
+    },
+    {
+      "id": "cmp-106",
+      "type": "molecule",
+      "file": "cmp-106.json",
+      "rootIds": [
+        "n-000636"
+      ]
+    },
+    {
+      "id": "cmp-107",
+      "type": "molecule",
+      "file": "cmp-107.json",
+      "rootIds": [
+        "n-000638"
+      ]
+    },
+    {
+      "id": "cmp-108",
+      "type": "molecule",
+      "file": "cmp-108.json",
+      "rootIds": [
+        "n-000645"
+      ]
+    },
+    {
+      "id": "cmp-109",
+      "type": "molecule",
+      "file": "cmp-109.json",
+      "rootIds": [
+        "n-000647"
+      ]
+    },
+    {
+      "id": "cmp-110",
+      "type": "molecule",
+      "file": "cmp-110.json",
+      "rootIds": [
+        "n-000649"
+      ]
+    },
+    {
+      "id": "cmp-111",
+      "type": "molecule",
+      "file": "cmp-111.json",
+      "rootIds": [
+        "n-000651"
+      ]
+    },
+    {
+      "id": "cmp-112",
+      "type": "molecule",
+      "file": "cmp-112.json",
+      "rootIds": [
+        "n-000653"
+      ]
+    },
+    {
+      "id": "cmp-113",
+      "type": "molecule",
+      "file": "cmp-113.json",
+      "rootIds": [
+        "n-000658"
+      ]
+    },
+    {
+      "id": "cmp-114",
+      "type": "molecule",
+      "file": "cmp-114.json",
+      "rootIds": [
+        "n-000665"
+      ]
+    },
+    {
+      "id": "cmp-115",
+      "type": "molecule",
+      "file": "cmp-115.json",
+      "rootIds": [
+        "n-000661"
+      ]
+    },
+    {
+      "id": "cmp-116",
+      "type": "molecule",
+      "file": "cmp-116.json",
+      "rootIds": [
+        "n-000663"
+      ]
+    },
+    {
+      "id": "cmp-117",
+      "type": "molecule",
+      "file": "cmp-117.json",
+      "rootIds": [
+        "n-000668"
+      ]
+    },
+    {
+      "id": "cmp-118",
+      "type": "molecule",
+      "file": "cmp-118.json",
+      "rootIds": [
+        "n-000670"
+      ]
+    },
+    {
+      "id": "cmp-119",
+      "type": "molecule",
+      "file": "cmp-119.json",
+      "rootIds": [
+        "n-000672"
+      ]
+    },
+    {
+      "id": "cmp-120",
+      "type": "molecule",
+      "file": "cmp-120.json",
+      "rootIds": [
+        "n-000674"
+      ]
+    },
+    {
+      "id": "clip-01",
+      "type": "section",
+      "file": "clip-01.json",
+      "rootIds": [
+        "n-000003"
+      ]
+    },
+    {
+      "id": "clip-02",
+      "type": "section",
+      "file": "clip-02.json",
+      "rootIds": [
+        "n-000055"
+      ]
+    },
+    {
+      "id": "clip-03",
+      "type": "section",
+      "file": "clip-03.json",
+      "rootIds": [
+        "n-000104"
+      ]
+    },
+    {
+      "id": "clip-04",
+      "type": "section",
+      "file": "clip-04.json",
+      "rootIds": [
+        "n-000592"
+      ]
+    }
+  ]
+}

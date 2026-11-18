@@ -1,0 +1,2226 @@
+{
+  "assets": [],
+  "capture": {
+    "captureId": "home-1200-default",
+    "config": {
+      "captureIdDerived": true,
+      "slug": "home"
+    },
+    "finalUrl": {
+      "status": "value",
+      "value": "https://towmotive.com/"
+    },
+    "state": "default",
+    "url": "https://towmotive.com/",
+    "viewport": {
+      "height": 900,
+      "width": 1200
+    }
+  },
+  "component": {
+    "id": "cmp-042",
+    "rootIds": [
+      "n-000584"
+    ],
+    "type": "molecule"
+  },
+  "evidence": {
+    "screenshot": {
+      "path": "Database/Screenshots/home/1200/default/screenshot.png",
+      "status": "value"
+    }
+  },
+  "groups": [
+    {
+      "fieldType": "",
+      "id": "group.0001",
+      "kind": "button",
+      "occurrences": [
+        {
+          "labels": [
+            "Neem contact op"
+          ],
+          "nodeId": "n-000590",
+          "spacingRef": "spacing.0004"
+        }
+      ],
+      "styleRefs": {
+        "border": "border.0001",
+        "controlTypography": "typography.0001",
+        "fill": "colour.0003",
+        "textColours": [
+          "colour.0001"
+        ],
+        "typography": [
+          "typography.0001"
+        ]
+      },
+      "tag": "a"
+    },
+    {
+      "fieldType": "",
+      "id": "group.0002",
+      "kind": "button",
+      "occurrences": [
+        {
+          "labels": [
+            "Account aanmaken"
+          ],
+          "nodeId": "n-000591",
+          "spacingRef": "spacing.0004"
+        }
+      ],
+      "styleRefs": {
+        "border": "border.0001",
+        "controlTypography": "typography.0002",
+        "fill": "colour.0001",
+        "textColours": [
+          "colour.0003"
+        ],
+        "typography": [
+          "typography.0002"
+        ]
+      },
+      "tag": "a"
+    }
+  ],
+  "hierarchy": [
+    {
+      "childIds": [
+        "n-000585"
+      ],
+      "id": "n-000584",
+      "order": 0,
+      "parentId": null
+    },
+    {
+      "childIds": [
+        "n-000586",
+        "n-000589"
+      ],
+      "id": "n-000585",
+      "order": 0,
+      "parentId": "n-000584"
+    },
+    {
+      "childIds": [
+        "n-000587"
+      ],
+      "id": "n-000586",
+      "order": 0,
+      "parentId": "n-000585"
+    },
+    {
+      "childIds": [
+        "n-000588"
+      ],
+      "id": "n-000587",
+      "order": 0,
+      "parentId": "n-000586"
+    },
+    {
+      "childIds": [],
+      "id": "n-000588",
+      "order": 0,
+      "parentId": "n-000587"
+    },
+    {
+      "childIds": [
+        "n-000590",
+        "n-000591"
+      ],
+      "id": "n-000589",
+      "order": 1,
+      "parentId": "n-000585"
+    },
+    {
+      "childIds": [],
+      "id": "n-000590",
+      "order": 0,
+      "parentId": "n-000589"
+    },
+    {
+      "childIds": [],
+      "id": "n-000591",
+      "order": 1,
+      "parentId": "n-000589"
+    }
+  ],
+  "idStability": "capture-local",
+  "links": [
+    {
+      "destination": {
+        "href": "https://towmotive.com/contact",
+        "kind": "external",
+        "status": "value"
+      },
+      "label": "Neem contact op",
+      "nodeId": "n-000590"
+    },
+    {
+      "destination": {
+        "href": "https://towmotive.com/account-aanmaken",
+        "kind": "external",
+        "status": "value"
+      },
+      "label": "Account aanmaken",
+      "nodeId": "n-000591"
+    }
+  ],
+  "nodes": {
+    "n-000584": {
+      "assetIds": [],
+      "children": [
+        "n-000585"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 316,
+        "status": "value",
+        "width": 1200,
+        "x": 0,
+        "y": 7197.55
+      },
+      "id": "n-000584",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": null,
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000584",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgb(248, 248, 248)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0002",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0002",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "value",
+              "value": "112px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "value",
+              "value": "112px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "section",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Maak direct een account aan. Of neem contact opNeem contact opAccount aanmaken"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000587",
+            "text": "Maak direct een account aan.",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000587",
+            "text": " Of neem contact op",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000590",
+            "text": "Neem contact op",
+            "typographyRef": "typography.0001"
+          },
+          {
+            "nodeId": "n-000591",
+            "text": "Account aanmaken",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000585": {
+      "assetIds": [],
+      "children": [
+        "n-000586",
+        "n-000589"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 92,
+        "status": "value",
+        "width": 1140,
+        "x": 30,
+        "y": 7309.55
+      },
+      "id": "n-000585",
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000584",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000585",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0005",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0001",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "value",
+              "value": "30px"
+            },
+            "marginRight": {
+              "status": "value",
+              "value": "30px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "12px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "12px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Maak direct een account aan. Of neem contact opNeem contact opAccount aanmaken"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000587",
+            "text": "Maak direct een account aan.",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000587",
+            "text": " Of neem contact op",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000590",
+            "text": "Neem contact op",
+            "typographyRef": "typography.0001"
+          },
+          {
+            "nodeId": "n-000591",
+            "text": "Account aanmaken",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000586": {
+      "assetIds": [],
+      "children": [
+        "n-000587"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 92,
+        "status": "value",
+        "width": 651,
+        "x": 42,
+        "y": 7309.55
+      },
+      "id": "n-000586",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000585",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000586",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0005",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0003",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Maak direct een account aan. Of neem contact op"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000587",
+            "text": "Maak direct een account aan.",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000587",
+            "text": " Of neem contact op",
+            "typographyRef": "typography.0004"
+          }
+        ]
+      }
+    },
+    "n-000587": {
+      "assetIds": [],
+      "children": [
+        "n-000588"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 92,
+        "status": "value",
+        "width": 651,
+        "x": 42,
+        "y": 7309.55
+      },
+      "id": "n-000587",
+      "layout": {
+        "display": "block",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000586",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "label",
+      "sourceId": "n-000587",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0005",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0003",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0004",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "40px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "700"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "46px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "h3",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Maak direct een account aan. Of neem contact op"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000587",
+            "text": "Maak direct een account aan.",
+            "typographyRef": "typography.0004"
+          },
+          {
+            "nodeId": "n-000587",
+            "text": " Of neem contact op",
+            "typographyRef": "typography.0004"
+          }
+        ]
+      }
+    },
+    "n-000588": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 56,
+        "status": "value",
+        "width": 0,
+        "x": 652.84,
+        "y": 7304.55
+      },
+      "id": "n-000588",
+      "layout": {
+        "display": "inline",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000587",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000588",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0005",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0003",
+          "value": {
+            "columnGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0004",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "40px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "700"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "46px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "br",
+      "text": {
+        "exact": {
+          "status": "empty",
+          "value": ""
+        },
+        "runs": []
+      }
+    },
+    "n-000589": {
+      "assetIds": [],
+      "children": [
+        "n-000590",
+        "n-000591"
+      ],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 53.38,
+        "status": "value",
+        "width": 455.8,
+        "x": 693,
+        "y": 7348.17
+      },
+      "id": "n-000589",
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 1,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000585",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "node",
+      "sourceId": "n-000589",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
+          },
+          "ref": "border.0002",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderBottomStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderBottomWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderLeftStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderLeftWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderRightStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderRightWidth": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "borderTopLeftRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopRightRadius": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "borderTopStyle": {
+              "status": "empty",
+              "value": "none"
+            },
+            "borderTopWidth": {
+              "status": "zero",
+              "value": "0px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgba(0, 0, 0, 0)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0005",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0005",
+          "value": {
+            "columnGap": {
+              "status": "value",
+              "value": "12px"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "rowGap": {
+              "status": "value",
+              "value": "12px"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0004",
+          "ref": "typography.0003",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(33, 37, 41)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "16px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "400"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "div",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Neem contact opAccount aanmaken"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000590",
+            "text": "Neem contact op",
+            "typographyRef": "typography.0001"
+          },
+          {
+            "nodeId": "n-000591",
+            "text": "Account aanmaken",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    },
+    "n-000590": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 53.38,
+        "status": "value",
+        "width": 209.8,
+        "x": 693,
+        "y": 7348.17
+      },
+      "id": "n-000590",
+      "labelNodes": [
+        {
+          "nodeId": "n-000590",
+          "text": {
+            "status": "value",
+            "value": "Neem contact op"
+          },
+          "typographyRef": "typography.0001"
+        }
+      ],
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 0,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000589",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "control",
+      "sourceId": "n-000590",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderBottomRightRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderBottomStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderBottomWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderLeftStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderLeftWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderRightStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderRightWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderTopLeftRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderTopRightRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderTopStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderTopWidth": {
+              "status": "value",
+              "value": "2px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgb(255, 255, 255)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0003",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0004",
+          "value": {
+            "columnGap": {
+              "status": "value",
+              "value": "12px"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "value",
+              "value": "11.2px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "24px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "paddingTop": {
+              "status": "value",
+              "value": "11.2px"
+            },
+            "rowGap": {
+              "status": "value",
+              "value": "12px"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0001",
+          "ref": "typography.0001",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "18px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "600"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "27px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "a",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Neem contact op"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000590",
+            "text": "Neem contact op",
+            "typographyRef": "typography.0001"
+          }
+        ]
+      }
+    },
+    "n-000591": {
+      "assetIds": [],
+      "children": [],
+      "effects": {
+        "status": "empty"
+      },
+      "geometry": {
+        "height": 53.38,
+        "status": "value",
+        "width": 234,
+        "x": 914.8,
+        "y": 7348.17
+      },
+      "id": "n-000591",
+      "labelNodes": [
+        {
+          "nodeId": "n-000591",
+          "text": {
+            "status": "value",
+            "value": "Account aanmaken"
+          },
+          "typographyRef": "typography.0002"
+        }
+      ],
+      "layout": {
+        "display": "flex",
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "opacity": {
+          "status": "value",
+          "value": "1"
+        },
+        "position": "static",
+        "siblingOrder": 1,
+        "visibility": "visible",
+        "zIndex": {
+          "status": "value",
+          "value": "auto"
+        }
+      },
+      "parentId": "n-000589",
+      "pseudos": {
+        "status": "empty"
+      },
+      "role": "control",
+      "sourceId": "n-000591",
+      "styles": {
+        "border": {
+          "colourRefs": {
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
+          },
+          "ref": "border.0001",
+          "value": {
+            "borderBottomColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderBottomLeftRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderBottomRightRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderBottomStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderBottomWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderLeftColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderLeftStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderLeftWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderRightColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderRightStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderRightWidth": {
+              "status": "value",
+              "value": "2px"
+            },
+            "borderTopColor": {
+              "status": "value",
+              "value": "rgb(227, 6, 19)"
+            },
+            "borderTopLeftRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderTopRightRadius": {
+              "status": "value",
+              "value": "48px"
+            },
+            "borderTopStyle": {
+              "status": "value",
+              "value": "solid"
+            },
+            "borderTopWidth": {
+              "status": "value",
+              "value": "2px"
+            }
+          }
+        },
+        "fill": {
+          "backgroundColor": {
+            "status": "value",
+            "value": "rgb(227, 6, 19)"
+          },
+          "backgroundImage": {
+            "status": "empty",
+            "value": "none"
+          },
+          "ref": "colour.0001",
+          "role": "fill"
+        },
+        "shadow": {
+          "status": "empty",
+          "value": "none"
+        },
+        "spacing": {
+          "ref": "spacing.0004",
+          "value": {
+            "columnGap": {
+              "status": "value",
+              "value": "12px"
+            },
+            "marginBottom": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginLeft": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginRight": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "marginTop": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "paddingBottom": {
+              "status": "value",
+              "value": "11.2px"
+            },
+            "paddingLeft": {
+              "status": "value",
+              "value": "24px"
+            },
+            "paddingRight": {
+              "status": "value",
+              "value": "24px"
+            },
+            "paddingTop": {
+              "status": "value",
+              "value": "11.2px"
+            },
+            "rowGap": {
+              "status": "value",
+              "value": "12px"
+            }
+          }
+        },
+        "typography": {
+          "colourRef": "colour.0003",
+          "ref": "typography.0002",
+          "value": {
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 255, 255)"
+            },
+            "fontFamily": {
+              "status": "value",
+              "value": "Poppins, sans-serif"
+            },
+            "fontSize": {
+              "status": "value",
+              "value": "18px"
+            },
+            "fontWeight": {
+              "status": "value",
+              "value": "600"
+            },
+            "letterSpacing": {
+              "raw": "normal",
+              "reason": "Computed value is the keyword normal, which is not a measured length.",
+              "status": "unsupported"
+            },
+            "lineHeight": {
+              "status": "value",
+              "value": "27px"
+            },
+            "textTransform": {
+              "status": "empty",
+              "value": "none"
+            }
+          }
+        }
+      },
+      "tag": "a",
+      "text": {
+        "exact": {
+          "status": "value",
+          "value": "Account aanmaken"
+        },
+        "runs": [
+          {
+            "nodeId": "n-000591",
+            "text": "Account aanmaken",
+            "typographyRef": "typography.0002"
+          }
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "folded": [],
+    "omitted": [],
+    "roots": [
+      {
+        "nodeId": "n-000584",
+        "sourceIds": [
+          "n-000584"
+        ]
+      }
+    ]
+  },
+  "schemaVersion": "2.0.0",
+  "tokens": {
+    "border.0001": {
+      "id": "border.0001",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0001",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "border.0002": {
+      "id": "border.0002",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0002",
+        "roles": [
+          "border"
+        ]
+      }
+    },
+    "colour.0001": {
+      "id": "colour.0001",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-227-6-19-1",
+        "roles": [
+          "border",
+          "fill",
+          "text"
+        ]
+      }
+    },
+    "colour.0002": {
+      "id": "colour.0002",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-248-248-248-1",
+        "roles": [
+          "fill"
+        ]
+      }
+    },
+    "colour.0003": {
+      "id": "colour.0003",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-255-255-255-1",
+        "roles": [
+          "fill",
+          "text"
+        ]
+      }
+    },
+    "colour.0004": {
+      "id": "colour.0004",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-33-37-41-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0005": {
+      "id": "colour.0005",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-0-0-0-0",
+        "roles": [
+          "fill"
+        ]
+      }
+    },
+    "spacing.0001": {
+      "id": "spacing.0001",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0001",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0002": {
+      "id": "spacing.0002",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing/padding/top-112px-bottom-112px",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0003": {
+      "id": "spacing.0003",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0003",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0004": {
+      "id": "spacing.0004",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0004",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "spacing.0005": {
+      "id": "spacing.0005",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0005",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
+    "typography.0001": {
+      "id": "typography.0001",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/link/poppins-18px-600-27px-0em-none-2",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0002": {
+      "id": "typography.0002",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/link/poppins-18px-600-27px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0003": {
+      "id": "typography.0003",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/link/poppins-16px-400-24px-0em-none-2",
+        "roles": [
+          "typography"
+        ]
+      }
+    },
+    "typography.0004": {
+      "id": "typography.0004",
+      "kind": "typography",
+      "proposal": {
+        "name": "text/h3/poppins-40px-700-46px-0em-none",
+        "roles": [
+          "typography"
+        ]
+      }
+    }
+  },
+  "unsupported": [],
+  "warnings": []
+}

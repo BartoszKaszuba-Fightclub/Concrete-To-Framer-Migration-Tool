@@ -6,6 +6,8 @@ import { fetchPageAsset, mediaReferences, saveCaptureAssets } from "./assets.ts"
 import { callBrowser, extract } from "./extract.ts"
 import { DEFAULT_CAPTURE_HEIGHT, DEFAULT_CAPTURE_STATE, selectCaptureWidth } from "./width.ts"
 
+type ConsentFrame = { selector: string; box: { x: number; y: number; width: number; height: number } } | null
+
 const USAGE = `Usage: npm run extract:generic -- <url> [--widths 1200] [--height 900] [--slug name]
   [--out Database] [--max-nodes 0] [--settle-timeout 10000] [--components all|button|field]
   One width is captured. Extra --widths values are ignored with a warning. Default is 1200×900, state default.`
@@ -48,18 +50,25 @@ const page = await browser.newPage({ viewport: { width: selection.selectedWidth,
 
 try {
   await page.goto(url, { waitUntil: "load", timeout: 60_000 })
-  const consent = await callBrowser<{ blocked: boolean; reason: string }>(page, "dismissConsent")
+  let consent = await callBrowser<{ blocked: boolean; reason: string; record: { dialog: ConsentFrame; button: ConsentFrame } }>(page, "dismissConsent")
   if (consent.blocked) {
     console.error(`Capture failed: ${consent.reason}`)
     process.exitCode = 1
   } else {
     const settled = await callBrowser<{ timedOut: boolean; pendingImages: number }>(page, "settle", Number(o["settle-timeout"]))
-    const overlay = await callBrowser<{ blocked: boolean }>(page, "overlayState")
+    let overlay = await callBrowser<{ blocked: boolean }>(page, "waitUntilUncovered", 2000)
+    if (overlay.blocked) {
+      const again = await callBrowser<typeof consent>(page, "dismissConsent")
+      if (!again.blocked) {
+        consent = again
+        overlay = await callBrowser<{ blocked: boolean }>(page, "waitUntilUncovered", 2000)
+      }
+    }
     if (overlay.blocked) {
       console.error("Capture failed: blocking overlay remained after settle")
       process.exitCode = 1
     } else {
-      const discovered = await callBrowser<{ discovered: { media: string; pixels: number[]; href: string | null }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
+      const discovered = await callBrowser<{ discovered: { media: string; pixels: number[] }[]; inaccessible: { href: string | null; reason: string }[] }>(page, "discoverBreakpoints")
       const breakpoints = { selectedWidth: selection.selectedWidth, ignoredWidths: selection.ignoredWidths, ...discovered }
       let result = null
       for (let attempt = 1; attempt <= 3; attempt++) {
@@ -111,10 +120,9 @@ try {
         const json = (name: string, data: unknown) => writeFile(join(nestingDir, name), JSON.stringify(data, null, 2))
         await Promise.all([
           json("structure.json", result.structure),
+          json("consent.json", consent.record),
           json("computed.json", result.computed),
-          json("reconstruction.json", result.reconstruction),
           json("components.json", result.components),
-          json("signatures.json", result.signatures),
           json("assets.json", saved.assets),
           writeFile(join(shotDir, "screenshot.png"), screenshot),
           writeFile(join(snapDir, "snapshot.html"), snapshot),

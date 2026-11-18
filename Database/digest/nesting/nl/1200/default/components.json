@@ -1,0 +1,1148 @@
+{
+  "filter": "all",
+  "records": [
+    {
+      "id": "cmp-001",
+      "kind": "button",
+      "nodeId": "n-000071",
+      "sectionId": "clip-01",
+      "label": "NL",
+      "signatureId": "sig-001",
+      "blocker": null
+    },
+    {
+      "id": "cmp-002",
+      "kind": "button",
+      "nodeId": "n-000107",
+      "sectionId": "clip-02",
+      "label": "Meer over onze merken",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-003",
+      "kind": "button",
+      "nodeId": "n-000125",
+      "sectionId": "clip-02",
+      "label": "Bekijk onze vacatures",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-004",
+      "kind": "button",
+      "nodeId": "n-000144",
+      "sectionId": "clip-02",
+      "label": "Meer informatie",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-005",
+      "kind": "button",
+      "nodeId": "n-000162",
+      "sectionId": "clip-02",
+      "label": "Bekijk onze ESG-strategie",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-006",
+      "kind": "button",
+      "nodeId": "n-000177",
+      "sectionId": "clip-02",
+      "label": "Previous",
+      "signatureId": "sig-003",
+      "blocker": null
+    },
+    {
+      "id": "cmp-007",
+      "kind": "button",
+      "nodeId": "n-000180",
+      "sectionId": "clip-02",
+      "label": "Next",
+      "signatureId": "sig-004",
+      "blocker": null
+    },
+    {
+      "id": "cmp-008",
+      "kind": "button",
+      "nodeId": "n-000204",
+      "sectionId": "clip-03",
+      "label": "Meer over ons",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-009",
+      "kind": "button",
+      "nodeId": "n-000214",
+      "sectionId": "clip-03",
+      "label": "Meer informatie",
+      "signatureId": "sig-005",
+      "blocker": null
+    },
+    {
+      "id": "cmp-010",
+      "kind": "button",
+      "nodeId": "n-000227",
+      "sectionId": "clip-03",
+      "label": "Bekijk onze vacatures",
+      "signatureId": "sig-005",
+      "blocker": null
+    },
+    {
+      "id": "cmp-011",
+      "kind": "button",
+      "nodeId": "n-000250",
+      "sectionId": "clip-03",
+      "label": "Lees meer",
+      "signatureId": "sig-006",
+      "blocker": null
+    },
+    {
+      "id": "cmp-012",
+      "kind": "button",
+      "nodeId": "n-000260",
+      "sectionId": "clip-03",
+      "label": "Lees meer",
+      "signatureId": "sig-006",
+      "blocker": null
+    },
+    {
+      "id": "cmp-013",
+      "kind": "button",
+      "nodeId": "n-000270",
+      "sectionId": "clip-03",
+      "label": "Lees meer",
+      "signatureId": "sig-006",
+      "blocker": null
+    },
+    {
+      "id": "cmp-014",
+      "kind": "button",
+      "nodeId": "n-000277",
+      "sectionId": "clip-03",
+      "label": "Bekijk alle berichten in de media",
+      "signatureId": "sig-002",
+      "blocker": null
+    },
+    {
+      "id": "cmp-015",
+      "kind": "button",
+      "nodeId": "n-000290",
+      "sectionId": "clip-03",
+      "label": "Neem contact op",
+      "signatureId": "sig-005",
+      "blocker": null
+    },
+    {
+      "id": "cmp-016",
+      "kind": "button",
+      "nodeId": "n-000373",
+      "sectionId": "clip-05",
+      "label": "Scroll to top",
+      "signatureId": "sig-004",
+      "blocker": null
+    },
+    {
+      "id": "cmp-017",
+      "kind": "molecule",
+      "nodeId": "n-000016",
+      "sectionId": "clip-01",
+      "label": "Over Yellow HiveOver Yellow HiveOver Yellow HiveBuy & BuildShared Service CenterOnze vestigingenVakgebiedenESG",
+      "signatureId": "sig-007",
+      "blocker": null
+    },
+    {
+      "id": "cmp-018",
+      "kind": "molecule",
+      "nodeId": "n-000045",
+      "sectionId": "clip-01",
+      "label": "In de mediaIn de mediaIn de mediaPersberichtenIn het nieuws",
+      "signatureId": "sig-007",
+      "blocker": null
+    },
+    {
+      "id": "cmp-019",
+      "kind": "molecule",
+      "nodeId": "n-000042",
+      "sectionId": "clip-01",
+      "label": "Onze merken",
+      "signatureId": "sig-008",
+      "blocker": null
+    },
+    {
+      "id": "cmp-020",
+      "kind": "molecule",
+      "nodeId": "n-000062",
+      "sectionId": "clip-01",
+      "label": "Werken bij",
+      "signatureId": "sig-008",
+      "blocker": null
+    },
+    {
+      "id": "cmp-021",
+      "kind": "molecule",
+      "nodeId": "n-000065",
+      "sectionId": "clip-01",
+      "label": "Contact",
+      "signatureId": "sig-008",
+      "blocker": null
+    },
+    {
+      "id": "cmp-022",
+      "kind": "molecule",
+      "nodeId": "n-000177",
+      "sectionId": "clip-02",
+      "label": "Previous",
+      "signatureId": "sig-009",
+      "blocker": null
+    },
+    {
+      "id": "cmp-023",
+      "kind": "molecule",
+      "nodeId": "n-000180",
+      "sectionId": "clip-02",
+      "label": "Next",
+      "signatureId": "sig-009",
+      "blocker": null
+    },
+    {
+      "id": "cmp-024",
+      "kind": "molecule",
+      "nodeId": "n-000186",
+      "sectionId": "clip-03",
+      "label": "Over Yellow HiveWij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. Meer over ons",
+      "signatureId": "sig-010",
+      "blocker": null
+    },
+    {
+      "id": "cmp-025",
+      "kind": "molecule",
+      "nodeId": "n-000205",
+      "sectionId": "clip-03",
+      "label": "Groei door overnamesYellow Hive wil tot de grootste financiële adviesorganisaties van Nederland behoren, door zelfstandige groei, gerichte overnames en samenwerkingen. Zo versterken wij onze basis om relaties optimaal te blijven bedienen. In onze overnamestrategie staan de stappen die we samen zetten centraal. Samen kijken we naar de wensen, behoeften en toekomst. Wil je weten hoe samenwerken met Yellow Hive er uitziet? Meer informatie",
+      "signatureId": "sig-010",
+      "blocker": null
+    },
+    {
+      "id": "cmp-026",
+      "kind": "molecule",
+      "nodeId": "n-000218",
+      "sectionId": "clip-03",
+      "label": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures",
+      "signatureId": "sig-010",
+      "blocker": null
+    },
+    {
+      "id": "cmp-027",
+      "kind": "molecule",
+      "nodeId": "n-000231",
+      "sectionId": "clip-03",
+      "label": "Het laatste nieuwsOntwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.5 minOp BHB Dullemond: Bouwen aan een nieuwe standaard in mentaal welzijnThe Mental Move helpt organisaties om mentaal welzijn structureel onderdeel te maken van hun strategie. Oprichter Ruth de Heer vertelt hoe T...Lees meer5 minSUREbusiness opnieuw uitgeroepen tot Beste Serviceprovider Zakelijk Schade grootAlkmaar, 23 juni 2026 – SUREbusiness is vandaag door Bureau DFO uitgeroepen tot Beste Serviceprovider Zakelijk Schade groot in de categorie ...Lees meer5 minOp M&A: Jacqueline Huisman (Yellow Hive): \"We groeien sneller door beter te integreren”23 april 2026 - Yellow Hive is in vier jaar tijd uitgegroeid tot een van de grootste financiële dienstverleners van Nederland, mede dankzij ...Lees meerBekijk alle berichten in de media",
+      "signatureId": "sig-010",
+      "blocker": null
+    },
+    {
+      "id": "cmp-028",
+      "kind": "molecule",
+      "nodeId": "n-000278",
+      "sectionId": "clip-03",
+      "label": "Wij helpen je graag verderHeb je vragen over verzekeringen, hypotheken, pensioenen of andere financiële producten? Dan verwijzen wij je door naar één van onze merken: You Sure, Felixx werk & inkomen, Yinco of één van onze andere merken. Hier werken de experts die je het beste kunnen helpen. Andere vragen? Neem gerust contact met ons op.Neem contact op",
+      "signatureId": "sig-010",
+      "blocker": null
+    },
+    {
+      "id": "cmp-029",
+      "kind": "molecule",
+      "nodeId": "n-000190",
+      "sectionId": "clip-03",
+      "label": "",
+      "signatureId": "sig-011",
+      "blocker": null
+    },
+    {
+      "id": "cmp-030",
+      "kind": "molecule",
+      "nodeId": "n-000198",
+      "sectionId": "clip-03",
+      "label": "Over Yellow HiveWij zijn een dynamische financiële adviesorganisatie die particulieren, ondernemers en bedrijven maximaal wil ontzorgen. Met ruim 1000 collega’s bieden wij via onze merken You Sure, Felixx werk & inkomen en Yinco oplossingen voor een financieel zorgeloze toekomst. Wij zijn een warme en enthousiaste club met mensen. Dat zie je terug in de kleur geel, wat staat voor geluk en plezier. Meer over ons",
+      "signatureId": "sig-011",
+      "blocker": null
+    },
+    {
+      "id": "cmp-031",
+      "kind": "molecule",
+      "nodeId": "n-000192",
+      "sectionId": "clip-03",
+      "label": "",
+      "signatureId": "sig-012",
+      "blocker": null
+    },
+    {
+      "id": "cmp-032",
+      "kind": "molecule",
+      "nodeId": "n-000194",
+      "sectionId": "clip-03",
+      "label": "",
+      "signatureId": "sig-012",
+      "blocker": null
+    },
+    {
+      "id": "cmp-033",
+      "kind": "molecule",
+      "nodeId": "n-000196",
+      "sectionId": "clip-03",
+      "label": "",
+      "signatureId": "sig-012",
+      "blocker": null
+    },
+    {
+      "id": "cmp-034",
+      "kind": "molecule",
+      "nodeId": "n-000233",
+      "sectionId": "clip-03",
+      "label": "Het laatste nieuwsOntwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.",
+      "signatureId": "sig-013",
+      "blocker": null
+    },
+    {
+      "id": "cmp-035",
+      "kind": "molecule",
+      "nodeId": "n-000238",
+      "sectionId": "clip-03",
+      "label": "5 minOp BHB Dullemond: Bouwen aan een nieuwe standaard in mentaal welzijnThe Mental Move helpt organisaties om mentaal welzijn structureel onderdeel te maken van hun strategie. Oprichter Ruth de Heer vertelt hoe T...Lees meer5 minSUREbusiness opnieuw uitgeroepen tot Beste Serviceprovider Zakelijk Schade grootAlkmaar, 23 juni 2026 – SUREbusiness is vandaag door Bureau DFO uitgeroepen tot Beste Serviceprovider Zakelijk Schade groot in de categorie ...Lees meer5 minOp M&A: Jacqueline Huisman (Yellow Hive): \"We groeien sneller door beter te integreren”23 april 2026 - Yellow Hive is in vier jaar tijd uitgegroeid tot een van de grootste financiële dienstverleners van Nederland, mede dankzij ...Lees meer",
+      "signatureId": "sig-013",
+      "blocker": null
+    },
+    {
+      "id": "cmp-036",
+      "kind": "molecule",
+      "nodeId": "n-000274",
+      "sectionId": "clip-03",
+      "label": "Bekijk alle berichten in de media",
+      "signatureId": "sig-013",
+      "blocker": null
+    },
+    {
+      "id": "cmp-037",
+      "kind": "molecule",
+      "nodeId": "n-000242",
+      "sectionId": "clip-03",
+      "label": "5 minOp BHB Dullemond: Bouwen aan een nieuwe standaard in mentaal welzijnThe Mental Move helpt organisaties om mentaal welzijn structureel onderdeel te maken van hun strategie. Oprichter Ruth de Heer vertelt hoe T...Lees meer",
+      "signatureId": "sig-014",
+      "blocker": null
+    },
+    {
+      "id": "cmp-038",
+      "kind": "molecule",
+      "nodeId": "n-000252",
+      "sectionId": "clip-03",
+      "label": "5 minSUREbusiness opnieuw uitgeroepen tot Beste Serviceprovider Zakelijk Schade grootAlkmaar, 23 juni 2026 – SUREbusiness is vandaag door Bureau DFO uitgeroepen tot Beste Serviceprovider Zakelijk Schade groot in de categorie ...Lees meer",
+      "signatureId": "sig-014",
+      "blocker": null
+    },
+    {
+      "id": "cmp-039",
+      "kind": "molecule",
+      "nodeId": "n-000262",
+      "sectionId": "clip-03",
+      "label": "5 minOp M&A: Jacqueline Huisman (Yellow Hive): \"We groeien sneller door beter te integreren”23 april 2026 - Yellow Hive is in vier jaar tijd uitgegroeid tot een van de grootste financiële dienstverleners van Nederland, mede dankzij ...Lees meer",
+      "signatureId": "sig-014",
+      "blocker": null
+    },
+    {
+      "id": "cmp-040",
+      "kind": "molecule",
+      "nodeId": "n-000292",
+      "sectionId": "clip-04",
+      "label": "+31 85 083 10 01info@yellowhive.nlOver Yellow HiveOver Yellow HiveBuy & BuildShared Service CenterVakgebiedenESGIn de mediaContactOnze merkenYou SureFelixx werk & inkomenYincoAlle merkenWerken bijAlle vacaturesWerken bij Yellow Hive",
+      "signatureId": "sig-015",
+      "blocker": null
+    },
+    {
+      "id": "cmp-041",
+      "kind": "molecule",
+      "nodeId": "n-000344",
+      "sectionId": "clip-04",
+      "label": "",
+      "signatureId": "sig-015",
+      "blocker": null
+    },
+    {
+      "id": "cmp-042",
+      "kind": "molecule",
+      "nodeId": "n-000347",
+      "sectionId": "clip-04",
+      "label": "AVGCookieverklaringPrivacyverklaringResponsible disclosure ® 2026 Yellow Hive - Aan de informatie op onze website kunnen geen rechten worden ontleend. Yellow Hive aanvaardt geen aansprakelijkheid voor schade die verband houdt met het gebruik van deze website of met de tijdelijke onmogelijkheid om deze website te raadplegen. Yellow Hive is niet verantwoordelijk voor de inhoud van de website waarnaar wordt verwezen of websites die verwijzen naar deze website.",
+      "signatureId": "sig-015",
+      "blocker": null
+    },
+    {
+      "id": "cmp-043",
+      "kind": "molecule",
+      "nodeId": "n-000306",
+      "sectionId": "clip-04",
+      "label": "Over Yellow HiveOver Yellow HiveBuy & BuildShared Service CenterVakgebiedenESGIn de mediaContact",
+      "signatureId": "sig-016",
+      "blocker": null
+    },
+    {
+      "id": "cmp-044",
+      "kind": "molecule",
+      "nodeId": "n-000324",
+      "sectionId": "clip-04",
+      "label": "Onze merkenYou SureFelixx werk & inkomenYincoAlle merken",
+      "signatureId": "sig-016",
+      "blocker": null
+    },
+    {
+      "id": "cmp-045",
+      "kind": "molecule",
+      "nodeId": "n-000336",
+      "sectionId": "clip-04",
+      "label": "Werken bijAlle vacaturesWerken bij Yellow Hive",
+      "signatureId": "sig-016",
+      "blocker": null
+    },
+    {
+      "id": "cmp-046",
+      "kind": "molecule",
+      "nodeId": "n-000300",
+      "sectionId": "clip-04",
+      "label": "+31 85 083 10 01",
+      "signatureId": "sig-017",
+      "blocker": null
+    },
+    {
+      "id": "cmp-047",
+      "kind": "molecule",
+      "nodeId": "n-000303",
+      "sectionId": "clip-04",
+      "label": "info@yellowhive.nl",
+      "signatureId": "sig-017",
+      "blocker": null
+    },
+    {
+      "id": "cmp-048",
+      "kind": "molecule",
+      "nodeId": "n-000310",
+      "sectionId": "clip-04",
+      "label": "Over Yellow Hive",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-049",
+      "kind": "molecule",
+      "nodeId": "n-000312",
+      "sectionId": "clip-04",
+      "label": "Buy & Build",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-050",
+      "kind": "molecule",
+      "nodeId": "n-000314",
+      "sectionId": "clip-04",
+      "label": "Shared Service Center",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-051",
+      "kind": "molecule",
+      "nodeId": "n-000316",
+      "sectionId": "clip-04",
+      "label": "Vakgebieden",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-052",
+      "kind": "molecule",
+      "nodeId": "n-000318",
+      "sectionId": "clip-04",
+      "label": "ESG",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-053",
+      "kind": "molecule",
+      "nodeId": "n-000320",
+      "sectionId": "clip-04",
+      "label": "In de media",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-054",
+      "kind": "molecule",
+      "nodeId": "n-000322",
+      "sectionId": "clip-04",
+      "label": "Contact",
+      "signatureId": "sig-018",
+      "blocker": null
+    },
+    {
+      "id": "cmp-055",
+      "kind": "molecule",
+      "nodeId": "n-000328",
+      "sectionId": "clip-04",
+      "label": "You Sure",
+      "signatureId": "sig-019",
+      "blocker": null
+    },
+    {
+      "id": "cmp-056",
+      "kind": "molecule",
+      "nodeId": "n-000330",
+      "sectionId": "clip-04",
+      "label": "Felixx werk & inkomen",
+      "signatureId": "sig-019",
+      "blocker": null
+    },
+    {
+      "id": "cmp-057",
+      "kind": "molecule",
+      "nodeId": "n-000332",
+      "sectionId": "clip-04",
+      "label": "Yinco",
+      "signatureId": "sig-019",
+      "blocker": null
+    },
+    {
+      "id": "cmp-058",
+      "kind": "molecule",
+      "nodeId": "n-000334",
+      "sectionId": "clip-04",
+      "label": "Alle merken",
+      "signatureId": "sig-019",
+      "blocker": null
+    },
+    {
+      "id": "cmp-059",
+      "kind": "molecule",
+      "nodeId": "n-000340",
+      "sectionId": "clip-04",
+      "label": "Alle vacatures",
+      "signatureId": "sig-020",
+      "blocker": null
+    },
+    {
+      "id": "cmp-060",
+      "kind": "molecule",
+      "nodeId": "n-000342",
+      "sectionId": "clip-04",
+      "label": "Werken bij Yellow Hive",
+      "signatureId": "sig-020",
+      "blocker": null
+    },
+    {
+      "id": "cmp-061",
+      "kind": "molecule",
+      "nodeId": "n-000350",
+      "sectionId": "clip-04",
+      "label": "AVGCookieverklaringPrivacyverklaringResponsible disclosure",
+      "signatureId": "sig-021",
+      "blocker": null
+    },
+    {
+      "id": "cmp-062",
+      "kind": "molecule",
+      "nodeId": "n-000361",
+      "sectionId": "clip-04",
+      "label": "",
+      "signatureId": "sig-021",
+      "blocker": null
+    },
+    {
+      "id": "cmp-063",
+      "kind": "molecule",
+      "nodeId": "n-000353",
+      "sectionId": "clip-04",
+      "label": "AVG",
+      "signatureId": "sig-022",
+      "blocker": null
+    },
+    {
+      "id": "cmp-064",
+      "kind": "molecule",
+      "nodeId": "n-000355",
+      "sectionId": "clip-04",
+      "label": "Cookieverklaring",
+      "signatureId": "sig-022",
+      "blocker": null
+    },
+    {
+      "id": "cmp-065",
+      "kind": "molecule",
+      "nodeId": "n-000357",
+      "sectionId": "clip-04",
+      "label": "Privacyverklaring",
+      "signatureId": "sig-022",
+      "blocker": null
+    },
+    {
+      "id": "cmp-066",
+      "kind": "molecule",
+      "nodeId": "n-000359",
+      "sectionId": "clip-04",
+      "label": "Responsible disclosure",
+      "signatureId": "sig-022",
+      "blocker": null
+    }
+  ],
+  "blockers": [],
+  "definitions": [
+    {
+      "id": "sig-007",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000016",
+        "n-000045"
+      ]
+    },
+    {
+      "id": "sig-008",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000042",
+        "n-000062",
+        "n-000065"
+      ]
+    },
+    {
+      "id": "sig-009",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "18px",
+        "fontWeight": "700",
+        "lineHeight": "21.008px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(249, 176, 15)",
+        "borderTopWidth": "2px",
+        "borderRightWidth": "2px",
+        "borderBottomWidth": "2px",
+        "borderLeftWidth": "2px",
+        "borderTopStyle": "solid",
+        "borderRightStyle": "solid",
+        "borderBottomStyle": "solid",
+        "borderLeftStyle": "solid",
+        "borderTopColor": "rgb(249, 176, 15)",
+        "borderRightColor": "rgb(249, 176, 15)",
+        "borderBottomColor": "rgb(249, 176, 15)",
+        "borderLeftColor": "rgb(249, 176, 15)",
+        "borderTopLeftRadius": "100%",
+        "borderTopRightRadius": "100%",
+        "borderBottomRightRadius": "100%",
+        "borderBottomLeftRadius": "100%"
+      },
+      "instanceIds": [
+        "n-000177",
+        "n-000180"
+      ]
+    },
+    {
+      "id": "sig-010",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000186",
+        "n-000205",
+        "n-000218",
+        "n-000231",
+        "n-000278"
+      ]
+    },
+    {
+      "id": "sig-011",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000190",
+        "n-000198"
+      ]
+    },
+    {
+      "id": "sig-012",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000192",
+        "n-000194",
+        "n-000196"
+      ]
+    },
+    {
+      "id": "sig-013",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000233",
+        "n-000238",
+        "n-000274"
+      ]
+    },
+    {
+      "id": "sig-014",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000242",
+        "n-000252",
+        "n-000262"
+      ]
+    },
+    {
+      "id": "sig-015",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000292",
+        "n-000344",
+        "n-000347"
+      ]
+    },
+    {
+      "id": "sig-016",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000306",
+        "n-000324",
+        "n-000336"
+      ]
+    },
+    {
+      "id": "sig-017",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000300",
+        "n-000303"
+      ]
+    },
+    {
+      "id": "sig-018",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000310",
+        "n-000312",
+        "n-000314",
+        "n-000316",
+        "n-000318",
+        "n-000320",
+        "n-000322"
+      ]
+    },
+    {
+      "id": "sig-019",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000328",
+        "n-000330",
+        "n-000332",
+        "n-000334"
+      ]
+    },
+    {
+      "id": "sig-020",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000340",
+        "n-000342"
+      ]
+    },
+    {
+      "id": "sig-021",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000350",
+        "n-000361"
+      ]
+    },
+    {
+      "id": "sig-022",
+      "kind": "molecule",
+      "signature": {
+        "fontFamily": "Lexend, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(27, 49, 88)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderTopWidth": "0px",
+        "borderRightWidth": "0px",
+        "borderBottomWidth": "0px",
+        "borderLeftWidth": "0px",
+        "borderTopStyle": "none",
+        "borderRightStyle": "none",
+        "borderBottomStyle": "none",
+        "borderLeftStyle": "none",
+        "borderTopColor": "rgb(27, 49, 88)",
+        "borderRightColor": "rgb(27, 49, 88)",
+        "borderBottomColor": "rgb(27, 49, 88)",
+        "borderLeftColor": "rgb(27, 49, 88)",
+        "borderTopLeftRadius": "0px",
+        "borderTopRightRadius": "0px",
+        "borderBottomRightRadius": "0px",
+        "borderBottomLeftRadius": "0px"
+      },
+      "instanceIds": [
+        "n-000353",
+        "n-000355",
+        "n-000357",
+        "n-000359"
+      ]
+    }
+  ]
+}

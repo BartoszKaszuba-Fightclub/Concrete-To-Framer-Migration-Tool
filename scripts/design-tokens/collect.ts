@@ -55,6 +55,7 @@ export type CollectInput = {
     nodes?: Record<string, ComputedStyle>
     skipped?: { nodeId?: string; reason?: string }[]
   }
+  /** Accepted so existing callers typecheck. Not written into the document. */
   language: string
 }
 
@@ -88,7 +89,7 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
     const parsed = parseColour(css)
     if (!parsed) throw new Error(`Unparsed colour: ${css}`)
     if (mode === "paint" && parsed.alpha === 0) return
-    colours.set(css, parsed)
+    colours.set(parsed.light, parsed)
   }
 
   for (const [id, node] of Object.entries(structure)) {
@@ -108,7 +109,8 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
       const fontSize = readString(layer.style.fontSize)
       const fontWeight = readString(layer.style.fontWeight)
       const lineHeight = readString(layer.style.lineHeight)
-      const letterSpacing = readString(layer.style.letterSpacing)
+      const letterSpacingRaw = readString(layer.style.letterSpacing)
+      const letterSpacing = letterSpacingRaw === "normal" ? "0em" : letterSpacingRaw
       const textTransform = readString(layer.style.textTransform)
       if (!color || !fontFamily || !fontSize || !fontWeight || !lineHeight || !letterSpacing || !textTransform) continue
       rememberColour(color, "text")
@@ -123,12 +125,13 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
     for (const side of Object.values(sides)) rememberColour(side.css, "text")
   }
 
-  const colourNames = assignNames([...colours.keys()].sort(), (css) => `color/${slug(css)}`)
+  const colourNames = assignNames([...colours.keys()].sort(), (light) => `color/${slug(light)}`)
+  const colourName = (css: string) => colourNames.get(parseColour(css)?.light ?? "")
   const coloursOut = [...colours.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([css, parsed]) => {
-      const name = colourNames.get(css)!
-      return { name, css, alpha: parsed.alpha, framer: { action: "createColorStyle", name, light: parsed.light } }
+    .map(([light]) => {
+      const name = colourNames.get(light)!
+      return { name, framer: { action: "createColorStyle", name, light } }
     })
 
   const textNames = new Set<string>()
@@ -142,17 +145,11 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
       if (!family || weight === null) return []
       const base = `text/${prefix}/${slug([family, text.fontSize, text.fontWeight, text.lineHeight, text.letterSpacing, text.textTransform].join(" "))}`
       const name = unique(base, textNames)
-      const colorStyle = colourNames.get(text.color)!
+      const colorStyle = colourName(text.color)!
       return [{
         sort: `${ROLE_ORDER.indexOf(prefix as Role)}\u0000${Number.parseFloat(text.fontSize) || 0}\u0000${name}`,
         name,
         roles,
-        fontFamily: text.fontFamily,
-        fontSize: text.fontSize,
-        fontWeight: text.fontWeight,
-        lineHeight: text.lineHeight,
-        letterSpacing: text.letterSpacing,
-        textTransform: text.textTransform,
         colorStyle,
         framer: {
           action: "createTextStyle",
@@ -179,10 +176,6 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
   return {
     schemaVersion: SCHEMA_VERSION,
     source: {
-      url: input.structure.url ?? input.computed.url ?? "",
-      slug: input.structure.slug ?? input.computed.slug ?? "",
-      state: input.structure.state ?? input.computed.state ?? "",
-      language: input.language,
       viewport: { width, height },
     },
     colours: coloursOut,
@@ -193,7 +186,7 @@ export function collectTokens(input: CollectInput): Record<string, unknown> {
     }))),
     borders: nameEntries([...borders.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, sides]) => ({
       name: `border/${slug(JSON.stringify(sides))}`,
-      sides: Object.fromEntries(Object.entries(sides).map(([side, raw]) => [side, { ...raw, colorStyle: colourNames.get(raw.css)! }])),
+      sides: Object.fromEntries(Object.entries(sides).map(([side, raw]) => [side, { ...raw, colorStyle: colourName(raw.css)! }])),
     }))),
     radii: nameEntries([...radii.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, corners]) => ({
       name: `radius/${slug(JSON.stringify(corners))}`,
@@ -271,6 +264,9 @@ function collectBox(
   const shadow = readString(style.boxShadow)
   if (shadow && shadow !== "none") shadows.set(shadow, shadow)
   rememberColour(readString(style.backgroundColor), "paint")
+  if (Array.isArray(style.shapePaints)) {
+    for (const paint of style.shapePaints) rememberColour(readString(paint), "paint")
+  }
 }
 
 function ignoredIds(structure: Record<string, StructureNode>, skipped: { nodeId?: string; reason?: string }[]) {

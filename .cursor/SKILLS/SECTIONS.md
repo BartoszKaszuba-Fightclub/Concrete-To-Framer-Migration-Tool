@@ -5,66 +5,33 @@ description: Defines the organisms and the template for one captured page and wr
 
 # Define sections
 
-## Job
+Write `sections-prompt.md` for one capture. An organism is one visual band. The template is the list that places those organisms in order. You do not build them.
 
-Read the files the collector already wrote. Decide which organisms and which template this page has. Write that decision as a prompt a builder agent can follow. Do not recapture the site. Do not create Framer styles, components, or pages. Do not invent measurements that are not in the capture files.
+If the capture folder is missing, stop.
 
-Brad Frost, Atomic Design: an organism is a distinct section of the interface, composed of smaller parts (a header of logo, navigation, and search; a repeated card group). A template is the page-level object that places those organisms in order. This skill names them and records their bounds. It does not build them.
+## Read
 
-Work on one capture: one slug, one width, state `default`. If that capture is missing, stop. Do not guess a layout from memory or from the live site.
+1. `structure.json` — `url`, `viewport`, and `sectionCandidates` only. Each candidate has `id`, `rootIds`, `memberIds`, and `evidence` boxes. A box is `{x, y, width, height}` in CSS pixels from the top-left of the page. When `evidence.position` is `fixed` or `sticky`, `box.y` is the viewport y and does not include scrollY. Other nodes keep document y. Open `nodes` only for a candidate you are splitting, and read `tag`, `box`, and `children` on those nodes.
+2. `screenshot.png` — band edges only. Do not take colour, type, or copy from the image.
+3. `digests/index.json` — which digest files exist. Then open a digest for its visible text, assets, and inline SVG.
 
-## Inputs, in this order
+## Decide
 
-1. `Database/digest/nesting/<slug>/<width>/default/structure.json` — `sectionCandidates` and each node `box`. A box is `{x, y, width, height}` in CSS pixels. `x` is pixels from the left edge of the page. `y` is pixels from the top of the page. Read `url`, `viewport.width`, and `viewport.height` from this file for the prompt header. Resolve a candidate’s boxes through its `rootIds` (and `evidence[].box` when present) into `nodes`.
-2. `Database/Screenshots/<slug>/<width>/default/screenshot.png` — use it only to see where one visual band ends and the next begins. Do not read colours, type, or copy from the image.
-3. `Database/digest/nesting/<slug>/<width>/default/digests/` — section, button, and field digests. Use them to name organisms from visible text and to list which digest ids sit inside each organism.
-4. `Database/digest/nesting/<slug>/<width>/default/reconstruction.json` — simplified tree if a boundary is ambiguous.
+Keep one organism per candidate. A coarse `main` may split where the screenshot shows a new band and a node box sits on that band. Put y edges on those boxes.
 
-If the capture only stored landmarks, a `main` section can cover the whole column. Split that column into organisms at the visible bands (a hero, a card grid, a quote, a form). Bounds still come from node boxes, not from a guess.
+Name an organism from visible text in its digest. Name the template from the page title or the primary heading. If neither is stored, write `Name: missing`.
 
-## Decide the organisms
+Order flow bands by increasing y, then increasing x. A candidate whose evidence position is fixed or sticky has Role: overlay, including when the tag is header. It is not a flow band and is not sorted by document y. A fixed or sticky descendant of a flow landmark is its own overlay. The screenshot does not move an overlay into the flow. Assign a digest to an organism when its root id is inside that organism’s `memberIds`. A digest that fits nowhere is listed under `Unlisted`.
 
-Take `sectionCandidates` as the starting cut. Keep one organism per distinct section.
+Round to whole pixels. A missing box edge is the word `missing`.
 
-Name each organism from visible text in its digest. Do not use a fixed list. Do not name an organism from a class, a tag, or a colour. If the digests do not show a section, do not invent it.
+## One session
 
-One coarse `main` digest may become several organisms. Split it only where the screenshot shows a new band and a node box in `structure.json` (or a node in `reconstruction.json`) sits on that band. Put the organism’s y edges on those node boxes.
+Each organism block is written from the digest files whose roots sit inside that one candidate. While writing that block, do not read another candidate's digests and do not open the screenshot. Do not spawn a subagent. A nested agent has no Task tool, which is why this step stopped.
 
-Assign a digest to an organism when its root node is one of that organism’s nodes. List the digest filename or its id. A digest whose root is not inside any organism stays unlisted; say that in the handoff. Do not invent a digest id.
+## Write
 
-Order the organisms from the top of the page downward (increasing y). When two organisms start at the same y, order them from the left (increasing x).
-
-Name the template from the page title or the primary heading stored in the capture or a digest. If neither is stored, write `Name: missing`. Do not invent a title.
-
-## Bounds
-
-Origin is the top-left of the page. For every organism record all four edges:
-
-- x starts at `box.x` (pixels from the left)
-- x ends at `box.x + box.width`
-- y starts at `box.y` (pixels from the top)
-- y ends at `box.y + box.height`
-
-For the template, record where the page content starts and ends vertically (y start and y end of the stacked organisms). Horizontal bounds on the template are the page width of the capture (`viewport.width`).
-
-Use the union of the organism’s root boxes when an organism has several roots:
-
-- x start is the smallest `box.x`
-- x end is the largest `box.x + box.width`
-- y start is the smallest `box.y`
-- y end is the largest `box.y + box.height`
-
-Round to whole pixels. If a box is missing, say that edge is missing. Do not invent a coordinate. Do not copy an edge from the screenshot.
-
-Template y start is the smallest organism y start. Template y end is the largest organism y end. If an organism edge is missing, the template edge that depends on it is missing too.
-
-## Output
-
-Write `Database/digest/nesting/<slug>/<width>/default/sections-prompt.md`.
-
-This is the only file to write. Do not change `structure.json`, the digests, the screenshot, or `reconstruction.json`.
-
-The file is the prompt for the builder. Use this shape:
+Only `Database/digest/nesting/<slug>/<width>/default/sections-prompt.md`.
 
 ```markdown
 # Section prompt
@@ -79,19 +46,21 @@ Place the organisms below in this order. y <start> to <end>. x 0 to <viewport wi
 
 ## Organisms
 ### <name from visible text>
-Role: <header, hero, card group, footer, or another distinct section>
+Role: <header, hero, card group, footer, overlay, or another distinct section>
 Bounds: x <start> to <end>, y <start> to <end>
-Digests: <digest filenames or ids that belong inside>
-Contains: <short list of the visible parts, from the digests>
+Digests: <ids from the index>
+Contains: <headings by tag, cards, logos, images, from the digests>
+
+## Unlisted
+<digest ids that fit no organism, or "none">
 ```
 
-Fill every placeholder from the capture. Write a missing edge as `missing`. `Contains` lists the headings, cards, logos, and images that sit in that organism, plus the other parts named in the digests. Name a heading by its tag. Name a card when a repeated block holds an image and a heading. Name a logo when the header digest has a brand image or inline SVG. Name an image from its digest asset. Do not describe colour or type size taken from the screenshot.
+`Contains` names the parts the builder must draw. Template y starts at the smallest flow-band y and ends at the largest. The overlay does not move that range.
 
-One organism per distinct section. Repeat the organism block for each one, in the order recorded on the template.
+## Done
 
-## Handoff
+Tell the parent the prompt path, the template name, and each organism’s name and bounds. Every candidate root is inside an organism or named under `Unlisted`.
 
-Tell the parent the prompt path, the template name, each organism name, and each organism’s x and y bounds. Do not tell the builder to open the website.
+## Forbidden
 
-Stop after the prompt file and that handoff. Do not recapture. Do not open Framer. Do not create styles, components, or pages.
-
+`computed.json`, `tokens.json`, `snapshot.html`, recapture, and Framer.
