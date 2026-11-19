@@ -8,10 +8,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -20,9 +20,9 @@
   "component": {
     "id": "cmp-003",
     "rootIds": [
-      "n-000125"
+      "n-000768"
     ],
-    "type": "button"
+    "type": "field"
   },
   "evidence": {
     "screenshot": {
@@ -32,15 +32,13 @@
   },
   "groups": [
     {
-      "fieldType": "",
+      "fieldType": "email",
       "id": "group.0001",
-      "kind": "button",
+      "kind": "field",
       "occurrences": [
         {
-          "labels": [
-            "Bekijk onze vacatures"
-          ],
-          "nodeId": "n-000125",
+          "labels": [],
+          "nodeId": "n-000768",
           "spacingRef": "spacing.0001"
         }
       ],
@@ -55,56 +53,55 @@
           "typography.0001"
         ]
       },
-      "tag": "a"
+      "tag": "input"
     }
   ],
   "hierarchy": [
     {
       "childIds": [],
-      "id": "n-000125",
+      "id": "n-000768",
       "order": 0,
       "parentId": null
     }
   ],
   "idStability": "capture-local",
-  "links": [
-    {
-      "destination": {
-        "href": "https://werkenbij.yellowhive.nl/",
-        "kind": "external",
-        "status": "value"
-      },
-      "label": "Bekijk onze vacatures",
-      "nodeId": "n-000125"
-    }
-  ],
+  "links": [],
   "nodes": {
-    "n-000125": {
+    "n-000768": {
       "assetIds": [],
       "children": [],
       "effects": {
-        "status": "empty"
+        "clipping": {
+          "status": "value",
+          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
+        },
+        "status": "value"
+      },
+      "field": {
+        "placeholder": "naam@bedrijf.nl",
+        "type": "email",
+        "value": ""
       },
       "geometry": {
-        "height": 45.02,
+        "height": 48,
         "status": "value",
-        "width": 256.02,
-        "x": 100,
-        "y": 599.98
+        "width": 243.72,
+        "x": 645,
+        "y": 7360.41
       },
-      "id": "n-000125",
+      "id": "n-000768",
       "labelNodes": [
         {
-          "nodeId": "n-000125",
+          "nodeId": "n-000768",
           "text": {
-            "status": "value",
-            "value": "Bekijk onze vacatures"
+            "status": "empty",
+            "value": ""
           },
           "typographyRef": "typography.0001"
         }
       ],
       "layout": {
-        "display": "inline-block",
+        "display": "block",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
@@ -124,28 +121,28 @@
         "status": "empty"
       },
       "role": "control",
-      "sourceId": "n-000125",
+      "sourceId": "n-000768",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0001",
-            "borderLeftColor": "colour.0001",
-            "borderRightColor": "colour.0001",
-            "borderTopColor": "colour.0001"
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
           },
           "ref": "border.0001",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(249, 176, 15)"
+              "value": "rgba(0, 0, 0, 0.14)"
             },
             "borderBottomLeftRadius": {
               "status": "value",
-              "value": "6px"
+              "value": "8px"
             },
             "borderBottomRightRadius": {
               "status": "value",
-              "value": "6px"
+              "value": "8px"
             },
             "borderBottomStyle": {
               "status": "value",
@@ -153,11 +150,11 @@
             },
             "borderBottomWidth": {
               "status": "value",
-              "value": "2px"
+              "value": "1px"
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(249, 176, 15)"
+              "value": "rgba(0, 0, 0, 0.14)"
             },
             "borderLeftStyle": {
               "status": "value",
@@ -165,11 +162,11 @@
             },
             "borderLeftWidth": {
               "status": "value",
-              "value": "2px"
+              "value": "1px"
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(249, 176, 15)"
+              "value": "rgba(0, 0, 0, 0.14)"
             },
             "borderRightStyle": {
               "status": "value",
@@ -177,19 +174,19 @@
             },
             "borderRightWidth": {
               "status": "value",
-              "value": "2px"
+              "value": "1px"
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(249, 176, 15)"
+              "value": "rgba(0, 0, 0, 0.14)"
             },
             "borderTopLeftRadius": {
               "status": "value",
-              "value": "6px"
+              "value": "8px"
             },
             "borderTopRightRadius": {
               "status": "value",
-              "value": "6px"
+              "value": "8px"
             },
             "borderTopStyle": {
               "status": "value",
@@ -197,14 +194,14 @@
             },
             "borderTopWidth": {
               "status": "value",
-              "value": "2px"
+              "value": "1px"
             }
           }
         },
         "fill": {
           "backgroundColor": {
             "status": "value",
-            "value": "rgb(249, 176, 15)"
+            "value": "rgb(255, 255, 255)"
           },
           "backgroundImage": {
             "status": "empty",
@@ -226,8 +223,8 @@
               "status": "unsupported"
             },
             "marginBottom": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "8px"
             },
             "marginLeft": {
               "status": "zero",
@@ -242,20 +239,20 @@
               "value": "0px"
             },
             "paddingBottom": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingLeft": {
               "status": "value",
-              "value": "25.008px"
+              "value": "14px"
             },
             "paddingRight": {
               "status": "value",
-              "value": "25.008px"
+              "value": "14px"
             },
             "paddingTop": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "rowGap": {
               "raw": "normal",
@@ -270,19 +267,19 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(255, 255, 255)"
+              "value": "rgb(26, 26, 24)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
-              "value": "18px"
+              "value": "15px"
             },
             "fontWeight": {
               "status": "value",
-              "value": "700"
+              "value": "400"
             },
             "letterSpacing": {
               "raw": "normal",
@@ -291,7 +288,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "21.008px"
+              "value": "22.5px"
             },
             "textTransform": {
               "status": "empty",
@@ -300,19 +297,13 @@
           }
         }
       },
-      "tag": "a",
+      "tag": "input",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Bekijk onze vacatures"
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000125",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
-          }
-        ]
+        "runs": []
       }
     }
   },
@@ -321,9 +312,9 @@
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000125",
+        "nodeId": "n-000768",
         "sourceIds": [
-          "n-000125"
+          "n-000768"
         ]
       }
     ]
@@ -344,9 +335,8 @@
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-249-176-15-1",
+        "name": "color/rgba-255-255-255-1",
         "roles": [
-          "border",
           "fill"
         ]
       }
@@ -355,9 +345,19 @@
       "id": "colour.0002",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-255-255-255-1",
+        "name": "color/rgba-26-26-24-1",
         "roles": [
           "text"
+        ]
+      }
+    },
+    "colour.0003": {
+      "id": "colour.0003",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-0-0-0-0-14",
+        "roles": [
+          "border"
         ]
       }
     },
@@ -375,13 +375,30 @@
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-18px-700-21-008px-0em-none-2",
+        "name": "typography-0001",
         "roles": [
           "typography"
         ]
       }
     }
   },
-  "unsupported": [],
-  "warnings": []
+  "unsupported": [
+    {
+      "feature": "form-behaviour",
+      "message": "Field values are static observations. Submission and validation are not represented.",
+      "nodeIds": [
+        "n-000768"
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

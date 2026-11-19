@@ -1,5 +1,25 @@
 {
-  "assets": [],
+  "assets": [
+    {
+      "alt": "Voigt.jpeg",
+      "id": "asset.0001",
+      "kind": "img",
+      "naturalHeight": {
+        "status": "value",
+        "value": "372"
+      },
+      "naturalWidth": {
+        "status": "value",
+        "value": "1920"
+      },
+      "nodeId": "n-000301",
+      "originalUrl": "https://www.xelion.com/application/files/7517/2707/6922/Voigt.jpeg",
+      "usablePath": {
+        "status": "value",
+        "value": "Database/digest/nesting/nl/1200/default/assets/Voigt.jpeg"
+      }
+    }
+  ],
   "capture": {
     "captureId": "nl-1200-default",
     "config": {
@@ -8,10 +28,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -20,7 +40,7 @@
   "component": {
     "id": "cmp-048",
     "rootIds": [
-      "n-000310"
+      "n-000299"
     ],
     "type": "molecule"
   },
@@ -34,57 +54,47 @@
   "hierarchy": [
     {
       "childIds": [
-        "n-000311"
+        "n-000301"
       ],
-      "id": "n-000310",
+      "id": "n-000299",
       "order": 0,
       "parentId": null
     },
     {
       "childIds": [],
-      "id": "n-000311",
+      "id": "n-000301",
       "order": 0,
-      "parentId": "n-000310"
+      "parentId": "n-000299"
     }
   ],
   "idStability": "capture-local",
-  "links": [
-    {
-      "destination": {
-        "href": "https://yellowhive.com/nl/over-yellow-hive",
-        "kind": "external",
-        "status": "value"
-      },
-      "label": "Over Yellow Hive",
-      "nodeId": "n-000311"
-    }
-  ],
+  "links": [],
   "nodes": {
-    "n-000310": {
+    "n-000299": {
       "assetIds": [],
       "children": [
-        "n-000311"
+        "n-000301"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 20,
+        "height": 120,
         "status": "value",
-        "width": 255,
-        "x": 330,
-        "y": 4637.06
+        "width": 86.25,
+        "x": 1670.3,
+        "y": 2075.16
       },
-      "id": "n-000310",
+      "id": "n-000299",
       "layout": {
-        "display": "list-item",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
+        "position": "relative",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -97,7 +107,7 @@
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000310",
+      "sourceId": "n-000299",
       "styles": {
         "border": {
           "colourRefs": {
@@ -110,7 +120,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -130,7 +140,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -142,7 +152,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -154,7 +164,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -199,16 +209,16 @@
               "status": "unsupported"
             },
             "marginBottom": {
-              "status": "value",
-              "value": "20px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginLeft": {
               "status": "zero",
               "value": "0px"
             },
             "marginRight": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "64px"
             },
             "marginTop": {
               "status": "zero",
@@ -243,11 +253,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -264,7 +274,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "20px"
+              "value": "24px"
             },
             "textTransform": {
               "status": "empty",
@@ -273,37 +283,41 @@
           }
         }
       },
-      "tag": "li",
+      "tag": "div",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Over Yellow Hive"
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000311",
-            "text": "Over Yellow Hive",
-            "typographyRef": "typography.0001"
-          }
-        ]
+        "runs": []
       }
     },
-    "n-000311": {
-      "assetIds": [],
+    "n-000301": {
+      "assetIds": [
+        "asset.0001"
+      ],
       "children": [],
       "effects": {
-        "status": "empty"
+        "clipping": {
+          "status": "value",
+          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
+        },
+        "filter": {
+          "status": "value",
+          "value": "filter: grayscale(1); backdropFilter: none"
+        },
+        "status": "value"
       },
       "geometry": {
-        "height": 20,
+        "height": 120,
         "status": "value",
-        "width": 130,
-        "x": 330,
-        "y": 4637.06
+        "width": 120,
+        "x": 1653.43,
+        "y": 2075.16
       },
-      "id": "n-000311",
+      "id": "n-000301",
       "layout": {
-        "display": "inline",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
@@ -318,12 +332,12 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000310",
+      "parentId": "n-000299",
       "pseudos": {
         "status": "empty"
       },
-      "role": "label",
-      "sourceId": "n-000311",
+      "role": "node",
+      "sourceId": "n-000301",
       "styles": {
         "border": {
           "colourRefs": {
@@ -336,7 +350,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -356,7 +370,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -368,7 +382,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -380,7 +394,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -469,11 +483,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -490,7 +504,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "20px"
+              "value": "24px"
             },
             "textTransform": {
               "status": "empty",
@@ -499,30 +513,32 @@
           }
         }
       },
-      "tag": "a",
+      "tag": "img",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Over Yellow Hive"
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000311",
-            "text": "Over Yellow Hive",
-            "typographyRef": "typography.0001"
-          }
-        ]
+        "runs": []
       }
     }
   },
   "provenance": {
-    "folded": [],
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000301"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000300"
+      }
+    ],
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000310",
+        "nodeId": "n-000299",
         "sourceIds": [
-          "n-000310"
+          "n-000299"
         ]
       }
     ]
@@ -543,7 +559,7 @@
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-27-49-88-1",
+        "name": "color/rgba-33-37-41-1",
         "roles": [
           "border",
           "text"
@@ -564,7 +580,7 @@
       "id": "spacing.0001",
       "kind": "spacing",
       "proposal": {
-        "name": "spacing/margin/bottom-20px",
+        "name": "spacing-0001",
         "roles": [
           "spacing"
         ]
@@ -584,7 +600,7 @@
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/link/lexend-16px-400-20px-0em-none",
+        "name": "text/link/urbanist-16px-400-24px-0em-none",
         "roles": [
           "typography"
         ]
@@ -592,5 +608,14 @@
     }
   },
   "unsupported": [],
-  "warnings": []
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

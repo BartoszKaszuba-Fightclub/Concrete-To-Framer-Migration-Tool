@@ -1,128 +1,590 @@
 [
   {
     "nodeId": "n-000007",
-    "originalUrl": "https://yellowhive.com/application/files/2116/6626/7789/logo-yellow-hive.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-yellow-hive.svg",
-    "naturalWidth": 125,
-    "naturalHeight": 55
+    "originalUrl": "https://www.xelion.com/application/files/9017/2241/7494/xelion-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/xelion-logo.png",
+    "naturalWidth": 1212,
+    "naturalHeight": 221
   },
   {
-    "nodeId": "n-000109",
-    "originalUrl": "https://yellowhive.com/application/files/4616/8174/2097/Hero-LG-Onze-merken_02.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Hero-LG-Onze-merken_02.jpg",
-    "naturalWidth": 1920,
-    "naturalHeight": 770
+    "nodeId": "n-000008",
+    "originalUrl": "https://www.xelion.com/application/files/6217/2294/7872/xelion-logo-minified.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/xelion-logo-minified.png",
+    "naturalWidth": 331,
+    "naturalHeight": 330
   },
   {
-    "nodeId": "n-000127",
-    "originalUrl": "https://yellowhive.com/application/files/6916/8174/2120/Hero-LG-werken-bij.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Hero-LG-werken-bij.jpg",
-    "naturalWidth": 1920,
-    "naturalHeight": 770
+    "nodeId": "n-000012",
+    "originalUrl": "https://www.xelion.com/application/files/9017/2241/7494/xelion-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/xelion-logo.png",
+    "naturalWidth": 1212,
+    "naturalHeight": 221
   },
   {
-    "nodeId": "n-000146",
-    "originalUrl": "https://yellowhive.com/application/files/5016/8174/2115/Hero-LG-Join-the-Hive.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Hero-LG-Join-the-Hive.jpg",
-    "naturalWidth": 1920,
-    "naturalHeight": 770
+    "nodeId": "n-000134",
+    "originalUrl": "https://www.xelion.com/concrete/images/countries/nl.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/nl.png",
+    "naturalWidth": 16,
+    "naturalHeight": 16
   },
   {
-    "nodeId": "n-000164",
-    "originalUrl": "https://yellowhive.com/application/files/1117/3892/4223/HERO_DE_shared-service-center.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/HERO_DE_shared-service-center.jpg",
-    "naturalWidth": 1920,
-    "naturalHeight": 770
+    "nodeId": "n-000140",
+    "originalUrl": "https://www.xelion.com/concrete/images/countries/gb.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/gb.png",
+    "naturalWidth": 16,
+    "naturalHeight": 16
   },
   {
-    "nodeId": "n-000186",
-    "originalUrl": "https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/feature-mask.svg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
+    "nodeId": "n-000145",
+    "originalUrl": "https://www.xelion.com/concrete/images/countries/de.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/de.png",
+    "naturalWidth": 16,
+    "naturalHeight": 16
   },
   {
-    "nodeId": "n-000193",
-    "originalUrl": "https://yellowhive.com/application/files/2416/7844/8073/550_home_01.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/550_home_01.jpg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
+    "nodeId": "n-000190",
+    "originalUrl": "https://www.xelion.com/application/files/cache/thumbnails/hero-image-nl-cropped-dda50333b5883a90dab1ac9550b8d0fc.webp",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/hero-image-nl-cropped-dda50333b5883a90dab1ac9550b8d0fc.webp",
+    "naturalWidth": 860,
+    "naturalHeight": 539
   },
   {
-    "nodeId": "n-000193",
-    "originalUrl": "https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/feature-mask.svg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
+    "nodeId": "n-000228",
+    "originalUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M9%2018C4.02891%2018%200%2013.9711%200%209C0%204.02891%204.02891%200%209%200C13.9711%200%2018%204.02891%2018%209C18%2013.9711%2013.9711%2018%209%2018ZM13.1484%205.12227C12.7723%204.84805%2012.2449%204.93242%2011.9707%205.30859L7.77305%2011.0813L5.94141%209.24961C5.61094%208.91914%205.07656%208.91914%204.74961%209.24961C4.42266%209.58008%204.41914%2010.1145%204.74961%2010.4414L7.28086%2012.9727C7.45664%2013.1484%207.6957%2013.2363%207.9418%2013.2188C8.18789%2013.2012%208.41289%2013.0746%208.55703%2012.8742L13.3348%206.3C13.609%205.92383%2013.5246%205.39648%2013.1484%205.12227Z%22%20fill%3D%22currentColor%22%2F%3E%3C%2Fsvg%3E",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/asset.svg",
+    "naturalWidth": 18,
+    "naturalHeight": 18
   },
   {
-    "nodeId": "n-000195",
-    "originalUrl": "https://yellowhive.com/application/files/3716/7844/8073/550_home_02.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/550_home_02.jpg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
-  },
-  {
-    "nodeId": "n-000195",
-    "originalUrl": "https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/feature-mask.svg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
-  },
-  {
-    "nodeId": "n-000197",
-    "originalUrl": "https://yellowhive.com/application/files/1916/7844/8073/550_home_03.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/550_home_03.jpg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
-  },
-  {
-    "nodeId": "n-000197",
-    "originalUrl": "https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/feature-mask.svg",
-    "naturalWidth": 550,
-    "naturalHeight": 550
-  },
-  {
-    "nodeId": "n-000217",
-    "originalUrl": "https://yellowhive.com/application/files/6316/7844/9466/img_540x350_join-the-hive.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/img_540x350_join-the-hive.jpg",
-    "naturalWidth": 540,
-    "naturalHeight": 350
+    "nodeId": "n-000229",
+    "originalUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M9%2018C4.02891%2018%200%2013.9711%200%209C0%204.02891%204.02891%200%209%200C13.9711%200%2018%204.02891%2018%209C18%2013.9711%2013.9711%2018%209%2018ZM13.1484%205.12227C12.7723%204.84805%2012.2449%204.93242%2011.9707%205.30859L7.77305%2011.0813L5.94141%209.24961C5.61094%208.91914%205.07656%208.91914%204.74961%209.24961C4.42266%209.58008%204.41914%2010.1145%204.74961%2010.4414L7.28086%2012.9727C7.45664%2013.1484%207.6957%2013.2363%207.9418%2013.2188C8.18789%2013.2012%208.41289%2013.0746%208.55703%2012.8742L13.3348%206.3C13.609%205.92383%2013.5246%205.39648%2013.1484%205.12227Z%22%20fill%3D%22currentColor%22%2F%3E%3C%2Fsvg%3E",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/asset.svg",
+    "naturalWidth": 18,
+    "naturalHeight": 18
   },
   {
     "nodeId": "n-000230",
-    "originalUrl": "https://yellowhive.com/application/files/7516/7844/8233/img_540x350_werken-bij-yellow-hive.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/img_540x350_werken-bij-yellow-hive.jpg",
-    "naturalWidth": 540,
-    "naturalHeight": 350
+    "originalUrl": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M9%2018C4.02891%2018%200%2013.9711%200%209C0%204.02891%204.02891%200%209%200C13.9711%200%2018%204.02891%2018%209C18%2013.9711%2013.9711%2018%209%2018ZM13.1484%205.12227C12.7723%204.84805%2012.2449%204.93242%2011.9707%205.30859L7.77305%2011.0813L5.94141%209.24961C5.61094%208.91914%205.07656%208.91914%204.74961%209.24961C4.42266%209.58008%204.41914%2010.1145%204.74961%2010.4414L7.28086%2012.9727C7.45664%2013.1484%207.6957%2013.2363%207.9418%2013.2188C8.18789%2013.2012%208.41289%2013.0746%208.55703%2012.8742L13.3348%206.3C13.609%205.92383%2013.5246%205.39648%2013.1484%205.12227Z%22%20fill%3D%22currentColor%22%2F%3E%3C%2Fsvg%3E",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/asset.svg",
+    "naturalWidth": 18,
+    "naturalHeight": 18
   },
   {
-    "nodeId": "n-000244",
-    "originalUrl": "https://yellowhive.com/application/files/thumbnails/xs/8717/8307/8273/Thumbnail_BHB_Dullemond_mentaal_welzijn.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Thumbnail_BHB_Dullemond_mentaal_welzijn.jpg",
-    "naturalWidth": 576,
+    "nodeId": "n-000240",
+    "originalUrl": "https://www.xelion.com/application/files/6717/2405/5542/wilmink-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/wilmink-logo.png",
+    "naturalWidth": 1536,
+    "naturalHeight": 638
+  },
+  {
+    "nodeId": "n-000243",
+    "originalUrl": "https://www.xelion.com/application/files/8217/4050/1538/Euromast.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Euromast.png",
+    "naturalWidth": 1818,
+    "naturalHeight": 1600
+  },
+  {
+    "nodeId": "n-000246",
+    "originalUrl": "https://www.xelion.com/application/files/1317/2405/5541/vvv-venlo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/vvv-venlo.png",
+    "naturalWidth": 1200,
+    "naturalHeight": 1287
+  },
+  {
+    "nodeId": "n-000248",
+    "originalUrl": "https://www.xelion.com/application/files/6317/2405/5541/spant-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/spant-logo.png",
+    "naturalWidth": 1436,
+    "naturalHeight": 423
+  },
+  {
+    "nodeId": "n-000251",
+    "originalUrl": "https://www.xelion.com/application/files/1317/2405/5541/BUS.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/BUS.png",
+    "naturalWidth": 850,
+    "naturalHeight": 567
+  },
+  {
+    "nodeId": "n-000253",
+    "originalUrl": "https://www.xelion.com/application/files/7117/2405/5541/complies_logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/complies_logo.png",
+    "naturalWidth": 334,
+    "naturalHeight": 95
+  },
+  {
+    "nodeId": "n-000256",
+    "originalUrl": "https://www.xelion.com/application/files/2517/2405/6776/Jongeneel-transport.webp",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Jongeneel-transport.webp",
+    "naturalWidth": 448,
+    "naturalHeight": 116
+  },
+  {
+    "nodeId": "n-000259",
+    "originalUrl": "https://www.xelion.com/application/files/7917/2405/6607/loetje.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/loetje.svg",
+    "naturalWidth": 364,
+    "naturalHeight": 201
+  },
+  {
+    "nodeId": "n-000262",
+    "originalUrl": "https://www.xelion.com/application/files/5217/2675/3423/Thus_Wonen_logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Thus_Wonen_logo.png",
+    "naturalWidth": 284,
+    "naturalHeight": 169
+  },
+  {
+    "nodeId": "n-000265",
+    "originalUrl": "https://www.xelion.com/application/files/4517/2707/4650/kraamzorghetgroenekruis.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/kraamzorghetgroenekruis.png",
+    "naturalWidth": 424,
+    "naturalHeight": 104
+  },
+  {
+    "nodeId": "n-000268",
+    "originalUrl": "https://www.xelion.com/application/files/9617/2707/4760/COKZ.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/COKZ.png",
+    "naturalWidth": 284,
+    "naturalHeight": 369
+  },
+  {
+    "nodeId": "n-000271",
+    "originalUrl": "https://www.xelion.com/application/files/9517/8878/4865/conniption.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/conniption.svg",
+    "naturalWidth": 300,
+    "naturalHeight": 83
+  },
+  {
+    "nodeId": "n-000274",
+    "originalUrl": "https://www.xelion.com/application/files/2017/2707/4911/Juice.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Juice.png",
+    "naturalWidth": 200,
+    "naturalHeight": 51
+  },
+  {
+    "nodeId": "n-000277",
+    "originalUrl": "https://www.xelion.com/application/files/7817/2707/5053/Vermeer.gif",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Vermeer.gif",
+    "naturalWidth": 736,
+    "naturalHeight": 156
+  },
+  {
+    "nodeId": "n-000280",
+    "originalUrl": "https://www.xelion.com/application/files/5417/2707/4911/Houcon.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Houcon.png",
+    "naturalWidth": 193,
+    "naturalHeight": 55
+  },
+  {
+    "nodeId": "n-000283",
+    "originalUrl": "https://www.xelion.com/application/files/4317/2707/5295/Wippenbelt.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Wippenbelt.png",
+    "naturalWidth": 500,
+    "naturalHeight": 212
+  },
+  {
+    "nodeId": "n-000286",
+    "originalUrl": "https://www.xelion.com/application/files/2917/2707/5351/Vada.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Vada.jpg",
+    "naturalWidth": 1920,
+    "naturalHeight": 941
+  },
+  {
+    "nodeId": "n-000289",
+    "originalUrl": "https://www.xelion.com/application/files/8317/2707/5606/Akro.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Akro.png",
+    "naturalWidth": 426,
+    "naturalHeight": 298
+  },
+  {
+    "nodeId": "n-000292",
+    "originalUrl": "https://www.xelion.com/application/files/8417/2707/6001/Conntact.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Conntact.png",
+    "naturalWidth": 186,
+    "naturalHeight": 50
+  },
+  {
+    "nodeId": "n-000295",
+    "originalUrl": "https://www.xelion.com/application/files/5217/2707/6095/ASN.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/ASN.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 1229
+  },
+  {
+    "nodeId": "n-000298",
+    "originalUrl": "https://www.xelion.com/application/files/2217/2707/6288/Probo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Probo.png",
+    "naturalWidth": 863,
+    "naturalHeight": 473
+  },
+  {
+    "nodeId": "n-000301",
+    "originalUrl": "https://www.xelion.com/application/files/7517/2707/6922/Voigt.jpeg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Voigt.jpeg",
+    "naturalWidth": 1920,
+    "naturalHeight": 372
+  },
+  {
+    "nodeId": "n-000304",
+    "originalUrl": "https://www.xelion.com/application/files/1117/2707/7074/Cordaan.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Cordaan.svg",
+    "naturalWidth": 171,
+    "naturalHeight": 53
+  },
+  {
+    "nodeId": "n-000306",
+    "originalUrl": "https://www.xelion.com/application/files/7617/2707/7256/Lentink.jpeg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Lentink.jpeg",
+    "naturalWidth": 200,
+    "naturalHeight": 200
+  },
+  {
+    "nodeId": "n-000309",
+    "originalUrl": "https://www.xelion.com/application/files/1717/2707/7370/Freevoice.webp",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Freevoice.webp",
+    "naturalWidth": 225,
+    "naturalHeight": 60
+  },
+  {
+    "nodeId": "n-000312",
+    "originalUrl": "https://www.xelion.com/application/files/5517/2707/8154/Burnet.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Burnet.png",
+    "naturalWidth": 225,
+    "naturalHeight": 225
+  },
+  {
+    "nodeId": "n-000315",
+    "originalUrl": "https://www.xelion.com/application/files/6317/2707/8153/BaseNet.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/BaseNet.png",
+    "naturalWidth": 217,
+    "naturalHeight": 80
+  },
+  {
+    "nodeId": "n-000317",
+    "originalUrl": "https://www.xelion.com/application/files/7017/2707/8152/LTP.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/LTP.png",
+    "naturalWidth": 206,
+    "naturalHeight": 180
+  },
+  {
+    "nodeId": "n-000319",
+    "originalUrl": "https://www.xelion.com/application/files/2117/2707/8152/Bouwplein.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Bouwplein.svg",
+    "naturalWidth": 150,
+    "naturalHeight": 150
+  },
+  {
+    "nodeId": "n-000323",
+    "originalUrl": "https://www.xelion.com/application/files/6717/2707/8152/Smit_en_Dorlas.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Smit_en_Dorlas.svg",
+    "naturalWidth": 200,
+    "naturalHeight": 53
+  },
+  {
+    "nodeId": "n-000326",
+    "originalUrl": "https://www.xelion.com/application/files/5017/2707/8153/riverty.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/riverty.png",
+    "naturalWidth": 924,
+    "naturalHeight": 104
+  },
+  {
+    "nodeId": "n-000330",
+    "originalUrl": "https://www.xelion.com/application/files/3417/2804/3301/MENSONIDES_LOGO-1_HQ_-_kopie.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/MENSONIDES_LOGO-1_HQ_-_kopie.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 659
+  },
+  {
+    "nodeId": "n-000334",
+    "originalUrl": "https://www.xelion.com/application/files/6417/2917/5950/No_Code_Digital_logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/No_Code_Digital_logo.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 922
+  },
+  {
+    "nodeId": "n-000338",
+    "originalUrl": "https://www.xelion.com/application/files/8717/2917/6023/logo_patkel.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo_patkel.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 886
+  },
+  {
+    "nodeId": "n-000342",
+    "originalUrl": "https://www.xelion.com/application/files/5717/3013/1515/thumbnail_Logo-Dirkzwager-Groep-Vastgoed-Onderhoud-V.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/thumbnail_Logo-Dirkzwager-Groep-Vastgoed-Onderhoud-V.png",
+    "naturalWidth": 640,
+    "naturalHeight": 238
+  },
+  {
+    "nodeId": "n-000346",
+    "originalUrl": "https://www.xelion.com/application/files/6617/3341/0752/solis-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/solis-logo.png",
+    "naturalWidth": 560,
+    "naturalHeight": 392
+  },
+  {
+    "nodeId": "n-000350",
+    "originalUrl": "https://www.xelion.com/application/files/9817/5275/3452/gezondheidscentrum.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/gezondheidscentrum.png",
+    "naturalWidth": 542,
+    "naturalHeight": 150
+  },
+  {
+    "nodeId": "n-000354",
+    "originalUrl": "https://www.xelion.com/application/files/5817/6485/8980/remmerswaal-768x604.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/remmerswaal-768x604.png",
+    "naturalWidth": 768,
+    "naturalHeight": 604
+  },
+  {
+    "nodeId": "n-000358",
+    "originalUrl": "https://www.xelion.com/application/files/7817/8790/9620/Fraudehelpdesk.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Fraudehelpdesk.png",
+    "naturalWidth": 440,
+    "naturalHeight": 154
+  },
+  {
+    "nodeId": "n-000362",
+    "originalUrl": "https://www.xelion.com/application/files/2517/8878/1019/van_der_kroft_logo.webp",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/van_der_kroft_logo.webp",
+    "naturalWidth": 1920,
+    "naturalHeight": 1920
+  },
+  {
+    "nodeId": "n-000366",
+    "originalUrl": "https://www.xelion.com/application/files/5717/8878/1017/ibood_logo.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/ibood_logo.svg",
+    "naturalWidth": 2091,
+    "naturalHeight": 532
+  },
+  {
+    "nodeId": "n-000370",
+    "originalUrl": "https://www.xelion.com/application/files/7817/8878/1016/2018-12-29-KIKA-logo-1.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/2018-12-29-KIKA-logo-1.jpg",
+    "naturalWidth": 925,
+    "naturalHeight": 517
+  },
+  {
+    "nodeId": "n-000373",
+    "originalUrl": "https://www.xelion.com/application/files/1017/8878/1017/doornenbal_telecom_and_ict.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/doornenbal_telecom_and_ict.png",
+    "naturalWidth": 170,
+    "naturalHeight": 170
+  },
+  {
+    "nodeId": "n-000377",
+    "originalUrl": "https://www.xelion.com/application/files/4817/8878/1018/logo-vandaglas-with-pay-off-black-2000px-800x205-1.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-vandaglas-with-pay-off-black-2000px-800x205-1.png",
+    "naturalWidth": 800,
     "naturalHeight": 205
   },
   {
-    "nodeId": "n-000254",
-    "originalUrl": "https://yellowhive.com/application/files/thumbnails/xs/6417/8221/9114/header_26_06_Persbericht.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/header_26_06_Persbericht.jpg",
-    "naturalWidth": 575,
-    "naturalHeight": 211
+    "nodeId": "n-000381",
+    "originalUrl": "https://www.xelion.com/application/files/2817/8878/1016/hetnotarieel.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/hetnotarieel.jpg",
+    "naturalWidth": 300,
+    "naturalHeight": 66
   },
   {
-    "nodeId": "n-000264",
-    "originalUrl": "https://yellowhive.com/application/files/thumbnails/xs/9217/7695/0080/nws_thumb_Mena_Magazine.jpg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/nws_thumb_Mena_Magazine.jpg",
-    "naturalWidth": 576,
-    "naturalHeight": 207
+    "nodeId": "n-000385",
+    "originalUrl": "https://www.xelion.com/application/files/7217/8878/1018/logo-rb.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-rb.jpg",
+    "naturalWidth": 916,
+    "naturalHeight": 204
   },
   {
-    "nodeId": "n-000297",
-    "originalUrl": "https://yellowhive.com/application/files/2116/6626/7789/logo-yellow-hive.svg",
-    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-yellow-hive.svg",
-    "naturalWidth": 125,
-    "naturalHeight": 55
+    "nodeId": "n-000389",
+    "originalUrl": "https://www.xelion.com/application/files/3217/8878/1018/Masevon-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Masevon-logo.png",
+    "naturalWidth": 640,
+    "naturalHeight": 151
+  },
+  {
+    "nodeId": "n-000393",
+    "originalUrl": "https://www.xelion.com/application/files/9117/8878/1017/Logo-ACD.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Logo-ACD.png",
+    "naturalWidth": 300,
+    "naturalHeight": 116
+  },
+  {
+    "nodeId": "n-000397",
+    "originalUrl": "https://www.xelion.com/application/files/6917/8878/1018/logo-linde-notarissen.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-linde-notarissen.jpg",
+    "naturalWidth": 325,
+    "naturalHeight": 325
+  },
+  {
+    "nodeId": "n-000401",
+    "originalUrl": "https://www.xelion.com/application/files/7117/8878/1019/logo-moulijn.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/logo-moulijn.jpg",
+    "naturalWidth": 300,
+    "naturalHeight": 133
+  },
+  {
+    "nodeId": "n-000405",
+    "originalUrl": "https://www.xelion.com/application/files/2517/8878/1019/WIJHA_logo_cmyk_VBBB_LOGO_at_2x.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/WIJHA_logo_cmyk_VBBB_LOGO_at_2x.png",
+    "naturalWidth": 438,
+    "naturalHeight": 149
+  },
+  {
+    "nodeId": "n-000429",
+    "originalUrl": "https://www.xelion.com/application/files/8117/6485/9647/remmerswaal.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/remmerswaal.jpg",
+    "naturalWidth": 1478,
+    "naturalHeight": 1864
+  },
+  {
+    "nodeId": "n-000447",
+    "originalUrl": "https://www.xelion.com/application/files/6617/3341/0752/solis-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/solis-logo.png",
+    "naturalWidth": 560,
+    "naturalHeight": 392
+  },
+  {
+    "nodeId": "n-000464",
+    "originalUrl": "https://www.xelion.com/application/files/4617/3771/8262/kroft_events.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/kroft_events.jpg",
+    "naturalWidth": 1920,
+    "naturalHeight": 1280
+  },
+  {
+    "nodeId": "n-000481",
+    "originalUrl": "https://www.xelion.com/application/files/1417/6250/5780/Fernando_Buitenhuis_1.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Fernando_Buitenhuis_1.png",
+    "naturalWidth": 1080,
+    "naturalHeight": 1080
+  },
+  {
+    "nodeId": "n-000498",
+    "originalUrl": "https://www.xelion.com/application/files/9217/7193/6228/SU16112-ps-lr.jpg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/SU16112-ps-lr.jpg",
+    "naturalWidth": 1920,
+    "naturalHeight": 2560
+  },
+  {
+    "nodeId": "n-000568",
+    "originalUrl": "https://www.xelion.com/application/files/5617/4101/7168/Gigaset-Logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Gigaset-Logo.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 1080
+  },
+  {
+    "nodeId": "n-000571",
+    "originalUrl": "https://www.xelion.com/application/files/2317/4101/8213/snom-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/snom-logo.png",
+    "naturalWidth": 300,
+    "naturalHeight": 74
+  },
+  {
+    "nodeId": "n-000575",
+    "originalUrl": "https://www.xelion.com/application/files/3417/4101/7818/Yealink_logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Yealink_logo.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 464
+  },
+  {
+    "nodeId": "n-000578",
+    "originalUrl": "https://www.xelion.com/application/files/1317/4101/8339/epos_logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/epos_logo.png",
+    "naturalWidth": 350,
+    "naturalHeight": 116
+  },
+  {
+    "nodeId": "n-000581",
+    "originalUrl": "https://www.xelion.com/application/files/5717/4101/8668/jabra.webp",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/jabra.webp",
+    "naturalWidth": 600,
+    "naturalHeight": 360
+  },
+  {
+    "nodeId": "n-000597",
+    "originalUrl": "https://www.xelion.com/application/files/2617/7332/9801/kollie_v3.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/kollie_v3.png",
+    "naturalWidth": 700,
+    "naturalHeight": 457
+  },
+  {
+    "nodeId": "n-000605",
+    "originalUrl": "https://www.xelion.com/application/files/7417/5984/7669/xelion_timewise.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/xelion_timewise.png",
+    "naturalWidth": 700,
+    "naturalHeight": 457
+  },
+  {
+    "nodeId": "n-000613",
+    "originalUrl": "https://www.xelion.com/application/files/8317/6647/9565/XEL-034_Xelion_Logo_plus_Naam_V1_XEL_Logo_Ipster.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/XEL-034_Xelion_Logo_plus_Naam_V1_XEL_Logo_Ipster.png",
+    "naturalWidth": 1920,
+    "naturalHeight": 1169
+  },
+  {
+    "nodeId": "n-000624",
+    "originalUrl": "https://www.xelion.com/packages/enorm_blackbox/themes/enorm/assets/images/elements/call-to-action-element.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/call-to-action-element.svg",
+    "naturalWidth": 1776,
+    "naturalHeight": 575
+  },
+  {
+    "nodeId": "n-000642",
+    "originalUrl": "https://www.xelion.com/application/files/9017/2241/7494/xelion-logo.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/xelion-logo.png",
+    "naturalWidth": 1212,
+    "naturalHeight": 221
+  },
+  {
+    "nodeId": "n-000659",
+    "originalUrl": "https://www.xelion.com/application/files/1917/2474/0896/app-store.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/app-store.svg",
+    "naturalWidth": 180,
+    "naturalHeight": 58
+  },
+  {
+    "nodeId": "n-000661",
+    "originalUrl": "https://www.xelion.com/application/files/2517/2474/0896/google-play.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/google-play.svg",
+    "naturalWidth": 180,
+    "naturalHeight": 59
+  },
+  {
+    "nodeId": "n-000663",
+    "originalUrl": "https://www.xelion.com/application/files/5617/2716/6115/Frame_628.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/Frame_628.svg",
+    "naturalWidth": 180,
+    "naturalHeight": 59
+  },
+  {
+    "nodeId": "n-000757",
+    "originalUrl": "https://www.xelion.com/application/files/4217/5637/4238/iso-27001-new.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/iso-27001-new.png",
+    "naturalWidth": 765,
+    "naturalHeight": 1065
+  },
+  {
+    "nodeId": "n-000759",
+    "originalUrl": "https://www.xelion.com/application/files/5517/5637/4238/made-in-eu-new.png",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/made-in-eu-new.png",
+    "naturalWidth": 765,
+    "naturalHeight": 1065
+  },
+  {
+    "nodeId": "n-000793",
+    "originalUrl": "https://www.xelion.com/packages/enorm_blackbox/themes/enorm/assets/images/linkedin.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/linkedin.svg",
+    "naturalWidth": 35,
+    "naturalHeight": 35
+  },
+  {
+    "nodeId": "n-000797",
+    "originalUrl": "https://www.xelion.com/packages/enorm_blackbox/themes/enorm/assets/images/youtube.svg",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/youtube.svg",
+    "naturalWidth": 35,
+    "naturalHeight": 35
+  },
+  {
+    "nodeId": "n-000811",
+    "originalUrl": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e",
+    "usablePath": "Database/digest/nesting/nl/1200/default/assets/asset-2.svg",
+    "naturalWidth": 150,
+    "naturalHeight": 150
   }
 ]

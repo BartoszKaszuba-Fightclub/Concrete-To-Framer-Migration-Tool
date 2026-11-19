@@ -1,40 +1,22 @@
 {
   "assets": [
     {
-      "alt": "550_home 02.jpg",
+      "alt": "BUS.png",
       "id": "asset.0001",
       "kind": "img",
       "naturalHeight": {
         "status": "value",
-        "value": "550"
+        "value": "567"
       },
       "naturalWidth": {
         "status": "value",
-        "value": "550"
+        "value": "850"
       },
-      "nodeId": "n-000195",
-      "originalUrl": "https://yellowhive.com/application/files/3716/7844/8073/550_home_02.jpg",
+      "nodeId": "n-000251",
+      "originalUrl": "https://www.xelion.com/application/files/1317/2405/5541/BUS.png",
       "usablePath": {
         "status": "value",
-        "value": "Database/digest/nesting/nl/1200/default/assets/550_home_02.jpg"
-      }
-    },
-    {
-      "id": "asset.0002",
-      "kind": "mask",
-      "naturalHeight": {
-        "status": "value",
-        "value": "550"
-      },
-      "naturalWidth": {
-        "status": "value",
-        "value": "550"
-      },
-      "nodeId": "n-000195",
-      "originalUrl": "https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg",
-      "usablePath": {
-        "status": "value",
-        "value": "Database/digest/nesting/nl/1200/default/assets/feature-mask.svg"
+        "value": "Database/digest/nesting/nl/1200/default/assets/BUS.png"
       }
     }
   ],
@@ -46,10 +28,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -58,7 +40,7 @@
   "component": {
     "id": "cmp-032",
     "rootIds": [
-      "n-000194"
+      "n-000249"
     ],
     "type": "molecule"
   },
@@ -72,47 +54,47 @@
   "hierarchy": [
     {
       "childIds": [
-        "n-000195"
+        "n-000251"
       ],
-      "id": "n-000194",
+      "id": "n-000249",
       "order": 0,
       "parentId": null
     },
     {
       "childIds": [],
-      "id": "n-000195",
+      "id": "n-000251",
       "order": 0,
-      "parentId": "n-000194"
+      "parentId": "n-000249"
     }
   ],
   "idStability": "capture-local",
   "links": [],
   "nodes": {
-    "n-000194": {
+    "n-000249": {
       "assetIds": [],
       "children": [
-        "n-000195"
+        "n-000251"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 270,
+        "height": 120,
         "status": "value",
-        "width": 270,
-        "x": 45,
-        "y": 1195
+        "width": 86.25,
+        "x": -883.95,
+        "y": 2075.16
       },
-      "id": "n-000194",
+      "id": "n-000249",
       "layout": {
-        "display": "block",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
+        "position": "relative",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -125,7 +107,7 @@
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000194",
+      "sourceId": "n-000249",
       "styles": {
         "border": {
           "colourRefs": {
@@ -138,7 +120,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -158,7 +140,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -170,7 +152,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -182,7 +164,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -235,8 +217,8 @@
               "value": "0px"
             },
             "marginRight": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "64px"
             },
             "marginTop": {
               "status": "zero",
@@ -271,11 +253,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -310,36 +292,39 @@
         "runs": []
       }
     },
-    "n-000195": {
+    "n-000251": {
       "assetIds": [
-        "asset.0001",
-        "asset.0002"
+        "asset.0001"
       ],
       "children": [],
       "effects": {
         "clipping": {
           "status": "value",
-          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: url(\"https://yellowhive.com/packages/enorm_blackbox/themes/enorm/assets/images/feature-mask.svg\")"
+          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
+        },
+        "filter": {
+          "status": "value",
+          "value": "filter: grayscale(1); backdropFilter: none"
         },
         "status": "value"
       },
       "geometry": {
-        "height": 270,
+        "height": 120,
         "status": "value",
-        "width": 270,
-        "x": 107.09,
-        "y": 1195
+        "width": 120,
+        "x": -900.82,
+        "y": 2075.16
       },
-      "id": "n-000195",
+      "id": "n-000251",
       "layout": {
-        "display": "inline",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "relative",
+        "position": "static",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -347,12 +332,12 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000194",
+      "parentId": "n-000249",
       "pseudos": {
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000195",
+      "sourceId": "n-000251",
       "styles": {
         "border": {
           "colourRefs": {
@@ -365,7 +350,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -385,7 +370,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -397,7 +382,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -409,7 +394,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -446,7 +431,7 @@
           "value": "none"
         },
         "spacing": {
-          "ref": "spacing.0001",
+          "ref": "spacing.0002",
           "value": {
             "columnGap": {
               "raw": "normal",
@@ -498,11 +483,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -539,13 +524,21 @@
     }
   },
   "provenance": {
-    "folded": [],
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000251"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000250"
+      }
+    ],
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000194",
+        "nodeId": "n-000249",
         "sourceIds": [
-          "n-000194"
+          "n-000249"
         ]
       }
     ]
@@ -566,7 +559,7 @@
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-27-49-88-1",
+        "name": "color/rgba-33-37-41-1",
         "roles": [
           "border",
           "text"
@@ -593,11 +586,21 @@
         ]
       }
     },
+    "spacing.0002": {
+      "id": "spacing.0002",
+      "kind": "spacing",
+      "proposal": {
+        "name": "spacing-0002",
+        "roles": [
+          "spacing"
+        ]
+      }
+    },
     "typography.0001": {
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-16px-400-24px-0em-none",
+        "name": "text/link/urbanist-16px-400-24px-0em-none",
         "roles": [
           "typography"
         ]
@@ -605,5 +608,14 @@
     }
   },
   "unsupported": [],
-  "warnings": []
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

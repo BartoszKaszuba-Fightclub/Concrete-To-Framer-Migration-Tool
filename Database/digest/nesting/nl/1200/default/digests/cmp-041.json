@@ -1,5 +1,25 @@
 {
-  "assets": [],
+  "assets": [
+    {
+      "alt": "Houcon.png",
+      "id": "asset.0001",
+      "kind": "img",
+      "naturalHeight": {
+        "status": "value",
+        "value": "55"
+      },
+      "naturalWidth": {
+        "status": "value",
+        "value": "193"
+      },
+      "nodeId": "n-000280",
+      "originalUrl": "https://www.xelion.com/application/files/5417/2707/4911/Houcon.png",
+      "usablePath": {
+        "status": "value",
+        "value": "Database/digest/nesting/nl/1200/default/assets/Houcon.png"
+      }
+    }
+  ],
   "capture": {
     "captureId": "nl-1200-default",
     "config": {
@@ -8,10 +28,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -20,7 +40,7 @@
   "component": {
     "id": "cmp-041",
     "rootIds": [
-      "n-000344"
+      "n-000278"
     ],
     "type": "molecule"
   },
@@ -34,55 +54,47 @@
   "hierarchy": [
     {
       "childIds": [
-        "n-000345"
+        "n-000280"
       ],
-      "id": "n-000344",
+      "id": "n-000278",
       "order": 0,
       "parentId": null
     },
     {
-      "childIds": [
-        "n-000346"
-      ],
-      "id": "n-000345",
-      "order": 0,
-      "parentId": "n-000344"
-    },
-    {
       "childIds": [],
-      "id": "n-000346",
+      "id": "n-000280",
       "order": 0,
-      "parentId": "n-000345"
+      "parentId": "n-000278"
     }
   ],
   "idStability": "capture-local",
   "links": [],
   "nodes": {
-    "n-000344": {
+    "n-000278": {
       "assetIds": [],
       "children": [
-        "n-000345"
+        "n-000280"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 25,
+        "height": 120,
         "status": "value",
-        "width": 1200,
-        "x": 0,
-        "y": 4997.06
+        "width": 86.25,
+        "x": 618.55,
+        "y": 2075.16
       },
-      "id": "n-000344",
+      "id": "n-000278",
       "layout": {
-        "display": "block",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
+        "position": "relative",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -95,7 +107,7 @@
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000344",
+      "sourceId": "n-000278",
       "styles": {
         "border": {
           "colourRefs": {
@@ -108,7 +120,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -128,7 +140,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -140,7 +152,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -152,7 +164,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -197,24 +209,24 @@
               "status": "unsupported"
             },
             "marginBottom": {
-              "status": "value",
-              "value": "25px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginLeft": {
               "status": "zero",
               "value": "0px"
             },
             "marginRight": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "64px"
             },
             "marginTop": {
               "status": "zero",
               "value": "0px"
             },
             "paddingBottom": {
-              "status": "value",
-              "value": "25px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingLeft": {
               "status": "zero",
@@ -241,11 +253,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -280,278 +292,34 @@
         "runs": []
       }
     },
-    "n-000345": {
-      "assetIds": [],
-      "children": [
-        "n-000346"
+    "n-000280": {
+      "assetIds": [
+        "asset.0001"
       ],
+      "children": [],
       "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 0,
-        "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 4997.06
-      },
-      "id": "n-000345",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
+        "clipping": {
           "status": "value",
-          "value": "1"
+          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
         },
-        "position": "relative",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
+        "filter": {
           "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000344",
-      "pseudos": {
-        "elements": {
-          "::after": {
-            "backgroundColor": {
-              "status": "value",
-              "value": "rgba(249, 176, 15, 0.5)"
-            },
-            "backgroundImage": {
-              "status": "empty",
-              "value": "none"
-            },
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "content": {
-              "status": "empty",
-              "value": ""
-            },
-            "height": {
-              "status": "value",
-              "value": "2px"
-            },
-            "opacity": {
-              "status": "value",
-              "value": "1"
-            },
-            "width": {
-              "status": "value",
-              "value": "1110px"
-            }
-          }
+          "value": "filter: grayscale(1); backdropFilter: none"
         },
         "status": "value"
       },
-      "role": "node",
-      "sourceId": "n-000345",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0001",
-            "borderLeftColor": "colour.0001",
-            "borderRightColor": "colour.0001",
-            "borderTopColor": "colour.0001"
-          },
-          "ref": "border.0001",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0002",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0003",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "value",
-              "value": "30px"
-            },
-            "marginRight": {
-              "status": "value",
-              "value": "30px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "value",
-              "value": "15px"
-            },
-            "paddingRight": {
-              "status": "value",
-              "value": "15px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0001",
-          "ref": "typography.0001",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "empty",
-          "value": ""
-        },
-        "runs": []
-      }
-    },
-    "n-000346": {
-      "assetIds": [],
-      "children": [],
-      "effects": {
-        "status": "empty"
-      },
       "geometry": {
-        "height": 0,
+        "height": 120,
         "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 4997.06
+        "width": 120,
+        "x": 601.68,
+        "y": 2075.16
       },
-      "id": "n-000346",
+      "id": "n-000280",
       "layout": {
         "display": "flex",
         "flexDirection": "row",
-        "flexWrap": "wrap",
+        "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
@@ -564,12 +332,12 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000345",
+      "parentId": "n-000278",
       "pseudos": {
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000346",
+      "sourceId": "n-000280",
       "styles": {
         "border": {
           "colourRefs": {
@@ -582,7 +350,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -602,7 +370,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -614,7 +382,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -626,7 +394,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -675,12 +443,12 @@
               "value": "0px"
             },
             "marginLeft": {
-              "status": "value",
-              "value": "-15px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginRight": {
-              "status": "value",
-              "value": "-15px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginTop": {
               "status": "zero",
@@ -715,11 +483,11 @@
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -745,7 +513,7 @@
           }
         }
       },
-      "tag": "div",
+      "tag": "img",
       "text": {
         "exact": {
           "status": "empty",
@@ -756,13 +524,21 @@
     }
   },
   "provenance": {
-    "folded": [],
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000280"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000279"
+      }
+    ],
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000344",
+        "nodeId": "n-000278",
         "sourceIds": [
-          "n-000344"
+          "n-000278"
         ]
       }
     ]
@@ -783,7 +559,7 @@
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-27-49-88-1",
+        "name": "color/rgba-33-37-41-1",
         "roles": [
           "border",
           "text"
@@ -800,14 +576,6 @@
         ]
       }
     },
-    "colour.0003": {
-      "id": "colour.0003",
-      "kind": "colour",
-      "proposal": {
-        "name": "colour-0003",
-        "roles": []
-      }
-    },
     "spacing.0001": {
       "id": "spacing.0001",
       "kind": "spacing",
@@ -822,17 +590,7 @@
       "id": "spacing.0002",
       "kind": "spacing",
       "proposal": {
-        "name": "spacing/margin/right-15px-left-15px",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
-    "spacing.0003": {
-      "id": "spacing.0003",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0003",
+        "name": "spacing-0002",
         "roles": [
           "spacing"
         ]
@@ -842,7 +600,7 @@
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-16px-400-24px-0em-none",
+        "name": "text/link/urbanist-16px-400-24px-0em-none",
         "roles": [
           "typography"
         ]
@@ -850,5 +608,14 @@
     }
   },
   "unsupported": [],
-  "warnings": []
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

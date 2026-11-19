@@ -1,25 +1,5 @@
 {
-  "assets": [
-    {
-      "alt": "img_540x350_werken-bij-yellow-hive.jpg",
-      "id": "asset.0001",
-      "kind": "img",
-      "naturalHeight": {
-        "status": "value",
-        "value": "350"
-      },
-      "naturalWidth": {
-        "status": "value",
-        "value": "540"
-      },
-      "nodeId": "n-000230",
-      "originalUrl": "https://yellowhive.com/application/files/7516/7844/8233/img_540x350_werken-bij-yellow-hive.jpg",
-      "usablePath": {
-        "status": "value",
-        "value": "Database/digest/nesting/nl/1200/default/assets/img_540x350_werken-bij-yellow-hive.jpg"
-      }
-    }
-  ],
+  "assets": [],
   "capture": {
     "captureId": "nl-1200-default",
     "config": {
@@ -28,10 +8,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -40,7 +20,7 @@
   "component": {
     "id": "cmp-026",
     "rootIds": [
-      "n-000218"
+      "n-000215"
     ],
     "type": "molecule"
   },
@@ -50,148 +30,80 @@
       "status": "value"
     }
   },
-  "groups": [
-    {
-      "fieldType": "",
-      "id": "group.0001",
-      "kind": "button",
-      "occurrences": [
-        {
-          "labels": [
-            "Bekijk onze vacatures"
-          ],
-          "nodeId": "n-000227",
-          "spacingRef": "spacing.0006"
-        }
-      ],
-      "styleRefs": {
-        "border": "border.0002",
-        "controlTypography": "typography.0001",
-        "fill": "colour.0002",
-        "textColours": [
-          "colour.0001"
-        ],
-        "typography": [
-          "typography.0001"
-        ]
-      },
-      "tag": "a"
-    }
-  ],
+  "groups": [],
   "hierarchy": [
     {
       "childIds": [
-        "n-000219"
+        "n-000216"
       ],
-      "id": "n-000218",
+      "id": "n-000215",
       "order": 0,
       "parentId": null
     },
     {
       "childIds": [
+        "n-000217",
+        "n-000221"
+      ],
+      "id": "n-000216",
+      "order": 0,
+      "parentId": "n-000215"
+    },
+    {
+      "childIds": [
+        "n-000218",
         "n-000220"
       ],
+      "id": "n-000217",
+      "order": 0,
+      "parentId": "n-000216"
+    },
+    {
+      "childIds": [
+        "n-000219"
+      ],
+      "id": "n-000218",
+      "order": 0,
+      "parentId": "n-000217"
+    },
+    {
+      "childIds": [],
       "id": "n-000219",
       "order": 0,
       "parentId": "n-000218"
     },
     {
-      "childIds": [
-        "n-000221"
-      ],
+      "childIds": [],
       "id": "n-000220",
-      "order": 0,
-      "parentId": "n-000219"
+      "order": 1,
+      "parentId": "n-000217"
     },
     {
-      "childIds": [
-        "n-000222",
-        "n-000228"
-      ],
+      "childIds": [],
       "id": "n-000221",
-      "order": 0,
-      "parentId": "n-000220"
-    },
-    {
-      "childIds": [
-        "n-000224",
-        "n-000225",
-        "n-000226"
-      ],
-      "id": "n-000222",
-      "order": 0,
-      "parentId": "n-000221"
-    },
-    {
-      "childIds": [],
-      "id": "n-000224",
-      "order": 0,
-      "parentId": "n-000222"
-    },
-    {
-      "childIds": [],
-      "id": "n-000225",
       "order": 1,
-      "parentId": "n-000222"
-    },
-    {
-      "childIds": [
-        "n-000227"
-      ],
-      "id": "n-000226",
-      "order": 2,
-      "parentId": "n-000222"
-    },
-    {
-      "childIds": [],
-      "id": "n-000227",
-      "order": 0,
-      "parentId": "n-000226"
-    },
-    {
-      "childIds": [
-        "n-000230"
-      ],
-      "id": "n-000228",
-      "order": 1,
-      "parentId": "n-000221"
-    },
-    {
-      "childIds": [],
-      "id": "n-000230",
-      "order": 0,
-      "parentId": "n-000228"
+      "parentId": "n-000216"
     }
   ],
   "idStability": "capture-local",
-  "links": [
-    {
-      "destination": {
-        "href": "https://yellowhive.com/nl/werken-bij/werken-bij-yellow-hive",
-        "kind": "external",
-        "status": "value"
-      },
-      "label": "Bekijk onze vacatures",
-      "nodeId": "n-000227"
-    }
-  ],
+  "links": [],
   "nodes": {
-    "n-000218": {
+    "n-000215": {
       "assetIds": [],
       "children": [
-        "n-000219"
+        "n-000216"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 510,
+        "height": 315,
         "status": "value",
-        "width": 1200,
-        "x": 0,
-        "y": 2026.02
+        "width": 377.33,
+        "x": 788.66,
+        "y": 1348.41
       },
-      "id": "n-000218",
+      "id": "n-000215",
       "layout": {
         "display": "block",
         "flexDirection": "row",
@@ -200,7 +112,7 @@
           "status": "value",
           "value": "1"
         },
-        "position": "relative",
+        "position": "static",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -213,20 +125,20 @@
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000218",
+      "sourceId": "n-000215",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
           },
           "ref": "border.0003",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -246,7 +158,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -258,7 +170,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -270,7 +182,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -299,483 +211,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0001",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "value",
-              "value": "200px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "value",
-              "value": "80px"
-            },
-            "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingTop": {
-              "status": "value",
-              "value": "80px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0002",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures"
-        },
-        "runs": [
-          {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
-            "typographyRef": "typography.0004"
-          },
-          {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
-          }
-        ]
-      }
-    },
-    "n-000219": {
-      "assetIds": [],
-      "children": [
-        "n-000220"
-      ],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 350,
-        "status": "value",
-        "width": 1200,
-        "x": 0,
-        "y": 2106.02
-      },
-      "id": "n-000219",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000218",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "node",
-      "sourceId": "n-000219",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
-          },
-          "ref": "border.0003",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0003",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0008",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0002",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures"
-        },
-        "runs": [
-          {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
-            "typographyRef": "typography.0004"
-          },
-          {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
-          }
-        ]
-      }
-    },
-    "n-000220": {
-      "assetIds": [],
-      "children": [
-        "n-000221"
-      ],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 350,
-        "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 2106.02
-      },
-      "id": "n-000220",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000219",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "node",
-      "sourceId": "n-000220",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
-          },
-          "ref": "border.0003",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -795,12 +231,12 @@
               "value": "0px"
             },
             "marginLeft": {
-              "status": "value",
-              "value": "30px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginRight": {
-              "status": "value",
-              "value": "30px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginTop": {
               "status": "zero",
@@ -812,11 +248,11 @@
             },
             "paddingLeft": {
               "status": "value",
-              "value": "15px"
+              "value": "12px"
             },
             "paddingRight": {
               "status": "value",
-              "value": "15px"
+              "value": "12px"
             },
             "paddingTop": {
               "status": "zero",
@@ -830,16 +266,16 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
+          "colourRef": "colour.0004",
           "ref": "typography.0002",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -869,53 +305,48 @@
       "text": {
         "exact": {
           "status": "value",
-          "value": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures"
+          "value": "Versnipperde klantinfo Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. "
         },
         "runs": [
           {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
+            "nodeId": "n-000220",
+            "text": "Versnipperde klantinfo",
             "typographyRef": "typography.0004"
           },
           {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
+            "nodeId": "n-000221",
+            "text": " Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. ",
             "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
           }
         ]
       }
     },
-    "n-000221": {
+    "n-000216": {
       "assetIds": [],
       "children": [
-        "n-000222",
-        "n-000228"
+        "n-000217",
+        "n-000221"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 350,
+        "height": 315,
         "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 2106.02
+        "width": 353.33,
+        "x": 800.66,
+        "y": 1348.41
       },
-      "id": "n-000221",
+      "id": "n-000216",
       "layout": {
         "display": "flex",
-        "flexDirection": "row",
-        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
+        "position": "relative",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -923,98 +354,98 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000220",
+      "parentId": "n-000215",
       "pseudos": {
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000221",
+      "sourceId": "n-000216",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0001",
+            "borderLeftColor": "colour.0001",
+            "borderRightColor": "colour.0001",
+            "borderTopColor": "colour.0001"
           },
-          "ref": "border.0003",
+          "ref": "border.0001",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(242, 242, 247)"
             },
             "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "12px"
             },
             "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "12px"
             },
             "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
+              "status": "value",
+              "value": "solid"
             },
             "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "1px"
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(242, 242, 247)"
             },
             "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
+              "status": "value",
+              "value": "solid"
             },
             "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "1px"
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(242, 242, 247)"
             },
             "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
+              "status": "value",
+              "value": "solid"
             },
             "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "1px"
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(242, 242, 247)"
             },
             "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "12px"
             },
             "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "12px"
             },
             "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
+              "status": "value",
+              "value": "solid"
             },
             "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "1px"
             }
           }
         },
         "fill": {
           "backgroundColor": {
             "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
+            "value": "rgb(255, 255, 255)"
           },
           "backgroundImage": {
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0002",
           "role": "fill"
         },
         "shadow": {
@@ -1034,32 +465,32 @@
               "value": "0px"
             },
             "marginLeft": {
-              "status": "value",
-              "value": "-15px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginRight": {
-              "status": "value",
-              "value": "-15px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginTop": {
               "status": "zero",
               "value": "0px"
             },
             "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "32px"
             },
             "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "16px"
             },
             "paddingRight": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "16px"
             },
             "paddingTop": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "32px"
             },
             "rowGap": {
               "raw": "normal",
@@ -1069,16 +500,16 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
+          "colourRef": "colour.0004",
           "ref": "typography.0002",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -1108,48 +539,42 @@
       "text": {
         "exact": {
           "status": "value",
-          "value": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures"
+          "value": "Versnipperde klantinfo Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. "
         },
         "runs": [
           {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
+            "nodeId": "n-000220",
+            "text": "Versnipperde klantinfo",
             "typographyRef": "typography.0004"
           },
           {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
+            "nodeId": "n-000221",
+            "text": " Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. ",
             "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
           }
         ]
       }
     },
-    "n-000222": {
+    "n-000217": {
       "assetIds": [],
       "children": [
-        "n-000224",
-        "n-000225",
-        "n-000226"
+        "n-000218",
+        "n-000220"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 350,
+        "height": 152,
         "status": "value",
-        "width": 570,
-        "x": 600,
-        "y": 2106.02
+        "width": 319.33,
+        "x": 817.66,
+        "y": 1381.41
       },
-      "id": "n-000222",
+      "id": "n-000217",
       "layout": {
-        "display": "block",
-        "flexDirection": "row",
+        "display": "flex",
+        "flexDirection": "column",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
@@ -1163,25 +588,25 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000221",
+      "parentId": "n-000216",
       "pseudos": {
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000222",
+      "sourceId": "n-000217",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
           },
           "ref": "border.0003",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -1201,7 +626,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -1213,7 +638,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -1225,7 +650,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -1254,7 +679,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -1262,7 +687,7 @@
           "value": "none"
         },
         "spacing": {
-          "ref": "spacing.0007",
+          "ref": "spacing.0001",
           "value": {
             "columnGap": {
               "raw": "normal",
@@ -1270,8 +695,8 @@
               "status": "unsupported"
             },
             "marginBottom": {
-              "status": "zero",
-              "value": "0px"
+              "status": "value",
+              "value": "16px"
             },
             "marginLeft": {
               "status": "zero",
@@ -1290,12 +715,12 @@
               "value": "0px"
             },
             "paddingLeft": {
-              "status": "value",
-              "value": "15px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingRight": {
-              "status": "value",
-              "value": "15px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingTop": {
               "status": "zero",
@@ -1309,16 +734,16 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
+          "colourRef": "colour.0004",
           "ref": "typography.0002",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -1348,41 +773,33 @@
       "text": {
         "exact": {
           "status": "value",
-          "value": "Werken bij Yellow HiveWil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. Bekijk onze vacatures"
+          "value": "Versnipperde klantinfo"
         },
         "runs": [
           {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
+            "nodeId": "n-000220",
+            "text": "Versnipperde klantinfo",
             "typographyRef": "typography.0004"
-          },
-          {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
           }
         ]
       }
     },
-    "n-000224": {
+    "n-000218": {
       "assetIds": [],
-      "children": [],
+      "children": [
+        "n-000219"
+      ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 52,
+        "height": 38,
         "status": "value",
-        "width": 540,
-        "x": 615,
-        "y": 2106.02
+        "width": 319.33,
+        "x": 817.66,
+        "y": 1381.41
       },
-      "id": "n-000224",
+      "id": "n-000218",
       "layout": {
         "display": "block",
         "flexDirection": "row",
@@ -1399,25 +816,25 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000222",
+      "parentId": "n-000217",
       "pseudos": {
         "status": "empty"
       },
-      "role": "label",
-      "sourceId": "n-000224",
+      "role": "node",
+      "sourceId": "n-000218",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0004",
+            "borderLeftColor": "colour.0004",
+            "borderRightColor": "colour.0004",
+            "borderTopColor": "colour.0004"
           },
           "ref": "border.0003",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -1437,7 +854,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -1449,7 +866,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -1461,7 +878,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -1490,7 +907,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -1507,7 +924,7 @@
             },
             "marginBottom": {
               "status": "value",
-              "value": "40px"
+              "value": "24px"
             },
             "marginLeft": {
               "status": "zero",
@@ -1545,242 +962,16 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0004",
+          "colourRef": "colour.0004",
+          "ref": "typography.0002",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "40px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "700"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "52px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "h2",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Werken bij Yellow Hive"
-        },
-        "runs": [
-          {
-            "nodeId": "n-000224",
-            "text": "Werken bij Yellow Hive",
-            "typographyRef": "typography.0004"
-          }
-        ]
-      }
-    },
-    "n-000225": {
-      "assetIds": [],
-      "children": [],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 128,
-        "status": "value",
-        "width": 540,
-        "x": 615,
-        "y": 2198.02
-      },
-      "id": "n-000225",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 1,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000222",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "label",
-      "sourceId": "n-000225",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
-          },
-          "ref": "border.0003",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0003",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0008",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0003",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -1797,7 +988,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "32px"
+              "value": "24px"
             },
             "textTransform": {
               "status": "empty",
@@ -1806,72 +997,158 @@
           }
         }
       },
-      "tag": "p",
+      "tag": "div",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. "
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000225",
-            "text": "Wil jij werken bij één van de snelst groeiende adviesorganisaties in de financiële sector? Sluit je aan bij Yellow Hive, You Sure, Felixx werk & inkomen of Yinco. Is de volgende stap in jouw carrière bij ons? Wij zijn nieuwsgierig naar je. ",
-            "typographyRef": "typography.0003"
-          }
-        ]
+        "runs": []
       }
     },
-    "n-000226": {
+    "n-000219": {
       "assetIds": [],
-      "children": [
-        "n-000227"
-      ],
+      "children": [],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 45.02,
+        "height": 36,
         "status": "value",
-        "width": 540,
-        "x": 615,
-        "y": 2366.02
+        "width": 40.5,
+        "x": 957.06,
+        "y": 1381.41
       },
-      "id": "n-000226",
+      "id": "n-000219",
       "layout": {
-        "display": "flex",
+        "display": "inline-block",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
-        "siblingOrder": 2,
+        "position": "relative",
+        "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
           "status": "value",
           "value": "auto"
         }
       },
-      "parentId": "n-000222",
+      "parentId": "n-000218",
       "pseudos": {
-        "status": "empty"
+        "elements": {
+          "::after": {
+            "backgroundColor": {
+              "status": "value",
+              "value": "rgba(0, 0, 0, 0)"
+            },
+            "backgroundImage": {
+              "status": "empty",
+              "value": "none"
+            },
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 93, 21)"
+            },
+            "content": {
+              "status": "value",
+              "value": "\"\""
+            },
+            "height": {
+              "status": "value",
+              "value": "auto"
+            },
+            "left": {
+              "status": "value",
+              "value": "auto"
+            },
+            "opacity": {
+              "status": "value",
+              "value": "0.4"
+            },
+            "position": {
+              "status": "value",
+              "value": "static"
+            },
+            "top": {
+              "status": "value",
+              "value": "auto"
+            },
+            "transform": {
+              "status": "empty",
+              "value": "none"
+            },
+            "width": {
+              "status": "value",
+              "value": "auto"
+            }
+          },
+          "::before": {
+            "backgroundColor": {
+              "status": "value",
+              "value": "rgba(0, 0, 0, 0)"
+            },
+            "backgroundImage": {
+              "status": "empty",
+              "value": "none"
+            },
+            "color": {
+              "status": "value",
+              "value": "rgb(255, 93, 21)"
+            },
+            "content": {
+              "status": "value",
+              "value": "\"\""
+            },
+            "height": {
+              "status": "value",
+              "value": "36px"
+            },
+            "left": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "opacity": {
+              "status": "value",
+              "value": "1"
+            },
+            "position": {
+              "status": "value",
+              "value": "absolute"
+            },
+            "top": {
+              "status": "zero",
+              "value": "0px"
+            },
+            "transform": {
+              "status": "empty",
+              "value": "none"
+            },
+            "width": {
+              "status": "value",
+              "value": "40.5px"
+            }
+          }
+        },
+        "status": "value"
       },
       "role": "node",
-      "sourceId": "n-000226",
+      "sourceId": "n-000219",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0003",
+            "borderLeftColor": "colour.0003",
+            "borderRightColor": "colour.0003",
+            "borderTopColor": "colour.0003"
           },
-          "ref": "border.0003",
+          "ref": "border.0002",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(255, 93, 21)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -1891,7 +1168,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(255, 93, 21)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -1903,7 +1180,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(255, 93, 21)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -1915,7 +1192,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(255, 93, 21)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -1944,7 +1221,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -1972,8 +1249,8 @@
               "value": "0px"
             },
             "marginTop": {
-              "status": "value",
-              "value": "40px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingBottom": {
               "status": "zero",
@@ -1999,24 +1276,24 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0002",
+          "colourRef": "colour.0003",
+          "ref": "typography.0001",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(255, 93, 21)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "\"Font Awesome 6 Duotone\""
             },
             "fontSize": {
               "status": "value",
-              "value": "16px"
+              "value": "36px"
             },
             "fontWeight": {
               "status": "value",
-              "value": "400"
+              "value": "300"
             },
             "letterSpacing": {
               "raw": "normal",
@@ -2025,7 +1302,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "24px"
+              "value": "36px"
             },
             "textTransform": {
               "status": "empty",
@@ -2034,273 +1311,29 @@
           }
         }
       },
-      "tag": "div",
+      "tag": "i",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Bekijk onze vacatures"
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
-          }
-        ]
+        "runs": []
       }
     },
-    "n-000227": {
+    "n-000220": {
       "assetIds": [],
       "children": [],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 45.02,
+        "height": 90,
         "status": "value",
-        "width": 256.02,
-        "x": 615,
-        "y": 2366.02
+        "width": 319.33,
+        "x": 817.66,
+        "y": 1443.41
       },
-      "id": "n-000227",
-      "labelNodes": [
-        {
-          "nodeId": "n-000227",
-          "text": {
-            "status": "value",
-            "value": "Bekijk onze vacatures"
-          },
-          "typographyRef": "typography.0001"
-        }
-      ],
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000226",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "control",
-      "sourceId": "n-000227",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
-          },
-          "ref": "border.0002",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "value",
-              "value": "6px"
-            },
-            "borderBottomRightRadius": {
-              "status": "value",
-              "value": "6px"
-            },
-            "borderBottomStyle": {
-              "status": "value",
-              "value": "solid"
-            },
-            "borderBottomWidth": {
-              "status": "value",
-              "value": "2px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "value",
-              "value": "solid"
-            },
-            "borderLeftWidth": {
-              "status": "value",
-              "value": "2px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "value",
-              "value": "solid"
-            },
-            "borderRightWidth": {
-              "status": "value",
-              "value": "2px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "value",
-              "value": "6px"
-            },
-            "borderTopRightRadius": {
-              "status": "value",
-              "value": "6px"
-            },
-            "borderTopStyle": {
-              "status": "value",
-              "value": "solid"
-            },
-            "borderTopWidth": {
-              "status": "value",
-              "value": "2px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgb(27, 49, 88)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0002",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0006",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "value",
-              "value": "10px"
-            },
-            "paddingLeft": {
-              "status": "value",
-              "value": "25.008px"
-            },
-            "paddingRight": {
-              "status": "value",
-              "value": "25.008px"
-            },
-            "paddingTop": {
-              "status": "value",
-              "value": "10px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0001",
-          "ref": "typography.0001",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(255, 255, 255)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "18px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "700"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "21.008px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "a",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Bekijk onze vacatures"
-        },
-        "runs": [
-          {
-            "nodeId": "n-000227",
-            "text": "Bekijk onze vacatures",
-            "typographyRef": "typography.0001"
-          }
-        ]
-      }
-    },
-    "n-000228": {
-      "assetIds": [],
-      "children": [
-        "n-000230"
-      ],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 350,
-        "status": "value",
-        "width": 570,
-        "x": 30,
-        "y": 2106.02
-      },
-      "id": "n-000228",
+      "id": "n-000220",
       "layout": {
         "display": "block",
         "flexDirection": "row",
@@ -2317,25 +1350,25 @@
           "value": "auto"
         }
       },
-      "parentId": "n-000221",
+      "parentId": "n-000217",
       "pseudos": {
         "status": "empty"
       },
-      "role": "node",
-      "sourceId": "n-000228",
+      "role": "label",
+      "sourceId": "n-000220",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0005",
+            "borderLeftColor": "colour.0005",
+            "borderRightColor": "colour.0005",
+            "borderTopColor": "colour.0005"
           },
-          "ref": "border.0003",
+          "ref": "border.0004",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -2355,7 +1388,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -2367,7 +1400,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -2379,7 +1412,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -2408,7 +1441,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -2416,7 +1449,7 @@
           "value": "none"
         },
         "spacing": {
-          "ref": "spacing.0007",
+          "ref": "spacing.0005",
           "value": {
             "columnGap": {
               "raw": "normal",
@@ -2444,12 +1477,12 @@
               "value": "0px"
             },
             "paddingLeft": {
-              "status": "value",
-              "value": "15px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingRight": {
-              "status": "value",
-              "value": "15px"
+              "status": "zero",
+              "value": "0px"
             },
             "paddingTop": {
               "status": "zero",
@@ -2463,24 +1496,24 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0002",
+          "colourRef": "colour.0005",
+          "ref": "typography.0004",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
-              "value": "16px"
+              "value": "40px"
             },
             "fontWeight": {
               "status": "value",
-              "value": "400"
+              "value": "500"
             },
             "letterSpacing": {
               "raw": "normal",
@@ -2489,7 +1522,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "24px"
+              "value": "45px"
             },
             "textTransform": {
               "status": "empty",
@@ -2498,37 +1531,37 @@
           }
         }
       },
-      "tag": "div",
+      "tag": "h3",
       "text": {
         "exact": {
-          "status": "empty",
-          "value": ""
+          "status": "value",
+          "value": "Versnipperde klantinfo"
         },
-        "runs": []
+        "runs": [
+          {
+            "nodeId": "n-000220",
+            "text": "Versnipperde klantinfo",
+            "typographyRef": "typography.0004"
+          }
+        ]
       }
     },
-    "n-000230": {
-      "assetIds": [
-        "asset.0001"
-      ],
+    "n-000221": {
+      "assetIds": [],
       "children": [],
       "effects": {
-        "clipping": {
-          "status": "value",
-          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
-        },
-        "status": "value"
+        "status": "empty"
       },
       "geometry": {
-        "height": 350,
+        "height": 81,
         "status": "value",
-        "width": 540,
-        "x": 45,
-        "y": 2106.02
+        "width": 319.33,
+        "x": 817.66,
+        "y": 1549.41
       },
-      "id": "n-000230",
+      "id": "n-000221",
       "layout": {
-        "display": "inline",
+        "display": "block",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
@@ -2536,40 +1569,40 @@
           "value": "1"
         },
         "position": "static",
-        "siblingOrder": 0,
+        "siblingOrder": 1,
         "visibility": "visible",
         "zIndex": {
           "status": "value",
           "value": "auto"
         }
       },
-      "parentId": "n-000228",
+      "parentId": "n-000216",
       "pseudos": {
         "status": "empty"
       },
-      "role": "node",
-      "sourceId": "n-000230",
+      "role": "label",
+      "sourceId": "n-000221",
       "styles": {
         "border": {
           "colourRefs": {
-            "borderBottomColor": "colour.0002",
-            "borderLeftColor": "colour.0002",
-            "borderRightColor": "colour.0002",
-            "borderTopColor": "colour.0002"
+            "borderBottomColor": "colour.0005",
+            "borderLeftColor": "colour.0005",
+            "borderRightColor": "colour.0005",
+            "borderTopColor": "colour.0005"
           },
-          "ref": "border.0001",
+          "ref": "border.0004",
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderBottomLeftRadius": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "borderBottomRightRadius": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "borderBottomStyle": {
               "status": "empty",
@@ -2581,7 +1614,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -2593,7 +1626,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -2605,15 +1638,15 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "borderTopLeftRadius": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "borderTopRightRadius": {
-              "status": "value",
-              "value": "10px"
+              "status": "zero",
+              "value": "0px"
             },
             "borderTopStyle": {
               "status": "empty",
@@ -2634,7 +1667,7 @@
             "status": "empty",
             "value": "none"
           },
-          "ref": "colour.0003",
+          "ref": "colour.0006",
           "role": "fill"
         },
         "shadow": {
@@ -2642,7 +1675,7 @@
           "value": "none"
         },
         "spacing": {
-          "ref": "spacing.0008",
+          "ref": "spacing.0005",
           "value": {
             "columnGap": {
               "raw": "normal",
@@ -2689,20 +1722,20 @@
           }
         },
         "typography": {
-          "colourRef": "colour.0002",
-          "ref": "typography.0002",
+          "colourRef": "colour.0005",
+          "ref": "typography.0003",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(60, 57, 88)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
-              "value": "16px"
+              "value": "18px"
             },
             "fontWeight": {
               "status": "value",
@@ -2715,7 +1748,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "24px"
+              "value": "27px"
             },
             "textTransform": {
               "status": "empty",
@@ -2724,40 +1757,30 @@
           }
         }
       },
-      "tag": "img",
+      "tag": "span",
       "text": {
         "exact": {
-          "status": "empty",
-          "value": ""
+          "status": "value",
+          "value": " Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. "
         },
-        "runs": []
+        "runs": [
+          {
+            "nodeId": "n-000221",
+            "text": " Collega's zien niet wat er eerder besproken is, waardoor klanten hun verhaal opnieuw moeten vertellen. ",
+            "typographyRef": "typography.0003"
+          }
+        ]
       }
     }
   },
   "provenance": {
-    "folded": [
-      {
-        "childSourceIds": [
-          "n-000224",
-          "n-000225"
-        ],
-        "reason": "wrapper-without-effect",
-        "sourceId": "n-000223"
-      },
-      {
-        "childSourceIds": [
-          "n-000230"
-        ],
-        "reason": "wrapper-without-effect",
-        "sourceId": "n-000229"
-      }
-    ],
+    "folded": [],
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000218",
+        "nodeId": "n-000215",
         "sourceIds": [
-          "n-000218"
+          "n-000215"
         ]
       }
     ]
@@ -2794,13 +1817,23 @@
         ]
       }
     },
+    "border.0004": {
+      "id": "border.0004",
+      "kind": "border",
+      "proposal": {
+        "name": "border-0004",
+        "roles": [
+          "border"
+        ]
+      }
+    },
     "colour.0001": {
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-255-255-255-1",
+        "name": "color/rgba-242-242-247-1",
         "roles": [
-          "text"
+          "border"
         ]
       }
     },
@@ -2808,16 +1841,47 @@
       "id": "colour.0002",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-27-49-88-1",
+        "name": "color/rgba-255-255-255-1",
         "roles": [
-          "border",
-          "fill",
-          "text"
+          "fill"
         ]
       }
     },
     "colour.0003": {
       "id": "colour.0003",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-255-93-21-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0004": {
+      "id": "colour.0004",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-33-37-41-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0005": {
+      "id": "colour.0005",
+      "kind": "colour",
+      "proposal": {
+        "name": "color/rgba-60-57-88-1",
+        "roles": [
+          "border",
+          "text"
+        ]
+      }
+    },
+    "colour.0006": {
+      "id": "colour.0006",
       "kind": "colour",
       "proposal": {
         "name": "color/rgba-0-0-0-0",
@@ -2850,7 +1914,7 @@
       "id": "spacing.0003",
       "kind": "spacing",
       "proposal": {
-        "name": "spacing/margin/right-15px-left-15px",
+        "name": "spacing-0003",
         "roles": [
           "spacing"
         ]
@@ -2876,41 +1940,11 @@
         ]
       }
     },
-    "spacing.0006": {
-      "id": "spacing.0006",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0006",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
-    "spacing.0007": {
-      "id": "spacing.0007",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0007",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
-    "spacing.0008": {
-      "id": "spacing.0008",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0008",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
     "typography.0001": {
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-18px-700-21-008px-0em-none-2",
+        "name": "text/body/font-awesome-6-duotone-36px-300-36px-0em-none",
         "roles": [
           "typography"
         ]
@@ -2920,7 +1954,7 @@
       "id": "typography.0002",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-16px-400-24px-0em-none",
+        "name": "text/link/urbanist-16px-400-24px-0em-none",
         "roles": [
           "typography"
         ]
@@ -2930,7 +1964,7 @@
       "id": "typography.0003",
       "kind": "typography",
       "proposal": {
-        "name": "text/body/lexend-16px-400-32px-0em-none",
+        "name": "text/body/urbanist-18px-400-27px-0em-none",
         "roles": [
           "typography"
         ]
@@ -2940,7 +1974,7 @@
       "id": "typography.0004",
       "kind": "typography",
       "proposal": {
-        "name": "text/h1/lexend-40px-700-52px-0em-none",
+        "name": "text/h3/urbanist-40px-500-45px-0em-none",
         "roles": [
           "typography"
         ]
@@ -2948,5 +1982,14 @@
     }
   },
   "unsupported": [],
-  "warnings": []
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

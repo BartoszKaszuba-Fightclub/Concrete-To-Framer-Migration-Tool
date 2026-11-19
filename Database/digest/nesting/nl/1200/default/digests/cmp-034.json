@@ -1,5 +1,25 @@
 {
-  "assets": [],
+  "assets": [
+    {
+      "alt": "loetje.svg",
+      "id": "asset.0001",
+      "kind": "img",
+      "naturalHeight": {
+        "status": "value",
+        "value": "201"
+      },
+      "naturalWidth": {
+        "status": "value",
+        "value": "364"
+      },
+      "nodeId": "n-000259",
+      "originalUrl": "https://www.xelion.com/application/files/7917/2405/6607/loetje.svg",
+      "usablePath": {
+        "status": "value",
+        "value": "Database/digest/nesting/nl/1200/default/assets/loetje.svg"
+      }
+    }
+  ],
   "capture": {
     "captureId": "nl-1200-default",
     "config": {
@@ -8,10 +28,10 @@
     },
     "finalUrl": {
       "status": "value",
-      "value": "https://yellowhive.com/nl"
+      "value": "https://www.xelion.com/nl"
     },
     "state": "default",
-    "url": "https://yellowhive.com/nl",
+    "url": "https://www.xelion.com/nl",
     "viewport": {
       "height": 900,
       "width": 1200
@@ -20,7 +40,7 @@
   "component": {
     "id": "cmp-034",
     "rootIds": [
-      "n-000233"
+      "n-000257"
     ],
     "type": "molecule"
   },
@@ -34,70 +54,47 @@
   "hierarchy": [
     {
       "childIds": [
-        "n-000234"
+        "n-000259"
       ],
-      "id": "n-000233",
+      "id": "n-000257",
       "order": 0,
       "parentId": null
     },
     {
-      "childIds": [
-        "n-000235"
-      ],
-      "id": "n-000234",
-      "order": 0,
-      "parentId": "n-000233"
-    },
-    {
-      "childIds": [
-        "n-000236",
-        "n-000237"
-      ],
-      "id": "n-000235",
-      "order": 0,
-      "parentId": "n-000234"
-    },
-    {
       "childIds": [],
-      "id": "n-000236",
+      "id": "n-000259",
       "order": 0,
-      "parentId": "n-000235"
-    },
-    {
-      "childIds": [],
-      "id": "n-000237",
-      "order": 1,
-      "parentId": "n-000235"
+      "parentId": "n-000257"
     }
   ],
   "idStability": "capture-local",
   "links": [],
   "nodes": {
-    "n-000233": {
+    "n-000257": {
       "assetIds": [],
       "children": [
-        "n-000234"
+        "n-000259"
       ],
       "effects": {
         "status": "empty"
       },
       "geometry": {
-        "height": 236,
+        "height": 120,
         "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 2736.02
+        "width": 86.25,
+        "x": -433.2,
+        "y": 2075.16
       },
-      "id": "n-000233",
+      "id": "n-000257",
       "layout": {
         "display": "flex",
         "flexDirection": "row",
-        "flexWrap": "wrap",
+        "flexWrap": "nowrap",
         "opacity": {
           "status": "value",
           "value": "1"
         },
-        "position": "static",
+        "position": "relative",
         "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
@@ -110,7 +107,7 @@
         "status": "empty"
       },
       "role": "node",
-      "sourceId": "n-000233",
+      "sourceId": "n-000257",
       "styles": {
         "border": {
           "colourRefs": {
@@ -123,7 +120,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -143,7 +140,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -155,7 +152,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -167,705 +164,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0002",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0003",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "value",
-              "value": "-15px"
-            },
-            "marginRight": {
-              "status": "value",
-              "value": "-15px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0001",
-          "ref": "typography.0001",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Het laatste nieuwsOntwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner."
-        },
-        "runs": [
-          {
-            "nodeId": "n-000236",
-            "text": "Het laatste nieuws",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000237",
-            "text": "Ontwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.",
-            "typographyRef": "typography.0002"
-          }
-        ]
-      }
-    },
-    "n-000234": {
-      "assetIds": [],
-      "children": [
-        "n-000235"
-      ],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 236,
-        "status": "value",
-        "width": 1140,
-        "x": 30,
-        "y": 2736.02
-      },
-      "id": "n-000234",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000233",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "node",
-      "sourceId": "n-000234",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0001",
-            "borderLeftColor": "colour.0001",
-            "borderRightColor": "colour.0001",
-            "borderTopColor": "colour.0001"
-          },
-          "ref": "border.0001",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0002",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0005",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "value",
-              "value": "15px"
-            },
-            "paddingRight": {
-              "status": "value",
-              "value": "15px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0001",
-          "ref": "typography.0001",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Het laatste nieuwsOntwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner."
-        },
-        "runs": [
-          {
-            "nodeId": "n-000236",
-            "text": "Het laatste nieuws",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000237",
-            "text": "Ontwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.",
-            "typographyRef": "typography.0002"
-          }
-        ]
-      }
-    },
-    "n-000235": {
-      "assetIds": [],
-      "children": [
-        "n-000236",
-        "n-000237"
-      ],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 156,
-        "status": "value",
-        "width": 1110,
-        "x": 45,
-        "y": 2736.02
-      },
-      "id": "n-000235",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000234",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "node",
-      "sourceId": "n-000235",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0001",
-            "borderLeftColor": "colour.0001",
-            "borderRightColor": "colour.0001",
-            "borderTopColor": "colour.0001"
-          },
-          "ref": "border.0001",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderTopLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderTopWidth": {
-              "status": "zero",
-              "value": "0px"
-            }
-          }
-        },
-        "fill": {
-          "backgroundColor": {
-            "status": "value",
-            "value": "rgba(0, 0, 0, 0)"
-          },
-          "backgroundImage": {
-            "status": "empty",
-            "value": "none"
-          },
-          "ref": "colour.0002",
-          "role": "fill"
-        },
-        "shadow": {
-          "status": "empty",
-          "value": "none"
-        },
-        "spacing": {
-          "ref": "spacing.0002",
-          "value": {
-            "columnGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "marginBottom": {
-              "status": "value",
-              "value": "80px"
-            },
-            "marginLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "marginTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingBottom": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingLeft": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingRight": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "paddingTop": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "rowGap": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            }
-          }
-        },
-        "typography": {
-          "colourRef": "colour.0001",
-          "ref": "typography.0001",
-          "value": {
-            "color": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "fontFamily": {
-              "status": "value",
-              "value": "Lexend, sans-serif"
-            },
-            "fontSize": {
-              "status": "value",
-              "value": "16px"
-            },
-            "fontWeight": {
-              "status": "value",
-              "value": "400"
-            },
-            "letterSpacing": {
-              "raw": "normal",
-              "reason": "Computed value is the keyword normal, which is not a measured length.",
-              "status": "unsupported"
-            },
-            "lineHeight": {
-              "status": "value",
-              "value": "24px"
-            },
-            "textTransform": {
-              "status": "empty",
-              "value": "none"
-            }
-          }
-        }
-      },
-      "tag": "div",
-      "text": {
-        "exact": {
-          "status": "value",
-          "value": "Het laatste nieuwsOntwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner."
-        },
-        "runs": [
-          {
-            "nodeId": "n-000236",
-            "text": "Het laatste nieuws",
-            "typographyRef": "typography.0003"
-          },
-          {
-            "nodeId": "n-000237",
-            "text": "Ontwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.",
-            "typographyRef": "typography.0002"
-          }
-        ]
-      }
-    },
-    "n-000236": {
-      "assetIds": [],
-      "children": [],
-      "effects": {
-        "status": "empty"
-      },
-      "geometry": {
-        "height": 52,
-        "status": "value",
-        "width": 750,
-        "x": 225,
-        "y": 2736.02
-      },
-      "id": "n-000236",
-      "layout": {
-        "display": "block",
-        "flexDirection": "row",
-        "flexWrap": "nowrap",
-        "opacity": {
-          "status": "value",
-          "value": "1"
-        },
-        "position": "static",
-        "siblingOrder": 0,
-        "visibility": "visible",
-        "zIndex": {
-          "status": "value",
-          "value": "auto"
-        }
-      },
-      "parentId": "n-000235",
-      "pseudos": {
-        "status": "empty"
-      },
-      "role": "label",
-      "sourceId": "n-000236",
-      "styles": {
-        "border": {
-          "colourRefs": {
-            "borderBottomColor": "colour.0001",
-            "borderLeftColor": "colour.0001",
-            "borderRightColor": "colour.0001",
-            "borderTopColor": "colour.0001"
-          },
-          "ref": "border.0001",
-          "value": {
-            "borderBottomColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderBottomLeftRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomRightRadius": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderBottomStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderBottomWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderLeftColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderLeftStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderLeftWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderRightColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
-            },
-            "borderRightStyle": {
-              "status": "empty",
-              "value": "none"
-            },
-            "borderRightWidth": {
-              "status": "zero",
-              "value": "0px"
-            },
-            "borderTopColor": {
-              "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -910,16 +209,16 @@
               "status": "unsupported"
             },
             "marginBottom": {
-              "status": "value",
-              "value": "40px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginLeft": {
-              "status": "value",
-              "value": "180px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginRight": {
               "status": "value",
-              "value": "180px"
+              "value": "64px"
             },
             "marginTop": {
               "status": "zero",
@@ -950,23 +249,23 @@
         },
         "typography": {
           "colourRef": "colour.0001",
-          "ref": "typography.0003",
+          "ref": "typography.0001",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
-              "value": "40px"
+              "value": "16px"
             },
             "fontWeight": {
               "status": "value",
-              "value": "700"
+              "value": "400"
             },
             "letterSpacing": {
               "raw": "normal",
@@ -975,7 +274,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "52px"
+              "value": "24px"
             },
             "textTransform": {
               "status": "empty",
@@ -984,37 +283,41 @@
           }
         }
       },
-      "tag": "h2",
+      "tag": "div",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Het laatste nieuws"
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000236",
-            "text": "Het laatste nieuws",
-            "typographyRef": "typography.0003"
-          }
-        ]
+        "runs": []
       }
     },
-    "n-000237": {
-      "assetIds": [],
+    "n-000259": {
+      "assetIds": [
+        "asset.0001"
+      ],
       "children": [],
       "effects": {
-        "status": "empty"
+        "clipping": {
+          "status": "value",
+          "value": "overflowX: clip; overflowY: clip; clipPath: none; maskImage: none"
+        },
+        "filter": {
+          "status": "value",
+          "value": "filter: grayscale(1); backdropFilter: none"
+        },
+        "status": "value"
       },
       "geometry": {
-        "height": 64,
+        "height": 120,
         "status": "value",
-        "width": 850,
-        "x": 175,
-        "y": 2828.02
+        "width": 120,
+        "x": -450.07,
+        "y": 2075.16
       },
-      "id": "n-000237",
+      "id": "n-000259",
       "layout": {
-        "display": "block",
+        "display": "flex",
         "flexDirection": "row",
         "flexWrap": "nowrap",
         "opacity": {
@@ -1022,19 +325,19 @@
           "value": "1"
         },
         "position": "static",
-        "siblingOrder": 1,
+        "siblingOrder": 0,
         "visibility": "visible",
         "zIndex": {
           "status": "value",
           "value": "auto"
         }
       },
-      "parentId": "n-000235",
+      "parentId": "n-000257",
       "pseudos": {
         "status": "empty"
       },
-      "role": "label",
-      "sourceId": "n-000237",
+      "role": "node",
+      "sourceId": "n-000259",
       "styles": {
         "border": {
           "colourRefs": {
@@ -1047,7 +350,7 @@
           "value": {
             "borderBottomColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderBottomLeftRadius": {
               "status": "zero",
@@ -1067,7 +370,7 @@
             },
             "borderLeftColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderLeftStyle": {
               "status": "empty",
@@ -1079,7 +382,7 @@
             },
             "borderRightColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderRightStyle": {
               "status": "empty",
@@ -1091,7 +394,7 @@
             },
             "borderTopColor": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "borderTopLeftRadius": {
               "status": "zero",
@@ -1128,7 +431,7 @@
           "value": "none"
         },
         "spacing": {
-          "ref": "spacing.0004",
+          "ref": "spacing.0002",
           "value": {
             "columnGap": {
               "raw": "normal",
@@ -1140,12 +443,12 @@
               "value": "0px"
             },
             "marginLeft": {
-              "status": "value",
-              "value": "130px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginRight": {
-              "status": "value",
-              "value": "130px"
+              "status": "zero",
+              "value": "0px"
             },
             "marginTop": {
               "status": "zero",
@@ -1176,15 +479,15 @@
         },
         "typography": {
           "colourRef": "colour.0001",
-          "ref": "typography.0002",
+          "ref": "typography.0001",
           "value": {
             "color": {
               "status": "value",
-              "value": "rgb(27, 49, 88)"
+              "value": "rgb(33, 37, 41)"
             },
             "fontFamily": {
               "status": "value",
-              "value": "Lexend, sans-serif"
+              "value": "Urbanist, sans-serif"
             },
             "fontSize": {
               "status": "value",
@@ -1201,7 +504,7 @@
             },
             "lineHeight": {
               "status": "value",
-              "value": "32px"
+              "value": "24px"
             },
             "textTransform": {
               "status": "empty",
@@ -1210,30 +513,32 @@
           }
         }
       },
-      "tag": "p",
+      "tag": "img",
       "text": {
         "exact": {
-          "status": "value",
-          "value": "Ontwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner."
+          "status": "empty",
+          "value": ""
         },
-        "runs": [
-          {
-            "nodeId": "n-000237",
-            "text": "Ontwikkelingen in de markt of nieuws over onze organisatie. Wij delen onze kennis graag met je. Via eigen geschreven persberichten of als kennispartner.",
-            "typographyRef": "typography.0002"
-          }
-        ]
+        "runs": []
       }
     }
   },
   "provenance": {
-    "folded": [],
+    "folded": [
+      {
+        "childSourceIds": [
+          "n-000259"
+        ],
+        "reason": "wrapper-without-effect",
+        "sourceId": "n-000258"
+      }
+    ],
     "omitted": [],
     "roots": [
       {
-        "nodeId": "n-000233",
+        "nodeId": "n-000257",
         "sourceIds": [
-          "n-000233"
+          "n-000257"
         ]
       }
     ]
@@ -1254,7 +559,7 @@
       "id": "colour.0001",
       "kind": "colour",
       "proposal": {
-        "name": "color/rgba-27-49-88-1",
+        "name": "color/rgba-33-37-41-1",
         "roles": [
           "border",
           "text"
@@ -1291,61 +596,11 @@
         ]
       }
     },
-    "spacing.0003": {
-      "id": "spacing.0003",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing/margin/right-15px-left-15px",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
-    "spacing.0004": {
-      "id": "spacing.0004",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0004",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
-    "spacing.0005": {
-      "id": "spacing.0005",
-      "kind": "spacing",
-      "proposal": {
-        "name": "spacing-0005",
-        "roles": [
-          "spacing"
-        ]
-      }
-    },
     "typography.0001": {
       "id": "typography.0001",
       "kind": "typography",
       "proposal": {
-        "name": "text/button/lexend-16px-400-24px-0em-none",
-        "roles": [
-          "typography"
-        ]
-      }
-    },
-    "typography.0002": {
-      "id": "typography.0002",
-      "kind": "typography",
-      "proposal": {
-        "name": "text/body/lexend-16px-400-32px-0em-none",
-        "roles": [
-          "typography"
-        ]
-      }
-    },
-    "typography.0003": {
-      "id": "typography.0003",
-      "kind": "typography",
-      "proposal": {
-        "name": "text/h1/lexend-40px-700-52px-0em-none",
+        "name": "text/link/urbanist-16px-400-24px-0em-none",
         "roles": [
           "typography"
         ]
@@ -1353,5 +608,14 @@
     }
   },
   "unsupported": [],
-  "warnings": []
+  "warnings": [
+    {
+      "code": "dom-changed",
+      "message": "DOM changed between extraction and screenshot on 3 attempts; tree and screenshot may differ"
+    },
+    {
+      "code": "settle-timeout",
+      "message": "Readiness not reached within 10000ms; 27 images still loading"
+    }
+  ]
 }

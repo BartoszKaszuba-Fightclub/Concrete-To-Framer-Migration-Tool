@@ -1,15 +1,7 @@
 {
-  "dialog": {
-    "selector": "#CybotCookiebotDialogBodyUnderlay",
-    "box": {
-      "x": 0,
-      "y": 0,
-      "width": 1200,
-      "height": 900
-    }
-  },
+  "dialog": null,
   "button": {
-    "selector": "button",
+    "selector": "#CookiebotWidget",
     "box": {
       "x": 10,
       "y": 842,

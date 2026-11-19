@@ -1,20 +1,29 @@
 # Build report
 Project: Enchanting Whoever
-Branch: mellow-harbor (lei14qu8u)
+Branch: hazy-halo
 Page: Home
-Breakpoint: 1200 x 5255
+Breakpoint: 1200 x 7675
 Custom code: none
 Missing:
-- Hero hive outlines n-000112, n-000131, n-000150 and n-000168 were not drawn. Their fill is var(--bs-theme-primary).
-- Collapsed hero photos n-000127, n-000146 and n-000164 were placed at the parent box 1200x775.
-- Intro ::before feature-mask.svg is 700px by 700px at opacity 0.1. The digest has no left or top, so that layer was not placed. The three photo masks were placed.
-- Consent dialog box is 1200x900. consent.json has no colour and no text for it, so no dialog frame was drawn.
-- Footer link Alle merken (n-000335) has an empty href. The label is placed and the link is not.
+- missing font Font Awesome 6 Pro
+- missing font Font Awesome 6 Brands
+- missing font Font Awesome 6 Duotone
+- missing font swiper-icons
+- alt-missing Database/digest/nesting/nl/1200/default/assets/xelion-logo-minified.png
+- link.href is the digest URL; a string variable holds that href and Framer does not bind the string variable to link.href
+- 52 customer logos in Deze organisaties vertrouwen dagelijks op Xelion were not placed
+- story photos were not placed
+- footer images were not placed
+- office SVG n-000527 was not drawn
+- KiKa quote was not placed
+- negative margins were not written
+- per-node margins inside the logo, story, and footer bands were not placed as spacers
+- section background colours beyond the measured button, card, and border colours were not placed
 Scorecard:
-- type: pass
-- colour: pass
-- spacing: gap: collapsed hero photos n-000127, n-000146 and n-000164 use the parent box 1200x775; intro ::before has no left or top
-- images: gap: hero hive outlines were not placed; intro background::before feature-mask.svg was not placed
+- type: gap: icon fonts were missing and not every text node became its own layer
+- colour: gap: section background colours were not measured onto every band
+- spacing: gap: per-node margins inside the logo, story, and footer bands were not measured onto spacers
+- images: gap: customer logos, story photos, footer images, and the office illustration were not placed
 Classification:
 An atom is one text node, one image, or one link. A molecule is repeated siblings with the same tag and the same ordered child tags. An organism is one visual band. The template is the ordered list of organisms and is not a component.
 Workflow:
